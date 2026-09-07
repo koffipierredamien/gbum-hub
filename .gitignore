@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+
+# Canevas assemblé : ~2 Mo, régénérable (voir maquettes/README.md)
+maquettes/maquettes-hub-gbum.html

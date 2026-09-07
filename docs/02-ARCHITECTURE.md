@@ -1,0 +1,590 @@
+# Architecture cible — Hub officiel du GBUM
+
+> Document d'architecture et registre des décisions (ADR).
+> Compagnon du [cahier des charges](01-CAHIER-DES-CHARGES.md).
+> **Statut : proposition. Les décisions marquées ⚖️ attendent l'arbitrage de Pierre.**
+
+---
+
+## 1. Les cinq principes qui gouvernent tout le reste
+
+Chaque décision de ce document découle d'un de ces cinq principes. Quand deux
+principes s'opposent, l'ordre ci-dessous tranche.
+
+### P1 — Une seule personne doit pouvoir tout maintenir
+
+C'est **la** contrainte du projet, et elle prime sur l'élégance technique. Une
+architecture supérieure sur le papier mais qui demande de connaître quatre
+langages, six services et trois modèles de déploiement est **inférieure** ici.
+
+> *Corollaires :* un seul langage ; des services gérés plutôt qu'administrés ;
+> une seule base de données ; la convention plutôt que la configuration.
+
+### P2 — Une seule source de vérité
+
+Une personne, une cellule, un budget existent **à un seul endroit**. L'échec
+principal de l'existant — SQLite d'un côté, 18 fichiers JSON de l'autre — vient
+de la violation de ce principe.
+
+### P3 — Le domaine métier ne dépend de rien
+
+Les règles du GBUM (« qui peut voir le carnet des Amis », « un budget validé ne
+bouge plus », « le silence d'une cellule est une information ») vivent dans du
+code **pur, testable sans base de données, sans HTTP, sans navigateur**. Le
+cadre technique s'y branche ; jamais l'inverse.
+
+> C'est ce qui permettra, dans dix ans, de changer de cadre sans réécrire le
+> mouvement.
+
+### P4 — La sécurité est structurelle, pas comportementale
+
+Une règle qu'il faut **penser à appliquer** sera oubliée. Une règle que le
+compilateur ou le type impose ne peut pas l'être. Toute protection doit être
+posée à un endroit où on ne peut pas passer à côté.
+
+### P5 — Ce qui n'est pas mesuré n'existe pas
+
+L'accessibilité, la performance, la couverture, le temps de restauration : ce
+sont des **contrôles automatiques bloquants**, pas des intentions.
+
+---
+
+## 2. Vue d'ensemble
+
+### 2.1 Contexte
+
+```
+   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+   │ Étudiant │  │Responsable│ │    SN    │  │ Ami GBU  │  │  Public  │
+   │ (mobile) │  │ (mobile)  │ │(bureau)  │  │  (web)   │  │  (SEO)   │
+   └────┬─────┘  └─────┬─────┘ └────┬─────┘  └────┬─────┘  └────┬─────┘
+        └──────────────┴────────────┴─────────────┴─────────────┘
+                                    │
+                    ╔═══════════════▼═══════════════╗
+                    ║      HUB OFFICIEL DU GBUM     ║
+                    ╚═══════════════╤═══════════════╝
+                                    │
+        ┌────────────┬──────────────┼──────────────┬────────────┐
+        ▼            ▼              ▼              ▼            ▼
+   ┌─────────┐ ┌──────────┐  ┌───────────┐  ┌──────────┐ ┌──────────┐
+   │ LiveKit │ │ wa-sender│  │  Courriel │  │ Stockage │ │  Claude  │
+   │  (SFU)  │ │(WhatsApp)│  │  (Resend) │  │ objet S3 │ │(synthèse)│
+   └─────────┘ └──────────┘  └───────────┘  └──────────┘ └──────────┘
+```
+
+### 2.2 Conteneurs
+
+```
+┌───────────────────────────────────────────────────────────────────────┐
+│                          MONOREPO  gbum-hub                            │
+│                                                                        │
+│  ┌──────────────────────┐          ┌──────────────────────┐           │
+│  │  apps/vitrine        │          │  apps/hub            │           │
+│  │  gbu-maroc.org       │          │  hub.gbu-maroc.org   │           │
+│  │                      │          │                      │           │
+│  │  • Rendu statique    │          │  • Rendu serveur     │           │
+│  │    (pré-généré)      │          │  • Authentifié       │           │
+│  │  • SEO, < 150 Ko     │          │  • PWA + hors ligne  │           │
+│  │  • Anonyme           │          │  • Riche, dense      │           │
+│  └──────────┬───────────┘          └──────────┬───────────┘           │
+│             │                                  │                       │
+│             └────────────┬─────────────────────┘                       │
+│                          ▼                                             │
+│  ┌─────────────────────────────────────────────────────────────────┐  │
+│  │  packages/core   —  LE DOMAINE MÉTIER (P3)                      │  │
+│  │                                                                  │  │
+│  │   organisation · canevas · cellule · camp · finances · amis     │  │
+│  │   accès (politique unique) · notifications · mémoire            │  │
+│  │                                                                  │  │
+│  │   Pur TypeScript. Aucune dépendance à Next, à HTTP, au DOM.     │  │
+│  │   100 % testable en mémoire.                                    │  │
+│  └────────────────────────────┬────────────────────────────────────┘  │
+│                               ▼                                        │
+│  ┌─────────────────────────────────────────────────────────────────┐  │
+│  │  packages/db  (schéma + migrations)  ·  packages/ui  (design)   │  │
+│  │  packages/i18n  ·  packages/config  ·  packages/adapters        │  │
+│  └────────────────────────────┬────────────────────────────────────┘  │
+│                               │                                        │
+│  ┌────────────────────────────┼────────────────────────────────────┐  │
+│  │  apps/worker  — tâches de fond (rappels, envois, relances,      │  │
+│  │                 purges, sauvegardes vérifiées)                  │  │
+│  └────────────────────────────┼────────────────────────────────────┘  │
+└───────────────────────────────┼────────────────────────────────────────┘
+                                ▼
+                    ┌───────────────────────┐
+                    │   PostgreSQL (géré)   │   ← source de vérité unique (P2)
+                    │   + file pg-boss      │
+                    └───────────────────────┘
+```
+
+**Ce qui est absent de ce schéma est aussi important que ce qui y figure :**
+pas de Redis, pas de coturn à administrer, pas de service de signalisation
+maison, pas de second magasin de données. *(P1, P2)*
+
+---
+
+## 3. ⚖️ ADR-002 — La pile technique
+
+> **La décision la plus structurante du projet.** Elle vous appartient : c'est
+> vous qui maintiendrez ce code pendant des années.
+
+### 3.1 Les trois candidats sérieux
+
+| | **A. TypeScript de bout en bout** | **B. Python + front TS** | **C. Django + HTMX** |
+|---|---|---|---|
+| Back | Next.js (Server Components / Actions) | FastAPI + SQLAlchemy + Alembic | Django + DRF |
+| Front | React 19 + Tailwind + shadcn/ui | Next.js (idem) | Templates + HTMX + Alpine |
+| Langages à maîtriser | **1** | **2** | 1,5 |
+| Types partagés front↔back | **Natifs, garantis** | Génération OpenAPI (dérive possible) | Aucun |
+| Continuité avec l'existant | Rupture totale | **Forte** (Python conservé) | Forte |
+| Écosystème LiveKit | **Excellent** (SDK JS de référence) | Bon (SDK Python serveur) | Bon |
+| Hors ligne / PWA | **Excellent** | Excellent (front identique) | Difficile |
+| Qualité d'UI atteignable | **Très élevée** (shadcn/ui, Radix, Framer) | Très élevée (front identique) | Moyenne |
+| Accessibilité fournie | **Radix = AA par défaut** | Idem si React | À écrire à la main |
+| Coût d'exploitation | **Faible** (plateforme gérée) | Moyen (2 services) | Moyen |
+| Vitesse pour un dev seul | **Élevée** | Moyenne (2 bases de code) | **Très élevée** au début, décroît |
+| Risque | Rupture complète, tout à réécrire | Deux mondes à tenir en phase | Plafond d'UX atteint vite |
+
+### 3.2 Recommandation : **A — TypeScript de bout en bout**
+
+Quatre arguments, dans l'ordre de poids.
+
+**1. Un seul langage — c'est P1 appliqué littéralement.**
+Le vrai coût d'un projet bénévole n'est pas d'écrire le code : c'est d'y
+revenir après trois semaines d'absence. Une pile mono-langage divise par deux
+le coût de rentrée. L'option B demande de tenir en phase deux bases de code,
+deux jeux de dépendances, deux chaînes de tests, **pour une seule personne**.
+
+**2. Le type traverse toute la pile — c'est P4 appliqué.**
+Avec Server Components et Server Actions, la fonction qui lit la base et le
+composant qui l'affiche partagent **le même type, vérifié par le compilateur**.
+Renommer un champ casse la compilation partout où il est utilisé. En option B,
+la même erreur passe la compilation et se découvre en production.
+
+**3. L'exigence d'interface ne se négocie pas.**
+Le cahier des charges demande WCAG 2.2 AA sur 100 % des écrans, une UI moderne
+et une belle expérience. **Radix UI (sous shadcn/ui) fournit l'accessibilité
+des composants complexes — menus, dialogues, combobox, onglets — nativement et
+correctement.** Réimplémenter cela à la main (option C) coûte des mois et sera
+moins bon. L'audit de l'existant a trouvé 50 manquements d'accessibilité sur du
+HTML écrit à la main : ce n'est pas un hasard, c'est structurel.
+
+**4. Le temps réel est en JavaScript de toute façon.**
+Le client LiveKit tourne dans le navigateur. En option B, le serveur est en
+Python et le client en TypeScript : la logique de salle est **coupée en deux
+langages**. C'est exactement la situation actuelle, et elle a produit
+4 736 lignes de JavaScript difficile.
+
+### 3.3 Ce que cette recommandation coûte — dit honnêtement
+
+- **Rupture totale.** Aucune ligne de Python n'est reprise. Les 23 482 lignes
+  de `app/` deviennent une **spécification à lire**, pas un code à porter.
+- **Écosystème mouvant.** L'univers JavaScript bouge plus vite que Python. Il
+  faut discipliner les mises à jour (versions verrouillées, mises à jour
+  planifiées, pas de dépendance exotique).
+- **Si vous n'êtes pas déjà à l'aise en React/TypeScript**, comptez 3 à
+  4 semaines de montée en compétence avant d'être productif — à mettre dans le
+  calendrier, pas à découvrir en route.
+
+### 3.4 Quand choisir B plutôt que A
+
+**Si votre maîtrise de Python dépasse nettement celle de TypeScript**, prenez
+l'option B et n'écoutez pas la recommandation ci-dessus. P1 dit « une seule
+personne doit pouvoir tout maintenir » — et cette personne, c'est vous. Un
+projet dans un langage que vous maîtrisez battra toujours un projet dans un
+langage supérieur que vous apprenez en même temps que vous l'écrivez.
+
+Dans ce cas, l'architecture de ce document reste **entièrement valable** :
+seuls changent les outils. `packages/core` devient un paquet Python pur,
+`packages/db` devient SQLAlchemy + Alembic, `apps/hub` reste Next.js et parle à
+FastAPI via un contrat OpenAPI généré. Tous les ADR ci-dessous tiennent.
+
+> ⚖️ **Arbitrage attendu.** Voir la question posée en fin de session.
+
+### 3.5 La pile détaillée (option A)
+
+| Besoin | Choix | Motif |
+|---|---|---|
+| Cadre applicatif | **Next.js 15 (App Router)** | Un seul outil pour le statique (vitrine) et le dynamique (hub) |
+| Langage | **TypeScript, mode `strict`** | P4 : l'erreur devient impossible, pas improbable |
+| UI | **React 19 + Tailwind CSS v4 + shadcn/ui (Radix)** | Accessibilité fournie, design system possédé (pas une dépendance) |
+| Animation | **Framer Motion**, sobre, `prefers-reduced-motion` respecté | « Vivant » sans être bavard |
+| Base | **PostgreSQL** (géré) | Transactions, intégrité, JSONB, recherche plein texte, extensible |
+| Accès données | **Drizzle ORM** | SQL explicite et typé ; pas de magie ; migrations SQL versionnées |
+| Migrations | **drizzle-kit** | Versionnées, réversibles, jouées en CI — corrige le défaut §4.5 de l'audit |
+| Validation | **Zod** | Un schéma = un type + une validation, aux frontières uniquement |
+| Authentification | **Auth.js v5** (lien magique + mot de passe + TOTP) | Standard, audité, sessions sûres par défaut |
+| Autorisation | **Politique maison dans `packages/core`** | ADR-005 — aucune bibliothèque ne connaît le GBUM |
+| Tâches de fond | **pg-boss** (file dans PostgreSQL) | P1/P2 : pas de Redis à administrer, une seule base |
+| Temps réel | **LiveKit Cloud** + SDK JS | ADR-004 : supprime SFU, Egress et coturn de l'exploitation |
+| Hors ligne | **Service Worker + IndexedDB (Dexie)** | ADR-006 |
+| Internationalisation | **next-intl** | ADR-007, RTL inclus |
+| Fichiers | **Stockage objet S3** (Cloudflare R2) | Sort les fichiers du serveur ; sauvegardes indépendantes |
+| Courriel | **Resend** (ou Postmark) | Transactionnel fiable, gratuit à ce volume |
+| WhatsApp | **`wa-sender` conservé**, derrière un adaptateur unique | Ne pas casser ce qui marche ; isoler la dépendance |
+| Tests unitaires | **Vitest** | Rapide ; le domaine se teste en mémoire |
+| Tests bout en bout | **Playwright** + **axe-core** | ADR-009 : l'accessibilité devient bloquante |
+| Qualité | **ESLint + Prettier + `tsc --noEmit`** | Zéro avertissement toléré |
+| CI/CD | **GitHub Actions** | Là où vit déjà le code |
+| Observabilité | **Sentry** + journaux structurés | P5 |
+
+---
+
+## 4. Le domaine métier — découpage
+
+`packages/core` est découpé en **contextes**. Chaque contexte possède ses
+entités, ses règles et son vocabulaire ; il communique avec les autres par des
+identifiants et des événements, jamais en fouillant dans leurs tables.
+
+```
+packages/core/src/
+├── organisation/     Personne · Structure · Rattachement · Rôle · Parcours
+├── acces/            Politique d'autorisation UNIQUE (ADR-005)
+├── canevas/          Canevas · Étude · Progression · Préparation · Retour
+├── cellule/          Séance · Présence · Rapport mensuel
+├── vision/           Vision décennale · Thème annuel · Objectif · Résultat
+├── activites/        Activité · Inscription · Bilan · JTPA (cloisonné)
+├── camps/            Camp · Participant · Chambre · Transport · Boutique
+├── reunions/         Salle · Participant · Modération · Compte rendu
+├── finances/         Soutien · Versement · Budget · Poste · Engagement
+├── amis/             Ami · Finissant · Promesse · Place des Amis
+├── communication/    Annonce · Envoi · Audience · Lettre de prière · Préférences
+├── memoire/          Chronologie · Archive · Témoignage
+└── partage/          Types, erreurs, dates (Africa/Casablanca), argent (MAD)
+```
+
+**Règles de dépendance, vérifiées automatiquement en CI :**
+
+- `acces` et `partage` ne dépendent de rien.
+- Tout contexte peut dépendre de `partage` et de `acces`.
+- Un contexte **ne peut pas importer** un autre contexte métier ; il passe par
+  un port déclaré (interface) que la couche applicative branche.
+- **`core` n'importe jamais** `next`, `react`, `drizzle` ni aucun accès réseau.
+
+> Cette dernière règle est ce qui rend le domaine testable en millisecondes et
+> transportable en cas de changement de cadre. Elle est vérifiée par un test,
+> pas par la discipline. *(P3, P4)*
+
+### Exemple — une règle du GBUM, isolée et testable
+
+```ts
+// packages/core/src/cellule/rapport.ts
+//
+// « Le silence est une information. » Un mois sans rapport n'est pas une
+// absence de donnée : c'est le signal qu'une cellule a besoin d'aide.
+// L'écran national doit montrer les muettes AUSSI VISIBLEMENT que les autres —
+// c'est même le plus utile. (Règle reprise de app/rapports.py, GBU Connect.)
+
+export type EtatRemise =
+  | { readonly type: "rendu"; readonly rapport: RapportMensuel }
+  | { readonly type: "attendu"; readonly depuisMois: number }
+  | { readonly type: "hors_periode" };
+
+/** Trois mois de silence consécutifs : la cellule est en alerte. */
+export const SEUIL_ALERTE_MOIS = 3;
+
+export function etatRemise(
+  cellule: Structure,
+  mois: Mois,
+  rapports: readonly RapportMensuel[],
+): EtatRemise { /* … */ }
+```
+
+Aucune base, aucun HTTP, aucun composant. Ce fichier se teste en mémoire, et il
+dit la règle du mouvement **en français, dans le code**.
+
+---
+
+## 5. Structure du monorepo
+
+```
+gbum-hub/
+├── apps/
+│   ├── vitrine/          gbu-maroc.org      — public, SEO, pré-généré
+│   ├── hub/              hub.gbu-maroc.org  — membres, PWA, hors ligne
+│   └── worker/           tâches de fond (rappels, envois, purges, contrôles)
+│
+├── packages/
+│   ├── core/             ★ LE DOMAINE — pur, sans dépendance technique
+│   ├── db/               schéma Drizzle + migrations versionnées + seed
+│   ├── ui/               design system « Foyer » — composants, tokens, icônes
+│   ├── i18n/             messages FR/AR/EN + formatage + direction
+│   ├── adapters/         WhatsApp · courriel · LiveKit · stockage · IA
+│   └── config/           ESLint, TypeScript, Tailwind — configurations partagées
+│
+├── tools/
+│   ├── migration/        reprise des données de GBU Connect (SQLite + 18 JSON)
+│   └── audit-a11y/       recette navigateur reprise de audit-ui.js, automatisée
+│
+├── docs/                 ce dossier
+└── .github/workflows/    CI : lint · types · tests · a11y · sécurité · déploiement
+```
+
+**Pourquoi un monorepo plutôt que trois dépôts :** un changement du modèle
+« personne » touche le domaine, la base, les deux surfaces et les tests. Dans
+trois dépôts, c'est quatre pull requests coordonnées à la main. Dans un
+monorepo, c'est **une pull request, une CI, un instantané cohérent**. *(P1)*
+
+---
+
+## 6. Infrastructure et déploiement
+
+### 6.1 ⚖️ ADR-007 — Quitter le VPS pour une plateforme gérée
+
+**Situation actuelle :** VPS Contabo, nginx, systemd, certbot, coturn, LiveKit
+auto-hébergé, Egress, sauvegardes en cron sur le même disque, déploiement par
+`scp`. **Esaïe, non développeur, administre tout cela.**
+
+**Cible :**
+
+| Brique | Choix | Ce que cela supprime |
+|---|---|---|
+| Applications | **Vercel** (ou Railway / Fly.io) | nginx, systemd, certbot, déploiement manuel |
+| Base | **Neon** ou **Supabase** (PostgreSQL géré) | Sauvegardes manuelles, restauration à la main, mises à jour |
+| Temps réel | **LiveKit Cloud** | SFU, Egress, **coturn**, mise à l'échelle |
+| Fichiers | **Cloudflare R2** | Disque du serveur, sauvegarde des médias |
+| Courriel | **Resend** | Configuration SMTP, réputation d'envoi |
+| WhatsApp | `wa-sender` conservé sur un petit VPS | (seule brique auto-hébergée restante) |
+
+**Ce que la bascule règle, point par point :**
+
+| Défaut de l'audit | Réglé par |
+|---|---|
+| §4.2 Mono-processus | Plateforme sans état, plusieurs instances |
+| §4.3 Déploiement hors Git | Déploiement déclenché par un commit, prévisualisation par PR |
+| §4.12 Sauvegardes sur le disque protégé | Sauvegardes gérées, hors site, restauration à la date (PITR) |
+| §4.12 Secrets dans les archives | Coffre de la plateforme, rotation possible |
+| F7.12 Redémarrage qui coupe les réunions | Le temps réel n'est plus dans notre processus |
+
+**Coût estimé :** 0 à 25 €/mois aux volumes du GBUM (offres gratuites
+généreuses, tarifs associatifs). **Inférieur au VPS actuel**, pour une
+disponibilité, une sécurité et un confort d'exploitation sans comparaison.
+
+**Objection à traiter honnêtement — la souveraineté.** Confier les données d'un
+mouvement chrétien au Maroc à des plateformes américaines mérite une décision
+consciente. Trois réponses :
+1. Les données sont **chiffrées au repos et en transit** chez tous ces
+   fournisseurs ; le VPS actuel ne les chiffre pas au repos.
+2. La **réversibilité (NF10)** est garantie : PostgreSQL standard, export
+   complet, aucun verrou propriétaire. Un retour à l'auto-hébergement reste
+   possible à tout moment.
+3. Le risque réel aujourd'hui n'est pas la juridiction : c'est **un disque unique
+   qui porte la production et ses sauvegardes**, administré à temps perdu.
+
+> Si le Secrétariat National préfère l'Europe : Scaleway (Paris) ou Clever Cloud
+> offrent l'équivalent. L'architecture ne change pas.
+
+### 6.2 Environnements
+
+| Environnement | Rôle | Données |
+|---|---|---|
+| **Local** | Développement | Base locale + jeu d'essai réaliste **anonymisé** |
+| **Prévisualisation** | Une par pull request, URL propre | Base éphémère, données d'essai |
+| **Recette** | Miroir de la production | **Copie anonymisée** de la production |
+| **Production** | Le service | Les vraies données |
+
+> **Règle absolue :** aucune donnée personnelle réelle hors production. Le jeu
+> d'essai est généré, jamais copié. *(Corrige le fonctionnement actuel, où la
+> recette tourne sur une copie de la vraie base.)*
+
+### 6.3 Chaîne d'intégration
+
+```
+Pull request
+   │
+   ├─ Format & lint (ESLint, Prettier)         ─┐
+   ├─ Types (tsc --noEmit, mode strict)         │  bloquants
+   ├─ Tests unitaires (Vitest)                  │  parallèles
+   ├─ Tests bout en bout (Playwright)           │  < 6 min
+   ├─ Accessibilité (axe-core, 100 % des écrans)│
+   ├─ Règles de dépendance du domaine           │
+   ├─ Sécurité des dépendances (audit + CodeQL) │
+   └─ Budget de performance (Lighthouse CI)    ─┘
+   │
+   ├─→ Environnement de prévisualisation + capture des écrans modifiés
+   │
+   └─→ Fusion → migrations jouées → production → contrôle de santé
+                                              → retour arrière auto si échec
+```
+
+---
+
+## 7. ADR-004 — Un seul moteur de visioconférence
+
+**Décision.** Supprimer le moteur *mesh* maison. Tout passe par **LiveKit**,
+avec le **chiffrement de bout en bout activable par salle**.
+
+**Contexte.** L'existant maintient deux implémentations : un mesh WebRTC maison
+(2 202 lignes) pour les petites réunions chiffrées de bout en bout, et un client
+LiveKit (2 534 lignes) pour les grandes. Le `README` justifiait cet arbitrage
+par le fait que le SFU déchiffre pour redistribuer.
+
+**Ce qui a changé.** LiveKit prend désormais en charge le chiffrement de bout en
+bout (*insertable streams*) : le serveur route sans déchiffrer. **L'argument qui
+fondait le mesh est tombé.**
+
+**Conséquences.**
+
+| | Avant | Après |
+|---|---|---|
+| Lignes de code visio à maintenir | 4 736 | **≈ 400** (le SDK fait le reste) |
+| Services à administrer | LiveKit + Egress + coturn | **0** (offre gérée) |
+| Chiffrement bout en bout | Petites salles seulement | **Toutes les salles, au choix** |
+| Plafond de participants | ~8 en mesh, non prouvé en SFU | **200+ garanti** |
+| Redémarrage serveur | **Coupe toutes les réunions** | Sans effet |
+
+**Ce qu'on perd.** L'autonomie totale : le média transite par l'infrastructure
+LiveKit. Le chiffrement de bout en bout compense (le fournisseur ne peut pas
+lire), et l'auto-hébergement de LiveKit reste possible sans changer une ligne de
+code applicatif — c'est un simple changement d'URL.
+
+---
+
+## 8. ADR-005 — Une politique d'accès unique
+
+**Problème constaté.** L'autorisation est aujourd'hui dispersée entre
+`login_required`, `admin_required`, `role_required`, `est_admin()`,
+`_est_national()`, `_voit_amis()`, `_place_amis()`, `_bloques()` et des
+conditions dans les gabarits. Le rôle est **binaire et sans portée** :
+« Responsable » désigne aussi bien l'animateur d'une cellule de Fès que le
+Secrétaire national. C'est le terrain classique de l'IDOR — et le dépôt
+contient d'ailleurs un `tests/audit_idor.py`.
+
+**Décision.** Un modèle unique **rôle × portée**, écrit une fois dans
+`packages/core/acces`, appelé partout, réimplémenté nulle part.
+
+```ts
+// Un droit répond toujours à trois questions : QUI, sur QUOI, pour FAIRE QUOI.
+type Portee =
+  | { readonly sur: "mouvement" }
+  | { readonly sur: "structure"; readonly id: StructureId; readonly descendants: boolean }
+  | { readonly sur: "soi" };
+
+type Habilitation = {
+  readonly role: RoleGBUM;      // conseiller_ville, responsable_cellule, permanent_sn…
+  readonly portee: Portee;      // ← ce qui manque aujourd'hui
+  readonly debut: Date;
+  readonly fin: Date | null;    // une habilitation expire ; un rôle en base, non
+};
+
+/** Le seul point de décision de toute l'application. */
+export function peut(
+  acteur: Acteur,
+  action: Action,          // "lire" | "modifier" | "valider" | "supprimer" | "exporter"
+  ressource: Ressource,    // porte TOUJOURS sa structure de rattachement
+): Decision;               // { autorise: true } | { autorise: false, motif: Motif }
+```
+
+**Ce que cette forme impose structurellement :**
+
+1. **Toute ressource porte sa structure.** Le type l'exige ; on ne *peut pas*
+   écrire une vérification qui oublie la portée — elle ne compile pas. *(P4)*
+2. **`peut()` est la seule porte.** Une règle de lint interdit toute
+   comparaison de rôle en dehors de `packages/core/acces`.
+3. **La décision est motivée**, jamais un booléen nu : les journaux et les
+   messages d'erreur savent *pourquoi* c'est refusé.
+4. **Les habilitations expirent.** Un mandat qui se termine retire l'accès
+   automatiquement — ce qui n'arrive pas aujourd'hui.
+5. **La navigation dérive de `peut()`.** Un écran interdit n'est pas caché par
+   un `if` dans le gabarit : il n'est pas dans le menu **parce que** `peut()`
+   dit non. Une seule vérité, pas deux.
+
+**Vérification.** Un test génératif énumère `(rôle × portée) × (action ×
+ressource)` et vérifie qu'aucune combinaison n'autorise un accès hors
+périmètre. C'est l'audit IDOR, en continu, sur chaque pull request. *(P5)*
+
+---
+
+## 9. ADR-006 — Le canevas hors ligne
+
+**Exigence.** F3.3 : le canevas de l'année est consultable **sans réseau**.
+Contrainte non négociable — les cellules se réunissent sur des campus où le
+réseau est mauvais, et le canevas est **la** raison d'être du hub.
+
+**Décision.**
+
+| Donnée | Stratégie | Motif |
+|---|---|---|
+| Canevas de l'année en cours | **Pré-chargé** à la première connexion, IndexedDB | Doit être là sans y penser |
+| Préparation de l'animateur | Écriture locale, synchronisation différée | Se prépare dans le train |
+| Séance de cellule (présents, étude) | File locale, envoi au retour du réseau | Se saisit en cellule |
+| Annuaire, finances, données nominatives | **Jamais en cache** | Vol de téléphone (§7.1 du CDC) |
+
+**Résolution des conflits.** Chaque écriture hors ligne porte un identifiant
+propre et un horodatage. Une séance déjà enregistrée n'est jamais dupliquée
+(idempotence par clé `cellule × date`). En cas de conflit réel, **on ne devine
+pas** : les deux versions sont montrées à l'utilisateur, qui tranche.
+
+**Limite assumée.** Le mode hors ligne couvre le canevas et la séance. Il ne
+couvre pas le hub entier — le faire coûterait dix fois plus pour un usage
+marginal.
+
+---
+
+## 10. ADR-008 — Internationalisation dès la première ligne
+
+**Décision.** L'architecture i18n et **RTL** est posée avant le premier écran,
+même si la v1 ne livre que le français.
+
+**Motif.** Rétro-adapter le RTL à une application existante coûte 5 à 10 fois
+plus cher que le prévoir : chaque `margin-left`, chaque icône directionnelle,
+chaque animation de panneau est à reprendre. L'existant, entièrement en
+français en dur avec des `left/right` partout, en est la démonstration.
+
+**Ce que cela impose, dès le premier composant :**
+
+- Aucune chaîne visible en dur — tout passe par une clé de traduction ;
+  une règle de lint bloque les littéraux dans le JSX.
+- **Propriétés logiques uniquement** : `margin-inline-start`, jamais
+  `margin-left`. Tailwind v4 le fait nativement (`ms-4`, `pe-2`).
+- `dir="rtl"` appliqué à la racine ; les icônes directionnelles se retournent.
+- Formatage des dates, nombres et de la devise (MAD) par la locale.
+- Tests bout en bout exécutés **dans les deux directions**.
+
+**Coût si posé d'emblée :** quasi nul — c'est une discipline, pas du travail.
+**Coût si ajouté après :** plusieurs semaines.
+
+---
+
+## 11. ⚖️ ADR-009 — Le dépôt
+
+**Décision recommandée : un nouveau dépôt `gbum-hub`.**
+
+| Option | Pour | Contre |
+|---|---|---|
+| Continuer dans `gbu-connect` | Un seul endroit ; l'historique reste | Deux applications sans rapport dans un même dépôt ; CI mêlée ; `.gitignore`, dépendances, conventions incompatibles ; **risque de toucher la production par erreur** |
+| **Nouveau dépôt `gbum-hub`** | Départ propre ; CI dédiée ; conventions cohérentes ; **la production ne peut pas être cassée par mégarde** | Deux dépôts à suivre pendant la transition |
+
+**Ce que devient `gbu-connect` :** il reste **en service et intact** — il porte
+la production. Il devient la **référence métier** : c'est de lui qu'on lit les
+règles à transporter. Une fois la bascule faite et les 90 jours de lecture
+seule écoulés, il est archivé (jamais supprimé — c'est la mémoire technique du
+mouvement).
+
+**En attendant l'arbitrage,** toute la documentation de conception est produite
+dans `gbu-connect`, sous `docs/`, sur la branche `claude/gbum-official-hub-qp17ca`.
+Elle **ne touche à aucune ligne de l'application en production**, et se
+transporte vers le nouveau dépôt d'une seule commande :
+
+```bash
+git subtree split --prefix=docs -b docs-only   # puis push vers gbum-hub
+```
+
+---
+
+## 12. Registre des décisions
+
+| # | Décision | Statut |
+|---|---|---|
+| ADR-001 | Monorepo, deux surfaces (vitrine publique + espace membre) | 🟡 proposé |
+| **ADR-002** | **Pile TypeScript de bout en bout** | ⚖️ **à arbitrer** |
+| ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé |
+| ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé |
+| ADR-005 | Politique d'accès unique, rôle × portée | 🟡 proposé |
+| ADR-006 | Canevas et séance disponibles hors ligne | 🟡 proposé |
+| ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer |
+| ADR-008 | i18n et RTL posés dès la première ligne | 🟡 proposé |
+| ADR-009 | Nouveau dépôt `gbum-hub` | ⚖️ à arbitrer |
+
+*Un ADR accepté n'est jamais modifié : il est remplacé par un ADR ultérieur qui
+le supersède, en expliquant ce qui a changé.*
