@@ -824,7 +824,7 @@ argumentée ; l'arbitrage est attendu avant le lancement du lot 1.
 | # | Décision | Recommandation | Détail |
 |---|---|---|---|
 | **D1** | Un site ou plusieurs ? | **Un produit, un dépôt, deux surfaces** (vitrine publique + espace membre) | [§4.1](#41-réponse-à-la-question--un-site-ou-plusieurs-) |
-| **D2** | Pile technique | **TypeScript de bout en bout** — Next.js + PostgreSQL + LiveKit | [`02-ARCHITECTURE.md` §3](02-ARCHITECTURE.md) |
+| ~~D2~~ | ~~Pile technique~~ | ✅ **Tranché — TypeScript de bout en bout** (Next.js + PostgreSQL + LiveKit) | [`02-ARCHITECTURE.md` §3](02-ARCHITECTURE.md) |
 | **D3** | Dépôt : reprendre celui-ci ou en créer un neuf ? | **Nouveau dépôt** `gbum-hub`, l'actuel passe en archive de référence | [`02-ARCHITECTURE.md` §8](02-ARCHITECTURE.md) |
 | **D4** | Périmètre du lot 1 | **D1 + D2 + D3 + D4** (vitrine, socle, canevas, pilotage) | [`04-ROADMAP.md`](04-ROADMAP.md) |
 | **D5** | Bascule : big-bang ou progressive ? | **Progressive** — la vitrine d'abord, l'espace membre ensuite, l'ancien en lecture seule 90 j | [§9.3](#93-stratégie-de-migration-des-données) |

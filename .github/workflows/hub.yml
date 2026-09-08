@@ -1,0 +1,34 @@
+name: Hub — qualité
+
+# La CI de l'application actuelle n'existe pas : rien n'empêche une régression
+# d'entrer. Ici, ces contrôles sont BLOQUANTS.
+on:
+  push:
+    branches: [main, "claude/**"]
+    paths: ["hub/**", ".github/workflows/hub.yml"]
+  pull_request:
+    paths: ["hub/**", ".github/workflows/hub.yml"]
+
+defaults:
+  run:
+    working-directory: hub
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: hub/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Typage strict
+        run: pnpm -r types
+      - name: Linter — zéro avertissement toléré
+        run: pnpm lint --max-warnings 0
+      - name: Tests, dont l'audit IDOR génératif
+        run: pnpm -r test

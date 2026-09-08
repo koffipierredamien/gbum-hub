@@ -58,8 +58,9 @@
 
 | # | Décision | Recommandation |
 |---|---|---|
-| **D1** | Un site ou plusieurs ? | Un produit, un dépôt, **deux surfaces** |
-| **D2** | Pile technique | **TypeScript de bout en bout** — *sauf si votre maîtrise de Python est nettement supérieure* |
+| ~~D1~~ | ~~Un site ou plusieurs ?~~ | ✅ **Tranché — un produit, un dépôt, deux surfaces** |
+| ~~D9~~ | ~~Monolithe ou microservices ?~~ | ✅ **Tranché — monolithe modulaire** ([ADR-010](02-ARCHITECTURE.md)) |
+| ~~D2~~ | ~~Pile technique~~ | ✅ **Tranché le 8 sept. 2026 — TypeScript de bout en bout** |
 | **D3** | Dépôt | **Nouveau dépôt `gbum-hub`** ; l'actuel reste en production, puis devient archive de référence |
 | **D4** | Périmètre du lot 1 | Vitrine + socle + **canevas** + pilotage |
 | **D5** | Bascule | **Progressive**, ancien système en lecture seule 90 jours |

@@ -123,10 +123,12 @@ maison, pas de second magasin de données. *(P1, P2)*
 
 ---
 
-## 3. ⚖️ ADR-002 — La pile technique
+## 3. ✅ ADR-002 — La pile technique
 
-> **La décision la plus structurante du projet.** Elle vous appartient : c'est
-> vous qui maintiendrez ce code pendant des années.
+> **Décision prise le 8 septembre 2026 : option A, TypeScript de bout en bout.**
+> Arbitrée par Pierre, qui a demandé l'option recommandée.
+> Le §3.4 reste applicable : si sa maîtrise de Python s'avère nettement
+> supérieure à l'usage, l'architecture bascule sans rien perdre.
 
 ### 3.1 Les trois candidats sérieux
 
@@ -199,7 +201,7 @@ seuls changent les outils. `packages/core` devient un paquet Python pur,
 `packages/db` devient SQLAlchemy + Alembic, `apps/hub` reste Next.js et parle à
 FastAPI via un contrat OpenAPI généré. Tous les ADR ci-dessous tiennent.
 
-> ⚖️ **Arbitrage attendu.** Voir la question posée en fin de session.
+> ✅ **Arbitré le 8 septembre 2026 : option A.**
 
 ### 3.5 La pile détaillée (option A)
 
@@ -642,7 +644,7 @@ en C#.
 | # | Décision | Statut |
 |---|---|---|
 | ADR-001 | Monorepo, deux surfaces (vitrine publique + espace membre) | 🟡 proposé |
-| **ADR-002** | **Pile TypeScript de bout en bout** | ⚖️ **à arbitrer** |
+| **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
 | ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé |
 | ADR-005 | Politique d'accès unique, rôle × portée | 🟡 proposé |

@@ -1,8 +1,11 @@
 node_modules/
 dist/
+.next/
 coverage/
 *.tsbuildinfo
 .env
+.env.*
+!.env.example
 
 # Canevas assemblé : ~2 Mo, régénérable (voir maquettes/README.md)
 maquettes/maquettes-hub-gbum.html
