@@ -1,17 +1,11 @@
-name: Hub — qualité
+name: Qualité
 
-# La CI de l'application actuelle n'existe pas : rien n'empêche une régression
-# d'entrer. Ici, ces contrôles sont BLOQUANTS.
+# Le dépôt d'origine n'avait aucune intégration continue : rien n'y empêchait
+# une régression d'entrer. Ici, ces contrôles sont BLOQUANTS.
 on:
   push:
-    branches: [main, "claude/**"]
-    paths: ["hub/**", ".github/workflows/hub.yml"]
+    branches: [main]
   pull_request:
-    paths: ["hub/**", ".github/workflows/hub.yml"]
-
-defaults:
-  run:
-    working-directory: hub
 
 jobs:
   verifier:
@@ -24,7 +18,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: hub/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - name: Typage strict
         run: pnpm -r types

@@ -548,7 +548,7 @@ français en dur avec des `left/right` partout, en est la démonstration.
 
 ---
 
-## 11. ⚖️ ADR-009 — Le dépôt
+## 11. ✅ ADR-009 — Le dépôt
 
 **Décision recommandée : un nouveau dépôt `gbum-hub`.**
 
@@ -563,14 +563,10 @@ règles à transporter. Une fois la bascule faite et les 90 jours de lecture
 seule écoulés, il est archivé (jamais supprimé — c'est la mémoire technique du
 mouvement).
 
-**En attendant l'arbitrage,** toute la documentation de conception est produite
-dans `gbu-connect`, sous `docs/`, sur la branche `claude/gbum-official-hub-qp17ca`.
-Elle **ne touche à aucune ligne de l'application en production**, et se
-transporte vers le nouveau dépôt d'une seule commande :
-
-```bash
-git subtree split --prefix=docs -b docs-only   # puis push vers gbum-hub
-```
+**Fait le 8 septembre 2026.** Ce dépôt est `gbum-hub`. Documentation,
+maquettes et code du hub y ont été transplantés depuis la branche
+`claude/gbum-official-hub-qp17ca` de `gbu-connect`, avec leurs messages de
+commit. `gbu-connect` n'a pas été modifié : il porte toujours la production.
 
 ---
 
@@ -651,7 +647,7 @@ en C#.
 | ADR-006 | Canevas et séance disponibles hors ligne | 🟡 proposé |
 | ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer |
 | ADR-008 | i18n et RTL posés dès la première ligne | 🟡 proposé |
-| ADR-009 | Nouveau dépôt `gbum-hub` | ⚖️ à arbitrer |
+| ADR-009 | Nouveau dépôt `gbum-hub` | ✅ **accepté** (8 sept. 2026) |
 | **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
 
 *Un ADR accepté n'est jamais modifié : il est remplacé par un ADR ultérieur qui

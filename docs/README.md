@@ -61,7 +61,7 @@
 | ~~D1~~ | ~~Un site ou plusieurs ?~~ | ✅ **Tranché — un produit, un dépôt, deux surfaces** |
 | ~~D9~~ | ~~Monolithe ou microservices ?~~ | ✅ **Tranché — monolithe modulaire** ([ADR-010](02-ARCHITECTURE.md)) |
 | ~~D2~~ | ~~Pile technique~~ | ✅ **Tranché le 8 sept. 2026 — TypeScript de bout en bout** |
-| **D3** | Dépôt | **Nouveau dépôt `gbum-hub`** ; l'actuel reste en production, puis devient archive de référence |
+| ~~D3~~ | ~~Dépôt~~ | ✅ **Tranché le 8 sept. 2026 — dépôt `gbum-hub`** |
 | **D4** | Périmètre du lot 1 | Vitrine + socle + **canevas** + pilotage |
 | **D5** | Bascule | **Progressive**, ancien système en lecture seule 90 jours |
 | **D6** | Langues v1 | **Français seul**, mais architecture i18n + **RTL posée dès la première ligne** |

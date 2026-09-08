@@ -1,22 +1,22 @@
 # gbum-hub
 
 Hub officiel du **GBUM** — Groupe Biblique Universitaire au Maroc.
-Reconstruction de [`gbu-connect`](../README.md), qui reste en production.
+Reconstruction de [`gbu-connect`](https://github.com/koffipierredamien/gbu-connect), qui reste **en production** sur
+gbu-maroc.org et devient la référence métier — c'est de lui qu'on lit les
+règles à transporter.
 
-> **Où vit ce code.** Il est pour l'instant sous `hub/` dans le dépôt
-> existant : cela ne touche à aucune ligne de la production. Une fois
-> [ADR-009](../docs/02-ARCHITECTURE.md) ratifié, il s'extrait vers son propre
-> dépôt en une commande :
-> `git subtree split --prefix=hub -b gbum-hub`
+> Les cinq premiers commits viennent de la branche
+> `claude/gbum-official-hub-qp17ca` de `gbu-connect`, replacés à la racine
+> (ADR-009). Contenu et messages conservés.
 
 ## Décisions qui gouvernent ce code
 
 | | |
 |---|---|
-| [ADR-001](../docs/02-ARCHITECTURE.md) | Monorepo, deux surfaces (vitrine publique, espace membre) |
-| [ADR-002](../docs/02-ARCHITECTURE.md) | **TypeScript de bout en bout** ✅ |
-| [ADR-005](../docs/02-ARCHITECTURE.md) | **Politique d'accès unique, rôle × portée** ✅ implémentée |
-| [ADR-010](../docs/02-ARCHITECTURE.md) | **Monolithe modulaire**, pas microservices ✅ |
+| [ADR-001](docs/02-ARCHITECTURE.md) | Monorepo, deux surfaces (vitrine publique, espace membre) |
+| [ADR-002](docs/02-ARCHITECTURE.md) | **TypeScript de bout en bout** ✅ |
+| [ADR-005](docs/02-ARCHITECTURE.md) | **Politique d'accès unique, rôle × portée** ✅ implémentée |
+| [ADR-010](docs/02-ARCHITECTURE.md) | **Monolithe modulaire**, pas microservices ✅ |
 
 ## Démarrer
 
@@ -93,7 +93,7 @@ nulle part, le suivi JTPA d'autrui ne sort jamais.
 
 ## Conventions
 
-Voir [`docs/03-CONVENTIONS-ET-QUALITE.md`](../docs/03-CONVENTIONS-ET-QUALITE.md).
+Voir [`docs/03-CONVENTIONS-ET-QUALITE.md`](docs/03-CONVENTIONS-ET-QUALITE.md).
 En bref : le domaine parle **français**, la plomberie parle anglais ; aucun
 fichier au-delà de 400 lignes, aucune fonction au-delà de 50 ; zéro `any`,
 zéro erreur avalée ; le commentaire raconte l'incident, pas le code.

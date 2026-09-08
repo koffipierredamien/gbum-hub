@@ -25,7 +25,7 @@ contraste que leur audit navigateur avait mesurées à l'écran** :
    **état** (un état se dit en orange foncé `#96430F`, 5,2:1, plus une barre
    latérale).
 
-Voir [`../docs/05-PROMPT-CLAUDE-DESIGN.md`](../docs/05-PROMPT-CLAUDE-DESIGN.md)
+Voir [`../docs/05-PROMPT-CLAUDE-DESIGN.md`](docs/05-PROMPT-CLAUDE-DESIGN.md)
 pour la direction complète et les prompts par écran.
 
 ## Régénérer le canevas
