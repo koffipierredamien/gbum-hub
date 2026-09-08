@@ -572,6 +572,71 @@ git subtree split --prefix=docs -b docs-only   # puis push vers gbum-hub
 
 ---
 
+## 11 bis. ADR-010 — Monolithe modulaire, pas microservices
+
+**Question posée.** Vu la complexité du projet (13 contextes métier), faut-il
+une application monolithique ou une architecture en microservices ?
+
+**Décision. Monolithe modulaire** — un seul déployable, des frontières internes
+strictes et vérifiées automatiquement.
+
+**Motif.** Le mot « complexité » recouvre deux réalités distinctes :
+
+- la **complexité de domaine** — beaucoup de règles métier différentes. C'est le
+  cas du GBUM : canevas, camps, finances, Amis, gouvernance…
+- la **complexité d'échelle** — beaucoup de trafic, beaucoup d'équipes qui
+  déploient en parallèle, des composants aux besoins de croissance divergents.
+
+**Les microservices ne traitent que la seconde, et ils aggravent la première.**
+
+| | GBUM | Seuil où les microservices deviennent rentables |
+|---|---|---|
+| Développeurs | **1**, à temps partiel | 15–20+, en équipes autonomes |
+| Utilisateurs | ~300–500, pic ~200 simultanés | 10⁵–10⁶ |
+| Budget infrastructure | ≤ 30 €/mois | 4 à 5 chiffres |
+| Exploitation | **1 non-développeur** | équipe d'astreinte |
+
+Coût réel qu'ils feraient porter à une personne seule : N déploiements à
+orchestrer, des **transactions distribuées** (« inscrire au camp » toucherait
+trois services), des pannes réseau entre modules internes, des contrats
+versionnés entre services, du traçage distribué pour déboguer une requête.
+
+**L'argument décisif est dans l'existant.** GBU Connect est un monolithe, et il
+a échoué — mais pas *parce qu'*il était monolithique. Il a échoué faute de
+**frontières internes** (`routes.py` : 4 656 lignes) et faute de **source de
+vérité unique** (18 fichiers JSON à côté de SQLite). Des microservices auraient
+rendu ces deux maux pires : dix-huit bases de données au lieu de dix-huit
+fichiers.
+
+**Ce que la décision apporte.** Les bénéfices que l'on cherche dans les
+microservices — frontières nettes, domaines isolés, testables séparément — sont
+obtenus par les règles de dépendance de `packages/core` (§4), vérifiées en
+intégration continue. Sans le prix : pas de réseau entre modules, pas
+d'orchestration, pas de transaction distribuée.
+
+**La porte de sortie.** Si un contexte devait un jour devenir un vrai service,
+**la frontière existe déjà** : extraire un module dont les dépendances sont
+explicites est un travail de jours. L'extraire de `routes.py` est un travail de
+mois. Le monolithe modulaire est la rampe d'accès aux microservices, pas leur
+contraire.
+
+### Ce qui est légitimement séparé — et pourquoi ce n'en est pas
+
+| Séparé | Motif | Pourquoi ce n'est pas un microservice |
+|---|---|---|
+| **LiveKit** | Profil de charge radicalement différent (bande passante, pas CPU) | Service **géré, tiers** — non exploité par nous |
+| **`apps/worker`** | Ne doit jamais bloquer une requête web ; échoue autrement | Même code, même base — un autre point d'entrée |
+| **`wa-sender`** | Existe déjà et fonctionne | Isolé derrière **un seul** adaptateur |
+
+> Principe : **on sépare ce qui a un profil d'exécution réellement différent,
+> pas ce qui porte un nom différent.**
+
+**Orthogonalité.** Cette décision est indépendante d'ADR-002 (le langage) : un
+monolithe modulaire se réalise aussi bien en TypeScript qu'en Python, en Java ou
+en C#.
+
+---
+
 ## 12. Registre des décisions
 
 | # | Décision | Statut |
@@ -585,6 +650,7 @@ git subtree split --prefix=docs -b docs-only   # puis push vers gbum-hub
 | ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer |
 | ADR-008 | i18n et RTL posés dès la première ligne | 🟡 proposé |
 | ADR-009 | Nouveau dépôt `gbum-hub` | ⚖️ à arbitrer |
+| **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
 
 *Un ADR accepté n'est jamais modifié : il est remplacé par un ADR ultérieur qui
 le supersède, en expliquant ce qui a changé.*
