@@ -1,0 +1,136 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 412,
+      "w": 390,
+      "h": 2400,
+      "title": "1 · L'étude de la semaine"
+    },
+    {
+      "file": "Seance.dc.html",
+      "x": 490,
+      "y": 412,
+      "w": 390,
+      "h": 1080,
+      "title": "2 · Enregistrer la séance",
+      "is_interactive": true
+    },
+    {
+      "file": "Rapport.dc.html",
+      "x": 980,
+      "y": 412,
+      "w": 390,
+      "h": 1120,
+      "title": "3 · Le rapport de mars"
+    },
+    {
+      "file": "TrouverGroupe.dc.html",
+      "x": 1470,
+      "y": 412,
+      "w": 390,
+      "h": 1900,
+      "title": "4 · Trouver mon groupe"
+    },
+    {
+      "file": "Accueil.dc.html",
+      "x": 0,
+      "y": 3168,
+      "w": 390,
+      "h": 2950,
+      "title": "5 · Accueil public — téléphone"
+    },
+    {
+      "file": "AccueilBureau.dc.html",
+      "x": 490,
+      "y": 3168,
+      "w": 1440,
+      "h": 2320,
+      "title": "6 · Accueil public — bureau"
+    },
+    {
+      "file": "TableauBord.dc.html",
+      "x": 0,
+      "y": 6474,
+      "w": 1440,
+      "h": 980,
+      "title": "7 · Tableau de bord national"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "titre",
+      "x": 0,
+      "y": 0,
+      "w": 1400,
+      "text": "HUB OFFICIEL DU GBUM — premières maquettes\n\nThème « Foyer », repris de l'application existante : mêmes jetons de couleur, mêmes deux familles de caractères (Newsreader + Hanken Grotesk), et les deux corrections de contraste que leur audit avait mesurées à l'écran — le texte sur l'ambre est en encre, jamais en blanc ; l'ambre vif est la couleur des actions, jamais celle d'un état.\n\nTout est composé à 390 px d'abord. Contenu réel : Luc 19.1-10, la cellule de Rabat-Agdal, des villes et des prénoms d'ici. Les photos sont des emplacements marqués — à fournir par le Secrétariat National."
+    },
+    {
+      "id": "r1",
+      "x": 0,
+      "y": 206,
+      "w": 900,
+      "text": "RANGÉE 1 — ESPACE MEMBRE, sur téléphone. Ce que Yann, responsable de cellule à Rabat-Agdal, ouvre dans la semaine."
+    },
+    {
+      "id": "d-texte",
+      "x": 1960,
+      "y": 412,
+      "w": 360,
+      "text": "Le texte biblique ne ressemble à aucun autre bloc de l'application : Newsreader, interlignage 1,75, mesure courte, sur carte blanche.\n\nC'est un texte qu'on lit à voix haute, ensemble. Il se compose comme un livre, pas comme une interface.\n\nLe verset 10 — qui donne son titre à l'étude — est détaché sur fond crème."
+    },
+    {
+      "id": "d-emargement",
+      "x": 1960,
+      "y": 704,
+      "w": 360,
+      "text": "DÉCISION À VALIDER — l'émargement.\n\nOn part de TOUS PRÉSENTS et on retire les absents : le cas ordinaire est « presque tout le monde est venu ». Deux gestes au lieu de douze.\n\nCette planche est cliquable : touchez les pastilles pour voir le comportement.\n\nLe libellé dit « qui était là », jamais « qui a manqué ». La nuance n'est pas cosmétique dans un mouvement de bénévoles."
+    },
+    {
+      "id": "d-rapport",
+      "x": 1960,
+      "y": 1062,
+      "w": 360,
+      "text": "Trois des cinq champs sont déjà remplis, repris des séances du mois.\n\nL'écran doit donner l'impression que c'est presque fait — pas qu'on ouvre un formulaire. Cible : moins de trois minutes, chronométrées avec un vrai responsable."
+    },
+    {
+      "id": "r2",
+      "x": 0,
+      "y": 2962,
+      "w": 900,
+      "text": "RANGÉE 2 — FACE PUBLIQUE. Amina, 19 ans, vient d'arriver à Fès. Deux minutes, une question : y a-t-il un groupe sur mon campus ?"
+    },
+    {
+      "id": "d-public",
+      "x": 2030,
+      "y": 3168,
+      "w": 360,
+      "text": "« Trouver mon groupe » est l'élément le plus visible de la page, au-dessus de la ligne de flottaison sur téléphone.\n\nAucune imagerie religieuse littérale : la foi se dit par le soin apporté aux choses.\n\nBudget : moins de 150 Ko compressé. Une seule grande image."
+    },
+    {
+      "id": "d-vide",
+      "x": 2030,
+      "y": 3460,
+      "w": 360,
+      "text": "Le cas « pas de groupe sur ton campus » est traité avec autant de soin que le cas nominal (bas de la planche 4).\n\nC'est une déception, et c'est là qu'on perd quelqu'un ou qu'on le rattrape."
+    },
+    {
+      "id": "r3",
+      "x": 0,
+      "y": 6268,
+      "w": 900,
+      "text": "RANGÉE 3 — PILOTAGE. Sarah, secrétaire nationale, un lundi matin : quelles cellules vivent, lesquelles s'éteignent ?"
+    },
+    {
+      "id": "d-silence",
+      "x": 1540,
+      "y": 6474,
+      "w": 380,
+      "text": "LA RÈGLE QUI GOUVERNE CET ÉCRAN — le silence est une information.\n\nUne cellule qui n'a pas rendu son rapport n'est pas une donnée manquante : c'est le signal qu'elle a besoin d'aide.\n\nLes trois cellules muettes occupent donc le bloc le plus grand et le plus contrasté de la page — pas une note en bas en gris.\n\nLe ton n'est pas punitif : chaque ligne porte le prénom du responsable et un bouton « Prendre contact ». On va chercher quelqu'un, on ne sanctionne personne.\n\n(Règle reprise de app/rapports.py — c'est la meilleure idée produit de l'application actuelle.)"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
