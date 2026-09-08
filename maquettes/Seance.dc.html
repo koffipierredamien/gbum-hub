@@ -7,7 +7,7 @@
 <body>
 <x-dc>
 <helmet>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
   <style>
     body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
     a { color:#96430F; text-decoration:none; } a:hover { color:#C6611C; }
@@ -38,7 +38,7 @@
     <div style="display:flex; align-items:center; gap:12px; padding:13px 16px; min-height:52px;">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5F5346" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
       <span style="flex-grow:1; font-size:14.5px;">Campus Agdal, salle B12</span>
-      <span style="font-size:12.5px; color:#96430F; font-weight:600;">Changer</span>
+      <button style="min-height:44px; padding:0 4px; background:none; border:none; font-size:12.5px; color:#96430F; font-weight:600;">Changer</button>
     </div>
     <div style="height:1px; background:#F0E6D8; margin:0 16px;"></div>
     <div style="display:flex; align-items:center; gap:12px; padding:13px 16px; min-height:52px;">
@@ -47,7 +47,7 @@
         <div style="font-size:14.5px;">Étude 7 — Luc 19.1-10</div>
         <div style="font-size:11.5px; color:#6E6053;">celle de la semaine</div>
       </div>
-      <span style="font-size:12.5px; color:#96430F; font-weight:600;">Changer</span>
+      <button style="min-height:44px; padding:0 4px; background:none; border:none; font-size:12.5px; color:#96430F; font-weight:600;">Changer</button>
     </div>
   </div>
 
@@ -64,8 +64,8 @@
         <button onClick="{{ m.basculer }}" style="{{ m.style }}">
           <div style="{{ m.pastille }}">
             <span style="{{ m.txtPastille }}">{{ m.ini }}</span>
-            <sc-if value="{{ m.present }}" hint-placeholder-val="{{ true }}">
-              <span style="position:absolute; right:-2px; bottom:-2px; width:17px; height:17px; border-radius:50%; background:#226B42; border:2px solid #FFFFFF; display:flex; align-items:center; justify-content:center;">
+            <sc-if value="{{ m.present }}" hint-placeholder-val="true">
+              <span style="position:absolute; inset-inline-end:-2px; inset-block-end:-2px; width:17px; height:17px; border-radius:50%; background:#226B42; border:2px solid #FFFFFF; display:flex; align-items:center; justify-content:center;">
                 <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               </span>
             </sc-if>
@@ -100,7 +100,7 @@
 </div>
 </x-dc>
 
-<script data-dc-script data-props='{"$preview":{"width":390,"height":980}}'>
+<script data-dc-script data-props='{"$preview":{"width":390,"height":1080}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -129,8 +129,8 @@ class Component extends DCLogic {
         style: 'display:flex; flex-direction:column; align-items:center; gap:6px; padding:9px 2px 8px; min-height:84px; border-radius:12px; border:1px solid ' +
                (present ? '#E5D9C9' : '#F0E6D8') + '; background:' + (present ? '#FFFFFF' : '#FBF6EF') + ';',
         pastille: 'position:relative; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:' +
-                  (present ? couleur : '#FFFFFF') + '; border:' + (present ? 'none' : '1.5px dashed #D8C9B4') + ';',
-        txtPastille: 'font-size:13.5px; font-weight:700; color:' + (present ? '#FFFFFF' : '#8A7C6C') + ';',
+                  (present ? couleur : '#FFFFFF') + '; border:' + (present ? 'none' : '1.5px dashed #B5A288') + ';',
+        txtPastille: 'font-size:13.5px; font-weight:700; color:' + (present ? '#FFFFFF' : '#6E6053') + ';',
         txtNom: 'font-size:11px; font-weight:' + (present ? '600' : '500') + '; color:' + (present ? '#2A211B' : '#6E6053') +
                 '; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'
       };
@@ -140,7 +140,7 @@ class Component extends DCLogic {
       membres,
       compte: membres.filter((m) => m.present).length,
       tousPresents: () => this.setState({ absents: {} }),
-      ajouter: () => {}
+      ajouter: () => this.setState({ invites: (this.state.invites || 0) + 1 })
     };
   }
 }

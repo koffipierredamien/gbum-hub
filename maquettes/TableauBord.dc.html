@@ -12,7 +12,7 @@
     body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; font-size:14px; }
     a { color:#96430F; text-decoration:none; } a:hover { color:#C6611C; }
     .nav-item { display:flex; align-items:center; gap:12px; min-height:44px; padding:0 12px; border-radius:11px; color:#5F5346; font-size:14.5px; font-weight:500; }
-    .nav-item.actif { color:#96430F; background:#FBF1E6; font-weight:700; box-shadow:inset 3px 0 0 #E8732A; }
+    .nav-item.actif { color:#96430F; background:#FBF1E6; font-weight:700; border-inline-start:3px solid #E8732A; padding-inline-start:9px; }
     .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; }
     .titre-bloc { font-size:15px; font-weight:700; margin:0 0 3px; }
     .sous-bloc { font-size:12.5px; color:#5F5346; margin:0 0 16px; }
@@ -22,7 +22,7 @@
 <div style="width:1440px; min-height:900px; display:flex; background:#FBF6EF;">
 
   <!-- Barre latérale -->
-  <div style="width:258px; flex-shrink:0; background:#FFFFFF; border-right:1px solid #E5D9C9; padding:22px 16px; display:flex; flex-direction:column;">
+  <div style="width:258px; flex-shrink:0; background:#FFFFFF; border-inline-end:1px solid #E5D9C9; padding:22px 16px; display:flex; flex-direction:column;">
     <div style="display:flex; align-items:center; gap:11px; padding:0 8px 22px;">
       <div style="width:36px; height:36px; border-radius:10px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
         <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span>
@@ -30,10 +30,10 @@
       <div style="line-height:1.1;"><div style="font-size:16px; font-weight:700;">Le Hub</div><div style="font-size:11.5px; color:#6E6053;">GBU Maroc</div></div>
     </div>
 
-    <div style="display:flex; align-items:center; gap:9px; min-height:40px; padding:0 12px; border-radius:11px; background:#FBF6EF; border:1px solid #E5D9C9; margin-bottom:20px;">
+    <div style="display:flex; align-items:center; gap:9px; min-height:44px; padding:0 12px; border-radius:11px; background:#FBF6EF; border:1px solid #E5D9C9; margin-bottom:20px;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E6053" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <span style="flex-grow:1; font-size:13.5px; color:#6E6053;">Rechercher</span>
-      <span style="font-size:11px; color:#8A7C6C; border:1px solid #E5D9C9; border-radius:5px; padding:1px 5px;">⌘K</span>
+      <span style="font-size:11px; color:#6E6053; border:1px solid #E5D9C9; border-radius:5px; padding:1px 5px;">⌘K</span>
     </div>
 
     <div style="display:flex; flex-direction:column; gap:3px;">
@@ -86,8 +86,8 @@
         <p style="margin:0; font-size:14px; color:#5F5346;">Éclaireurs des campus pour Christ · année 3 sur 10</p>
       </div>
       <div style="display:flex; gap:9px;">
-        <button style="height:40px; padding:0 15px; border-radius:10px; background:#FFFFFF; border:1px solid #E5D9C9; font-family:inherit; font-size:13.5px; font-weight:600; color:#2A211B;">Mars 2026</button>
-        <button style="height:40px; padding:0 15px; border-radius:10px; background:#E8732A; border:1px solid #C6611C; font-family:inherit; font-size:13.5px; font-weight:700; color:#2A211B;">Écrire au mouvement</button>
+        <button style="height:44px; padding:0 15px; border-radius:10px; background:#FFFFFF; border:1px solid #E5D9C9; font-family:inherit; font-size:13.5px; font-weight:600; color:#2A211B;">Mars 2026</button>
+        <button style="height:44px; padding:0 15px; border-radius:10px; background:#E8732A; border:1px solid #C6611C; font-family:inherit; font-size:13.5px; font-weight:700; color:#2A211B;">Écrire au mouvement</button>
       </div>
     </div>
 
@@ -132,11 +132,11 @@
               <div style="font-size:14.5px; font-weight:700;">Marrakech — Semlalia</div>
               <div style="font-size:12.5px; color:#5F5346;">Mehdi Tazi · dernier signe le 8 décembre</div>
             </div>
-            <div style="text-align:right; margin-inline-end:6px;">
+            <div style="text-align:end; margin-inline-end:6px;">
               <div style="font-size:19px; font-family:'Newsreader',Georgia,serif; font-weight:600; color:#96430F; line-height:1;">3</div>
               <div style="font-size:11px; color:#6E6053;">mois</div>
             </div>
-            <button style="height:38px; padding:0 14px; border-radius:9px; background:#FFFFFF; border:1px solid #C6611C; color:#96430F; font-family:inherit; font-size:13px; font-weight:700; flex-shrink:0;">Prendre contact</button>
+            <button style="height:44px; padding:0 14px; border-radius:9px; background:#FFFFFF; border:1px solid #C6611C; color:#96430F; font-family:inherit; font-size:13px; font-weight:700; flex-shrink:0;">Prendre contact</button>
           </div>
 
           <div style="display:flex; align-items:center; gap:14px; padding:13px 15px; background:#FBF1E6; border-radius:11px;">
@@ -145,11 +145,11 @@
               <div style="font-size:14.5px; font-weight:700;">Oujda — Faculté des Sciences</div>
               <div style="font-size:12.5px; color:#5F5346;">Ousmane Diallo · dernier signe le 21 novembre</div>
             </div>
-            <div style="text-align:right; margin-inline-end:6px;">
+            <div style="text-align:end; margin-inline-end:6px;">
               <div style="font-size:19px; font-family:'Newsreader',Georgia,serif; font-weight:600; color:#96430F; line-height:1;">4</div>
               <div style="font-size:11px; color:#6E6053;">mois</div>
             </div>
-            <button style="height:38px; padding:0 14px; border-radius:9px; background:#FFFFFF; border:1px solid #C6611C; color:#96430F; font-family:inherit; font-size:13px; font-weight:700; flex-shrink:0;">Prendre contact</button>
+            <button style="height:44px; padding:0 14px; border-radius:9px; background:#FFFFFF; border:1px solid #C6611C; color:#96430F; font-family:inherit; font-size:13px; font-weight:700; flex-shrink:0;">Prendre contact</button>
           </div>
 
           <div style="display:flex; align-items:center; gap:14px; padding:13px 15px; background:#FBF1E6; border-radius:11px;">
@@ -158,24 +158,24 @@
               <div style="font-size:14.5px; font-weight:700;">Agadir — Ibn Zohr</div>
               <div style="font-size:12.5px; color:#5F5346;">Nour El Fassi · dernier signe le 4 décembre</div>
             </div>
-            <div style="text-align:right; margin-inline-end:6px;">
+            <div style="text-align:end; margin-inline-end:6px;">
               <div style="font-size:19px; font-family:'Newsreader',Georgia,serif; font-weight:600; color:#96430F; line-height:1;">3</div>
               <div style="font-size:11px; color:#6E6053;">mois</div>
             </div>
-            <button style="height:38px; padding:0 14px; border-radius:9px; background:#FFFFFF; border:1px solid #C6611C; color:#96430F; font-family:inherit; font-size:13px; font-weight:700; flex-shrink:0;">Prendre contact</button>
+            <button style="height:44px; padding:0 14px; border-radius:9px; background:#FFFFFF; border:1px solid #C6611C; color:#96430F; font-family:inherit; font-size:13px; font-weight:700; flex-shrink:0;">Prendre contact</button>
           </div>
         </div>
 
         <div style="margin-top:16px; padding-top:14px; border-top:1px solid #F0E6D8; display:flex; align-items:center; justify-content:space-between;">
           <span style="font-size:12.5px; color:#5F5346;">5 autres cellules n’ont pas rendu mars, sans être en alerte.</span>
-          <a href="#" style="font-size:13px; font-weight:600;">Voir les 27 cellules</a>
+          <a href="#" style="display:inline-flex; align-items:center; min-height:44px; font-size:13px; font-weight:600;">Voir les 27 cellules</a>
         </div>
       </div>
 
       <!-- Avancement du canevas -->
       <div class="carte" style="padding:20px 22px;">
         <h2 class="titre-bloc">Où en est le canevas</h2>
-        <p class="sous-bloc">Étude médiane : 6 sur 24. Fès et Rabat mènent.</p>
+        <p class="sous-bloc">Six villes sur neuf. Fès et Rabat mènent, Marrakech décroche.</p>
         <div style="display:flex; flex-direction:column; gap:13px;">
           <div>
             <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px;"><span style="font-weight:600;">Fès</span><span style="color:#5F5346;">9 / 24</span></div>
@@ -216,21 +216,21 @@
               <div style="font-size:13.5px; font-weight:600; margin-bottom:5px;">Ouvrir 4 nouvelles cellules</div>
               <div style="height:7px; border-radius:999px; background:#F0E6D8; overflow:hidden;"><div style="width:50%; height:100%; background:#226B42; border-radius:999px;"></div></div>
             </div>
-            <span style="font-size:13px; font-weight:700; color:#226B42; width:44px; text-align:right;">2 / 4</span>
+            <span style="font-size:13px; font-weight:700; color:#226B42; width:44px; text-align:end;">2 / 4</span>
           </div>
           <div style="display:flex; align-items:center; gap:14px;">
             <div style="flex-grow:1;">
               <div style="font-size:13.5px; font-weight:600; margin-bottom:5px;">Former 30 responsables de cellule</div>
               <div style="height:7px; border-radius:999px; background:#F0E6D8; overflow:hidden;"><div style="width:73%; height:100%; background:#226B42; border-radius:999px;"></div></div>
             </div>
-            <span style="font-size:13px; font-weight:700; color:#226B42; width:44px; text-align:right;">22 / 30</span>
+            <span style="font-size:13px; font-weight:700; color:#226B42; width:44px; text-align:end;">22 / 30</span>
           </div>
           <div style="display:flex; align-items:center; gap:14px;">
             <div style="flex-grow:1;">
               <div style="font-size:13.5px; font-weight:600; margin-bottom:5px;">Une sortie d’évangélisation par ville</div>
               <div style="height:7px; border-radius:999px; background:#F0E6D8; overflow:hidden;"><div style="width:44%; height:100%; background:#E8732A; border-radius:999px;"></div></div>
             </div>
-            <span style="font-size:13px; font-weight:700; color:#96430F; width:44px; text-align:right;">4 / 9</span>
+            <span style="font-size:13px; font-weight:700; color:#96430F; width:44px; text-align:end;">4 / 9</span>
           </div>
         </div>
       </div>
