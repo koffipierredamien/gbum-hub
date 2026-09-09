@@ -69,10 +69,10 @@
 | **D3** | Dépôt | ✅ **`gbum-hub`** — 8 sept. 2026 | — |
 | **D11** | Accès entre pairs | ✅ **cloisonné + ouverture temporaire datée** — 9 sept. 2026 | 2.2 |
 | **D12** | Archive des canevas | ✅ **publique** — 9 sept. 2026 | 2.4 |
-| **D4** | Périmètre de la v1 | ⬜ à trancher | 2.5 |
+| **D4** | Périmètre de la v1 | ✅ **le site public d'abord** — 9 sept. 2026 | 2.5 |
 | **D10** | Posture de visibilité publique | ✅ **ouverte** — 9 sept. 2026 *(réserve : confirmation du Secrétariat National)* | 2.4 |
 | **D5** | Bascule progressive ou non | ⬜ à trancher | 3.7 |
-| **D6** | Langues de la v1 | ⬜ à trancher | 3.3 |
+| **D6** | Langues | ✅ **français et anglais** — 9 sept. 2026 | 3.3 |
 | **D7** | Hébergement | ⬜ à trancher | 5.4 |
 | **D8** | Le JTPA dans le hub ? | ⬜ à trancher — **décision du mouvement** | 2.6 |
 | **D9** | Monolithe ou microservices ? | ✅ **monolithe modulaire** — 8 sept. 2026 | 2.2 |

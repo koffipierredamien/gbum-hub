@@ -286,7 +286,7 @@ public, et de **travailler ensemble** côté interne.
 |---|---|
 | **A6.1** | **Référencement** : métadonnées, données structurées, `sitemap`, URL lisibles, rendu servi depuis le serveur. Aujourd'hui le mouvement est introuvable. |
 | **A6.2** | **Partage social** : un lien partagé affiche un aperçu correct. |
-| **A6.3** | **Multilingue FR / AR / EN**, avec support **RTL** complet pour l'arabe. *(🟡 — l'architecture est posée dès la v1)* |
+| **A6.3** | **Français et anglais** *(mouvement, 9 sept. 2026)*. L'arabe est écarté, et avec lui l'exigence RTL. La mise en page reste écrite en propriétés logiques : cela ne coûte rien et garde la porte ouverte. |
 
 ---
 
@@ -575,9 +575,11 @@ Navigation clavier complète. Contrôle automatisé et bloquant en intégration
 continue.
 
 ### NF5 — Langues
-Aucune chaîne visible en dur. FR d'abord ; AR (RTL) et EN ensuite. **Mise en
-page logique dès la première ligne** : rétro-adapter le RTL coûte dix fois plus
-cher.
+**Français et anglais**, le français d'abord. **L'arabe est écarté**
+*(mouvement, 9 sept. 2026)*. Aucune chaîne visible en dur. La mise en page
+reste écrite en **propriétés logiques** — cela ne coûte rien aujourd'hui et
+garde la porte ouverte. Quand une traduction anglaise manque, la page affiche
+le français plutôt qu'un vide.
 
 ### NF6 — Maintenabilité
 Aucun fichier au-delà de 400 lignes, aucune fonction au-delà de 50.
@@ -702,10 +704,10 @@ système en lecture seule 90 jours.
 | **D10** | Visibilité publique | ✅ Ouverte, **jusqu'à la ville** — [ADR-011](02-ARCHITECTURE.md) · *réserve R1* |
 | **D11** | Accès entre pairs | ✅ **Cloisonné, avec ouverture temporaire datée** — [ADR-005](02-ARCHITECTURE.md) |
 | **D12** | Archive publique des canevas | ✅ **Ouverte à tous** |
-| **D4** | Périmètre de la v1 | ⬜ Point 2.5 |
+| **D4** | Périmètre de la v1 | ✅ **Le site public d'abord** — [plan du lot 1](08-PLAN-SITE-PUBLIC.md) |
 | **D8** | Le JTPA dans le hub ? | ✅ **Oui — activité nationale** (C2.9–C2.11), sans donnée nominative sur des tiers |
 | **D5** | Stratégie de bascule | ⬜ Point 3.7 |
-| **D6** | Langues de la v1 | ⬜ Point 3.3 |
+| **D6** | Langues | ✅ **Français et anglais** — l'arabe est écarté |
 | **D7** | Hébergement | ⬜ Point 5.4 |
 
 *Document vivant. Toute modification passe par une pull request et est datée.*

@@ -788,7 +788,13 @@ marginal.
 
 ---
 
-## 10. ADR-008 — Internationalisation dès la première ligne
+## 10. ⚠️ ADR-008 — Internationalisation dès la première ligne
+
+> **Amendé le 9 septembre 2026.** Les langues retenues sont le **français et
+> l'anglais** ; **l'arabe est écarté**, et avec lui toute l'exigence RTL. Ce
+> qui subsiste de cet ADR : aucune chaîne en dur, et la **mise en page en
+> propriétés logiques** — une discipline qui ne coûte rien et garde la porte
+> ouverte. Les tests dans les deux directions ne sont plus requis.
 
 **Décision.** L'architecture i18n et **RTL** est posée avant le premier écran,
 même si la v1 ne livre que le français.
@@ -912,7 +918,7 @@ en C#.
 | **ADR-005** | **Modèle d'accès : cumulatif vertical, cloisonné latéral, ouverture temporaire datée** | ✅ **accepté** (9 sept. 2026) |
 | ADR-006 | Canevas et séance disponibles hors ligne | 🟡 proposé |
 | ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer — *phase 5.4* |
-| ADR-008 | i18n et RTL posés dès la première ligne | 🟡 proposé |
+| ADR-008 | i18n dès la première ligne — **RTL retiré** (FR + EN) | 🟠 amendé (9 sept. 2026) |
 | ADR-009 | Nouveau dépôt `gbum-hub` | ✅ **accepté** (8 sept. 2026) |
 | **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
 

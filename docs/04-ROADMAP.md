@@ -19,13 +19,20 @@
 > quand la personne compétente dit oui, explicitement. 70 % des points
 > validés = la porte s'ouvre. C'est comptable, pas au ressenti.
 
-**Nous sommes en phase 2.**
+**Nous construisons le lot 1 — le site public.** Voir le
+[plan du lot 1](08-PLAN-SITE-PUBLIC.md).
+
+Les phases 1 à 3 ont joué leur rôle : elles ont remis le projet d'aplomb après
+un écart. Le cahier des charges est jugé bon **à 70 %** par la maîtrise
+d'ouvrage, et **s'ajustera au fil du travail** plutôt que dans une phase
+séparée. Le suivi se réduit désormais à trois choses : **ce qui est décidé**,
+**ce qui reste ouvert**, **le lot en cours**.
 
 | # | Phase | Livrable | Qui valide | État | Validé |
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
 | 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + Secrétariat National | 🟡 en cours | **3/6** |
-| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + Secrétariat National | 🔵 **en cours** | **5/7 — seuil atteint** |
+| 2 | Organisation du hub | Un site ou plusieurs · les accès · les domaines | Pierre + Secrétariat National | ✅ **validée** | 6/7 |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | Secrétariat National + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + Secrétariat National + 5 testeurs | 🟡 dessinées | 0/6 |
 | 5 | Stack technique | La pile, et pourquoi | Pierre | 🟡 partielle | 1/5 |
@@ -106,8 +113,9 @@ C'est la phase qui décide de la **méthode**, avant toute technique.
       ⚠️ **Réserve R1** — ce point revient au Secrétariat National selon le présent échéancier.
       Sa confirmation est requise **avant toute mise en ligne portant de vrais
       noms**.
-- [ ] **2.5** Le **périmètre de la v1** : quels domaines sortent en premier.
-      *(Secrétariat National + Pierre)*
+- [x] **2.5** Le **périmètre de la v1** → **le site public d'abord**, en
+      **français et anglais**, responsive et soigné. Décidé le 9 sept. 2026.
+      *(Pierre)* — [plan du lot 1](08-PLAN-SITE-PUBLIC.md)
 - [x] **2.6** Le sort du **JTPA — Journées de Témoignage par Amitié** →
       **dans le hub, comme activité nationale** vécue dans les villes et les
       cellules, sans rencontre en présentiel. **Aucune donnée nominative sur
@@ -249,6 +257,7 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 2 | **Périmètre de la v1 tranché : le site public d'abord**, en français et anglais. Phase 2 close, cahier des charges validé à 70 %. Le suivi par phases laisse place au suivi par lots |
 | 9 sept. 2026 | 2 | Point 2.7 reporté volontairement : la visioconférence est conservée ; le choix « un moteur ou deux » sera tranché après examen de Google Meet et des services comparables |
 | 9 sept. 2026 | 2 | Point 2.6 tranché et **réserve R4 levée** : les JTPA sont une activité nationale vécue dans les villes et cellules, sans présentiel ; aucune donnée nominative sur des tiers |
 | 9 sept. 2026 | 2 | Activités scindées : **organisation complète pour le national, trace seule pour ville et cellule**. Séminaire rendu exclusif aux villes |
