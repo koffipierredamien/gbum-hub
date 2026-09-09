@@ -20,6 +20,7 @@
 | **03** | [Conventions et qualité](03-CONVENTIONS-ET-QUALITE.md) | Comment écrit-on le code ? Qu'est-ce qui bloque une PR ? | Pierre |
 | **04** | [Plan de route](04-ROADMAP.md) | Dans quel ordre ? Combien de temps ? Quels risques ? | **SN + Pierre** |
 | **05** | [Prompt Claude Design](05-PROMPT-CLAUDE-DESIGN.md) | Comment faire produire les maquettes ? | Pierre |
+| **07** | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) | Quatre décisions, cinq informations, deux désignations attendues du SN | **SN** |
 
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.

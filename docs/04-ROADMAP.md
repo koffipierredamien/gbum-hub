@@ -232,6 +232,7 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 1 | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) rédigée : elle regroupe les points 1.5, 1.6, la réserve R1, la réserve R4 et les informations manquantes en une seule réunion |
 | 9 sept. 2026 | 1 | Point 1.4 validé : les manques sont réels. **JTPA corrigé en « Journées de Témoignage par Amitié »** — réserve R4 ouverte sur sa forme. Composition du mouvement établie : la plupart des GBUssiens viennent des pays du GBUAF |
 | 9 sept. 2026 | 1 | Rattachement IFES établi : **région MENA**. Une place est réservée à l'histoire du GBU et du GBUM (F1.11, D12), dont le contenu sera demandé au SN |
 | 9 sept. 2026 | 2 | Précision : une cellule publie **son nom et son nombre de membres**, rien d'autre |
