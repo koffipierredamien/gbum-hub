@@ -6,7 +6,6 @@
 |---|---|---|---|
 | **R1** | La posture de visibilité publique (ADR-011) doit être confirmée par le Secrétariat National. | Point 2.4, tranché par Pierre alors que l'échéancier l'attribue au Secrétariat National. | La première mise en ligne portant de vrais noms — pas la conception. |
 | **R2** | Les maquettes portent des données inventées — thème, chiffres, « plus de trente ans », budget, dates de camp — ainsi qu'un parcours « Trouver mon groupe » qui va au-delà d'ADR-011. | Écrites avant que le cadrage soit validé. | Rien pour l'instant : reprise décidée en **phase 4**. |
-| **R5** | Le sort du **canevas sur le site public** : l'archive des canevas passés est-elle ouverte à tous, ou réservée aux membres ? | Le mouvement a demandé une section canevas — année en cours et années antérieures — dans le cadre du site public. | L'exigence A2.3. |
 | **R4** | Ce qu'est réellement un **JTPA — Journée de Témoignage par Amitié** — ce qui s'y passe, ce qui en est conservé, par qui et combien de temps. | Le sigle avait été glosé « évangélisation par amitié » et modélisé comme un suivi relationnel continu ; « journées » désigne des événements. | L'exigence F5.6, le modèle de menace correspondant, et le point 2.6. |
 | **R3** | L'histoire des GBU et du GBUM manque entièrement. | Aucune source publique ; le Secrétariat National sera sollicité. | Rien : **une place est réservée** dans le produit (F1.11, domaine D12). |
 
@@ -27,7 +26,7 @@
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
 | 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + Secrétariat National | 🟡 en cours | **3/6** |
-| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + Secrétariat National | 🔵 **en cours** | **2/7** |
+| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + Secrétariat National | 🔵 **en cours** | **3/7** |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | Secrétariat National + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + Secrétariat National + 5 testeurs | 🟡 dessinées | 0/6 |
 | 5 | Stack technique | La pile, et pourquoi | Pierre | 🟡 partielle | 1/5 |
@@ -87,12 +86,11 @@ C'est la phase qui décide de la **méthode**, avant toute technique.
 - [x] **2.1** **Un seul site ou plusieurs ?** → **Deux surfaces, une seule
       source de vérité.** Décidé le 9 sept. 2026 sur l'examen d'IFES, UCCF,
       Scouts et Guides de France et Rotary. *(Pierre)* — [ADR-001](02-ARCHITECTURE.md)
-- [ ] **2.2** **Comment se gèrent les accès ?** Le principe est posé par le
-      mouvement — *le niveau n+1 accède à tout ce à quoi le niveau n accède,
-      plus ce qui lui est propre ; le Secrétariat National accède à l'espace
-      des Amis, l'inverse non*. **Reste la question entre pairs :** le bureau
-      de Rabat voit-il le travail de celui de Fès ? *(Pierre + Secrétariat
-      National)* — ADR-005, décision D11
+- [x] **2.2** **Comment se gèrent les accès ?** → **Cumulatif verticalement,
+      cloisonné entre pairs, avec ouverture temporaire datée.** Le Secrétariat
+      National accède à l'espace des Amis, l'inverse non. Un droit est une
+      **habilitation datée** — mandats annuels et ouvertures reposent sur le
+      même mécanisme. Décidé le 9 sept. 2026. *(Pierre)* — [ADR-005](02-ARCHITECTURE.md)
 - [ ] **2.3** Les **sections** sont complètes et correctement nommées : six
       pour le site public (A1–A6), six espaces par niveau (B1–B6) et douze
       sections transverses (C1–C12). *(Secrétariat National)*
@@ -243,6 +241,8 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 2 | Point 2.2 tranché : accès **cumulatif vertical, cloisonné latéral, ouverture temporaire datée** (ADR-005). Mandats et ouvertures partagent un mécanisme unique : l'habilitation datée |
+| 9 sept. 2026 | 2 | Réserve R5 levée : **l'archive des canevas est ouverte à tous** |
 | 9 sept. 2026 | 1-2 | **Cahier des charges refondu (v2.0)** : deux produits aux objectifs séparés, sections par niveau, modèle d'accès cumulatif, mandats annuels, activités enrichies. Le canevas n'est plus présenté comme « le cœur » — c'était une lecture de la maîtrise d'œuvre |
 | 9 sept. 2026 | 1 | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) rédigée : elle regroupe les points 1.5, 1.6, la réserve R1, la réserve R4 et les informations manquantes en une seule réunion |
 | 9 sept. 2026 | 1 | Point 1.4 validé : les manques sont réels. **JTPA corrigé en « Journées de Témoignage par Amitié »** — réserve R4 ouverte sur sa forme. Composition du mouvement établie : la plupart des GBUssiens viennent des pays du GBUAF |

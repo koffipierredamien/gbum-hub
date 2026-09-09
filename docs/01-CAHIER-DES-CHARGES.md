@@ -246,7 +246,7 @@ public, et de **travailler ensemble** côté interne.
 |---|---|
 | **A2.1** | **« Notre histoire »** : la naissance des GBU, du GBUAF, du GBUM, et ses étapes. Emplacement réservé dès la conception ; contenu attendu du Secrétariat National. |
 | **A2.2** | **Chronologie du mouvement** : les jalons, les camps marquants, les tournants — dont Ifrane 2023 et la vision décennale. |
-| **A2.3** | **Archive des canevas** : le canevas de l'année en cours et **ceux des années antérieures**, consultables et téléchargeables. |
+| **A2.3** | **Archive des canevas** : le canevas de l'année en cours et **ceux des années antérieures**, consultables et téléchargeables. **Ouverte à tous, sans compte** *(mouvement, 9 sept. 2026)* — c'est l'objectif P2, la mémoire largement ouverte. |
 | **A2.4** | **Photothèque historique** : les albums par année, ville, événement. |
 | **A2.5** | **Témoignages**, recueillis et publiés avec l'accord de leur auteur. |
 | **A2.6** | Archive des **bureaux successifs** — nationaux et de ville : qui a servi, quand. *(🟠)* |
@@ -412,19 +412,29 @@ technique       jamais le contenu du mouvement
 | **AC.5** | **Vérifié automatiquement** : aucune combinaison de niveau et d'action ne doit ouvrir un accès hors périmètre. |
 | **AC.6** | **« Voir à la place de »** pour l'administration : bandeau permanent, durée limitée, action journalisée. |
 
-### 5.3 ⚠️ La question ouverte — point 2.2
+### 5.3 Entre pairs : cloisonné, avec ouverture temporaire
 
-Le principe ci-dessus dit ce qui se passe **verticalement**. Il ne dit rien de
-ce qui se passe **entre pairs**, et c'est la question qui décide du
-cloisonnement :
+*(mouvement, 9 septembre 2026)*
 
-> **Le bureau de Rabat voit-il le travail du bureau de Fès ?**
-> Le responsable d'une cellule voit-il les séances d'une autre cellule de sa
-> ville ?
+**Le bureau de Rabat ne voit pas celui de Fès. Une cellule ne voit pas une
+autre cellule.** Mais le hub doit permettre de **rendre accessibles
+provisoirement** les détails d'une ville à une autre — et de même entre
+cellules.
 
-Les deux réponses se défendent — un mouvement peut vouloir la transparence
-entre villes autant que le cloisonnement. **La réponse est attendue au point
-2.2 de l'échéancier**, et elle commande la forme technique du modèle.
+| ID | Exigence |
+|---|---|
+| **AC.7** | Une ouverture entre pairs porte **obligatoirement une date de fin**. Aucune ouverture indéfinie. |
+| **AC.8** | Elle est **en lecture seule par défaut** ; l'écriture s'accorde à part. |
+| **AC.9** | Elle est **motivée** : qui ouvre écrit pourquoi. |
+| **AC.10** | Elle est **révocable à tout moment**, sans attendre l'échéance. |
+| **AC.11** | Elle est **journalisée**, et **le propriétaire de la donnée est prévenu**. |
+| **AC.12** | Sa **portée est explicite** : toute la ville, ou seulement une activité, un budget, un rapport. |
+| **AC.13** | **Un pair ne s'ouvre jamais lui-même** l'accès à un autre pair. |
+
+> **La même notion sert les mandats et les ouvertures.** Un droit est une
+> **habilitation datée** : un mandat annuel finit avec l'année, une ouverture
+> finit à la date convenue. Une seule notion, deux usages — et rien ne reste
+> ouvert par oubli. Voir [ADR-005](02-ARCHITECTURE.md).
 
 ---
 
@@ -576,7 +586,8 @@ système en lecture seule 90 jours.
 | **D3** | Dépôt | ✅ `gbum-hub` — [ADR-009](02-ARCHITECTURE.md) |
 | **D9** | Monolithe ou microservices ? | ✅ Monolithe modulaire — [ADR-010](02-ARCHITECTURE.md) |
 | **D10** | Visibilité publique | ✅ Ouverte, **jusqu'à la ville** — [ADR-011](02-ARCHITECTURE.md) · *réserve R1* |
-| **D11** | **Accès entre pairs** — une ville voit-elle une autre ville ? | ⬜ **Point 2.2** |
+| **D11** | Accès entre pairs | ✅ **Cloisonné, avec ouverture temporaire datée** — [ADR-005](02-ARCHITECTURE.md) |
+| **D12** | Archive publique des canevas | ✅ **Ouverte à tous** |
 | **D4** | Périmètre de la v1 | ⬜ Point 2.5 |
 | **D8** | Le JTPA dans le hub ? | ⬜ Point 2.6 · *réserve R4* |
 | **D5** | Stratégie de bascule | ⬜ Point 3.7 |

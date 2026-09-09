@@ -67,6 +67,8 @@
 | **D1** | Un site ou plusieurs ? | ✅ **deux surfaces, une seule base** — 9 sept. 2026 | 2.1 |
 | **D2** | Pile technique | ✅ **TypeScript de bout en bout** — 8 sept. 2026 | 5.1 |
 | **D3** | Dépôt | ✅ **`gbum-hub`** — 8 sept. 2026 | — |
+| **D11** | Accès entre pairs | ✅ **cloisonné + ouverture temporaire datée** — 9 sept. 2026 | 2.2 |
+| **D12** | Archive des canevas | ✅ **publique** — 9 sept. 2026 | 2.4 |
 | **D4** | Périmètre de la v1 | ⬜ à trancher | 2.5 |
 | **D10** | Posture de visibilité publique | ✅ **ouverte** — 9 sept. 2026 *(réserve : confirmation du Secrétariat National)* | 2.4 |
 | **D5** | Bascule progressive ou non | ⬜ à trancher | 3.7 |

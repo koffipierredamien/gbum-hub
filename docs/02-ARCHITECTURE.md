@@ -662,58 +662,103 @@ code applicatif — c'est un simple changement d'URL.
 
 ---
 
-## 8. ADR-005 — Une politique d'accès unique
+## 8. ✅ ADR-005 — Le modèle d'accès
 
-**Problème constaté.** L'autorisation est aujourd'hui dispersée entre
-`login_required`, `admin_required`, `role_required`, `est_admin()`,
-`_est_national()`, `_voit_amis()`, `_place_amis()`, `_bloques()` et des
-conditions dans les gabarits. Le rôle est **binaire et sans portée** :
-« Responsable » désigne aussi bien l'animateur d'une cellule de Fès que le
-Secrétaire national. C'est le terrain classique de l'IDOR — et le dépôt
-contient d'ailleurs un `tests/audit_idor.py`.
+> **Décision prise le 9 septembre 2026** — point 2.2 de l'échéancier.
+> Le principe vient du mouvement ; la forme technique en découle.
 
-**Décision.** Un modèle unique **rôle × portée**, écrit une fois dans
-`packages/core/acces`, appelé partout, réimplémenté nulle part.
+### Ce que le mouvement a énoncé
 
-```ts
-// Un droit répond toujours à trois questions : QUI, sur QUOI, pour FAIRE QUOI.
-type Portee =
-  | { readonly sur: "mouvement" }
-  | { readonly sur: "structure"; readonly id: StructureId; readonly descendants: boolean }
-  | { readonly sur: "soi" };
+1. **Verticalement, l'accès s'accumule.** Le niveau n+1 accède à tout ce à quoi
+   le niveau n accède, plus ce qui lui est propre.
+2. **Les Amis sont à part.** Le Secrétariat National accède à leur espace ;
+   eux ne remontent pas.
+3. **Entre pairs, cloisonnement.** Le bureau de Rabat ne voit pas celui de Fès.
+   Une cellule ne voit pas une autre cellule.
+4. **Mais l'ouverture temporaire doit être possible** — d'une ville à une autre,
+   d'une cellule à une autre.
+5. **Tous les mandats sont annuels** : Conseil Exécutif, bureaux de ville,
+   responsables de cellule.
 
-type Habilitation = {
-  readonly role: RoleGBUM;      // conseiller_ville, responsable_cellule, permanent_sn…
-  readonly portee: Portee;      // ← ce qui manque aujourd'hui
-  readonly debut: Date;
-  readonly fin: Date | null;    // une habilitation expire ; un rôle en base, non
-};
+### La forme qui en découle
 
-/** Le seul point de décision de toute l'application. */
-export function peut(
-  acteur: Acteur,
-  action: Action,          // "lire" | "modifier" | "valider" | "supprimer" | "exporter"
-  ressource: Ressource,    // porte TOUJOURS sa structure de rattachement
-): Decision;               // { autorise: true } | { autorise: false, motif: Motif }
+```
+   VERTICAL — cumulatif              LATÉRAL — cloisonné, sauf ouverture
+   ────────────────────              ──────────────────────────────────
+   Secrétariat National              Rabat  ╎  Fès  ╎  Casablanca
+        ▲ voit tout                    │   ╎        ╎
+   Conseil Exécutif                    └╌╌╌┼╌╌╌╌╌╌╌▶╎  ouverture datée,
+        ▲                                  ╎        ╎  motivée, révocable
+   Bureau de ville                         ╎        ╎
+        ▲                            Cellule A ╎ Cellule B
+   Responsable de cellule                     ╎
+        ▲                            (même règle d'un cran plus bas)
+   GBUssien
+
+   Amis du GBU ◀── le Secrétariat National y accède ; eux ne remontent pas
+   Administration technique : les comptes et le service, jamais le contenu
 ```
 
-**Ce que cette forme impose structurellement :**
+### L'unification qui fait la solidité du modèle
 
-1. **Toute ressource porte sa structure.** Le type l'exige ; on ne *peut pas*
-   écrire une vérification qui oublie la portée — elle ne compile pas. *(P4)*
-2. **`peut()` est la seule porte.** Une règle de lint interdit toute
-   comparaison de rôle en dehors de `packages/core/acces`.
-3. **La décision est motivée**, jamais un booléen nu : les journaux et les
-   messages d'erreur savent *pourquoi* c'est refusé.
-4. **Les habilitations expirent.** Un mandat qui se termine retire l'accès
-   automatiquement — ce qui n'arrive pas aujourd'hui.
-5. **La navigation dérive de `peut()`.** Un écran interdit n'est pas caché par
-   un `if` dans le gabarit : il n'est pas dans le menu **parce que** `peut()`
-   dit non. Une seule vérité, pas deux.
+Les points 4 et 5 semblent sans rapport. Ils appellent pourtant **le même
+mécanisme** :
 
-**Vérification.** Un test génératif énumère `(rôle × portée) × (action ×
-ressource)` et vérifie qu'aucune combinaison n'autorise un accès hors
-périmètre. C'est l'audit IDOR, en continu, sur chaque pull request. *(P5)*
+> **Un droit est une habilitation datée.** Elle porte un début, une fin, une
+> portée, et elle s'éteint d'elle-même.
+
+- Un **mandat annuel** est une habilitation dont la fin est celle de l'année.
+- Une **ouverture temporaire entre villes** est une habilitation dont la fin est
+  la date convenue.
+
+Une seule notion, deux usages. C'est ce qui évite d'ajouter un mécanisme de
+partage à côté du mécanisme de droits — et deux mécanismes de droits finissent
+toujours par diverger.
+
+**Conséquence directe :** rien ne reste ouvert par oubli. Un mandat non
+renouvelé ferme l'accès ; une ouverture non prolongée se referme. L'application
+actuelle a le défaut inverse — un rôle inscrit en base y demeure jusqu'à ce que
+quelqu'un pense à l'enlever.
+
+### Règles de l'ouverture temporaire
+
+| # | Règle | Motif |
+|---|---|---|
+| **O1** | **Une fin est obligatoire.** Aucune ouverture sans date de fin. | Une ouverture « en attendant » devient permanente |
+| **O2** | **En lecture seule par défaut.** L'écriture s'accorde séparément et explicitement. | Voir n'est pas modifier |
+| **O3** | **Motivée.** Qui ouvre écrit pourquoi. | La trace doit être compréhensible dans six mois |
+| **O4** | **Révocable à tout moment**, sans attendre l'échéance. | |
+| **O5** | **Journalisée** — qui a ouvert, à qui, quoi, quand, pourquoi. Et **le propriétaire est prévenu**. | Personne ne découvre après coup qu'on a regardé chez lui |
+| **O6** | **Portée explicite** : toute la ville, ou seulement une activité, un budget, un rapport. | Ouvrir un dossier n'est pas ouvrir une ville |
+
+> **Qui peut ouvrir ? — proposition à confirmer.** Le **bureau propriétaire**,
+> puisque c'est sa donnée ; **et** le Conseil Exécutif ou le Secrétariat
+> National, qui voient déjà tout et dont l'ouverture n'est donc pas une
+> élévation de droits. Un pair **ne peut jamais s'ouvrir lui-même** l'accès à
+> un autre pair.
+
+### Ce que le modèle doit garantir
+
+| # | Exigence |
+|---|---|
+| **AC.1** | **Une seule définition des droits.** Aucun écran ne décide par lui-même. |
+| **AC.2** | **Toute habilitation est datée** et s'éteint sans intervention. |
+| **AC.3** | **Un refus est motivé**, jamais un écran vide. |
+| **AC.4** | **La navigation dérive des droits.** Un espace interdit n'est pas masqué : il n'existe pas pour qui n'y a pas droit. |
+| **AC.5** | **Vérifié automatiquement** : aucune combinaison de niveau, de ville et d'action n'ouvre un accès hors périmètre — ouvertures temporaires comprises. |
+| **AC.6** | **« Voir à la place de »** pour l'administration : bandeau permanent, durée limitée, journalisée. |
+
+### Ce que cela corrige
+
+L'application actuelle éparpille l'autorisation entre une dizaine de fonctions
+et des conditions dans les gabarits — et son propre code en tire la leçon :
+*« deux règles recopiées finissent toujours par diverger, et c'est alors une
+porte de trop »*. Son rôle est en outre **binaire et sans portée** : le
+responsable d'une cellule de Fès et le Secrétaire National y portent la même
+étiquette « Responsable ».
+
+Ici, le niveau, la portée et la date sont dans la donnée elle-même, et une
+seule fonction décide.
 
 ---
 
@@ -864,7 +909,7 @@ en C#.
 | **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
 | ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé — *phase 5.2* |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |
-| ADR-005 | Politique d'accès unique, rôle × portée | 🟡 proposé — *phase 2.2* |
+| **ADR-005** | **Modèle d'accès : cumulatif vertical, cloisonné latéral, ouverture temporaire datée** | ✅ **accepté** (9 sept. 2026) |
 | ADR-006 | Canevas et séance disponibles hors ligne | 🟡 proposé |
 | ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer — *phase 5.4* |
 | ADR-008 | i18n et RTL posés dès la première ligne | 🟡 proposé |
