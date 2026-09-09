@@ -22,7 +22,8 @@
 | **05** | [Prompt Claude Design](05-PROMPT-CLAUDE-DESIGN.md) | Comment faire produire les maquettes ? | Pierre |
 | **07** | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) | Quatre décisions, sept informations, deux désignations attendues du Secrétariat National | **SN** |
 | **08** | [Plan du site public](08-PLAN-SITE-PUBLIC.md) | Le lot 1 : quelles pages, quel contenu, quelle administration ? | Pierre, SN |
-| **09** | [Direction artistique](09-DIRECTION-ARTISTIQUE.md) | Pourquoi les maquettes sont calmes, et les dix règles qui les rendent vivantes | Pierre, SN |
+| **09** | [Direction artistique](09-DIRECTION-ARTISTIQUE.md) | Pourquoi les maquettes étaient calmes, et les onze règles qui les rendent vivantes | Pierre, SN |
+| **10** | [Plan des fondations](10-PLAN-DES-FONDATIONS.md) | Ce qu'on pose sous les pages, dans quel ordre — et comment le stockage restera remplaçable | **Pierre** |
 
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.
@@ -75,7 +76,7 @@
 | **D10** | Posture de visibilité publique | ✅ **ouverte** — 9 sept. 2026 *(réserve : confirmation du Secrétariat National)* | 2.4 |
 | **D5** | Bascule progressive ou non | ⬜ à trancher | 3.7 |
 | **D6** | Langues | ✅ **français et anglais** — 9 sept. 2026 | 3.3 |
-| **D7** | Hébergement | ⬜ à trancher | 5.4 |
+| **D7** | Hébergement | ⏸️ **reportée sans dette** — 9 sept. 2026 *(décision de facture ; voir ADR-012)* | — |
 | **D8** | Le JTPA dans le hub ? | ⬜ à trancher — **décision du mouvement** | 2.6 |
 | **D9** | Monolithe ou microservices ? | ✅ **monolithe modulaire** — 8 sept. 2026 | 2.2 |
 

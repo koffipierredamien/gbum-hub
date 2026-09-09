@@ -440,7 +440,7 @@ FastAPI via un contrat OpenAPI généré. Tous les ADR ci-dessous tiennent.
 | Tâches de fond | **pg-boss** (file dans PostgreSQL) | P1/P2 : pas de Redis à administrer, une seule base |
 | Temps réel | **LiveKit Cloud** + SDK JS | ADR-004 : supprime SFU, Egress et coturn de l'exploitation |
 | Hors ligne | **Service Worker + IndexedDB (Dexie)** | ADR-006 |
-| Internationalisation | **next-intl** | ADR-007, RTL inclus |
+| Internationalisation | **next-intl** | ADR-008 amendée : français et anglais, **sans RTL** |
 | Fichiers | **Stockage objet S3** (Cloudflare R2) | Sort les fichiers du serveur ; sauvegardes indépendantes |
 | Courriel | **Resend** (ou Postmark) | Transactionnel fiable, gratuit à ce volume |
 | WhatsApp | **`wa-sender` conservé**, derrière un adaptateur unique | Ne pas casser ce qui marche ; isoler la dépendance |
@@ -551,7 +551,25 @@ monorepo, c'est **une pull request, une CI, un instantané cohérent**. *(P1)*
 
 ## 6. Infrastructure et déploiement
 
-### 6.1 ⚖️ ADR-007 — Quitter le VPS pour une plateforme gérée
+### 6.1 ⏸️ ADR-007 — Serveur auto-géré ou plateforme gérée
+
+> **Reformulée le 9 septembre 2026.** Cette décision n'est plus une décision
+> d'architecture : c'est une décision de facture, et elle est **reportable par
+> construction**.
+>
+> Le mouvement a posé une contrainte — *« on risque de changer le stockage un
+> jour si les responsables paient un cloud »*. La réponse n'est pas de choisir
+> l'hébergeur maintenant, c'est de faire en sorte que le choix n'engage rien :
+> voir **ADR-012**, qui traite le stockage comme une ressource attachée, et
+> **ADR-013**, qui sort les fichiers de la base.
+>
+> Tant qu'ADR-012 et ADR-013 sont tenues, passer du serveur actuel à une
+> plateforme payante — ou l'inverse — coûte deux variables d'environnement et
+> une restauration. Ceux qui paient trancheront quand ils paieront.
+>
+> Ce qui suit reste valable comme **inventaire de ce qu'une plateforme gérée
+> supprimerait**. Ce n'est plus une cible à atteindre, c'est un devis.
+
 
 **Situation actuelle :** VPS Contabo, nginx, systemd, certbot, coturn, LiveKit
 auto-hébergé, Egress, sauvegardes en cron sur le même disque, déploiement par
@@ -906,6 +924,89 @@ en C#.
 
 ---
 
+## 11 ter. ✅ ADR-012 — Le stockage est une ressource attachée
+
+**Décidée le 9 septembre 2026**, à la demande du mouvement.
+
+**Le problème.** Le mouvement changera peut-être d'hébergement le jour où
+quelqu'un paiera un cloud. Décidé après coup, ce changement coûte une réécriture.
+Décidé avant, il ne coûte rien.
+
+**Ce qui enferme n'est presque jamais la base.** Une base PostgreSQL se déménage
+avec deux commandes. Ce qui enferme, ce sont les extras d'une plateforme : son
+système de comptes, son API de fichiers, ses fonctions exécutées chez elle, son
+langage de requêtes maison. On les prend parce qu'ils sont offerts, et on ne
+peut plus partir.
+
+**La décision.** On applique le **facteur IV** de la
+[méthode des douze facteurs](https://12factor.net/backing-services) : *le code
+ne fait aucune distinction entre un service local et un service tiers ; les deux
+sont des ressources attachées, jointes par une adresse rangée dans la
+configuration ; remplacer une base locale par une base gérée par un tiers ne
+demande aucun changement de code.* Concrètement, six règles :
+
+| # | Règle |
+|---|---|
+| **S1** | Le même moteur partout : PostgreSQL en développement comme en production. |
+| **S2** | L'adresse de la base est une variable d'environnement — jamais dans le code, jamais versionnée. |
+| **S3** | Une seule porte vers la base : `packages/db`. Aucun autre paquet n'écrit de SQL. |
+| **S4** | La structure de la base est une suite de migrations versionnées. On ne la modifie jamais à la main. |
+| **S5** | Les fichiers ne sont pas dans la base (voir ADR-013). |
+| **S6** | **D'une plateforme, on ne prend que ses machines et son PostgreSQL.** Ni ses comptes, ni ses fonctions, ni son API de fichiers. |
+
+**Comment on saura que c'est vrai.** Une promesse de portabilité qu'on ne teste
+pas est fausse au bout de trois mois. **Une fois par lot**, on monte une base
+vide ailleurs, on y rejoue les migrations, on y restaure la dernière sauvegarde,
+on change deux variables et on vérifie que le site fonctionne. **Si cela prend
+plus d'une heure, c'est qu'on s'est enfermés quelque part** — et on l'apprend ce
+jour-là, pas le jour du déménagement. La répétition teste la restauration en
+même temps que la portabilité.
+
+**Ce que cela coûte.** Rien de plus que ce qu'on ferait bien de toute façon.
+C'est ce qui rend cette décision facile : elle n'ajoute pas de travail, elle
+retire une décision (ADR-007).
+
+**Conséquence.** ADR-007 est reportée sine die, sans dette.
+
+---
+
+## 11 quater. ✅ ADR-013 — Les fichiers vivent hors de la base
+
+**Décidée le 9 septembre 2026.** Corollaire d'ADR-012, mais assez conséquente
+pour être écrite à part.
+
+**La décision.** Les photographies, les PDF de canevas et les pièces jointes ne
+sont pas stockés dans PostgreSQL. Ils passent par une interface à quatre
+méthodes, et rien d'autre du code ne sait où ils se trouvent réellement :
+
+```ts
+interface Stockage {
+  ecrire(chemin: string, contenu: Uint8Array): Promise<void>
+  lire(chemin: string): Promise<Uint8Array>
+  supprimer(chemin: string): Promise<void>
+  url(chemin: string): string
+}
+```
+
+Deux mises en œuvre, choisies par une variable d'environnement :
+**`StockageDisque`** aujourd'hui, **`StockageS3`** le jour où le mouvement paie.
+
+**Pourquoi pas dans la base.** Une base gonflée de binaires devient lente à
+sauvegarder, lente à restaurer et pénible à déménager — ce qui contredit
+ADR-012. Les photos du mouvement se compteront en gigaoctets ; sa base utile se
+comptera en dizaines de mégaoctets. Les mélanger, c'est perdre la seconde dans
+les premières.
+
+**Pourquoi l'API S3.** Ce n'est pas un produit d'Amazon, c'est devenu le langage
+commun du stockage de fichiers : Scaleway, OVH, Cloudflare R2, Backblaze et une
+dizaine d'autres le parlent à l'identique. Écrire `StockageS3` une fois, c'est
+pouvoir choisir plus tard le moins cher — et en changer sans rien réécrire.
+
+**Ce qu'on refuse explicitement :** l'API de fichiers propriétaire d'une
+plateforme, même plus pratique. C'est S6.
+
+---
+
 ## 12. Registre des décisions
 
 | # | Décision | Statut |
@@ -913,14 +1014,16 @@ en C#.
 | **ADR-001** | **Deux surfaces, une seule source de vérité** | ✅ **accepté** (9 sept. 2026) |
 | **ADR-011** | **Posture de visibilité publique : ouverte** | ✅ **accepté** (9 sept. 2026) — *réserve : confirmation du Secrétariat National* |
 | **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
-| ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé — *phase 5.2* |
+| **ADR-003** | **PostgreSQL unique, transactionnel, migrations versionnées** | ✅ **accepté** (9 sept. 2026) — *socle d'ADR-012* |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |
 | **ADR-005** | **Modèle d'accès : cumulatif vertical, cloisonné latéral, ouverture temporaire datée** | ✅ **accepté** (9 sept. 2026) |
 | ADR-006 | Canevas et séance disponibles hors ligne | 🟡 proposé |
-| ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer — *phase 5.4* |
+| ADR-007 | Serveur auto-géré ou plateforme gérée | ⏸️ **reportée sans dette** (9 sept. 2026) — *décision de facture, plus d'architecture ; voir ADR-012* |
 | ADR-008 | i18n dès la première ligne — **RTL retiré** (FR + EN) | 🟠 amendé (9 sept. 2026) |
 | ADR-009 | Nouveau dépôt `gbum-hub` | ✅ **accepté** (8 sept. 2026) |
 | **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
+| **ADR-012** | **Le stockage est une ressource attachée** — six règles, et une répétition de déménagement par lot | ✅ **accepté** (9 sept. 2026) |
+| **ADR-013** | **Les fichiers vivent hors de la base**, derrière une interface à deux mises en œuvre | ✅ **accepté** (9 sept. 2026) |
 
 > **Un ADR « proposé » n'autorise rien.** Un prototype de la politique
 > d'accès (ADR-005) a été écrit puis supprimé le 9 septembre 2026 : il

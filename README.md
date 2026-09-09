@@ -27,9 +27,12 @@ reste **en production** sur gbu-maroc.org. Elle n'est pas touchée, et devient l
 ## Ce que contient le dépôt
 
 ```
-docs/        La réflexion — audit, cahier des charges, architecture,
-             conventions, échéancier, prompt de conception graphique
-maquettes/   Sept écrans dessinés, à valider en phase 4
+docs/                       La réflexion — audit, cahier des charges,
+                            architecture, conventions, échéancier,
+                            direction artistique, plan des fondations
+maquettes/site-public/      Les onze planches du lot 1
+maquettes/direction-artistique/  Le système visuel, règle par règle
+maquettes/                  Les sept écrans du hub (à refaire — réserve R2)
 ```
 
 **Commencez par [`docs/README.md`](docs/README.md)**, qui indexe tout et dit ce
