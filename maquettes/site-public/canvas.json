@@ -5,7 +5,7 @@
       "x": 0,
       "y": 500,
       "w": 390,
-      "h": 2500,
+      "h": 2875,
       "title": "1 · Accueil"
     },
     {
@@ -13,7 +13,7 @@
       "x": 490,
       "y": 500,
       "w": 390,
-      "h": 2300,
+      "h": 2645,
       "title": "2 · Le mouvement"
     },
     {
@@ -21,7 +21,7 @@
       "x": 980,
       "y": 500,
       "w": 390,
-      "h": 1750,
+      "h": 2012,
       "title": "3 · Où nous sommes"
     },
     {
@@ -29,7 +29,7 @@
       "x": 1470,
       "y": 500,
       "w": 390,
-      "h": 1550,
+      "h": 1782,
       "title": "4 · La vie du mouvement"
     },
     {
@@ -37,55 +37,55 @@
       "x": 1960,
       "y": 500,
       "w": 390,
-      "h": 1450,
+      "h": 1667,
       "title": "5 · Le canevas"
     },
     {
       "file": "Agenda.dc.html",
       "x": 0,
-      "y": 3356,
+      "y": 3731,
       "w": 390,
-      "h": 1150,
+      "h": 1322,
       "title": "6 · Agenda"
     },
     {
       "file": "Soutenir.dc.html",
       "x": 490,
-      "y": 3356,
+      "y": 3731,
       "w": 390,
-      "h": 1500,
+      "h": 1724,
       "title": "7 · Soutenir"
     },
     {
       "file": "NousEcrire.dc.html",
       "x": 980,
-      "y": 3356,
+      "y": 3731,
       "w": 390,
-      "h": 1350,
+      "h": 1552,
       "title": "8 · Nous écrire"
     },
     {
       "file": "Rejoindre.dc.html",
       "x": 1470,
-      "y": 3356,
+      "y": 3731,
       "w": 390,
-      "h": 2600,
+      "h": 2989,
       "title": "9 · Rejoindre le GBUM"
     },
     {
       "file": "AccueilBureau.dc.html",
       "x": 0,
-      "y": 6312,
+      "y": 7076,
       "w": 1440,
-      "h": 1900,
+      "h": 2185,
       "title": "10 · Accueil — bureau"
     },
     {
       "file": "Administration.dc.html",
       "x": 1540,
-      "y": 6312,
+      "y": 7076,
       "w": 1440,
-      "h": 950,
+      "h": 1092,
       "title": "11 · Administration"
     }
   ],
@@ -121,28 +121,28 @@
     {
       "id": "r2",
       "x": 0,
-      "y": 3150,
+      "y": 3525,
       "w": 900,
       "text": "RANGÉE 2 — les trois dernières pages, et le parcours « Rejoindre »."
     },
     {
       "id": "d-rejoindre",
       "x": 1960,
-      "y": 3356,
+      "y": 3731,
       "w": 380,
       "text": "LE PARCOURS « REJOINDRE »\n\nRefait selon ADR-011. La version précédente donnait le jour, le bâtiment, la salle et le prénom du responsable de cellule — au-delà de ce que la décision autorise.\n\nIci : ville, puis liste des cellules avec leur seul effectif, puis message au bureau de la ville. C'est le bureau qui communiquera le lieu et l'horaire.\n\nLe cas « aucun groupe dans ta ville » est traité avec le même soin que le cas nominal : c'est là qu'on perd quelqu'un ou qu'on le rattrape."
     },
     {
       "id": "r3",
       "x": 0,
-      "y": 6106,
+      "y": 6870,
       "w": 900,
       "text": "RANGÉE 3 — la version bureau de l'accueil, et l'espace d'administration."
     },
     {
       "id": "d-admin",
       "x": 3080,
-      "y": 6312,
+      "y": 7076,
       "w": 380,
       "text": "POURQUOI L'ADMINISTRATION EST DANS CE LOT\n\nSi le Secrétariat National ne peut pas modifier le site lui-même, le site cesse de vivre au bout de trois mois — et l'objectif P3 tombe.\n\nCet écran montre le strict nécessaire : modifier une page, en deux langues, avec la liste des sections qui attendent encore leur contenu. Publier est un geste distinct : rien ne change en ligne tant qu'on n'a pas publié."
     }
