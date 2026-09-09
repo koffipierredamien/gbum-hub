@@ -59,11 +59,12 @@ Maroc. Un membre s'appelle un **GBUssien**. *(mouvement)*
 | **Études bibliques hebdomadaires** | En cellule, sur le canevas de l'année |
 | **Études bibliques communautaires** | À l'échelle de la ville ou plus large |
 | **Prière** | Temps de prière du mouvement |
-| **Masterclass** | Formations |
+| **Masterclass** | Formations — activité nationale |
+| **Séminaires** | Activité de ville, exclusivement |
 | **Sorties de détente** | Vie fraternelle |
 | **Agapès** | Repas partagés |
 | **Sorties d'évangélisation** | Témoignage sur les campus |
-| **JTPA** | Journées de Témoignage par Amitié — *forme à préciser, réserve R4* |
+| **JTPA** | Journées de Témoignage par Amitié — **activité nationale vécue dans les villes et les cellules, sans rencontre en présentiel** |
 | **Jeux bibliques, jeux** | Vie de groupe |
 | **Camp des responsables** | Formation des responsables |
 | **Camp des témoins** | |
@@ -400,39 +401,95 @@ Accessibles à plusieurs niveaux, selon les droits.
 
 ### 4.3 C2 — Les activités 🔴
 
-> *« Une section Activités, pour l'organisation des activités nationales — les
-> camps et séminaires par exemple. »* *(mouvement, 9 sept. 2026)*
+*(mouvement, 9 septembre 2026)*
 
-**Ce que cette demande a révélé.** Une version antérieure séparait « Agenda et
-activités » d'un côté et « Camps » de l'autre, et **ne disait nulle part à
-quelle échelle une activité se situe**. Or c'est le point décisif : le camp
-d'Ifrane et l'agapè d'une cellule sont tous deux des activités, mais ils ne
-sont ni portés, ni validés, ni organisés par les mêmes personnes.
+**Une seule notion — l'activité —, portée par une structure.** Mais toutes les
+activités ne demandent pas le même travail au hub, et c'est ce qui fixe le
+périmètre.
 
-**Une seule notion — l'activité —, portée par une structure, à trois échelles :**
+#### Deux niveaux de prise en charge
 
-| Échelle | Portée par | Exemples |
+| | **Activité nationale** | **Activité de ville ou de cellule** |
 |---|---|---|
-| **Nationale** | Secrétariat National, Conseil Exécutif | Camp d'Ifrane, camp des responsables, camp des témoins, séminaires, conventions, masterclass nationales |
-| **Ville** | Bureau de ville | Sorties de détente, sorties d'évangélisation, JTPA, agapès de ville, études communautaires |
-| **Cellule** | Responsable de cellule | Agapès, jeux bibliques, temps de prière |
+| Portée par | Secrétariat National, Conseil Exécutif | Bureau de ville, responsable de cellule |
+| **Organisée** | **Sur la plateforme** — de bout en bout | **Entre responsables**, hors plateforme |
+| **Conservée** | Tout | **Le bilan, le compte rendu, les souvenirs** |
+
+> **Pourquoi cette distinction fixe le périmètre.** Une sortie de détente
+> s'organise dans un groupe WhatsApp en dix messages ; construire un outil pour
+> cela serait construire un outil que personne n'ouvrirait. Ce que le mouvement
+> perd aujourd'hui, ce n'est pas l'organisation de ces activités — c'est **leur
+> trace** : ce qui a été fait, ce qui en est ressorti, les photos.
+>
+> Le hub prend donc en charge **l'organisation complète des seules activités
+> nationales**, et **la mémoire de toutes**.
+
+#### Les types d'activité et leurs échelles
+
+| Type | Nationale | Ville | Cellule |
+|---|:---:|:---:|:---:|
+| Camp d'Ifrane | ✅ | | |
+| Camp des responsables | ✅ | | |
+| Camp des témoins | ✅ | | |
+| Convention | ✅ | | |
+| Masterclass *(formation)* | ✅ | | |
+| **JTPA** — Journées de Témoignage par Amitié | ✅ | | |
+| **Séminaire** | | ✅ | |
+| Sortie de détente | | ✅ | ✅ |
+| Sortie d'évangélisation | | ✅ | ✅ |
+| Étude biblique communautaire | | ✅ | ✅ |
+| Agapè | | ✅ | ✅ |
+| Jeu biblique, jeu | | ✅ | ✅ |
+| Temps de prière | | ✅ | ✅ |
+
+> **Ville et cellule partagent les mêmes types** — la même activité s'organise à
+> grande comme à petite échelle. **Le séminaire fait exception : il appartient
+> exclusivement aux villes.** *(mouvement)*
+>
+> Le type n'est donc **pas lié à une seule échelle** : il porte la **liste des
+> échelles où il est permis**. Cette liste est modifiable sans toucher au code —
+> la liste des activités du mouvement est explicitement ouverte.
+
+#### Exigences
 
 | ID | Exigence |
 |---|---|
-| **C2.1** | **Créer une activité à son échelle**, typée selon la liste du [§1.2](#12-ce-que-le-mouvement-fait). Le type détermine ce que le dossier demande. |
-| **C2.2** | **Cycle de vie** : proposition → budget → validation par le niveau compétent → publication → inscriptions → tenue → **bilan**. |
-| **C2.3** | **Inscriptions** : places, liste d'attente, désinscription. |
-| **C2.4** | **Budget de l'activité**, rattaché au budget de la structure qui la porte. |
-| **C2.5** | **Bilan** : présents, ce qui a marché, ce qu'on refera. Il alimente la mémoire du mouvement. |
-| **C2.6** | **Publication vers le site public en un geste**, depuis le bilan — sans ressaisie. C'est ce qui rend l'objectif P3 tenable. |
-| **C2.7** | **Agenda** : la vue calendaire de toutes les activités visibles par la personne, filtrable par échelle et par structure ; export iCal. |
-| **C2.8** | **Dossier de grande activité** — camps, séminaires, conventions : participants, **chambres**, **transport**, finances, boutique, attestations, programme, équipe d'organisation. Ce n'est pas une autre section : c'est **le même dossier d'activité, enrichi** quand le type l'exige. |
+| **C2.1** | **Créer une activité** à une échelle permise par son type. |
+| **C2.2** | **Activité nationale — cycle complet** : proposition → budget → validation → publication → **inscriptions** → tenue → bilan. |
+| **C2.3** | **Activité de ville ou de cellule — trace seule** : on déclare qu'elle a eu lieu, on dépose le **bilan**, le **compte rendu** et les **souvenirs** (photos, vidéos). Aucune inscription, aucune logistique : cela se règle entre responsables. |
+| **C2.4** | **Dossier de grande activité** — camps, conventions : participants, **chambres**, **transport**, finances, boutique, attestations, programme, équipe. Ce n'est pas une autre section : c'est **le même dossier, enrichi** quand le type l'exige. |
+| **C2.5** | **Budget** de l'activité nationale, rattaché au budget de la structure qui la porte. |
+| **C2.6** | **Publication vers le site public en un geste**, depuis le bilan et les souvenirs — sans ressaisie. C'est ce qui rend l'objectif P3 tenable. |
+| **C2.7** | **Agenda** : vue calendaire des activités visibles par la personne, filtrable par échelle et par structure ; export iCal. |
+| **C2.8** | **Les types sont configurables** — nom, échelles permises, dossier enrichi ou non — sans intervention technique. |
 
-> **Pourquoi ne pas garder « Camps » à part.** Un camp est une activité
-> nationale lourde, pas une nature différente. Le séparer obligerait à
-> dupliquer le cycle de vie, les inscriptions, le budget et le bilan — et deux
-> copies d'une même règle finissent toujours par diverger. Un séminaire, qui
-> tient le milieu entre les deux, n'aurait su où se ranger.
+#### Le cas des JTPA
+
+*(mouvement, 9 septembre 2026 — lève la réserve R4)*
+
+Les **Journées de Témoignage par Amitié** sont une **activité nationale qui se
+déroule dans les villes et les cellules, sans rencontre en présentiel.**
+
+Le national la lance et la porte ; villes et cellules la vivent chacune de leur
+côté. Il n'y a pas de lieu à réserver, pas de transport, pas de chambres —
+c'est une période de témoignage, pas un rassemblement.
+
+**Ce que cela corrige.** Une version antérieure du cahier des charges décrivait
+le JTPA comme un **suivi relationnel continu** — « qui accompagne qui, depuis
+quand, prochaine étape » — et lui appliquait le cloisonnement le plus sévère de
+l'application. **C'était faux, et fondé sur une expansion erronée du sigle.**
+Le JTPA est une activité nationale du même ordre qu'une masterclass.
+
+| ID | Exigence |
+|---|---|
+| **C2.9** | Les JTPA sont une **activité nationale** : lancement, dates, thème, ressources d'accompagnement mises à la disposition des villes et des cellules. |
+| **C2.10** | **Chaque ville et chaque cellule y participe depuis chez elle** et en dépose le retour — bilan, compte rendu, souvenirs — comme pour toute activité locale. |
+| **C2.11** | **Aucune donnée nominative sur des personnes extérieures au mouvement n'est conservée.** Le hub garde ce que le mouvement a vécu, pas une liste de personnes approchées. |
+
+> **C2.11 est la garantie qui remplace l'ancien dispositif.** Plutôt que de
+> protéger lourdement une liste de tiers, **le hub ne la constitue pas.** C'est
+> une protection plus solide que n'importe quel chiffrement : ce qui n'existe
+> pas ne fuit pas.
 
 ---
 
@@ -573,7 +630,7 @@ requêtes sont des **exigences**, pas des optimisations.
 | Vol d'un téléphone déverrouillé | Aucune donnée nominative en cache hors ligne |
 | Réquisition ou saisie | Minimisation, durées de conservation courtes, effacement effectif |
 | Défiguration du site public | Site public séparé, servi en lecture seule |
-| Fuite de données issues des JTPA | *Parade à définir avec la réserve R4* — le principe tient : ce qui touche des personnes approchées ne sort ni en export, ni en recherche, ni en sauvegarde claire |
+| Fuite de données sur des personnes extérieures au mouvement | **Le hub ne constitue pas une telle liste** (C2.11). Ce qui n'existe pas ne fuit pas — protection plus solide que n'importe quel chiffrement |
 
 ### 7.3 Conformité
 
@@ -646,7 +703,7 @@ système en lecture seule 90 jours.
 | **D11** | Accès entre pairs | ✅ **Cloisonné, avec ouverture temporaire datée** — [ADR-005](02-ARCHITECTURE.md) |
 | **D12** | Archive publique des canevas | ✅ **Ouverte à tous** |
 | **D4** | Périmètre de la v1 | ⬜ Point 2.5 |
-| **D8** | Le JTPA dans le hub ? | ⬜ Point 2.6 · *réserve R4* |
+| **D8** | Le JTPA dans le hub ? | ✅ **Oui — activité nationale** (C2.9–C2.11), sans donnée nominative sur des tiers |
 | **D5** | Stratégie de bascule | ⬜ Point 3.7 |
 | **D6** | Langues de la v1 | ⬜ Point 3.3 |
 | **D7** | Hébergement | ⬜ Point 5.4 |
