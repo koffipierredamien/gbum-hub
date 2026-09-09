@@ -113,8 +113,11 @@ C'est la phase qui décide de la **méthode**, avant toute technique.
       cellules, sans rencontre en présentiel. **Aucune donnée nominative sur
       des personnes extérieures au mouvement n'est conservée.** Décidé le
       9 sept. 2026. *(Pierre)*
-- [ ] **2.7** Le sort de la **visioconférence** : la garder, un moteur ou deux.
-      *(Pierre + Secrétariat National)* — ADR-004
+- [ ] **2.7** Le sort de la **visioconférence**. **La visioconférence est
+      conservée** *(mouvement, 9 sept. 2026)*. Reste à trancher : un moteur ou
+      deux. **Reporté volontairement**, avec une méthode arrêtée — examiner
+      d'abord **comment procède Google Meet**, et les services comparables,
+      avant de choisir. *(Pierre)* — ADR-004
 
 ---
 
@@ -246,6 +249,7 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 2 | Point 2.7 reporté volontairement : la visioconférence est conservée ; le choix « un moteur ou deux » sera tranché après examen de Google Meet et des services comparables |
 | 9 sept. 2026 | 2 | Point 2.6 tranché et **réserve R4 levée** : les JTPA sont une activité nationale vécue dans les villes et cellules, sans présentiel ; aucune donnée nominative sur des tiers |
 | 9 sept. 2026 | 2 | Activités scindées : **organisation complète pour le national, trace seule pour ville et cellule**. Séminaire rendu exclusif aux villes |
 | 9 sept. 2026 | 2 | Point 2.3 validé : section **Activités** ajoutée (trois échelles, camps absorbés comme dossier enrichi) ; **annuaire** détaillé comme source de vérité du hub |
