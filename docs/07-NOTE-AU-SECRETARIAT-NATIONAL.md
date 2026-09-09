@@ -139,7 +139,7 @@ rester hors du hub.
 
 ---
 
-## 4. Cinq informations à fournir
+## 4. Sept informations à fournir
 
 Elles manquent aujourd'hui, et **elles ne peuvent pas être devinées**. Chaque
 vide est signalé comme tel dans les documents plutôt que comblé par une
@@ -152,9 +152,20 @@ supposition.
 | **3** | **L'histoire des GBU et du GBUM** — création, étapes | Introuvable en ligne : aucune source publique n'en porte trace. Une place lui est déjà réservée sur le site. |
 | **4** | **Les chiffres du mouvement** — villes, cellules, GBUssiens, Amis | Toute la vitrine et les tableaux de suivi en dépendent. |
 | **5** | **De vraies photos** — une cellule en séance, le camp d'Ifrane, un campus | Les maquettes portent des emplacements vides. Aucune image de banque ne sera utilisée. |
+| **6** | **Trois à cinq témoignages courts d'étudiants** — prénom, ville, année d'études, deux ou trois phrases, avec accord écrit de publication | C'est ce que le public visé cherche : de l'authenticité. Aucune personne n'apparaît sur les maquettes actuelles. |
+| **7** | **La liste exacte des villes**, dans l'ordre où le mouvement veut les citer | Le bandeau d'accueil défile sur cette liste ; il ne peut pas fonctionner sur une liste approximative. |
 
 *S'y ajoute, quand ce sera possible : la liste complète des activités du
 mouvement, celle du document actuel étant volontairement ouverte.*
+
+**Les informations 5, 6 et 7 vont ensemble.** Elles portent la proposition de
+direction artistique du 9 septembre 2026
+([`09-DIRECTION-ARTISTIQUE.md`](09-DIRECTION-ARTISTIQUE.md)), qui répond à une
+demande simple : que le site soit plus vivant, parce qu'il s'adresse à des
+jeunes. La réponse tient en une phrase — **ce sont des visages et des voix
+d'étudiants du GBUM qui rendront ce site vivant, pas des animations.** La
+photographie (information 5) est la plus décisive des trois : sans elle, la
+page d'accueil s'ouvre sur un dégradé de couleur.
 
 ---
 
@@ -177,7 +188,7 @@ mouvement, celle du document actuel étant volontairement ouverte.*
 | B — objectifs et cibles | La mesure de la réussite, et l'ordre des chantiers |
 | C — ce qu'on ne fera pas | Le calendrier : c'est ce qui protège le projet |
 | D — le JTPA | La protection des personnes approchées |
-| Informations 1 à 5 | L'écran du canevas, la vitrine, la page d'histoire |
+| Informations 1 à 7 | L'écran du canevas, la vitrine, la page d'histoire, et la direction artistique |
 | Désignations | La cadence de décision, et la qualité d'usage |
 
 **Sans ces réponses, le projet peut continuer à préparer, mais il ne peut pas

@@ -7,3 +7,6 @@ maquettes/site-public/site-public-gbum.html
 node_modules/
 .DS_Store
 Thumbs.db
+
+# La proposition de direction artistique, assemblée : régénérable.
+maquettes/direction-artistique/foyer-en-mouvement.html

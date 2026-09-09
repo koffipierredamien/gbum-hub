@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
+    a { color:#7A3208; text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; }
+    /* D1 — cinq surfaces. Une bande va d'un bord à l'autre : pas de
+       gouttière, pas de rayon. La gouttière de 22 px est INTÉRIEURE. */
+    .b { padding:36px 22px; }
+    .s-creme { background:#FBF6EF; color:#2A211B; }
+    .s-sable { background:#F4EADC; color:#2A211B; }
+    .s-encre { background:#2A211B; color:#FBF6EF; }
+    .s-terre { background:#7A3208; color:#FBF6EF; }
+    .s-foret { background:#12432A; color:#FBF6EF; }
+    /* D2 — l'échelle. Une seule occurrence de Display par page. */
+    .disp  { font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1.02; letter-spacing:-.02em; font-weight:500; margin:0; text-wrap:balance; }
+    .titre { font-family:'Newsreader',Georgia,serif; font-size:30px; line-height:1.14; font-weight:600; margin:0 0 12px; text-wrap:pretty; }
+    .sst   { font-size:20px; font-weight:600; line-height:1.3; margin:0 0 6px; }
+    .corps { font-size:16px; line-height:1.62; margin:0 0 16px; }
+    .petit { font-size:13.5px; line-height:1.55; }
+    .etiq  { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    /* D7 — l'ambre ne porte que des actions. Texte encre : 5,19:1. */
+    .cta { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
+           background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700;
+           transition: transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .cta:hover { transform:translateY(-2px); }
+    /* D10 — le vide invite. Filet plein ouvert vers la page, pas un cadre. */
+    .att { border-inline-start:3px solid #7A3208; padding:12px 0 12px 16px; }
+    .att .t { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#7A3208; margin-bottom:5px; }
+    .att .d { font-size:13.5px; line-height:1.55; color:#5F5346; }
+    .att .q { display:inline-block; margin-top:9px; font-size:13.5px; font-weight:700; color:#7A3208; border-bottom:1.5px solid #7A3208; padding-bottom:2px; }
+    .att-clair { border-inline-start-color:#F0A868; }
+    .att-clair .t { color:#F0A868; } .att-clair .d { color:#B9AA98; }
+    /* Sur Terre, le secondaire est #EFC9A6 : #B9AA98 n'y mesure que 4,05:1. */
+    .att-terre { border-inline-start-color:#EFC9A6; }
+    .att-terre .t { color:#EFC9A6; } .att-terre .d { color:#EFC9A6; }
+    /* Par-dessus une photo, le marqueur pose son propre fond opaque à 90 % :
+       sur la photo la plus claire concevable le composite donne #3F3732, et
+       l'ambre clair y mesure 5,82:1. Sans ce fond, il ne mesurerait que 2,58:1. */
+    .att-photo { border-inline-start-color:#F0A868; background:rgba(42,33,27,.90); padding:12px 16px; border-radius:0 10px 10px 0; }
+    .att-photo .t { color:#F0A868; } .att-photo .d { color:#FBF6EF; }
+    .att-vert { border-inline-start-color:#9ED2B4; }
+    .att-vert .t { color:#9ED2B4; } .att-vert .d { color:#9ED2B4; }
+    /* D4 / D5 — le mouvement. */
+    .piste { overflow:hidden; }
+    .defile { display:flex; width:max-content; animation: glisse 38s linear infinite; }
+    .defile:hover { animation-play-state:paused; }
+    @keyframes glisse { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    .ligne { transition: background-color 120ms cubic-bezier(.05,.7,.1,1); }
+    .ligne:hover { background:rgba(251,246,239,.07); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="width:390px; background:#FBF6EF;">
+
+  <!-- ===== EN-TÊTE — posé sur la photo, sans fond ===== -->
+  <div style="position:relative;">
+    <!-- OUVERTURE : photo pleine largeur, 4:5 (D3). -->
+    <div style="height:488px; background:linear-gradient(160deg,#3B2F26 0%,#6B5340 55%,#8A6B4E 100%); position:relative; overflow:hidden;">
+      <!-- Voile encre à 66 % : pire cas mesuré 4,81:1 (D3). -->
+      <div style="position:absolute; inset:0; background:rgba(42,33,27,.66);"></div>
+
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column;">
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 18px;">
+          <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span>
+          </div>
+          <div style="flex-grow:1; line-height:1.15;">
+            <div style="font-size:14.5px; font-weight:700; color:#FBF6EF;">GBU Maroc</div>
+            <div style="font-size:11px; color:#D8CBBB;">Groupe Biblique Universitaire</div>
+          </div>
+          <div style="display:flex; align-items:center; height:34px; border:1px solid rgba(251,246,239,.42); border-radius:9px; overflow:hidden;">
+            <span style="padding:0 10px; line-height:32px; font-size:12.5px; font-weight:700; background:#FBF6EF; color:#2A211B;">FR</span>
+            <span style="padding:0 10px; line-height:32px; font-size:12.5px; font-weight:600; color:#FBF6EF;">EN</span>
+          </div>
+          <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-inline-end:-10px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBF6EF" stroke-width="1.9" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+          </div>
+        </div>
+
+        <div style="flex-grow:1;"></div>
+
+        <div style="padding:0 22px 30px;">
+          <div class="etiq" style="color:#FBF6EF; margin-bottom:16px;">Sur les campus du Maroc</div>
+          <!-- L'UNIQUE Display de la page (D2). -->
+          <h1 class="disp" style="color:#FBF6EF;">Des étudiants,<br>une Parole,<br>tout le Maroc.</h1>
+        </div>
+      </div>
+
+      <!-- D10 : le manque est annoncé, sur la photo elle-même. -->
+      <div style="position:absolute; top:74px; left:22px; right:22px;">
+        <div class="att att-photo">
+          <div class="t">Photographie attendue · demande N1</div>
+          <div class="d">Des étudiants du GBUM sur un campus marocain, avec accord écrit de publication. C'est la demande la plus importante des trois.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ACCROCHE ===== -->
+  <div class="s-creme b">
+    <p class="corps" style="font-size:17px; color:#2A211B;">Le Groupe Biblique Universitaire rassemble des étudiants qui veulent vivre et approfondir leur foi chrétienne pendant leurs années d'études. Sur les campus, chaque semaine.</p>
+    <button class="cta">Trouver mon groupe
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+    <div style="text-align:center; margin-top:11px; font-size:12.5px; color:#6E6053;">Sans compte, sans inscription.</div>
+  </div>
+
+  <!-- ===== LE DÉFILÉ DES VILLES (D5) — un filet, pas une bande ===== -->
+  <div class="s-encre piste" style="padding:18px 0;">
+    <div class="defile">
+      <div style="display:flex; align-items:center; gap:22px; padding-inline-end:22px; font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:500; color:#FBF6EF; white-space:nowrap;">
+        <span>Rabat</span><span style="color:#E8732A;">·</span><span>Casablanca</span><span style="color:#E8732A;">·</span><span>Fès</span><span style="color:#E8732A;">·</span><span>Kénitra</span><span style="color:#E8732A;">·</span><span>Marrakech</span><span style="color:#E8732A;">·</span><span style="font-family:'Hanken Grotesk'; font-size:13.5px; font-weight:600; color:#B9AA98;">liste exacte à confirmer</span><span style="color:#E8732A;">·</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:22px; padding-inline-end:22px; font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:500; color:#FBF6EF; white-space:nowrap;" aria-hidden="true">
+        <span>Rabat</span><span style="color:#E8732A;">·</span><span>Casablanca</span><span style="color:#E8732A;">·</span><span>Fès</span><span style="color:#E8732A;">·</span><span>Kénitra</span><span style="color:#E8732A;">·</span><span>Marrakech</span><span style="color:#E8732A;">·</span><span style="font-family:'Hanken Grotesk'; font-size:13.5px; font-weight:600; color:#B9AA98;">liste exacte à confirmer</span><span style="color:#E8732A;">·</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LE THÈME DE L'ANNÉE ===== -->
+  <div class="s-sable b">
+    <div class="att">
+      <div class="t">Thème de l'année · en cours d'écriture</div>
+      <div class="d">Le thème qui porte la vision décennale 2023–2033 sera annoncé ici dès que le Secrétariat National l'aura arrêté.</div>
+      <span class="q">Vous avez cette information ?</span>
+    </div>
+  </div>
+
+  <!-- ===== CE QU'ON Y FAIT (D6, D9) — numéroté, sans carte ni icône ===== -->
+  <div class="s-creme b">
+    <div class="etiq" style="color:#7A3208; margin-bottom:12px;">Ce qu'on y fait</div>
+    <h2 class="titre">Quatre choses, chaque semaine.</h2>
+
+    <div style="margin-top:22px;">
+      <div style="display:flex; gap:14px; align-items:baseline; border-top:1px solid #E5D9C9; padding:16px 0;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#7A3208; width:32px; flex-shrink:0;">01</span>
+        <div><div class="sst">L'étude de la Bible</div><div class="petit" style="color:#5F5346;">Chaque semaine, en cellule, sur le canevas de l'année.</div></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline; border-top:1px solid #E5D9C9; padding:16px 0;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#7A3208; width:32px; flex-shrink:0;">02</span>
+        <div><div class="sst">La prière</div><div class="petit" style="color:#5F5346;">Les uns pour les autres, pour les campus, pour le pays.</div></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline; border-top:1px solid #E5D9C9; padding:16px 0;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#7A3208; width:32px; flex-shrink:0;">03</span>
+        <div><div class="sst">L'entraide</div><div class="petit" style="color:#5F5346;">Arriver seul dans un pays qu'on ne connaît pas est rude. Le groupe est souvent la première famille.</div></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline; border-top:1px solid #E5D9C9; border-bottom:1px solid #E5D9C9; padding:16px 0;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#7A3208; width:32px; flex-shrink:0;">04</span>
+        <div><div class="sst">Les temps forts</div><div class="petit" style="color:#5F5346;">Camps, conventions et rencontres nationales réunissent les étudiants de toutes les villes.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LES CHIFFRES (D8) — dessinés à leur taille définitive ===== -->
+  <div class="s-terre b">
+    <div class="etiq" style="color:#EFC9A6; margin-bottom:18px;">Le mouvement en chiffres</div>
+    <div style="display:flex; gap:16px; margin-bottom:20px;">
+      <div style="flex:1;">
+        <div style="font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1; font-weight:500; color:#EFC9A6;">—</div>
+        <div class="petit" style="color:#EFC9A6; margin-top:6px;">villes</div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1; font-weight:500; color:#EFC9A6;">—</div>
+        <div class="petit" style="color:#EFC9A6; margin-top:6px;">cellules</div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1; font-weight:500; color:#EFC9A6;">—</div>
+        <div class="petit" style="color:#EFC9A6; margin-top:6px;">GBUssiens</div>
+      </div>
+    </div>
+    <div class="att att-terre">
+      <div class="t">Chiffres attendus</div>
+      <div class="d">L'emplacement est dessiné à sa taille définitive. Le jour où le Secrétariat National donne ces nombres, ils tombent dans une forme déjà faite pour eux — sans nouvelle maquette. Aucun chiffre provisoire n'est affiché à leur place.</div>
+    </div>
+  </div>
+
+  <!-- ===== LA VIE DU MOUVEMENT ===== -->
+  <div class="s-creme b">
+    <h2 class="titre" style="margin:0 0 10px;">La vie du mouvement</h2>
+    <p class="petit" style="color:#5F5346; margin:0 0 16px;">Les bilans et les souvenirs saisis par les villes et les cellules apparaissent ici, sans que personne ait à les retaper.</p>
+    <a href="#" style="display:inline-block; min-height:44px; line-height:44px; font-size:14px; font-weight:700;"><span style="border-bottom:1.5px solid #7A3208; padding-bottom:2px;">Tout voir</span></a>
+  </div>
+
+  <!-- photo pleine largeur, hors gouttière (D3) -->
+  <div style="height:250px; background:linear-gradient(150deg,#4A3B2E,#7E6349); position:relative;">
+    <div style="position:absolute; inset:0; background:rgba(42,33,27,.66);"></div>
+    <div style="position:absolute; left:22px; right:22px; bottom:20px;">
+      <div class="etiq" style="color:#FBF6EF; margin-bottom:8px;">Publié depuis l'espace de travail</div>
+      <div style="font-family:'Newsreader',Georgia,serif; font-size:26px; line-height:1.18; font-weight:600; color:#FBF6EF;">La dernière activité publiée s'ouvre ici.</div>
+    </div>
+  </div>
+
+  <div class="s-creme" style="padding:22px;">
+    <div class="att">
+      <div class="t">Première publication attendue</div>
+      <div class="d">Cette bande se remplira d'elle-même dès la première activité saisie par une ville — c'est l'objectif P3, le site qui reste vivant sans qu'on le nourrisse à la main.</div>
+    </div>
+  </div>
+
+  <!-- ===== LES VOIX (D6) ===== -->
+  <div class="s-foret b">
+    <div class="etiq" style="color:#9ED2B4; margin-bottom:16px;">Les voix</div>
+    <div style="font-family:'Newsreader',Georgia,serif; font-size:28px; line-height:1.26; font-weight:500; color:#FBF6EF; margin-bottom:18px;">«&nbsp;<span style="color:#9ED2B4;">Le témoignage d'un étudiant du GBUM viendra ici, avec son prénom, sa ville et son année d'études.</span>&nbsp;»</div>
+    <div class="att att-vert">
+      <div class="t">Trois à cinq témoignages · demande N2</div>
+      <div class="d" style="color:#9ED2B4;">Deux ou trois phrases, avec accord écrit de publication. Ce que cherche ce public, c'est de l'authenticité — pas de la mise en page.</div>
+    </div>
+  </div>
+
+  <!-- ===== L'AGENDA ===== -->
+  <div class="s-sable b">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:16px;">
+      <h2 class="titre" style="margin:0; min-width:0;">Ce qui vient</h2>
+      <a href="#" style="flex:0 0 auto; white-space:nowrap; font-size:13.5px; font-weight:700; border-bottom:1.5px solid #7A3208; padding-bottom:2px;">L'agenda</a>
+    </div>
+    <div style="border-top:1px solid #E5D9C9; padding:16px 0; display:flex; gap:16px; align-items:baseline;">
+      <div style="width:52px; flex-shrink:0;">
+        <div style="font-family:'Newsreader',Georgia,serif; font-size:24px; font-weight:600; color:#7A3208;">—</div>
+        <div class="petit" style="color:#5F5346;">date</div>
+      </div>
+      <div><div class="sst" style="font-size:19px;">Camp d'Ifrane</div><div class="petit" style="color:#5F5346;">National · Moyen Atlas</div></div>
+    </div>
+    <div style="border-top:1px solid #E5D9C9; border-bottom:1px solid #E5D9C9; padding:16px 0; display:flex; gap:16px; align-items:baseline;">
+      <div style="width:52px; flex-shrink:0;">
+        <div style="font-family:'Newsreader',Georgia,serif; font-size:24px; font-weight:600; color:#7A3208;">—</div>
+        <div class="petit" style="color:#5F5346;">date</div>
+      </div>
+      <div><div class="sst" style="font-size:19px;">Journées de témoignage par amitié</div><div class="petit" style="color:#5F5346;">National · dans les villes et les cellules</div></div>
+    </div>
+    <div style="margin-top:20px;">
+      <div class="att">
+        <div class="t">Dates attendues</div>
+        <div class="d">Les deux activités sont réelles ; leurs dates ne sont pas encore arrêtées. Elles ne sont pas devinées.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LE PROCHAIN TEMPS FORT ===== -->
+  <div class="s-encre b" style="padding-block:38px;">
+    <div class="etiq" style="color:#F0A868; margin-bottom:12px;">Le prochain temps fort</div>
+    <div style="font-family:'Newsreader',Georgia,serif; font-size:36px; line-height:1.1; font-weight:500; color:#FBF6EF; margin-bottom:14px;">Camp d'Ifrane</div>
+    <p class="corps" style="color:#B9AA98; margin-bottom:20px;">Une retraite dans le Moyen Atlas, avec les étudiants de tout le pays. Communion, détente, et des vies qui changent.</p>
+    <div class="att att-clair" style="margin-bottom:22px;">
+      <div class="t">Dates et informations pratiques</div>
+      <div class="d">À venir.</div>
+    </div>
+    <button class="cta">En savoir plus
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ===== REJOINDRE ===== -->
+  <div class="s-creme b">
+    <h2 class="titre">Il y a peut-être un groupe à côté de vous.</h2>
+    <p class="petit" style="color:#5F5346; margin:0 0 18px;">Choisissez votre ville : nous vous mettons en relation avec le bureau, qui vous indiquera le jour, l'heure et le lieu.</p>
+    <button class="cta">Rejoindre le GBUM
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <div class="s-encre" style="padding:34px 22px 40px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+      <div style="width:30px; height:30px; border-radius:8px; background:#E8732A; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-weight:600; color:#2A211B;">G</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#FBF6EF;">GBU Maroc</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:0 26px;">
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Le mouvement</a>
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Où nous sommes</a>
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">La vie du mouvement</a>
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Le canevas</a>
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Agenda</a>
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Soutenir</a>
+      <a href="#" class="ligne" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Nous écrire</a>
+    </div>
+    <div style="border-top:1px solid #4A3D33; margin-top:18px; padding-top:16px;">
+      <div class="petit" style="color:#B9AA98;">Groupe Biblique Universitaire au Maroc — membre de l'IFES.</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

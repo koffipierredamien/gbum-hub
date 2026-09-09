@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
+    /* ---- FOYER EN MOUVEMENT — jetons v2 -------------------------------
+       Cinq surfaces, chacune avec ses couleurs de texte mesurées.
+       Voir docs/09-DIRECTION-ARTISTIQUE.md, règle D1.                     */
+    .s-creme { background:#FBF6EF; color:#2A211B; }
+    .s-sable { background:#F4EADC; color:#2A211B; }
+    .s-encre { background:#2A211B; color:#FBF6EF; }
+    .s-terre { background:#7A3208; color:#FBF6EF; }
+    .s-foret { background:#12432A; color:#FBF6EF; }
+    .bande   { padding:64px 72px; }
+    .disp { font-family:'Newsreader',Georgia,serif; font-size:92px; line-height:1.02; letter-spacing:-.02em; font-weight:500; margin:0; text-wrap:balance; }
+    .titre { font-family:'Newsreader',Georgia,serif; font-size:40px; line-height:1.14; font-weight:600; margin:0 0 14px; }
+    .sst   { font-size:24px; font-weight:600; line-height:1.3; margin:0 0 10px; }
+    .corps { font-size:17px; line-height:1.62; margin:0 0 18px; }
+    .petit { font-size:13.5px; line-height:1.55; }
+    .etiq  { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    .mes   { font-family:'Newsreader',Georgia,serif; font-size:30px; font-weight:600; letter-spacing:-.01em; }
+    /* D10 — le marqueur d'attente : un filet plein, pas un pointillé. */
+    .att { border-inline-start:3px solid #7A3208; padding:12px 0 12px 16px; }
+    .att .t { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#7A3208; margin-bottom:5px; }
+    .att .d { font-size:14px; line-height:1.55; color:#5F5346; }
+    .att-clair { border-inline-start-color:#F0A868; }
+    .att-clair .t { color:#F0A868; } .att-clair .d { color:#B9AA98; }
+    .att-vert { border-inline-start-color:#9ED2B4; }
+    .att-vert .t { color:#9ED2B4; } .att-vert .d { color:#9ED2B4; }
+
+    /* D4 — le mouvement, réglé. */
+    .demo-app > * { animation: apparait 3.6s cubic-bezier(.05,.7,.1,1) infinite; }
+    .demo-app > *:nth-child(2) { animation-delay:.06s; }
+    .demo-app > *:nth-child(3) { animation-delay:.12s; }
+    @keyframes apparait {
+      0%   { opacity:0; transform:translateY(12px); }
+      12%  { opacity:1; transform:translateY(0); }
+      82%  { opacity:1; transform:translateY(0); }
+      100% { opacity:0; transform:translateY(12px); }
+    }
+    .demo-surv { transition: background-color 120ms cubic-bezier(.05,.7,.1,1), transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .demo-surv:hover { background:#F4EADC; transform:translateY(-2px); }
+    .piste { overflow:hidden; }
+    .defile { display:flex; width:max-content; animation: glisse 38s linear infinite; }
+    .defile:hover { animation-play-state:paused; }
+    @keyframes glisse { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    /* L'interrupteur. Sous ce réglage la page reste entière : rien n'est
+       caché en attendant une animation qui ne viendra pas. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+      .demo-app > * { opacity:1 !important; transform:none !important; }
+    }
+  </style>
+</helmet>
+
+<div style="width:1440px;">
+
+  <!-- ============ OUVERTURE ============ -->
+  <div class="s-encre bande" style="padding-block:72px;">
+    <div class="etiq" style="color:#F0A868; margin-bottom:22px;">Direction artistique · version 2 · 9 septembre 2026</div>
+    <h1 class="disp">Foyer<br>en mouvement</h1>
+    <div style="display:flex; gap:64px; margin-top:34px; max-width:1040px;">
+      <p class="corps" style="color:#FBF6EF; flex:1; margin:0;">Le système « Foyer » tient les onze planches du lot 1. Il est lisible, sobre et honnête — et c'est ce qui le rend calme. Cette version 2 ne le remplace pas : elle lui ajoute les quatre choses qui lui manquent.</p>
+      <p class="corps" style="color:#B9AA98; flex:1; margin:0;">Du relief (cinq surfaces au lieu d'une), de l'échelle (un rapport de 8:1 au lieu de 3:1), des visages plutôt que des pictogrammes, et un mouvement mesuré qu'un réglage système éteint entièrement.</p>
+    </div>
+  </div>
+
+  <!-- ============ D1 — LES CINQ SURFACES ============ -->
+  <div class="s-creme bande">
+    <div class="etiq" style="color:#7A3208; margin-bottom:14px;">Règle D1</div>
+    <h2 class="titre">Cinq surfaces au lieu d'une</h2>
+    <p class="corps" style="color:#5F5346; max-width:720px;">La page cesse d'être un fond unique sur lequel on pose des cartes : elle devient une suite de bandes pleine largeur. Chaque valeur est mesurée contre son fond — aucune n'est choisie à l'œil. Les Scouts britanniques ont fait exactement ce chemin en 2018 : un orange et un vert forêt, pour redevenir lisibles par des jeunes sans renier cent ans d'héritage.</p>
+    <div style="display:flex; gap:16px; margin-top:30px;">
+
+      <div class="s-creme" style="flex:1; border:1px solid #E5D9C9; border-radius:16px; padding:22px;">
+        <div class="etiq" style="color:#7A3208;">Crème</div>
+        <div class="petit" style="color:#6E6053; margin:4px 0 18px; font-variant-numeric:tabular-nums;">#FBF6EF</div>
+        <div class="mes">14,66</div><div class="petit" style="color:#5F5346;">texte #2A211B</div>
+        <div class="mes" style="margin-top:12px; color:#5F5346;">6,94</div><div class="petit" style="color:#5F5346;">second #5F5346</div>
+        <div class="mes" style="margin-top:12px; color:#7A3208;">8,54</div><div class="petit" style="color:#5F5346;">accent #7A3208</div>
+        <div class="petit" style="color:#5F5346; margin-top:18px; border-top:1px solid #E5D9C9; padding-top:12px;">Le fond de lecture. Les trois quarts de la page.</div>
+      </div>
+
+      <div class="s-sable" style="flex:1; border:1px solid #E5D9C9; border-radius:16px; padding:22px;">
+        <div class="etiq" style="color:#7A3208;">Sable</div>
+        <div class="petit" style="color:#5F5346; margin:4px 0 18px;">#F4EADC</div>
+        <div class="mes">13,25</div><div class="petit" style="color:#5F5346;">texte #2A211B</div>
+        <div class="mes" style="margin-top:12px; color:#5F5346;">6,28</div><div class="petit" style="color:#5F5346;">second #5F5346</div>
+        <div class="mes" style="margin-top:12px; color:#7A3208;">7,72</div><div class="petit" style="color:#5F5346;">accent #7A3208</div>
+        <div class="petit" style="color:#5F5346; margin-top:18px; border-top:1px solid #E5D9C9; padding-top:12px;">Le repos entre deux bandes claires. Jamais deux fois de suite.</div>
+      </div>
+
+      <div class="s-encre" style="flex:1; border-radius:16px; padding:22px;">
+        <div class="etiq" style="color:#F0A868;">Encre</div>
+        <div class="petit" style="color:#B9AA98; margin:4px 0 18px;">#2A211B</div>
+        <div class="mes">14,66</div><div class="petit" style="color:#B9AA98;">texte #FBF6EF</div>
+        <div class="mes" style="margin-top:12px; color:#B9AA98;">6,96</div><div class="petit" style="color:#B9AA98;">second #B9AA98</div>
+        <div class="mes" style="margin-top:12px; color:#F0A868;">7,89</div><div class="petit" style="color:#B9AA98;">accent #F0A868</div>
+        <div class="petit" style="color:#B9AA98; margin-top:18px; border-top:1px solid #4A3D33; padding-top:12px;">Ce qui compte le plus. Le prochain temps fort, le défilé des villes.</div>
+      </div>
+
+      <div class="s-terre" style="flex:1; border-radius:16px; padding:22px;">
+        <div class="etiq" style="color:#EFC9A6;">Terre <span style="font-weight:600; letter-spacing:0; text-transform:none;">— nouveau</span></div>
+        <div class="petit" style="color:#EFC9A6; margin:4px 0 18px;">#7A3208</div>
+        <div class="mes">8,54</div><div class="petit" style="color:#EFC9A6;">texte #FBF6EF</div>
+        <div class="mes" style="margin-top:12px; color:#EFC9A6;">5,94</div><div class="petit" style="color:#EFC9A6;">second #EFC9A6</div>
+        <div class="petit" style="color:#EFC9A6; margin-top:56px; border-top:1px solid #A45A25; padding-top:12px;">La chaleur du mouvement. C'est l'ambre poussé jusqu'à pouvoir porter du texte clair.</div>
+      </div>
+
+      <div class="s-foret" style="flex:1; border-radius:16px; padding:22px;">
+        <div class="etiq" style="color:#9ED2B4;">Forêt <span style="font-weight:600; letter-spacing:0; text-transform:none;">— nouveau</span></div>
+        <div class="petit" style="color:#9ED2B4; margin:4px 0 18px;">#12432A</div>
+        <div class="mes">10,49</div><div class="petit" style="color:#9ED2B4;">texte #FBF6EF</div>
+        <div class="mes" style="margin-top:12px; color:#9ED2B4;">6,62</div><div class="petit" style="color:#9ED2B4;">second #9ED2B4</div>
+        <div class="petit" style="color:#9ED2B4; margin-top:56px; border-top:1px solid #2E6B4A; padding-top:12px;">Les voix. Le vert forêt des Scouts, et le vert du drapeau lu en sourdine.</div>
+      </div>
+    </div>
+
+    <!-- D7 -->
+    <div style="display:flex; gap:16px; margin-top:34px; align-items:stretch;">
+      <div style="flex:2; border:1px solid #E5D9C9; border-radius:16px; padding:22px; background:#FFFFFF;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:10px;">Règle D7 — inchangée</div>
+        <div class="sst">L'ambre reste le geste, jamais l'ambiance.</div>
+        <p class="petit" style="color:#5F5346; margin:0 0 16px; max-width:520px;">La règle mesurée du système d'origine survit intacte, et gagne un corollaire rendu nécessaire par D1 : maintenant qu'il existe des surfaces colorées, la tentation de peindre une section en ambre doit être refusée explicitement. Si tout est ambre, plus rien n'est cliquable. La couleur d'ambiance chaude, c'est Terre.</p>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="display:flex; align-items:center; justify-content:center; height:52px; padding:0 26px; border-radius:13px; background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700;">Trouver mon groupe</div>
+          <div class="petit" style="color:#5F5346;"><b>5,19:1</b> — texte encre sur ambre. Autorisé.</div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center; margin-top:10px;">
+          <div style="display:flex; align-items:center; justify-content:center; height:52px; padding:0 26px; border-radius:13px; background:#E8732A; border:1px solid #C6611C; color:#FFFFFF; font-size:16px; font-weight:700; opacity:.6;">Trouver mon groupe</div>
+          <div class="petit" style="color:#5F5346;"><b>3,04:1</b> — texte blanc sur ambre. <span style="color:#A81F12; font-weight:700;">Interdit.</span></div>
+        </div>
+      </div>
+      <div style="flex:1; border:1px solid #E5D9C9; border-radius:16px; padding:22px; background:#FFFFFF;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:10px;">Règle D3 — le voile</div>
+        <div style="height:96px; border-radius:11px; background:#FFFFFF; border:1px solid #E5D9C9; position:relative; overflow:hidden; margin-bottom:8px;">
+          <div style="position:absolute; inset:0; background:rgba(42,33,27,.66); display:flex; align-items:center; justify-content:center;">
+            <span style="color:#FBF6EF; font-family:'Newsreader',Georgia,serif; font-size:24px;">Texte sur photo</span>
+          </div>
+        </div>
+        <p class="petit" style="color:#5F5346; margin:0;">Voile encre à <b>66 %</b> minimum. Mesuré sur le pire cas — une photo blanc pur : le composite donne #726C69, et la crème par-dessus mesure <b>4,81:1</b>. À 45 %, elle ne mesurerait que 2,56:1.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ D2 — L'ÉCHELLE ============ -->
+  <div class="s-sable bande">
+    <div class="etiq" style="color:#7A3208; margin-bottom:14px;">Règle D2</div>
+    <h2 class="titre">Le titre devient un objet</h2>
+    <p class="corps" style="color:#5F5346; max-width:720px;">Sur les planches actuelles, le plus gros caractère fait 34 px et le plus petit 11,5 px : un rapport de 3:1. Sans écart d'échelle, rien ne domine, donc rien n'attire. On passe à 4:1 sur mobile et <b>8:1 au bureau</b>. Une seule occurrence de <i>Display</i> par page — celle qui dit ce qu'est le GBUM. S'il y en a deux, il n'y en a plus aucune.</p>
+
+    <div style="display:flex; gap:40px; margin-top:32px; align-items:flex-start;">
+      <div style="flex:1;">
+        <div style="border-top:1px solid #E5D9C9; padding:18px 0;">
+          <div class="petit" style="color:#6E6053; margin-bottom:8px;">Display · 92 px bureau / 46 px mobile · Newsreader 500 · interligne 1,02 · approche −0,02 em</div>
+          <div class="disp" style="font-size:92px;">Une Parole</div>
+        </div>
+        <div style="border-top:1px solid #E5D9C9; padding:18px 0;">
+          <div class="petit" style="color:#6E6053; margin-bottom:6px;">Titre · 40 / 30 · Newsreader 600</div>
+          <div class="titre" style="margin:0;">La vie du mouvement</div>
+        </div>
+        <div style="border-top:1px solid #E5D9C9; padding:18px 0;">
+          <div class="petit" style="color:#6E6053; margin-bottom:6px;">Sous-titre · 24 / 20 · Hanken Grotesk 600</div>
+          <div class="sst" style="margin:0;">Camps, conventions et rencontres nationales</div>
+        </div>
+        <div style="border-top:1px solid #E5D9C9; padding:18px 0;">
+          <div class="petit" style="color:#6E6053; margin-bottom:6px;">Corps · 17 / 16 · Hanken Grotesk 400 · interligne 1,62</div>
+          <p class="corps" style="margin:0; color:#2A211B;">Le Groupe Biblique Universitaire rassemble des étudiants qui veulent vivre et approfondir leur foi chrétienne pendant leurs années d'études.</p>
+        </div>
+        <div style="border-top:1px solid #E5D9C9; border-bottom:1px solid #E5D9C9; padding:18px 0;">
+          <div class="petit" style="color:#6E6053; margin-bottom:6px;">Étiquette · 12 / 11,5 · capitales · approche 0,08 em</div>
+          <div class="etiq" style="color:#7A3208;">Le prochain temps fort</div>
+        </div>
+      </div>
+
+      <div style="width:300px; background:#FFFFFF; border:1px solid #E5D9C9; border-radius:16px; padding:22px;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:12px;">Règle D9</div>
+        <div class="sst" style="font-size:20px;">La carte se mérite</div>
+        <p class="petit" style="color:#5F5346;">Une carte est un outil de <i>séparation</i> : elle dit « ceci est une unité distincte, comparable à sa voisine ». Employée pour tout, elle met l'important et l'accessoire au même niveau.</p>
+        <p class="petit" style="color:#5F5346;">Désormais : une carte seulement pour ce qui est <b>énumérable et comparable</b> — une liste de villes, les archives du canevas, l'agenda. Le reste devient une bande, un filet, ou du texte posé sur la page.</p>
+        <div style="border-top:1px solid #E5D9C9; margin-top:16px; padding-top:14px;">
+          <div style="display:flex; align-items:baseline; gap:10px;"><span class="mes" style="color:#7A3208;">7 → 2</span><span class="petit" style="color:#5F5346;">cartes sur l'accueil</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ D4 + D5 — LE MOUVEMENT ============ -->
+  <div class="s-creme bande">
+    <div class="etiq" style="color:#7A3208; margin-bottom:14px;">Règles D4 et D5</div>
+    <h2 class="titre">Le mouvement existe, et il est réglé</h2>
+    <p class="corps" style="color:#5F5346; max-width:760px;">Le W3C encadre le mouvement d'une interface : le critère WCAG 2.3.3 demande que toute animation non essentielle puisse être désactivée, et les mouvements de grande amplitude — parallaxe, zoom, panneaux glissants — peuvent déclencher des troubles vestibulaires. Les alternatives sûres sont les fondus d'opacité, les transitions de couleur et les durées courtes. Les durées et les courbes ci-dessous s'alignent sur les jetons de Material Design 3. <b>Les trois démonstrations ci-dessous fonctionnent réellement.</b></p>
+
+    <div style="display:flex; gap:16px; margin-top:30px;">
+      <div style="flex:1; border:1px solid #E5D9C9; border-radius:16px; padding:22px; background:#FFFFFF;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:12px;">1 · L'apparition</div>
+        <div class="demo-app" style="display:flex; flex-direction:column; gap:9px; margin-bottom:16px;">
+          <div style="height:38px; border-radius:10px; background:#F4EADC; border:1px solid #E5D9C9;"></div>
+          <div style="height:38px; border-radius:10px; background:#F4EADC; border:1px solid #E5D9C9;"></div>
+          <div style="height:38px; border-radius:10px; background:#F4EADC; border:1px solid #E5D9C9;"></div>
+        </div>
+        <p class="petit" style="color:#5F5346; margin:0;">Opacité 0 → 1 et translation verticale de <b>12 px</b>, pas davantage. 320 ms, courbe <code>cubic-bezier(.05,.7,.1,1)</code>, cascade de 60 ms sur cinq éléments au plus. Un élément n'apparaît qu'une fois : rien ne rejoue au défilement inverse.</p>
+      </div>
+
+      <div style="flex:1; border:1px solid #E5D9C9; border-radius:16px; padding:22px; background:#FFFFFF;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:12px;">2 · Le survol <span style="text-transform:none; letter-spacing:0; font-weight:600; color:#5F5346;">— passez la souris</span></div>
+        <div class="demo-surv" style="border:1px solid #E5D9C9; border-radius:12px; padding:16px; margin-bottom:16px; background:#FFFFFF;">
+          <div class="sst" style="font-size:18px; margin:0 0 4px;">Rabat</div>
+          <div class="petit" style="color:#5F5346;">Quatre cellules · contact du bureau de ville</div>
+        </div>
+        <p class="petit" style="color:#5F5346; margin:0;">120 ms. Un changement de fond et deux pixels d'élévation — rien de plus. Le survol confirme qu'un élément répond ; il ne raconte pas d'histoire.</p>
+      </div>
+
+      <div style="flex:1; border:1px solid #E5D9C9; border-radius:16px; padding:22px; background:#FFFFFF;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:12px;">3 · L'interrupteur</div>
+        <div style="background:#2A211B; border-radius:12px; padding:14px 16px; margin-bottom:16px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11.5px; line-height:1.7; color:#D8CBBB;">
+          <span style="color:#F0A868;">@media</span> (prefers-reduced-motion: reduce) {<br>
+          &nbsp;&nbsp;*, *::before, *::after {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;animation-duration: .01ms !important;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;transition-duration: .01ms !important;<br>
+          &nbsp;&nbsp;}<br>
+          }
+        </div>
+        <p class="petit" style="color:#5F5346; margin:0;">Obligatoire. Sous ce réglage le site reste <b>complet et lisible</b> : rien n'est caché en attendant une animation qui ne viendra pas. C'est la condition pour que l'apparition soit un agrément et non un obstacle.</p>
+      </div>
+    </div>
+
+    <div class="petit" style="color:#5F5346; margin-top:26px; margin-bottom:10px;"><b>4 · Le défilé des villes</b> — le seul élément en mouvement continu de tout le site. 38 s par cycle, arrêt au survol, arrêt total sous <code>prefers-reduced-motion</code>.</div>
+  </div>
+
+  <div class="s-encre piste" style="padding:26px 0;">
+    <div class="defile">
+      <div style="display:flex; align-items:center; gap:34px; padding-inline-end:34px; font-family:'Newsreader',Georgia,serif; font-size:38px; font-weight:500; color:#FBF6EF; white-space:nowrap;">
+        <span>Rabat</span><span style="color:#E8732A;">·</span><span>Casablanca</span><span style="color:#E8732A;">·</span><span>Fès</span><span style="color:#E8732A;">·</span><span>Kénitra</span><span style="color:#E8732A;">·</span><span>Marrakech</span><span style="color:#E8732A;">·</span><span style="color:#B9AA98; font-family:'Hanken Grotesk'; font-size:17px; font-weight:600;">liste exacte à confirmer — demande N3</span><span style="color:#E8732A;">·</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:34px; padding-inline-end:34px; font-family:'Newsreader',Georgia,serif; font-size:38px; font-weight:500; color:#FBF6EF; white-space:nowrap;" aria-hidden="true">
+        <span>Rabat</span><span style="color:#E8732A;">·</span><span>Casablanca</span><span style="color:#E8732A;">·</span><span>Fès</span><span style="color:#E8732A;">·</span><span>Kénitra</span><span style="color:#E8732A;">·</span><span>Marrakech</span><span style="color:#E8732A;">·</span><span style="color:#B9AA98; font-family:'Hanken Grotesk'; font-size:17px; font-weight:600;">liste exacte à confirmer — demande N3</span><span style="color:#E8732A;">·</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-creme" style="padding:22px 72px 64px;">
+    <p class="petit" style="color:#5F5346; margin:0; max-width:900px;">C'est le meilleur rapport effet/coût de cette direction : la page bouge, et ce qu'elle dit en bougeant est <b>vrai</b> — les noms de villes sont des faits, pas des chiffres inventés. Elle répond aussi à la seule question qu'un étudiant se pose en arrivant : <i>est-ce qu'il y en a un chez moi ?</i></p>
+  </div>
+
+  <!-- ============ D10 — LE VIDE ============ -->
+  <div class="s-sable bande">
+    <div class="etiq" style="color:#7A3208; margin-bottom:14px;">Règle D10 — celle qui change le plus</div>
+    <h2 class="titre">Le vide invite, il ne s'excuse pas</h2>
+    <p class="corps" style="color:#5F5346; max-width:760px;">Environ <b>40 %</b> de la surface des planches porte le marqueur d'attente. C'est juste — c'est l'exigence A1.3 appliquée, et il n'est pas question d'y renoncer. Mais la forme actuelle, un rectangle pointillé, est la forme visuelle d'un formulaire incomplet : honnête, et passif. Pour un mouvement d'étudiants, une page qui dit « cette partie de notre histoire n'est pas encore écrite — écris-la avec nous » est plus vivante qu'une page pleine. Et c'est vrai.</p>
+
+    <div style="display:flex; gap:24px; margin-top:30px; align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="etiq" style="color:#6E6053; margin-bottom:12px;">Avant</div>
+        <div style="background:#FBF6EF; border-radius:16px; padding:24px;">
+          <div style="border:1.5px dashed #8A7458; border-radius:12px; background:#FBF1E6; padding:14px 16px;">
+            <div style="font-size:12px; font-weight:700; color:#96430F; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;">Thème de l'année</div>
+            <div style="font-size:13px; line-height:1.5; color:#5F5346;">Le thème qui porte la vision décennale sera annoncé ici dès qu'il sera arrêté par le Secrétariat National.</div>
+          </div>
+        </div>
+        <p class="petit" style="color:#5F5346; margin-top:12px;">Un cadre fermé de tous les côtés. Il signale un manque et s'arrête là.</p>
+      </div>
+
+      <div style="flex:1;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:12px;">Après</div>
+        <div style="background:#FBF6EF; border-radius:16px; padding:24px;">
+          <div class="att">
+            <div class="t">Thème de l'année · en cours d'écriture</div>
+            <div class="d">Le thème qui porte la vision décennale 2023–2033 sera annoncé ici dès que le Secrétariat National l'aura arrêté.</div>
+            <div style="margin-top:10px;"><span style="font-size:14px; font-weight:700; color:#7A3208; border-bottom:1.5px solid #7A3208; padding-bottom:2px;">Vous avez cette information ?</span></div>
+          </div>
+        </div>
+        <p class="petit" style="color:#5F5346; margin-top:12px;">Un filet plein de 3 px, ouvert vers la page. L'étiquette en Terre sur crème mesure <b>8,54:1</b>. Le vide passe du statut de trou à celui d'appel à contribution.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ D6 — LES VOIX ============ -->
+  <div class="s-creme bande">
+    <div class="etiq" style="color:#7A3208; margin-bottom:14px;">Règle D6</div>
+    <h2 class="titre">Les voix, pas les icônes</h2>
+    <p class="corps" style="color:#5F5346; max-width:760px;">Sur les onze planches actuelles, <b>aucune personne n'apparaît</b> : la section « Ce qu'on y fait » aligne quatre pictogrammes dans quatre carrés arrondis identiques. Un mouvement d'étudiants qui ne montre pas d'étudiants se décrit au lieu de se montrer. Alpha Youth construit sa série « faite pour les jeunes par les jeunes » sur un constat qui nous concerne directement : ce public recherche des espaces d'authenticité et d'intégrité. C'est notre meilleure justification — et elle valide notre règle la plus stricte, à condition que le vide demande au lieu de s'excuser.</p>
+
+    <div style="display:flex; gap:24px; margin-top:30px; align-items:stretch;">
+      <div style="flex:1;">
+        <div class="etiq" style="color:#6E6053; margin-bottom:12px;">Avant — quatre cartes à pictogramme</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; padding:16px; display:flex; gap:13px; align-items:center;">
+            <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; flex-shrink:0;"></div>
+            <div><div style="font-size:15.5px; font-weight:700;">L'étude de la Bible</div><div class="petit" style="color:#5F5346;">Chaque semaine, en cellule.</div></div>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; padding:16px; display:flex; gap:13px; align-items:center;">
+            <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; flex-shrink:0;"></div>
+            <div><div style="font-size:15.5px; font-weight:700;">La prière</div><div class="petit" style="color:#5F5346;">Les uns pour les autres.</div></div>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; padding:16px; display:flex; gap:13px; align-items:center;">
+            <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; flex-shrink:0;"></div>
+            <div><div style="font-size:15.5px; font-weight:700;">L'entraide</div><div class="petit" style="color:#5F5346;">La première famille.</div></div>
+          </div>
+        </div>
+        <p class="petit" style="color:#5F5346; margin-top:12px;">Trois unités visuellement identiques. Rien ne distingue la plus importante.</p>
+      </div>
+
+      <div style="flex:1; display:flex; flex-direction:column;">
+        <div class="etiq" style="color:#7A3208; margin-bottom:12px;">Après — une bande numérotée, et une bande de voix</div>
+        <div class="s-terre" style="border-radius:16px; padding:22px 24px; margin-bottom:12px;">
+          <div style="display:flex; gap:16px; align-items:baseline; border-bottom:1px solid #A45A25; padding-bottom:12px; margin-bottom:12px;">
+            <span class="mes" style="color:#EFC9A6; width:34px; flex-shrink:0;">01</span>
+            <div><div class="sst" style="font-size:20px; margin:0 0 2px;">L'étude de la Bible</div><div class="petit" style="color:#EFC9A6;">Chaque semaine, en cellule, sur le canevas de l'année.</div></div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:baseline; border-bottom:1px solid #A45A25; padding-bottom:12px; margin-bottom:12px;">
+            <span class="mes" style="color:#EFC9A6; width:34px; flex-shrink:0;">02</span>
+            <div><div class="sst" style="font-size:20px; margin:0 0 2px;">La prière</div><div class="petit" style="color:#EFC9A6;">Les uns pour les autres, pour les campus, pour le pays.</div></div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:baseline;">
+            <span class="mes" style="color:#EFC9A6; width:34px; flex-shrink:0;">03</span>
+            <div><div class="sst" style="font-size:20px; margin:0 0 2px;">L'entraide</div><div class="petit" style="color:#EFC9A6;">Arriver seul dans un pays qu'on ne connaît pas est rude. Le groupe est souvent la première famille.</div></div>
+          </div>
+        </div>
+        <div class="s-foret" style="border-radius:16px; padding:24px; flex-grow:1;">
+          <div class="etiq" style="color:#9ED2B4; margin-bottom:14px;">Les voix</div>
+          <div style="font-family:'Newsreader',Georgia,serif; font-size:28px; line-height:1.25; color:#FBF6EF; margin-bottom:14px;">«&nbsp;<span style="color:#9ED2B4;">Le témoignage d'un étudiant viendra ici.</span>&nbsp;»</div>
+          <div class="att att-vert">
+            <div class="t">Trois à cinq témoignages · demande N2</div>
+            <div class="d">Prénom, ville, année d'études, deux ou trois phrases — avec accord écrit de publication. C'est la demande la plus rentable de la liste.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CE QUI NE CHANGE PAS ============ -->
+  <div class="s-encre bande">
+    <div class="etiq" style="color:#F0A868; margin-bottom:14px;">Le périmètre</div>
+    <h2 class="titre" style="color:#FBF6EF;">Ce qui ne change pas</h2>
+    <div style="display:flex; gap:20px; margin-top:26px;">
+      <div style="flex:1; border-top:2px solid #F0A868; padding-top:14px;">
+        <div class="sst" style="font-size:19px; color:#FBF6EF;">Rien n'est inventé</div>
+        <p class="petit" style="color:#B9AA98; margin:0;">L'exigence A1.3 est <b style="color:#FBF6EF;">renforcée</b> par D10, pas assouplie. Aucun chiffre, aucun thème, aucune date qui n'ait été donné par le mouvement.</p>
+      </div>
+      <div style="flex:1; border-top:2px solid #F0A868; padding-top:14px;">
+        <div class="sst" style="font-size:19px; color:#FBF6EF;">On s'arrête à la ville</div>
+        <p class="petit" style="color:#B9AA98; margin:0;">ADR-011. Le défilé nomme les villes ; jamais les cellules, jamais les responsables. Le seul contact publié reste celui du bureau de ville.</p>
+      </div>
+      <div style="flex:1; border-top:2px solid #F0A868; padding-top:14px;">
+        <div class="sst" style="font-size:19px; color:#FBF6EF;">Les mêmes fontes</div>
+        <p class="petit" style="color:#B9AA98; margin:0;">Newsreader et Hanken Grotesk. Aucune n'est remplacée. On utilise mieux celles qu'on a — c'est tout le sens de D2.</p>
+      </div>
+      <div style="flex:1; border-top:2px solid #F0A868; padding-top:14px;">
+        <div class="sst" style="font-size:19px; color:#FBF6EF;">Deux langues</div>
+        <p class="petit" style="color:#B9AA98; margin:0;">Français et anglais (ADR-008 amendée). La palette d'origine est conservée en entier ; deux valeurs s'y ajoutent.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

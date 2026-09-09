@@ -1,0 +1,66 @@
+{
+  "artboards": [
+    { "file": "Systeme.dc.html", "x": 0, "y": 620, "w": 1440, "h": 5627, "title": "A · Le système — les dix règles" },
+    { "file": "AccueilV2.dc.html", "x": 1560, "y": 620, "w": 390, "h": 4555, "title": "B · L'accueil recomposé" },
+    { "file": "VieDuMouvementV2.dc.html", "x": 2050, "y": 620, "w": 390, "h": 2996, "title": "C · La vie du mouvement" }
+  ],
+  "annotations": [
+    {
+      "id": "titre",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "text": "FOYER EN MOUVEMENT — proposition de direction artistique\n\nRéponse à une demande précise : « c'est bon mais ça peut être mieux. Je veux un truc plus vivant. Nous sommes des jeunes. »\n\nLES ONZE PLANCHES DU LOT 1 NE SONT PAS TOUCHÉES. Elles restent où elles sont, inchangées. Ceci est une proposition à valider ou à écarter — rien n'est remplacé tant que la décision n'est pas prise.\n\nLE DIAGNOSTIC, EN UNE PHRASE. Les planches actuelles ne sont pas ratées : elles sont lisibles, sobres et honnêtes, et c'est précisément ce qui les rend calmes. Un seul fond, un seul contenant, un rapport typographique de 3:1, aucun visage, aucun mouvement — et 40 % de la surface en attente de contenu.\n\nCE QUI CHANGE. Cinq surfaces au lieu d'une. Un rapport typographique de 8:1. Des voix d'étudiants à la place des pictogrammes. Un mouvement mesuré, qu'un réglage système éteint entièrement. Et un vide qui invite au lieu de s'excuser.\n\nCE QUI NE CHANGE PAS. Rien n'est inventé (A1.3). On s'arrête à la ville (ADR-011). Français et anglais. Les mêmes deux fontes. La palette d'origine, en entier — deux valeurs s'y ajoutent.\n\nLe détail écrit : docs/09-DIRECTION-ARTISTIQUE.md"
+    },
+    {
+      "id": "a-systeme",
+      "x": 0,
+      "y": 520,
+      "w": 700,
+      "text": "PLANCHE A — le système lui-même. Les cinq surfaces avec leurs rapports de contraste mesurés, l'échelle typographique en spécimens réels, les trois mouvements en fonctionnement, et deux avant/après de composant."
+    },
+    {
+      "id": "a-b",
+      "x": 1560,
+      "y": 520,
+      "w": 380,
+      "text": "PLANCHE B — l'accueil recomposé. À comparer avec la planche 1 de l'autre canevas."
+    },
+    {
+      "id": "a-c",
+      "x": 2050,
+      "y": 520,
+      "w": 380,
+      "text": "PLANCHE C — la même grammaire sur une seconde page, pour vérifier qu'elle tient ailleurs que sur l'accueil."
+    },
+    {
+      "id": "d-vivant",
+      "x": 2560,
+      "y": 620,
+      "w": 400,
+      "text": "CE QUI BOUGE VRAIMENT SUR CES PLANCHES\n\nTrois choses s'animent réellement dans ce canevas, elles ne sont pas décrites : le défilé des villes (38 s, en boucle, arrêt au survol), l'apparition en cascade sur la planche A, et le survol des blocs.\n\nLe reste est immobile à dessein. Le critère WCAG 2.3.3 demande que toute animation non essentielle puisse être désactivée, et les mouvements de grande amplitude — parallaxe, zoom, panneaux glissants — peuvent déclencher des troubles vestibulaires. Il n'y en a aucun ici.\n\nSi votre système est réglé sur « réduire les animations », tout s'arrête et la page reste entière : rien n'est caché en attendant une animation qui ne viendra pas."
+    },
+    {
+      "id": "d-vide",
+      "x": 2560,
+      "y": 1320,
+      "w": 400,
+      "text": "LE VIDE, RETOURNÉ\n\nC'est le changement qui compte le plus, parce qu'il touche 40 % de la surface.\n\nAvant : un rectangle pointillé fermé de tous les côtés — la forme visuelle d'un formulaire incomplet. Honnête, et passif.\n\nAprès : un filet plein ouvert vers la page, une étiquette en Terre (8,54:1), la phrase qui dit qui doit fournir quoi, et un lien « Vous avez cette information ? ».\n\nPour un mouvement d'étudiants, une page qui dit « cette partie de notre histoire n'est pas encore écrite — écris-la avec nous » est plus vivante qu'une page pleine. Et c'est vrai."
+    },
+    {
+      "id": "d-refs",
+      "x": 2560,
+      "y": 2020,
+      "w": 400,
+      "text": "SUR QUOI ON S'APPUIE\n\nLES SCOUTS BRITANNIQUES (refonte 2018, agence NotOnSunday) — un mouvement de jeunesse centenaire qui devait redevenir « cool again » sans renier son héritage. Palette plus vive articulée sur deux couleurs nommées : Scouts Orange et Scouts Forest Green. C'est exactement le couple retenu ici.\n\nUCCF : THE CHRISTIAN UNIONS (agence IE Brand) — le mouvement étudiant chrétien britannique, membre du même réseau IFES que nous. Même besoin formulé : parler aux étudiants chrétiens en préservant cent ans d'héritage.\n\nALPHA YOUTH — « fait pour les jeunes par les jeunes ». Le constat qui fonde la série : ce public recherche des espaces d'authenticité et d'intégrité. C'est la meilleure justification de notre règle la plus stricte : ne rien inventer."
+    },
+    {
+      "id": "d-demandes",
+      "x": 2560,
+      "y": 2790,
+      "w": 400,
+      "text": "CE QUE CETTE DIRECTION DEMANDE AU MOUVEMENT\n\nElle ne tient ses promesses que si trois choses arrivent. Elles s'ajoutent à la note au Secrétariat National.\n\nN1 — DES PHOTOGRAPHIES d'étudiants du GBUM, avec accord écrit de publication. Au moins une image d'ouverture, et une par temps fort. C'est la plus importante des trois : sans elle, la page d'accueil s'ouvre sur un dégradé.\n\nN2 — TROIS À CINQ TÉMOIGNAGES courts : prénom, ville, année d'études, deux ou trois phrases.\n\nN3 — LA LISTE EXACTE DES VILLES, dans l'ordre où le mouvement veut les citer. Le défilé ne peut pas fonctionner sur une liste approximative."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

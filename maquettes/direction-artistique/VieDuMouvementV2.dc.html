@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
+    a { color:#7A3208; text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; }
+    .b { padding:36px 22px; }
+    .s-creme { background:#FBF6EF; color:#2A211B; }
+    .s-sable { background:#F4EADC; color:#2A211B; }
+    .s-encre { background:#2A211B; color:#FBF6EF; }
+    .s-terre { background:#7A3208; color:#FBF6EF; }
+    .s-foret { background:#12432A; color:#FBF6EF; }
+    .disp  { font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1.02; letter-spacing:-.02em; font-weight:500; margin:0; text-wrap:balance; }
+    .titre { font-family:'Newsreader',Georgia,serif; font-size:30px; line-height:1.14; font-weight:600; margin:0 0 12px; }
+    .sst   { font-size:20px; font-weight:600; line-height:1.3; margin:0 0 6px; }
+    .corps { font-size:16px; line-height:1.62; margin:0 0 16px; }
+    .petit { font-size:13.5px; line-height:1.55; }
+    .etiq  { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    .cta { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
+           background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700;
+           transition: transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .cta:hover { transform:translateY(-2px); }
+    .att { border-inline-start:3px solid #7A3208; padding:12px 0 12px 16px; }
+    .att .t { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#7A3208; margin-bottom:5px; }
+    .att .d { font-size:13.5px; line-height:1.55; color:#5F5346; }
+    .att .q { display:inline-block; margin-top:9px; font-size:13.5px; font-weight:700; color:#7A3208; border-bottom:1.5px solid #7A3208; padding-bottom:2px; }
+    .att-clair { border-inline-start-color:#F0A868; }
+    .att-clair .t { color:#F0A868; } .att-clair .d { color:#B9AA98; }
+    /* Le contenu absent se distingue par l'italique, jamais par la pâleur —
+       c'est la correction de la relecture du 9 septembre. */
+    .vide { color:#6E6053; font-style:italic; }
+    .vide-clair { color:#FBF6EF; font-style:italic; }
+    .puce { display:inline-flex; align-items:center; height:32px; padding:0 14px; border-radius:999px; font-size:13px; font-weight:600;
+            transition: background-color 120ms cubic-bezier(.05,.7,.1,1); }
+    .puce-on  { background:#2A211B; color:#FBF6EF; }
+    .puce-off { background:transparent; border:1px solid #8A7458; color:#5F5346; }
+    .puce-off:hover { background:#EADCC7; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="width:390px; background:#FBF6EF;">
+
+  <!-- ===== EN-TÊTE ===== -->
+  <div style="display:flex; align-items:center; gap:10px; padding:14px 18px; background:#FBF6EF; border-bottom:1px solid #E5D9C9;">
+    <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span>
+    </div>
+    <div style="flex-grow:1; line-height:1.15;">
+      <div style="font-size:14.5px; font-weight:700;">GBU Maroc</div>
+      <div style="font-size:11px; color:#6E6053;">Groupe Biblique Universitaire</div>
+    </div>
+    <div style="display:flex; align-items:center; height:34px; border:1px solid #E5D9C9; border-radius:9px; overflow:hidden; background:#FFFFFF;">
+      <span style="padding:0 10px; line-height:32px; font-size:12.5px; font-weight:700; background:#F4EADC; color:#2A211B;">FR</span>
+      <span style="padding:0 10px; line-height:32px; font-size:12.5px; font-weight:600; color:#6E6053;">EN</span>
+    </div>
+    <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-inline-end:-10px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== TITRE — l'unique Display de la page ===== -->
+  <div class="s-creme" style="padding:34px 22px 30px;">
+    <div class="etiq" style="color:#7A3208; margin-bottom:16px;">La vie du mouvement</div>
+    <h1 class="disp">Ce que nous<br>avons vécu.</h1>
+    <p class="corps" style="margin-top:18px; color:#5F5346;">Camps, séminaires, sorties, journées de témoignage. Chaque bilan écrit par une ville ou une cellule dans l'espace de travail apparaît ici — personne ne le retape.</p>
+  </div>
+
+  <!-- ===== FILTRES ===== -->
+  <div class="s-sable" style="padding:18px 22px;">
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <span class="puce puce-on">Tout</span>
+      <span class="puce puce-off">National</span>
+      <span class="puce puce-off">Ville</span>
+      <span class="puce puce-off">Cellule</span>
+      <span class="puce puce-off">2026</span>
+      <span class="puce puce-off">2025</span>
+    </div>
+  </div>
+
+  <!-- ===== ENTRÉE À LA UNE — photo pleine largeur (D3) ===== -->
+  <div style="height:240px; background:linear-gradient(150deg,#3B2F26,#7E6349); position:relative;">
+    <div style="position:absolute; inset:0; background:rgba(42,33,27,.66);"></div>
+    <div style="position:absolute; left:22px; right:22px; bottom:22px;">
+      <div class="etiq" style="color:#FBF6EF; margin-bottom:10px;">À la une · national</div>
+      <div style="font-family:'Newsreader',Georgia,serif; font-size:30px; line-height:1.14; font-weight:500;" class="vide-clair">Titre du dernier bilan publié</div>
+    </div>
+  </div>
+  <div class="s-creme" style="padding:22px;">
+    <p class="petit" style="color:#5F5346; margin:0 0 16px;">Les premières lignes du bilan s'affichent ici, suivies du nom de la ville ou de l'échelle nationale, et de la date.</p>
+    <div class="att">
+      <div class="t">Première publication attendue</div>
+      <div class="d">Cette page se remplira d'elle-même dès le premier bilan saisi dans l'espace de travail — c'est l'objectif P3, le site qui reste vivant sans qu'on le nourrisse à la main.</div>
+    </div>
+  </div>
+
+  <!-- ===== TEMPS FORT MIS EN AVANT ===== -->
+  <div class="s-terre b">
+    <div class="etiq" style="color:#EFC9A6; margin-bottom:12px;">Les temps forts nationaux</div>
+    <div style="border-top:1px solid #A45A25; padding:14px 0; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:24px; font-weight:600; color:#EFC9A6; width:32px; flex-shrink:0;">01</span>
+      <div><div class="sst" style="font-size:19px;">Camp d'Ifrane</div><div class="petit" style="color:#EFC9A6;">Le rassemblement annuel de tout le mouvement, dans le Moyen Atlas.</div></div>
+    </div>
+    <div style="border-top:1px solid #A45A25; padding:14px 0; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:24px; font-weight:600; color:#EFC9A6; width:32px; flex-shrink:0;">02</span>
+      <div><div class="sst" style="font-size:19px;">Journées de témoignage par amitié</div><div class="petit" style="color:#EFC9A6;">Une activité nationale qui se vit dans les villes et les cellules, sans rencontre en présentiel.</div></div>
+    </div>
+    <div style="border-top:1px solid #A45A25; border-bottom:1px solid #A45A25; padding:14px 0; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:24px; font-weight:600; color:#EFC9A6; width:32px; flex-shrink:0;">03</span>
+      <div><div class="sst" style="font-size:19px;">La convention</div><div class="petit" style="color:#EFC9A6;">Avec les camps de responsables et de témoins, et les masterclass.</div></div>
+    </div>
+  </div>
+
+  <!-- ===== LA LISTE ===== -->
+  <div class="s-creme b">
+    <h2 class="titre">Tous les bilans</h2>
+    <p class="petit" style="color:#5F5346; margin:0 0 20px;">Du plus récent au plus ancien. Chaque entrée porte son échelle — nationale, ville ou cellule — et sa date.</p>
+
+    <div style="border-top:1px solid #E5D9C9; padding:16px 0;">
+      <div class="etiq" style="color:#7A3208; margin-bottom:7px;">Ville · <span class="vide" style="text-transform:none; letter-spacing:0;">date</span></div>
+      <div class="sst vide">Titre du bilan</div>
+      <div class="petit" style="color:#5F5346;">Deux lignes de résumé, reprises du début du texte saisi.</div>
+    </div>
+    <div style="border-top:1px solid #E5D9C9; padding:16px 0;">
+      <div class="etiq" style="color:#7A3208; margin-bottom:7px;">Cellule · <span class="vide" style="text-transform:none; letter-spacing:0;">date</span></div>
+      <div class="sst vide">Titre du bilan</div>
+      <div class="petit" style="color:#5F5346;">Deux lignes de résumé, reprises du début du texte saisi.</div>
+    </div>
+    <div style="border-top:1px solid #E5D9C9; border-bottom:1px solid #E5D9C9; padding:16px 0;">
+      <div class="etiq" style="color:#7A3208; margin-bottom:7px;">National · <span class="vide" style="text-transform:none; letter-spacing:0;">date</span></div>
+      <div class="sst vide">Titre du bilan</div>
+      <div class="petit" style="color:#5F5346;">Deux lignes de résumé, reprises du début du texte saisi.</div>
+    </div>
+  </div>
+
+  <!-- ===== LES SOUVENIRS — appel à contribution (D10) ===== -->
+  <div class="s-foret b">
+    <div class="etiq" style="color:#9ED2B4; margin-bottom:14px;">Les souvenirs</div>
+    <div style="font-family:'Newsreader',Georgia,serif; font-size:28px; line-height:1.24; font-weight:500; color:#FBF6EF; margin-bottom:16px;">Une partie de notre mémoire n'est pas encore écrite.</div>
+    <p class="petit" style="color:#9ED2B4; margin:0 0 20px;">Les photos et les récits des années passées existent — dans des téléphones, des groupes de discussion, des disques durs. Ils ne sont nulle part ensemble. Cette page est faite pour les recevoir.</p>
+    <button class="cta">Envoyer un souvenir
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ===== VOIR AUSSI — respire entre la bande Forêt et le pied de page ===== -->
+  <div class="s-creme b">
+    <div class="etiq" style="color:#7A3208; margin-bottom:16px;">Voir aussi</div>
+    <div style="border-top:1px solid #E5D9C9; padding:16px 0;">
+      <a href="#" style="display:block;"><div class="sst" style="margin:0 0 4px;">Le canevas et ses archives</div><div class="petit" style="color:#5F5346;">Les études de chaque année, en accès libre.</div></a>
+    </div>
+    <div style="border-top:1px solid #E5D9C9; border-bottom:1px solid #E5D9C9; padding:16px 0;">
+      <a href="#" style="display:block;"><div class="sst" style="margin:0 0 4px;">L'agenda</div><div class="petit" style="color:#5F5346;">Ce qui vient, à l'échelle nationale et dans les villes.</div></a>
+    </div>
+  </div>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <div class="s-encre" style="padding:34px 22px 40px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+      <div style="width:30px; height:30px; border-radius:8px; background:#E8732A; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-weight:600; color:#2A211B;">G</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#FBF6EF;">GBU Maroc</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:0 26px;">
+      <a href="#" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Le mouvement</a>
+      <a href="#" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Où nous sommes</a>
+      <a href="#" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Le canevas</a>
+      <a href="#" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Agenda</a>
+      <a href="#" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Soutenir</a>
+      <a href="#" style="display:block; min-height:40px; line-height:40px; font-size:14px; color:#FBF6EF;">Nous écrire</a>
+    </div>
+    <div style="border-top:1px solid #4A3D33; margin-top:18px; padding-top:16px;">
+      <div class="petit" style="color:#B9AA98;">Groupe Biblique Universitaire au Maroc — membre de l'IFES.</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

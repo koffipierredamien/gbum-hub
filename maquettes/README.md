@@ -28,6 +28,19 @@ contraste que leur audit navigateur avait mesurées à l'écran** :
 Voir [`../docs/05-PROMPT-CLAUDE-DESIGN.md`](docs/05-PROMPT-CLAUDE-DESIGN.md)
 pour la direction complète et les prompts par écran.
 
+### Version 2 — « Foyer en mouvement » *(proposition, 9 septembre 2026)*
+
+Le thème « Foyer » est lisible, sobre et honnête — et c'est ce qui le rend
+calme. Une **version 2** est proposée dans
+[`direction-artistique/`](direction-artistique/) : cinq surfaces au lieu d'une,
+un rapport typographique de 8:1 au lieu de 3:1, des voix d'étudiants à la place
+des pictogrammes, un mouvement mesuré qu'un réglage système éteint, et un vide
+qui invite au lieu de s'excuser.
+
+Les deux règles mesurées ci-dessus y survivent **intactes**, et la palette
+d'origine est conservée en entier — deux valeurs s'y ajoutent. Détail écrit :
+[`../docs/09-DIRECTION-ARTISTIQUE.md`](../docs/09-DIRECTION-ARTISTIQUE.md).
+
 ## Régénérer le canevas
 
 ```bash
