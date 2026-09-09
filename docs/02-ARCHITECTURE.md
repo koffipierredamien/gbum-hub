@@ -262,20 +262,23 @@ Deviennent publics :
 | Publié | Détail |
 |---|---|
 | Présentation du mouvement | Vision décennale, devise, thème de l'année, histoire, appartenance à l'IFES |
-| **Villes, campus et cellules** | Avec **jour, heure et lieu de rencontre** |
-| **Contact d'une cellule** | **Adresse de groupe par défaut** (`gbu.agdal@…`), personnelle seulement à défaut et avec accord |
-| Prénom du responsable | Prénom seul ; nom de famille sur accord |
-| Agenda | Tous les événements ouverts, camps compris |
+| **Villes** où le GBUM est présent | Le niveau auquel la publication s'arrête |
+| **Liste des cellules d'une ville** | Les cellules sont **nommées**, pour montrer que le mouvement est vivant sur place |
+| **Contact du responsable de ville** | Le **seul** contact publié — c'est lui qu'on joint au besoin |
+| Agenda | Les événements ouverts, camps compris |
 | Galerie | Albums publiés explicitement, visages sur consentement |
 | Soutenir | Besoins, moyens de don, formulaire de promesse |
 | Actualités, témoignages | Sur consentement du témoin |
 
+**La publication s'arrête à la ville.** *(précision du 9 septembre 2026)*
+
 Restent fermés, **sans exception de posture** :
 
+- **toute information sur les responsables de cellule** — nom, contact, photo :
+  la chaîne publique s'arrête au bureau de ville ;
 - l'**annuaire** et toute donnée personnelle non consentie ;
 - le **suivi JTPA** — jamais public, jamais exporté ;
-- les **finances**, rapports de cellule, gouvernance ;
-- tout ce qu'une personne n'a pas accepté de rendre public.
+- les **finances**, rapports de cellule, gouvernance.
 
 ### Trois garde-fous qui survivent à la posture ouverte
 
@@ -292,11 +295,15 @@ Restent fermés, **sans exception de posture** :
 
 ### Ce qui a été écarté
 
-**Posture prudente** — villes et campus publics, mais jour, heure et
-responsable communiqués après une mise en relation humaine. C'était la
-recommandation initiale, et la doctrine de `gbu-connect`. Écartée : elle
-allonge le chemin d'une étudiante qui cherche un groupe, et le point d'entrée
-du mouvement est la rentrée universitaire.
+**Posture prudente** — rien de localisé sans mise en relation humaine
+préalable. C'était la recommandation initiale, et la doctrine de
+`gbu-connect`. Écartée : elle allonge le chemin d'une étudiante qui cherche un
+groupe, et le point d'entrée du mouvement est la rentrée universitaire.
+
+**La publication au niveau de la cellule** — ce que fait GBU France, qui donne
+le campus, le jour, l'heure et le contact de chaque groupe. Écartée le
+9 septembre 2026 : la chaîne publique s'arrête au bureau de ville, et aucun
+responsable de cellule n'est exposé.
 
 **Posture discrète** — seules l'existence du mouvement et les villes. Écartée :
 la vitrine perdrait sa raison d'être.
@@ -315,10 +322,13 @@ expose. Les trois garde-fous ci-dessus en sont la contrepartie.
 
 ### Conséquences sur les maquettes
 
-Le parcours « Trouver mon groupe » change de forme : l'étape 2 peut désormais
-donner directement le jour, l'heure, le lieu et le contact du groupe. L'étape 3
-— se présenter — devient **facultative** : on peut écrire, ou simplement venir.
-À reprendre en phase 4.
+Le parcours « Trouver mon groupe » est à refaire en phase 4. Il montre
+aujourd'hui une cellule nommée avec son jour, son bâtiment, sa salle et le
+prénom de son responsable — **au-delà de ce que cette décision autorise**.
+
+Ce qu'il devra montrer : la **ville**, la **liste de ses cellules**, et le
+**contact du responsable de ville**. L'étape « se présenter » reste utile, mais
+elle s'adresse désormais au bureau de ville, pas à une cellule.
 
 ### Sources
 

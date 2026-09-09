@@ -31,148 +31,238 @@
 
 ## 1. Contexte et enjeux
 
+> **Règle de ce chapitre.** Chaque affirmation porte sa source. Ce qui vient du
+> mouvement est marqué *(SN)*, ce qui vient d'une source publique est lié, ce
+> qui manque est dit manquant. **Rien n'est extrapolé.**
+
 ### 1.1 Le mouvement
 
 Le GBUM rassemble des étudiants qui veulent vivre et approfondir leur foi
-chrétienne pendant leurs années d'études, dans les principales villes
-universitaires du Maroc. Il est membre de l'**IFES**.
+chrétienne pendant leurs années d'études, dans les villes universitaires du
+Maroc. Un membre du GBU s'appelle un **GBUssien**. *(SN)*
 
-- **Devise** : « Connaître Christ et Le faire connaître. »
-- **Vision décennale** (née à Ifrane, 2023) : **« Éclaireurs des campus pour Christ. »**
-- **Thème annuel** : chaque année, un thème porte la vision.
-- **Activité première** : l'**étude biblique hebdomadaire en cellule**, suivant
-  un **canevas édité chaque année**.
-- **Autres activités** : sorties, agapè, sorties d'évangélisation,
-  évangélisation par amitié (**JTPA**), camp des responsables, camp des
-  témoins, **camp d'Ifrane**.
-- **Organisation** : Secrétariat National → Conseil Exécutif → conseillers de
-  ville → responsables de ville / bureaux → responsables de cellule →
-  GBUssiens. En marge : les **Amis du GBU** (anciens diplômés, soutien
-  financier et spirituel).
+| | |
+|---|---|
+| **Devise** | « Connaître Christ et Le faire connaître » *(SN)* |
+| **Vision décennale** | « Éclaireurs des campus pour Christ » — née lors de la préparation du camp d'Ifrane 2023 *(SN)* |
+| **Thème annuel** | Un thème porte la vision chaque année. **Celui de l'année en cours n'est pas encore disponible.** *(SN)* |
+| **Activité première** | L'**étude biblique hebdomadaire en cellule**, suivant un **canevas édité chaque année** *(SN)* |
 
-### 1.2 Le problème
+**Les activités du mouvement** *(SN)* : études bibliques hebdomadaires,
+sorties, agapès, sorties d'évangélisation, évangélisation par amitié (**JTPA**),
+camp des responsables, camp des témoins, **camp d'Ifrane**.
 
-Le mouvement dispose d'un outil (`gbu-connect`) qui rend déjà de vrais
-services, mais :
+> Le camp d'Ifrane est une retraite étudiante décrite comme transformatrice :
+> un temps de communion, de détente et de surprises. *(SN)*
+
+*Cette liste est ouverte : le reste des activités sera fourni au fil du
+projet.* *(SN)*
+
+### 1.2 L'organisation du GBUM
+
+Telle que décrite par le mouvement le 9 septembre 2026.
+
+#### Le Secrétariat National (SN)
+
+Il chapeaute l'ensemble du mouvement au Maroc.
+
+- **Le Secrétaire National** : Dr Pierre ADIMI
+- **Cinq Assistants du Secrétaire National (ASN)** : Esaïe NIKIEMA,
+  Junias OUEDRAOGO, Saint-Clair DJASSAMA, Mike Vianney MIKEDI,
+  Crassi Flora POUTOU
+
+#### Le Conseil Exécutif
+
+- Son **bureau est renouvelé chaque année**.
+- Il comprend un **président**, un **vice-président** et d'autres postes.
+- **Chaque membre du bureau porte une responsabilité nationale** — par exemple
+  le responsable de la trésorerie, qui tient la trésorerie du GBUM.
+- **Certains conseillers se voient attribuer une ville** et y exercent comme
+  **conseiller de ville** : ils accompagnent le bureau de ville dans
+  l'exercice de ses fonctions.
+
+#### Les bureaux de ville
+
+Chaque ville où le GBU est représenté est gérée par un bureau. **Le nombre de
+responsables varie selon la ville.** Postes rencontrés : responsable de ville,
+secrétaire, trésorier, responsable de l'intercession, responsable du
+témoignage, responsable de la communication, et d'autres.
+
+> Outre la fonction que leur nom indique, les membres du bureau **servent le
+> mouvement dans la ville**.
+
+#### Les cellules
+
+Dans chaque ville, des **cellules** — dans les quartiers (chez quelqu'un) ou
+sur un campus. **C'est là que se tiennent les études bibliques** et une partie
+des autres activités. Chaque cellule a un ou des **responsables de cellule**.
+
+Des activités sont aussi organisées **à l'échelle de la ville**, voire **du
+pays**.
+
+#### Les Amis du GBU — hors hiérarchie
+
+D'anciens GBUssiens, leurs études terminées, qui portent toujours le mouvement
+dans leur cœur et le soutiennent comme ils peuvent : financièrement, dans la
+prière, autrement.
+
+```
+Secrétariat National  (Secrétaire National + 5 ASN)
+        │
+Conseil Exécutif  (bureau renouvelé chaque année · responsabilités nationales)
+        │           dont certains conseillers → conseiller d'une ville
+        │
+Bureaux de ville  (composition variable selon la ville)
+        │
+Cellules  (quartier ou campus) → responsables de cellule
+        │
+GBUssiens
+
+⟂  Les Amis du GBU — anciens diplômés, hors hiérarchie
+```
+
+### 1.3 Le GBUM dans le monde des GBU
+
+Éléments établis par des sources publiques, à compléter par le mouvement.
+
+- L'**IFES** — Union internationale des groupes bibliques universitaires
+  (UIGBU) — a été fondée en **1947 à l'université Harvard**, par les
+  représentants de **dix mouvements nationaux**, sur une base de foi, une
+  constitution et **l'autonomie de chaque mouvement membre**. Son siège est à
+  **Oxford**. Elle réunit aujourd'hui des mouvements dans **180 pays**.
+  ([IFES](https://ifesworld.org/en/our-story/),
+  [Wikipédia](https://fr.wikipedia.org/wiki/Union_internationale_des_groupes_bibliques_universitaires))
+- En **Afrique francophone**, le GBU de Suisse romande envoie Louis Perret en
+  **1964** ; les premiers groupes naissent à **Dakar en 1965** et **Abidjan en
+  1966**. Un congrès d'une quinzaine d'étudiants à Abidjan en **1968** donne
+  naissance au **GBUAF**, avec Alastair Kennedy comme premier secrétaire
+  régional. Le GBUAF est admis membre affilié de l'IFES en **1972**.
+  ([GBUAF](https://gbuaf.org/les-gbuaf/lhistoire-des-gbu/))
+- L'IFES distingue une région **Afrique francophone** et une région **Moyen-
+  Orient et Afrique du Nord (MENA)**. Elle décrit le ministère étudiant en MENA
+  comme particulièrement difficile.
+  ([IFES MENA](https://ifesworld.org/en/region/mena/),
+  [IFES Afrique francophone](https://ifesworld.org/en/region/francophoneafrica/))
+
+### 1.4 Ce qui reste à documenter
+
+Recherché sans résultat, ou non encore fourni. **À obtenir du Secrétariat
+National** — ces vides ne doivent pas être comblés par des suppositions.
+
+| Manquant | Pourquoi c'est nécessaire |
+|---|---|
+| **Date et histoire de la création du GBUM** | Aucune source publique n'en porte trace. Nécessaire à la page « L'organisation » et au domaine Mémoire. |
+| **Région IFES de rattachement** — MENA ou Afrique francophone ? | Le Maroc **ne figure pas** parmi les pays membres du GBUAF ; le rattachement ne peut donc pas être déduit. |
+| **Le thème de l'année en cours** | Il porte la vision, et l'écran d'accueil du hub s'y adosse. |
+| **Les chiffres du mouvement** — villes, cellules, GBUssiens, Amis | Toute la vitrine et le pilotage en dépendent. |
+| **Le reste des activités** | La liste du §1.1 est explicitement ouverte. |
+| **Le canevas d'études de l'année** | Sans lui, l'écran central du hub est conçu à l'aveugle. |
+
+### 1.5 Le problème
+
+Le mouvement dispose d'un outil, `gbu-connect`, qui rend de vrais services,
+mais :
 
 - il **ne porte pas la mission** — le canevas d'études bibliques, cœur de la
-  vie hebdomadaire, n'y existe pas ;
+  vie hebdomadaire, n'y existe ni comme entité, ni comme écran, ni comme
+  route ;
 - son **architecture ne tient plus** — persistance éclatée sur 18 fichiers JSON
-  et une base SQLite, mono-processus obligatoire, aucune traçabilité de
-  déploiement (voir [audit §4](00-AUDIT-EXISTANT.md#4-les-défauts-structurels--par-gravité)) ;
+  à côté d'une base SQLite, mono-processus obligatoire, aucune traçabilité de
+  déploiement (voir [audit §4](00-AUDIT-EXISTANT.md)) ;
 - son **interface et son expérience** n'atteignent pas le niveau attendu d'un
-  hub officiel en 2026.
+  hub officiel.
 
-### 1.3 L'enjeu réel
+### 1.6 L'enjeu
 
-Un mouvement étudiant se **renouvelle intégralement tous les 4 à 5 ans**. Le
-hub n'est donc pas seulement un outil de gestion : c'est **le support de la
-transmission**. Ce qu'il ne sait pas retenir — la mémoire, les parcours, les
-canevas passés, les leçons d'un camp — le mouvement le réapprendra à chaque
-génération.
+Un mouvement étudiant se renouvelle au rythme des études. Le hub n'est donc pas
+seulement un outil de gestion : c'est **un support de transmission**. Ce qu'il
+ne sait pas retenir — la mémoire, les parcours, les canevas passés, les leçons
+d'un camp — le mouvement le réapprend à chaque génération.
 
 > **Principe directeur du projet :**
 > *Le hub sert la mission — connaître Christ et Le faire connaître — avant de
 > servir l'administration du mouvement.*
-> Toute fonctionnalité qui ne se rattache pas à cette phrase est reportée.
 
 ---
 
 ## 2. Objectifs
 
-### 2.1 Objectifs métier
+> **Aucun indicateur chiffré n'est fixé.** Une version antérieure de ce
+> document en portait — taux de rapports, délais, multiples de trafic. Ils
+> étaient **inventés**, et ont été retirés le 9 septembre 2026. Un objectif
+> sans chiffre est honnête ; un objectif avec un chiffre inventé est un
+> mensonge qui se transmet. **Les cibles seront fixées par le Secrétariat
+> National.**
 
-| # | Objectif | Indicateur de réussite |
+### 2.1 Objectifs métier — à valider par le SN
+
+| # | Objectif | Cible |
 |---|---|---|
-| **O1** | Faire vivre le canevas d'études bibliques dans l'outil | ≥ 80 % des cellules actives déclarent leur avancement chaque mois |
-| **O2** | Donner au national une vision réelle et à jour du terrain | Taux de rapports mensuels rendus > 75 % ; délai national → décision < 7 j |
-| **O3** | Accueillir les nouveaux à chaque rentrée | ≥ 90 % des demandes publiques mises en relation sous 72 h |
-| **O4** | Rendre visible et crédible le GBUM auprès du public | Vitrine publique indexée, 1ʳᵉ page sur « GBU Maroc » ; ≥ 3× le trafic actuel |
-| **O5** | Soutenir le réseau des Amis du GBU | Promesses tenues suivies à 100 % ; relance automatisée |
-| **O6** | Conserver la mémoire du mouvement | 100 % des canevas, camps et bureaux archivés et retrouvables |
-| **O7** | Réunir le mouvement à distance de façon fiable | Réunion nationale ≥ 150 participants sans incident |
+| **O1** | Faire vivre le **canevas d'études bibliques** dans l'outil | *à fixer par le SN* |
+| **O2** | Donner au national une vision réelle et à jour du terrain | *à fixer par le SN* |
+| **O3** | Accueillir les nouveaux à chaque rentrée | *à fixer par le SN* |
+| **O4** | Rendre le GBUM visible et joignable | *à fixer par le SN* |
+| **O5** | Soutenir le réseau des Amis du GBU | *à fixer par le SN* |
+| **O6** | Conserver la mémoire du mouvement | *à fixer par le SN* |
+| **O7** | Réunir le mouvement à distance de façon fiable | *à fixer par le SN* |
 
 ### 2.2 Objectifs techniques
 
-| # | Objectif | Critère mesurable |
+Ceux-ci relèvent de la maîtrise d'œuvre, et leurs critères sont mesurables par
+construction.
+
+| # | Objectif | Critère |
 |---|---|---|
-| **T1** | Une source de vérité unique et transactionnelle | 0 fichier JSON de persistance ; 100 % des écritures transactionnelles |
-| **T2** | Déploiement traçable et sans coupure | Chaque mise en production correspond à un commit ; interruption = 0 s |
-| **T3** | Maintenable par une seule personne | Aucun fichier > 400 lignes ; couverture des règles métier ≥ 80 % |
-| **T4** | Sécurité et confidentialité démontrables | 0 finding critique à l'audit ; politique d'accès centralisée et testée |
-| **T5** | Excellence de l'interface | WCAG 2.2 AA sur 100 % des écrans ; Lighthouse ≥ 95 sur la vitrine |
-| **T6** | Réversibilité | Export complet des données du mouvement en un clic, format ouvert |
+| **T1** | Une source de vérité unique et transactionnelle | 0 fichier de persistance hors base ; 100 % des écritures transactionnelles |
+| **T2** | Déploiement traçable et sans coupure | Chaque mise en production correspond à un commit ; interruption nulle |
+| **T3** | Maintenable par une seule personne | Aucun fichier > 400 lignes ; règles métier couvertes par des tests |
+| **T4** | Sécurité et confidentialité démontrables | Politique d'accès centralisée et testée ; audit d'accès sans faille |
+| **T5** | Qualité de l'interface | WCAG 2.2 AA sur 100 % des écrans |
+| **T6** | Réversibilité | Export complet des données, format ouvert |
 
-### 2.3 Non-objectifs (v1)
+### 2.3 Non-objectifs
 
-Explicitement **hors** de la première version, pour protéger le calendrier :
-
-- Application mobile native (iOS/Android) — la PWA couvre le besoin ;
-- Réseau social interne (fil, murs, réactions) ;
-- Comptabilité générale certifiée (le hub fait du suivi budgétaire, pas de la
-  compta) ;
-- Plateforme d'apprentissage complète (LMS) ;
-- Billetterie et paiement en ligne.
+**À décider par le Secrétariat National.** Une version antérieure en listait
+cinq ; c'était **une proposition de la maîtrise d'œuvre**, jamais discutée avec
+le mouvement. Elle est retirée. La question — *qu'est-ce que le hub ne fera
+pas ?* — sera posée au point 2.5 de l'échéancier.
 
 ---
 
-## 3. Parties prenantes et personas
+## 3. Parties prenantes
 
-### 3.1 Cartographie
+> Une version antérieure de ce chapitre décrivait cinq personas nommés — Amina,
+> Yann, Sarah, Jean-Marc. **Ils étaient inventés** et ont été retirés le
+> 9 septembre 2026. Les rôles ci-dessous, eux, viennent du mouvement.
 
-| Acteur | Effectif ordre de grandeur | Rôle vis-à-vis du hub |
-|---|---|---|
-| GBUssien (étudiant membre) | quelques centaines | Utilisateur principal |
-| Responsable de cellule | quelques dizaines | Anime, rapporte |
-| Bureau de ville / responsable de ville | ~7–12 villes | Coordonne |
-| Conseiller de ville | 1 par ville | Accompagne, non étudiant |
-| Secrétariat National (permanents) | ~6 | Pilote, administre |
-| Conseil Exécutif | ~10 | Décide, valide les budgets |
-| Amis du GBU | dizaines à centaines | Soutiennent |
-| Public (étudiants, parents, églises, IFES) | ouvert | Découvre |
-| Administrateur technique | 1–2 | Exploite |
+### 3.1 Les acteurs
 
-### 3.2 Personas
+| Acteur | Rôle vis-à-vis du hub |
+|---|---|
+| **GBUssien** | Utilisateur principal : il vit l'étude biblique et les activités de sa cellule |
+| **Responsable de cellule** | Anime l'étude, tient la vie de la cellule, rend compte |
+| **Bureau de ville** | Coordonne les cellules de la ville ; composition variable — responsable de ville, secrétaire, trésorier, intercession, témoignage, communication… |
+| **Conseiller de ville** | Membre du Conseil Exécutif chargé d'accompagner un bureau de ville |
+| **Conseil Exécutif** | Porte les responsabilités nationales ; bureau renouvelé chaque année |
+| **Secrétariat National** | Le Secrétaire National et ses cinq assistants ; chapeaute le mouvement |
+| **Ami du GBU** | Ancien diplômé qui soutient le mouvement — finances, prière, autrement |
+| **Public** | Étudiant en recherche, parent, église, partenaire |
+| **Administrateur technique** | Exploite le service |
 
-> **Amina, 19 ans — nouvelle étudiante à Fès.**
-> Elle arrive d'une autre ville, ne connaît personne. Une amie lui parle du
-> GBU. Elle cherche sur son téléphone, en 4G, sur un forfait limité.
-> **Attend du hub** : trouver en moins de deux minutes s'il existe un groupe
-> sur *son* campus, quand il se réunit, et à qui écrire — sans créer de compte,
-> et sans que son nom apparaisse publiquement.
-> *Exigences induites : F1.2, F1.3, NF1 (performance mobile), NF6 (confidentialité).*
+*Les effectifs de chaque catégorie seront fournis par le SN.*
 
-> **Yann, 22 ans — responsable de la cellule de Rabat-Agdal.**
-> Il anime l'étude biblique du jeudi. Il prépare son étude le mercredi soir,
-> parfois dans le train. Il remplit le rapport mensuel depuis son téléphone,
-> le soir, fatigué.
-> **Attend du hub** : le canevas de la semaine, consultable **hors ligne** ;
-> des notes de préparation ; un rapport qui se remplit en moins de trois
-> minutes ; savoir qui manque à l'appel depuis trois semaines.
-> *Exigences induites : F3.1–F3.5, F4.1, NF2 (hors ligne), NF3 (mobile-first).*
+### 3.2 Les personnes en fonction
 
-> **Sarah, 27 ans — Secrétaire nationale.**
-> Elle doit savoir, un lundi matin, quelles cellules vivent et lesquelles
-> s'éteignent, où en est le budget, et qui pourra reprendre Marrakech en
-> septembre.
-> **Attend du hub** : un tableau de bord qui montre **les silences** autant que
-> les activités ; le suivi du canevas par ville ; la relève identifiée.
-> *Exigences induites : F4.2–F4.5, F11.3, F9.4.*
+L'état des personnes en poste est **une donnée du mouvement, pas une
+spécification** : le bureau du Conseil Exécutif est renouvelé chaque année, et
+les bureaux de ville changent. Ces informations vivent dans le hub, pas dans ce
+document.
 
-> **Esaïe — administrateur, non développeur.**
-> Il déploie, restaure, surveille. Il ne doit jamais avoir à lire du code pour
-> exploiter le service.
-> **Attend du hub** : une page de santé, des sauvegardes vérifiées
-> automatiquement, un déploiement en une commande, une restauration
-> documentée et **répétée**.
-> *Exigences induites : NF8, NF9, NF10.*
+État au **9 septembre 2026**, pour mémoire :
 
-> **Jean-Marc, 34 ans — Ami du GBU, ingénieur à Casablanca.**
-> Ancien GBUssien. Il donne chaque trimestre et prie pour le mouvement.
-> **Attend du hub** : recevoir la lettre de prière, voir où va son don, tenir
-> sa promesse sans qu'on ait à le relancer trois fois, retrouver ses amis de
-> promotion.
-> *Exigences induites : F10.1–F10.4, F8.3.*
+- **Secrétaire National** : Dr Pierre ADIMI
+- **Assistants du Secrétaire National** : Esaïe NIKIEMA, Junias OUEDRAOGO,
+  Saint-Clair DJASSAMA, Mike Vianney MIKEDI, Crassi Flora POUTOU
 
 ---
 
