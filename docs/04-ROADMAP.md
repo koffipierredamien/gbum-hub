@@ -26,7 +26,7 @@
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
 | 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + Secrétariat National | 🟡 en cours | **3/6** |
-| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + Secrétariat National | 🔵 **en cours** | **3/7** |
+| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + Secrétariat National | 🔵 **en cours** | **4/7** |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | Secrétariat National + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + Secrétariat National + 5 testeurs | 🟡 dessinées | 0/6 |
 | 5 | Stack technique | La pile, et pourquoi | Pierre | 🟡 partielle | 1/5 |
@@ -91,9 +91,13 @@ C'est la phase qui décide de la **méthode**, avant toute technique.
       National accède à l'espace des Amis, l'inverse non. Un droit est une
       **habilitation datée** — mandats annuels et ouvertures reposent sur le
       même mécanisme. Décidé le 9 sept. 2026. *(Pierre)* — [ADR-005](02-ARCHITECTURE.md)
-- [ ] **2.3** Les **sections** sont complètes et correctement nommées : six
-      pour le site public (A1–A6), six espaces par niveau (B1–B6) et douze
-      sections transverses (C1–C12). *(Secrétariat National)*
+- [x] **2.3** Les **sections** sont complètes et correctement nommées : six
+      pour le site public (A1–A6), six espaces par niveau (B1–B6) et onze
+      sections transverses (C1–C11). **Relues par Pierre le 9 sept. 2026** :
+      une section **Activités** est ajoutée, couvrant les trois échelles —
+      nationale, ville, cellule — et absorbant les camps comme dossier
+      enrichi ; l'**annuaire** est détaillé et confirmé comme source de vérité
+      du hub. *(Pierre)*
 - [x] **2.4** Le partage **public / membre** → **posture ouverte** : villes,
       campus, cellules, jours, heures, lieux et contacts de groupe sont
       publics, **la publication s'arrêtant à la ville** : les cellules sont
@@ -241,6 +245,7 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 2 | Point 2.3 validé : section **Activités** ajoutée (trois échelles, camps absorbés comme dossier enrichi) ; **annuaire** détaillé comme source de vérité du hub |
 | 9 sept. 2026 | 2 | Point 2.2 tranché : accès **cumulatif vertical, cloisonné latéral, ouverture temporaire datée** (ADR-005). Mandats et ouvertures partagent un mécanisme unique : l'habilitation datée |
 | 9 sept. 2026 | 2 | Réserve R5 levée : **l'archive des canevas est ouverte à tous** |
 | 9 sept. 2026 | 1-2 | **Cahier des charges refondu (v2.0)** : deux produits aux objectifs séparés, sections par niveau, modèle d'accès cumulatif, mandats annuels, activités enrichies. Le canevas n'est plus présenté comme « le cœur » — c'était une lecture de la maîtrise d'œuvre |

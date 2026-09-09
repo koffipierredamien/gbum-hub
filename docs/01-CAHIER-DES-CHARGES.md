@@ -364,18 +364,75 @@ Accessibles à plusieurs niveaux, selon les droits.
 
 | ID | Section | Exigence |
 |---|---|---|
-| **C1** | **Annuaire** 🔴 | Personnes, structures, rattachements. Cloisonné : chacun voit selon son niveau. |
-| **C2** | **Canevas et études** 🔴 | Le canevas de l'année et ses archives ; l'avancement de chaque cellule ; **consultable hors réseau**. |
-| **C3** | **Visioconférence** 🟠 | Réunions, salle d'attente, modération, sous-groupes, enregistrement avec consentement, compte rendu. **Un redémarrage du service ne coupe pas une réunion en cours.** |
-| **C4** | **Agenda et activités** 🔴 | Toutes les activités du §1.2, typées ; inscriptions ; bilan ; **publication vers le site public**. |
+| **C1** | **Annuaire** 🔴 | Voir §4.2 ci-dessous. |
+| **C2** | **Activités** 🔴 | Voir §4.3 ci-dessous. |
+| **C3** | **Canevas et études** 🔴 | Le canevas de l'année et ses archives ; l'avancement de chaque cellule ; **consultable hors réseau**. |
+| **C4** | **Visioconférence** 🟠 | Réunions, salle d'attente, modération, sous-groupes, enregistrement avec consentement, compte rendu. **Un redémarrage du service ne coupe pas une réunion en cours.** |
 | **C5** | **Documents** 🔴 | Bibliothèque : dépôt, catégories, droits de lecture, versions. |
 | **C6** | **Communication** 🟠 | Annonces ciblées, envois par audience, préférences de contact par personne, canaux — hub, courriel, WhatsApp. |
 | **C7** | **Prière** 🟠 | Sujets de prière, lettre de prière, diffusion aux membres et aux Amis, archive. |
-| **C8** | **Camps** 🟠 | Dossier de camp : participants, chambres, transport, finances, boutique, attestations, programme, bilan. |
-| **C9** | **Finances** 🟡 | Soutiens, versements, budgets par structure, validation, trésorerie, **journal inaltérable**. |
-| **C10** | **Parcours et formation** 🟡 | Historique des rattachements et mandats, masterclass suivies, camps, relève. |
-| **C11** | **Recherche** 🔴 | Sur tout le hub, **filtrée par les droits du demandeur**. |
-| **C12** | **Notifications** 🔴 | Centre de notifications, préférences, jamais deux fois la même chose. |
+| **C8** | **Finances** 🟡 | Soutiens, versements, budgets par structure, validation, trésorerie, **journal inaltérable**. |
+| **C9** | **Parcours et formation** 🟡 | Historique des rattachements et mandats, masterclass suivies, camps, relève. |
+| **C10** | **Recherche** 🔴 | Sur tout le hub, **filtrée par les droits du demandeur**. |
+| **C11** | **Notifications** 🔴 | Centre de notifications, préférences, jamais deux fois la même chose. |
+
+### 4.2 C1 — L'annuaire 🔴
+
+> *« Il faut une section où on a les informations des GBUssiens et des
+> responsables. »* **Oui : c'est l'annuaire**, et il est la source de vérité de
+> tout le hub. *(mouvement, 9 sept. 2026)*
+
+| ID | Exigence |
+|---|---|
+| **C1.1** | **Les personnes** : identité, contact, ville, campus, filière, promotion, photo, et un **contact durable** qui survit à la fin des études. |
+| **C1.2** | **Les structures** : Secrétariat National, Conseil Exécutif, villes, cellules, corps des Amis. |
+| **C1.3** | **Les mandats en cours** — qui est responsable de quoi, **aujourd'hui**. Tous les mandats étant annuels, chacun porte sa date de début et de fin. |
+| **C1.4** | **Les mandats passés.** Qui a servi, quand. C'est ce qui alimente l'archive des bureaux successifs sur le site public (A2.6), et ce qui permet à un successeur de savoir à qui demander. |
+| **C1.5** | **Filtres et recherche** : par ville, cellule, statut, promotion, fonction. Listes paginées. |
+| **C1.6** | **Cloisonné selon le niveau** ([§5](#5-le-modèle-daccès)) : un responsable de cellule voit sa cellule, un bureau voit sa ville, le national voit tout. Une ouverture temporaire élargit la vue sans la rendre permanente. |
+| **C1.7** | **Aucune coordonnée n'est publique.** Le site public s'arrête au contact du responsable de ville. |
+
+> **Pourquoi l'annuaire est la première brique.** Le rôle d'une personne n'est
+> pas une étiquette qu'on lui colle : il se **déduit de son rattachement à une
+> structure, pour une période donnée**. C'est cette table qui fait fonctionner
+> le modèle d'accès — sans elle, aucune autre section ne sait qui a le droit de
+> quoi.
+
+### 4.3 C2 — Les activités 🔴
+
+> *« Une section Activités, pour l'organisation des activités nationales — les
+> camps et séminaires par exemple. »* *(mouvement, 9 sept. 2026)*
+
+**Ce que cette demande a révélé.** Une version antérieure séparait « Agenda et
+activités » d'un côté et « Camps » de l'autre, et **ne disait nulle part à
+quelle échelle une activité se situe**. Or c'est le point décisif : le camp
+d'Ifrane et l'agapè d'une cellule sont tous deux des activités, mais ils ne
+sont ni portés, ni validés, ni organisés par les mêmes personnes.
+
+**Une seule notion — l'activité —, portée par une structure, à trois échelles :**
+
+| Échelle | Portée par | Exemples |
+|---|---|---|
+| **Nationale** | Secrétariat National, Conseil Exécutif | Camp d'Ifrane, camp des responsables, camp des témoins, séminaires, conventions, masterclass nationales |
+| **Ville** | Bureau de ville | Sorties de détente, sorties d'évangélisation, JTPA, agapès de ville, études communautaires |
+| **Cellule** | Responsable de cellule | Agapès, jeux bibliques, temps de prière |
+
+| ID | Exigence |
+|---|---|
+| **C2.1** | **Créer une activité à son échelle**, typée selon la liste du [§1.2](#12-ce-que-le-mouvement-fait). Le type détermine ce que le dossier demande. |
+| **C2.2** | **Cycle de vie** : proposition → budget → validation par le niveau compétent → publication → inscriptions → tenue → **bilan**. |
+| **C2.3** | **Inscriptions** : places, liste d'attente, désinscription. |
+| **C2.4** | **Budget de l'activité**, rattaché au budget de la structure qui la porte. |
+| **C2.5** | **Bilan** : présents, ce qui a marché, ce qu'on refera. Il alimente la mémoire du mouvement. |
+| **C2.6** | **Publication vers le site public en un geste**, depuis le bilan — sans ressaisie. C'est ce qui rend l'objectif P3 tenable. |
+| **C2.7** | **Agenda** : la vue calendaire de toutes les activités visibles par la personne, filtrable par échelle et par structure ; export iCal. |
+| **C2.8** | **Dossier de grande activité** — camps, séminaires, conventions : participants, **chambres**, **transport**, finances, boutique, attestations, programme, équipe d'organisation. Ce n'est pas une autre section : c'est **le même dossier d'activité, enrichi** quand le type l'exige. |
+
+> **Pourquoi ne pas garder « Camps » à part.** Un camp est une activité
+> nationale lourde, pas une nature différente. Le séparer obligerait à
+> dupliquer le cycle de vie, les inscriptions, le budget et le bilan — et deux
+> copies d'une même règle finissent toujours par diverger. Un séminaire, qui
+> tient le milieu entre les deux, n'aurait su où se ranger.
 
 ---
 
