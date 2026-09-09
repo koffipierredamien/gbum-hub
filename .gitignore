@@ -1,5 +1,6 @@
 # Le canevas assemblé des maquettes : ~2 Mo, régénérable (voir maquettes/README.md).
 maquettes/maquettes-hub-gbum.html
+maquettes/site-public/site-public-gbum.html
 
 # Ceinture de sécurité : aucun code n'est versionné ici pour l'instant, mais
 # un outillage lancé dans le dépôt ne doit jamais y laisser ses artefacts.

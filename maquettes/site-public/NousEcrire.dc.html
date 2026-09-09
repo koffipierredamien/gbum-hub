@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
+    a { color:#96430F; text-decoration:none; } a:hover { color:#C6611C; }
+    button { font-family:inherit; cursor:pointer; }
+    .h1 { font-family:'Newsreader',Georgia,serif; font-size:32px; line-height:1.15; font-weight:600; margin:0 0 14px; text-wrap:pretty; }
+    .h2 { font-family:'Newsreader',Georgia,serif; font-size:24px; line-height:1.22; font-weight:600; margin:0 0 10px; }
+    .p  { font-size:15px; line-height:1.62; color:#5F5346; margin:0 0 16px; }
+    .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; }
+    .cta { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
+           background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700; }
+    .cta2 { display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:11px;
+            background:#FFFFFF; border:1.5px solid #C6611C; color:#96430F; font-size:14.5px; font-weight:700; }
+    .lien { display:flex; align-items:center; min-height:44px; font-size:14px; color:#5F5346; }
+    .lien:hover { color:#2A211B; }
+    .etiq { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 11px; border-radius:999px;
+            background:#F4EADC; border:1px solid #E5D9C9; font-size:11.5px; font-weight:600; color:#5F5346; }
+    /* Marqueur des contenus manquants — voir exigence A1.3 : un emplacement
+       vide ANNONCE qu'il est en cours d'écriture, il ne se meuble pas. */
+    .attente { border:1.5px dashed #C0AB8E; border-radius:12px; background:#FBF1E6; padding:14px 16px; }
+    .attente .t { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#96430F; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
+    .attente .d { font-size:13px; line-height:1.5; color:#5F5346; }
+    .vide { color:#8A7C6C; font-style:italic; }
+  </style>
+</helmet>
+
+<div style="width:390px; background:#FBF6EF;">
+  <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#FBF6EF; border-bottom:1px solid #E5D9C9;">
+    <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span>
+    </div>
+    <div style="flex-grow:1; line-height:1.15;">
+      <div style="font-size:14.5px; font-weight:700;">GBU Maroc</div>
+      <div style="font-size:11px; color:#6E6053;">Groupe Biblique Universitaire</div>
+    </div>
+    <div style="display:flex; align-items:center; height:36px; border:1px solid #E5D9C9; border-radius:9px; overflow:hidden; background:#FFFFFF;">
+      <span style="padding:0 11px; line-height:34px; font-size:12.5px; font-weight:700; background:#F4EADC; color:#2A211B;">FR</span>
+      <span style="padding:0 11px; line-height:34px; font-size:12.5px; font-weight:600; color:#6E6053;">EN</span>
+    </div>
+    <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-inline-end:-10px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </div>
+  </div>
+  <div style="padding:26px 20px 0;">
+    <h1 class="h1">Nous écrire</h1>
+    <p class="p">Une question, une demande, une proposition. Nous répondons.</p>
+  </div>
+
+  <div style="padding:8px 20px 0;">
+    <div style="font-size:13px; font-weight:700; color:#5F5346; margin-bottom:10px;">Votre sujet</div>
+    <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:22px;">
+      <div style="display:flex; align-items:center; gap:12px; min-height:52px; padding:0 15px; border-radius:12px; background:#FFFFFF; border:1.5px solid #E8732A;">
+        <div style="width:20px; height:20px; border-radius:50%; border:6px solid #E8732A; background:#FFFFFF; flex-shrink:0;"></div>
+        <span style="font-size:14.5px; font-weight:600;">Rejoindre un groupe</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; min-height:52px; padding:0 15px; border-radius:12px; background:#FFFFFF; border:1px solid #E5D9C9;">
+        <div style="width:20px; height:20px; border-radius:50%; border:1.5px solid #C0AB8E; flex-shrink:0;"></div>
+        <span style="font-size:14.5px; color:#5F5346;">Soutenir le mouvement</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; min-height:52px; padding:0 15px; border-radius:12px; background:#FFFFFF; border:1px solid #E5D9C9;">
+        <div style="width:20px; height:20px; border-radius:50%; border:1.5px solid #C0AB8E; flex-shrink:0;"></div>
+        <span style="font-size:14.5px; color:#5F5346;">Une question</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; min-height:52px; padding:0 15px; border-radius:12px; background:#FFFFFF; border:1px solid #E5D9C9;">
+        <div style="width:20px; height:20px; border-radius:50%; border:1.5px solid #C0AB8E; flex-shrink:0;"></div>
+        <span style="font-size:14.5px; color:#5F5346;">Autre</span>
+      </div>
+    </div>
+
+    <div class="carte" style="padding:4px 0; margin-bottom:16px;">
+      <div style="padding:12px 16px; min-height:52px; border-bottom:1px solid #F0E6D8;">
+        <div style="font-size:11.5px; color:#6E6053;">Votre nom</div>
+        <div style="font-size:15px; color:#8A7C6C;">Prénom, ou prénom et nom</div>
+      </div>
+      <div style="padding:12px 16px; min-height:52px; border-bottom:1px solid #F0E6D8;">
+        <div style="font-size:11.5px; color:#6E6053;">Comment vous joindre</div>
+        <div style="font-size:15px; color:#8A7C6C;">Courriel ou WhatsApp</div>
+      </div>
+      <div style="padding:12px 16px; min-height:52px; border-bottom:1px solid #F0E6D8;">
+        <div style="font-size:11.5px; color:#6E6053;">Votre ville</div>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:15px; color:#8A7C6C;">Choisir</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6053" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div style="padding:12px 16px; min-height:96px;">
+        <div style="font-size:11.5px; color:#6E6053; margin-bottom:4px;">Votre message</div>
+        <div style="font-size:15px; line-height:1.5; color:#8A7C6C;">Dites-nous en quelques mots ce qui vous amène.</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:9px; padding:13px 15px; background:#F4EADC; border-radius:12px; margin-bottom:18px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F5346" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:1px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span style="font-size:12.5px; line-height:1.55; color:#5F5346;">Votre message va au bureau de votre ville, et à lui seul. Il n’apparaît nulle part publiquement, et vous pouvez demander son effacement à tout moment.</span>
+    </div>
+
+    <button class="cta">Envoyer</button>
+  </div>
+  <div style="margin-top:40px; padding:28px 20px 32px; background:#F4EADC; border-top:1px solid #E5D9C9;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+      <div style="width:30px; height:30px; border-radius:8px; background:#E8732A; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-weight:600; color:#2A211B;">G</span>
+      </div>
+      <div style="font-size:14px; font-weight:700;">GBU Maroc</div>
+    </div>
+    <div style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-style:italic; color:#96430F; margin-bottom:16px;">« Connaître Christ et Le faire connaître »</div>
+    <p style="margin:0 0 20px; font-size:13px; line-height:1.6; color:#5F5346;">Groupe Biblique Universitaire au Maroc — membre de l’IFES, région Moyen-Orient et Afrique du Nord.</p>
+    <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:2px 16px; margin-bottom:20px;">
+      <a href="#" class="lien" style="font-size:13.5px;">Le mouvement</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Où nous sommes</a>
+      <a href="#" class="lien" style="font-size:13.5px;">La vie du mouvement</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Le canevas</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Agenda</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Soutenir</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Nous écrire</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Confidentialité</a>
+    </div>
+    <button class="cta2">Espace membres</button>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

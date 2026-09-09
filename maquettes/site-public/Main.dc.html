@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
+    a { color:#96430F; text-decoration:none; } a:hover { color:#C6611C; }
+    button { font-family:inherit; cursor:pointer; }
+    .h1 { font-family:'Newsreader',Georgia,serif; font-size:32px; line-height:1.15; font-weight:600; margin:0 0 14px; text-wrap:pretty; }
+    .h2 { font-family:'Newsreader',Georgia,serif; font-size:24px; line-height:1.22; font-weight:600; margin:0 0 10px; }
+    .p  { font-size:15px; line-height:1.62; color:#5F5346; margin:0 0 16px; }
+    .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; }
+    .cta { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
+           background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700; }
+    .cta2 { display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:11px;
+            background:#FFFFFF; border:1.5px solid #C6611C; color:#96430F; font-size:14.5px; font-weight:700; }
+    .lien { display:flex; align-items:center; min-height:44px; font-size:14px; color:#5F5346; }
+    .lien:hover { color:#2A211B; }
+    .etiq { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 11px; border-radius:999px;
+            background:#F4EADC; border:1px solid #E5D9C9; font-size:11.5px; font-weight:600; color:#5F5346; }
+    /* Marqueur des contenus manquants — voir exigence A1.3 : un emplacement
+       vide ANNONCE qu'il est en cours d'écriture, il ne se meuble pas. */
+    .attente { border:1.5px dashed #C0AB8E; border-radius:12px; background:#FBF1E6; padding:14px 16px; }
+    .attente .t { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#96430F; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
+    .attente .d { font-size:13px; line-height:1.5; color:#5F5346; }
+    .vide { color:#8A7C6C; font-style:italic; }
+  </style>
+</helmet>
+
+<div style="width:390px; background:#FBF6EF;">
+  <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#FBF6EF; border-bottom:1px solid #E5D9C9;">
+    <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span>
+    </div>
+    <div style="flex-grow:1; line-height:1.15;">
+      <div style="font-size:14.5px; font-weight:700;">GBU Maroc</div>
+      <div style="font-size:11px; color:#6E6053;">Groupe Biblique Universitaire</div>
+    </div>
+    <div style="display:flex; align-items:center; height:36px; border:1px solid #E5D9C9; border-radius:9px; overflow:hidden; background:#FFFFFF;">
+      <span style="padding:0 11px; line-height:34px; font-size:12.5px; font-weight:700; background:#F4EADC; color:#2A211B;">FR</span>
+      <span style="padding:0 11px; line-height:34px; font-size:12.5px; font-weight:600; color:#6E6053;">EN</span>
+    </div>
+    <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-inline-end:-10px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </div>
+  </div>
+
+  <div style="padding:10px 18px 0;">
+    <div style="border-radius:18px; overflow:hidden; height:220px; background:linear-gradient(180deg,#F4EADC 0%,#E8D3B8 100%); position:relative; display:flex; align-items:center; justify-content:center;">
+      <div class="attente" style="background:rgba(255,255,255,.86); max-width:250px; text-align:center; border-color:#B9A385;">
+        <div class="t" style="justify-content:center;">Photo attendue</div>
+        <div class="d">Des étudiants sur un campus marocain.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:26px 20px 0;">
+    <h1 class="h1" style="font-size:34px;">Des étudiants, une Parole, tout le Maroc.</h1>
+    <p class="p" style="font-size:16px;">Le Groupe Biblique Universitaire rassemble des étudiants qui veulent vivre et approfondir leur foi chrétienne pendant leurs années d’études. Sur les campus, chaque semaine.</p>
+    <button class="cta">Trouver mon groupe
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+    <div style="text-align:center; margin-top:11px; font-size:12.5px; color:#6E6053;">Sans compte, sans inscription.</div>
+  </div>
+
+  <div style="padding:34px 20px 0;">
+    <div class="attente">
+      <div class="t">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>
+        Thème de l’année
+      </div>
+      <div class="d">Le thème qui porte la vision décennale sera annoncé ici dès qu’il sera arrêté par le Secrétariat National.</div>
+    </div>
+  </div>
+
+  <div style="padding:30px 20px 0;">
+    <h2 class="h2">Ce qu’on y fait</h2>
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+      <div class="carte" style="padding:16px; display:flex; gap:13px;">
+        <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v17H5.5A2.5 2.5 0 0 0 3 22z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H12v17h6.5a2.5 2.5 0 0 1 2.5 2z"/></svg>
+        </div>
+        <div><div style="font-size:15.5px; font-weight:700; margin-bottom:3px;">L’étude de la Bible</div><div style="font-size:13.5px; line-height:1.55; color:#5F5346;">Chaque semaine, en cellule, sur le canevas de l’année.</div></div>
+      </div>
+      <div class="carte" style="padding:16px; display:flex; gap:13px;">
+        <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.9"/><path d="M8.1 15.9a5.5 5.5 0 0 1 0-7.8"/><path d="M15.9 8.1a5.5 5.5 0 0 1 0 7.8"/><path d="M5.2 18.8a9.6 9.6 0 0 1 0-13.6"/><path d="M18.8 5.2a9.6 9.6 0 0 1 0 13.6"/></svg>
+        </div>
+        <div><div style="font-size:15.5px; font-weight:700; margin-bottom:3px;">La prière</div><div style="font-size:13.5px; line-height:1.55; color:#5F5346;">Les uns pour les autres, pour les campus, pour le pays.</div></div>
+      </div>
+      <div class="carte" style="padding:16px; display:flex; gap:13px;">
+        <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17 14.5a5 5 0 0 1 4.5 4"/></svg>
+        </div>
+        <div><div style="font-size:15.5px; font-weight:700; margin-bottom:3px;">L’entraide</div><div style="font-size:13.5px; line-height:1.55; color:#5F5346;">Arriver seul dans un pays qu’on ne connaît pas est rude. Le groupe est souvent la première famille.</div></div>
+      </div>
+      <div class="carte" style="padding:16px; display:flex; gap:13px;">
+        <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg>
+        </div>
+        <div><div style="font-size:15.5px; font-weight:700; margin-bottom:3px;">Les temps forts</div><div style="font-size:13.5px; line-height:1.55; color:#5F5346;">Camps, conventions et rencontres nationales réunissent les étudiants de toutes les villes.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:34px 20px 0;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px;">
+      <h2 class="h2" style="margin:0;">La vie du mouvement</h2>
+      <a href="#" style="font-size:13.5px; font-weight:600;">Tout voir</a>
+    </div>
+    <div class="carte" style="overflow:hidden;">
+      <div style="height:150px; background:linear-gradient(180deg,#F4EADC,#EFDFC9); display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:12px; color:#5F5346;">Dernière activité publiée</span>
+      </div>
+      <div style="padding:16px;">
+        <div class="etiq" style="margin-bottom:10px;">Publié depuis l’espace de travail</div>
+        <div style="font-size:16px; font-weight:700; margin-bottom:6px;" class="vide">Titre de l’activité</div>
+        <div style="font-size:13.5px; line-height:1.55; color:#5F5346;">Les bilans et les souvenirs saisis par les villes et les cellules apparaissent ici, sans que personne ait à les retaper.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:34px 20px 0;">
+    <div style="border-radius:18px; background:#2A211B; padding:24px 20px;">
+      <div style="font-size:11.5px; font-weight:700; color:#F0A868; letter-spacing:.06em; text-transform:uppercase; margin-bottom:9px;">Le prochain temps fort</div>
+      <div style="font-family:'Newsreader',Georgia,serif; font-size:25px; line-height:1.2; font-weight:600; color:#FBF6EF; margin-bottom:10px;">Camp d’Ifrane</div>
+      <p style="margin:0 0 18px; font-size:14.5px; line-height:1.6; color:#D8CBBB;">Une retraite dans le Moyen Atlas, avec les étudiants de tout le pays. Communion, détente, et des vies qui changent.</p>
+      <div class="attente" style="background:rgba(251,241,230,.10); border-color:#6B5B4A; margin-bottom:16px;">
+        <div class="d" style="color:#D8CBBB;">Dates et informations pratiques à venir.</div>
+      </div>
+      <button class="cta" style="min-height:48px; font-size:15px;">En savoir plus</button>
+    </div>
+  </div>
+
+  <div style="margin-top:40px; padding:28px 20px 32px; background:#F4EADC; border-top:1px solid #E5D9C9;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+      <div style="width:30px; height:30px; border-radius:8px; background:#E8732A; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-weight:600; color:#2A211B;">G</span>
+      </div>
+      <div style="font-size:14px; font-weight:700;">GBU Maroc</div>
+    </div>
+    <div style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-style:italic; color:#96430F; margin-bottom:16px;">« Connaître Christ et Le faire connaître »</div>
+    <p style="margin:0 0 20px; font-size:13px; line-height:1.6; color:#5F5346;">Groupe Biblique Universitaire au Maroc — membre de l’IFES, région Moyen-Orient et Afrique du Nord.</p>
+    <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:2px 16px; margin-bottom:20px;">
+      <a href="#" class="lien" style="font-size:13.5px;">Le mouvement</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Où nous sommes</a>
+      <a href="#" class="lien" style="font-size:13.5px;">La vie du mouvement</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Le canevas</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Agenda</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Soutenir</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Nous écrire</a>
+      <a href="#" class="lien" style="font-size:13.5px;">Confidentialité</a>
+    </div>
+    <button class="cta2">Espace membres</button>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

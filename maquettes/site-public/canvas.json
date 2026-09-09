@@ -1,0 +1,153 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 500,
+      "w": 390,
+      "h": 2500,
+      "title": "1 · Accueil"
+    },
+    {
+      "file": "LeMouvement.dc.html",
+      "x": 490,
+      "y": 500,
+      "w": 390,
+      "h": 2300,
+      "title": "2 · Le mouvement"
+    },
+    {
+      "file": "OuNousSommes.dc.html",
+      "x": 980,
+      "y": 500,
+      "w": 390,
+      "h": 1750,
+      "title": "3 · Où nous sommes"
+    },
+    {
+      "file": "VieDuMouvement.dc.html",
+      "x": 1470,
+      "y": 500,
+      "w": 390,
+      "h": 1550,
+      "title": "4 · La vie du mouvement"
+    },
+    {
+      "file": "Canevas.dc.html",
+      "x": 1960,
+      "y": 500,
+      "w": 390,
+      "h": 1450,
+      "title": "5 · Le canevas"
+    },
+    {
+      "file": "Agenda.dc.html",
+      "x": 0,
+      "y": 3356,
+      "w": 390,
+      "h": 1150,
+      "title": "6 · Agenda"
+    },
+    {
+      "file": "Soutenir.dc.html",
+      "x": 490,
+      "y": 3356,
+      "w": 390,
+      "h": 1500,
+      "title": "7 · Soutenir"
+    },
+    {
+      "file": "NousEcrire.dc.html",
+      "x": 980,
+      "y": 3356,
+      "w": 390,
+      "h": 1350,
+      "title": "8 · Nous écrire"
+    },
+    {
+      "file": "Rejoindre.dc.html",
+      "x": 1470,
+      "y": 3356,
+      "w": 390,
+      "h": 2600,
+      "title": "9 · Rejoindre le GBUM"
+    },
+    {
+      "file": "AccueilBureau.dc.html",
+      "x": 0,
+      "y": 6312,
+      "w": 1440,
+      "h": 1900,
+      "title": "10 · Accueil — bureau"
+    },
+    {
+      "file": "Administration.dc.html",
+      "x": 1540,
+      "y": 6312,
+      "w": 1440,
+      "h": 950,
+      "title": "11 · Administration"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "titre",
+      "x": 0,
+      "y": 0,
+      "w": 1400,
+      "text": "SITE PUBLIC DU GBUM — maquettes du lot 1\n\nHuit pages, plus le parcours « Rejoindre » et l'espace d'administration. Composées à 390 px d'abord ; le bureau en est dérivé.\n\nDEUX RÈGLES TIENNENT CES PLANCHES.\n\n1. Rien n'est inventé. Tout contenu que le mouvement n'a pas encore fourni est marqué d'un encadré pointillé « en cours d'écriture ». Ce n'est pas un défaut de maquette : c'est l'exigence A1.3 elle-même — une page qui attend son contenu l'annonce, elle ne se meuble pas et ne reste pas blanche.\n\n2. La publication s'arrête à la ville (ADR-011). Les cellules sont nommées avec leur nombre de membres ; ni jour, ni heure, ni lieu, ni responsable. Le seul contact publié est celui du bureau de ville."
+    },
+    {
+      "id": "r1",
+      "x": 0,
+      "y": 294,
+      "w": 900,
+      "text": "RANGÉE 1 — les cinq premières pages, sur téléphone."
+    },
+    {
+      "id": "d-attente",
+      "x": 2450,
+      "y": 500,
+      "w": 380,
+      "text": "LE MARQUEUR D'ATTENTE\n\nL'encadré pointillé ambre signale un contenu que le Secrétariat National doit fournir : le thème de l'année, l'histoire du GBUM, le canevas, les chiffres, les photos.\n\nIl est visible à dessein. Un lecteur pressé doit voir immédiatement ce qui est réel et ce qui ne l'est pas — c'est ce qui a manqué à la série de maquettes précédente, où des chiffres inventés pouvaient passer pour des faits."
+    },
+    {
+      "id": "d-langues",
+      "x": 2450,
+      "y": 814,
+      "w": 380,
+      "text": "FRANÇAIS ET ANGLAIS\n\nLe sélecteur est dans l'en-tête, à droite. Pas d'arabe : la décision du 9 septembre 2026 retire le RTL.\n\nQuand une traduction anglaise manque, la page affiche le français plutôt qu'un vide — visible sur la planche 11, où l'onglet English porte la mention."
+    },
+    {
+      "id": "r2",
+      "x": 0,
+      "y": 3150,
+      "w": 900,
+      "text": "RANGÉE 2 — les trois dernières pages, et le parcours « Rejoindre »."
+    },
+    {
+      "id": "d-rejoindre",
+      "x": 1960,
+      "y": 3356,
+      "w": 380,
+      "text": "LE PARCOURS « REJOINDRE »\n\nRefait selon ADR-011. La version précédente donnait le jour, le bâtiment, la salle et le prénom du responsable de cellule — au-delà de ce que la décision autorise.\n\nIci : ville, puis liste des cellules avec leur seul effectif, puis message au bureau de la ville. C'est le bureau qui communiquera le lieu et l'horaire.\n\nLe cas « aucun groupe dans ta ville » est traité avec le même soin que le cas nominal : c'est là qu'on perd quelqu'un ou qu'on le rattrape."
+    },
+    {
+      "id": "r3",
+      "x": 0,
+      "y": 6106,
+      "w": 900,
+      "text": "RANGÉE 3 — la version bureau de l'accueil, et l'espace d'administration."
+    },
+    {
+      "id": "d-admin",
+      "x": 3080,
+      "y": 6312,
+      "w": 380,
+      "text": "POURQUOI L'ADMINISTRATION EST DANS CE LOT\n\nSi le Secrétariat National ne peut pas modifier le site lui-même, le site cesse de vivre au bout de trois mois — et l'objectif P3 tombe.\n\nCet écran montre le strict nécessaire : modifier une page, en deux langues, avec la liste des sections qui attendent encore leur contenu. Publier est un geste distinct : rien ne change en ligne tant qu'on n'a pas publié."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
