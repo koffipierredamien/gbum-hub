@@ -1,11 +1,8 @@
-node_modules/
-dist/
-.next/
-coverage/
-*.tsbuildinfo
-.env
-.env.*
-!.env.example
-
-# Canevas assemblé : ~2 Mo, régénérable (voir maquettes/README.md)
+# Le canevas assemblé des maquettes : ~2 Mo, régénérable (voir maquettes/README.md).
 maquettes/maquettes-hub-gbum.html
+
+# Ceinture de sécurité : aucun code n'est versionné ici pour l'instant, mais
+# un outillage lancé dans le dépôt ne doit jamais y laisser ses artefacts.
+node_modules/
+.DS_Store
+Thumbs.db

@@ -54,19 +54,22 @@
 
 ---
 
-## Les décisions en attente
+## Les décisions — état réel
 
-| # | Décision | Recommandation |
-|---|---|---|
-| ~~D1~~ | ~~Un site ou plusieurs ?~~ | ✅ **Tranché — un produit, un dépôt, deux surfaces** |
-| ~~D9~~ | ~~Monolithe ou microservices ?~~ | ✅ **Tranché — monolithe modulaire** ([ADR-010](02-ARCHITECTURE.md)) |
-| ~~D2~~ | ~~Pile technique~~ | ✅ **Tranché le 8 sept. 2026 — TypeScript de bout en bout** |
-| ~~D3~~ | ~~Dépôt~~ | ✅ **Tranché le 8 sept. 2026 — dépôt `gbum-hub`** |
-| **D4** | Périmètre du lot 1 | Vitrine + socle + **canevas** + pilotage |
-| **D5** | Bascule | **Progressive**, ancien système en lecture seule 90 jours |
-| **D6** | Langues v1 | **Français seul**, mais architecture i18n + **RTL posée dès la première ligne** |
-| **D7** | Hébergement | **Plateforme gérée** plutôt que le VPS auto-administré |
-| **D8** | Le JTPA dans le hub ? | **Oui, mais cloisonné et chiffré à part** — arbitrage du SN |
+> Une décision n'est « tranchée » que si Pierre ou le Secrétariat National
+> l'a dit explicitement. Trois le sont ; les autres attendent leur phase.
+
+| # | Décision | État | Phase |
+|---|---|---|---|
+| **D1** | Un site ou plusieurs ? | ⬜ **à trancher** | 2.1 |
+| **D2** | Pile technique | ✅ **TypeScript de bout en bout** — 8 sept. 2026 | 5.1 |
+| **D3** | Dépôt | ✅ **`gbum-hub`** — 8 sept. 2026 | — |
+| **D4** | Périmètre de la v1 | ⬜ à trancher | 2.5 |
+| **D5** | Bascule progressive ou non | ⬜ à trancher | 3.7 |
+| **D6** | Langues de la v1 | ⬜ à trancher | 3.3 |
+| **D7** | Hébergement | ⬜ à trancher | 5.4 |
+| **D8** | Le JTPA dans le hub ? | ⬜ à trancher — **décision du mouvement** | 2.6 |
+| **D9** | Monolithe ou microservices ? | ✅ **monolithe modulaire** — 8 sept. 2026 | 2.2 |
 
 Détail et argumentation : [cahier des charges §12](01-CAHIER-DES-CHARGES.md#12-décisions-à-arbitrer).
 
@@ -74,20 +77,17 @@ Détail et argumentation : [cahier des charges §12](01-CAHIER-DES-CHARGES.md#12
 
 ## Prochaines étapes
 
-1. **Arbitrer D1 à D8** (Pierre pour la technique, le Secrétariat National pour
-   le périmètre et le JTPA).
-2. **Faire valider le cahier des charges par le Secrétariat National** — en
-   particulier les objectifs métier (§2.1) et le chapitre sur la protection des
-   personnes (§7).
-3. **Réclamer au SN** : le canevas de l'année en cours, les textes officiels de
-   la vision et du thème, de vraies photos. *Sans le canevas réel, l'écran le
-   plus important du hub sera maquetté à l'aveugle.*
-4. **Lancer les maquettes** avec le [prompt maître](05-PROMPT-CLAUDE-DESIGN.md#2--prompt-maître--à-copier-tel-quel).
-5. **Désigner** un responsable produit au SN et cinq testeurs GBUssiens dans
+Nous sommes en **phase 2 — Organisation du hub** ([`04-ROADMAP.md`](04-ROADMAP.md)).
+
+1. Trancher les **sept points de la phase 2**, à commencer par le premier :
+   un seul site ou plusieurs ?
+2. **Réclamer au Secrétariat National** le canevas d'études de l'année, de
+   vraies photos, et les textes officiels de la vision et du thème.
+3. **Désigner** un responsable produit au SN et cinq testeurs GBUssiens dans
    cinq villes différentes.
-6. **Démarrer le lot 0** (fondations) une fois D2 tranchée.
+4. Ouvrir la phase 3 dès que la phase 2 est validée à 70 %.
 
 ---
 
 *Documents vivants. Toute modification passe par une pull request et est datée.*
-*Rédigés le 7 septembre 2026.*
+*Rédigés le 7 septembre 2026, réordonnés en phases le 9 septembre 2026.*

@@ -639,16 +639,21 @@ en C#.
 
 | # | Décision | Statut |
 |---|---|---|
-| ADR-001 | Monorepo, deux surfaces (vitrine publique + espace membre) | 🟡 proposé |
+| ADR-001 | Monorepo, deux surfaces (vitrine publique + espace membre) | 🟡 proposé — *phase 2.1* |
 | **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
-| ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé |
-| ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé |
-| ADR-005 | Politique d'accès unique, rôle × portée | 🟡 proposé |
+| ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé — *phase 5.2* |
+| ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |
+| ADR-005 | Politique d'accès unique, rôle × portée | 🟡 proposé — *phase 2.2* |
 | ADR-006 | Canevas et séance disponibles hors ligne | 🟡 proposé |
-| ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer |
+| ADR-007 | Plateforme gérée plutôt que VPS auto-administré | ⚖️ à arbitrer — *phase 5.4* |
 | ADR-008 | i18n et RTL posés dès la première ligne | 🟡 proposé |
 | ADR-009 | Nouveau dépôt `gbum-hub` | ✅ **accepté** (8 sept. 2026) |
 | **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
+
+> **Un ADR « proposé » n'autorise rien.** Un prototype de la politique
+> d'accès (ADR-005) a été écrit puis supprimé le 9 septembre 2026 : il
+> anticipait une décision qui n'était pas prise. Le raisonnement reste
+> dans ce document ; le code sera réécrit après validation.
 
 *Un ADR accepté n'est jamais modifié : il est remplacé par un ADR ultérieur qui
 le supersède, en expliquant ce qui a changé.*

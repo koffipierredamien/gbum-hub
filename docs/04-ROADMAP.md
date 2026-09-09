@@ -1,246 +1,206 @@
-# Plan de route — Hub officiel du GBUM
+# Échéancier — Hub officiel du GBUM
 
-> Estimations en **jours-homme effectifs**. Sur un projet bénévole à temps
-> partiel, comptez **1,5 à 2,5 jours calendaires par jour-homme** selon la
-> période universitaire.
-> Les durées supposent un développeur **déjà à l'aise** avec la pile retenue ;
-> ajoutez 15 à 20 jours de montée en compétence si ce n'est pas le cas.
+> **La règle du projet.** Le travail avance par **phases**. On ne commence
+> rien de la phase suivante avant que la phase en cours soit **validée à
+> 70 %**. Les 30 % restants deviennent des réserves écrites, traitées en
+> parallèle — jamais un prétexte pour bloquer, jamais un oubli.
+>
+> Chaque phase porte une liste **numérotée** de points. Un point est validé
+> quand la personne compétente dit oui, explicitement. 70 % des points
+> validés = la porte s'ouvre. C'est comptable, pas au ressenti.
 
----
+**Nous sommes en phase 2.**
 
-## Principe de lotissement
-
-Chaque lot **livre quelque chose d'utilisable**. On ne construit pas six mois
-avant de montrer. La séquence suit la valeur pour le mouvement, pas la facilité
-technique :
-
-```
-Lot 0  Fondations       → rien de visible, tout de solide
-Lot 1  Vitrine          → le mouvement devient visible et joignable      ⭐ valeur immédiate
-Lot 2  Socle + Canevas  → LE CŒUR : la mission entre dans l'outil        ⭐⭐⭐ raison d'être
-Lot 3  Pilotage         → le national voit le terrain
-Lot 4  Reprise & bascule→ l'ancien système s'éteint                      ⚠️ jalon critique
-Lot 5  Camps, réunions, communication
-Lot 6  Finances, Amis, parcours
-Lot 7  Mémoire, multilingue, raffinements
-```
+| # | Phase | Livrable | Qui valide | État | Validé |
+|---|---|---|---|---|---|
+| 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
+| 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 écrit | 0/6 |
+| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | 0/7 |
+| 3 | Cahier des charges | Le CDC, exigence par exigence | SN + Pierre | 🟡 écrit | 0/7 |
+| 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + SN + 5 testeurs | 🟡 dessinées | 0/6 |
+| 5 | Stack technique | La pile, et pourquoi | Pierre | 🟡 partielle | 1/5 |
+| 6 | Plan de développement | Architecture · tests · lotissement, **avant de coder** | Pierre | ⬜ | 0/6 |
+| 7 | Développement | Lot par lot | Pierre | ⬜ | — |
 
 ---
 
-## Lot 0 — Fondations · **12–16 j**
+## Phase 0 — Connaître l'existant ✅
 
-*Rien de visible. Tout ce qui rend le reste possible — et sûr.*
+**Livrable :** [`00-AUDIT-EXISTANT.md`](00-AUDIT-EXISTANT.md).
+67 204 lignes parcourues, mesurées, classées par gravité.
 
-| # | Tâche | j |
+- [x] **0.1** L'audit décrit fidèlement l'existant.
+
+---
+
+## Phase 1 — Cadrage 🟡
+
+**Livrable :** [`01-CAHIER-DES-CHARGES.md`](01-CAHIER-DES-CHARGES.md) §1 à §3.
+**Question de la phase :** *pour qui construit-on, et pour répondre à quoi ?*
+
+- [ ] **1.1** Le mouvement est décrit fidèlement : vision décennale, devise,
+      thème annuel, organisation du national à la cellule. *(SN)*
+- [ ] **1.2** Les acteurs et les personas correspondent à des gens réels. *(SN)*
+- [ ] **1.3** Toutes les activités du GBUM sont recensées : études, agapès,
+      sorties, JTPA, camps. *(SN)*
+- [ ] **1.4** Les manques identifiés sont réels : canevas d'études, JTPA,
+      vision décennale, accueil de rentrée, mémoire, langues. *(SN + Pierre)*
+- [ ] **1.5** Les objectifs métier O1 à O7 sont les bons, et leurs indicateurs
+      atteignables. *(SN)*
+- [ ] **1.6** Les non-objectifs de la v1 sont acceptés. *(SN)*
+
+---
+
+## Phase 2 — Organisation du hub 🔵 **← nous sommes ici**
+
+**Livrable :** [`02-ARCHITECTURE.md`](02-ARCHITECTURE.md) §1, §2, §4 et les ADR
+qui en dépendent.
+**Question de la phase :** *quelle forme prend le hub, et qui voit quoi ?*
+
+C'est la phase qui décide de la **méthode**, avant toute technique.
+
+- [ ] **2.1** **Un seul site ou plusieurs ?** Trois options possibles, chacune
+      avec ses conséquences. *(Pierre + SN)* — ADR-001
+- [ ] **2.2** **Comment se gèrent les accès ?** Rôle simple, rôle × portée, ou
+      autre chose. *(Pierre + SN)* — ADR-005
+- [ ] **2.3** La liste des **domaines fonctionnels** D1 à D12 est complète et
+      correctement nommée. *(SN)*
+- [ ] **2.4** Le partage **public / membre** est au bon endroit : ce qui se voit
+      sans compte, ce qui ne se voit pas. *(SN)*
+- [ ] **2.5** Le **périmètre de la v1** : quels domaines sortent en premier.
+      *(SN + Pierre)*
+- [ ] **2.6** Le sort du **JTPA** : dans le hub, cloisonné, ou hors du hub.
+      *(SN — décision du mouvement, pas une décision technique)*
+- [ ] **2.7** Le sort de la **visioconférence** : la garder, un moteur ou deux.
+      *(Pierre + SN)* — ADR-004
+
+---
+
+## Phase 3 — Cahier des charges ⬜
+
+**Livrable :** [`01-CAHIER-DES-CHARGES.md`](01-CAHIER-DES-CHARGES.md) en entier.
+**Question de la phase :** *que doit faire le hub, exigence par exigence ?*
+
+- [ ] **3.1** Exigences fonctionnelles des domaines prioritaires D1 à D4 —
+      vitrine, socle, **canevas d'études**, pilotage. *(SN)*
+- [ ] **3.2** Exigences fonctionnelles des domaines D5 à D12. *(SN)*
+- [ ] **3.3** Exigences non fonctionnelles : performance, hors ligne, mobile,
+      accessibilité, langues. *(Pierre)*
+- [ ] **3.4** **Sécurité et protection des personnes** — le modèle de menace,
+      les données sensibles, la conformité. *(SN + Pierre)*
+- [ ] **3.5** Les contraintes sont exactes : équipe, budget, exploitation,
+      utilisateurs. *(Pierre + SN)*
+- [ ] **3.6** Les critères d'acceptation de la v1. *(SN + Pierre)*
+- [ ] **3.7** La stratégie de **reprise des données** existantes. *(Pierre)*
+
+---
+
+## Phase 4 — Maquettes ⬜
+
+**Livrable :** les sept planches de [`../maquettes`](../maquettes), et celles
+qui manqueront.
+**Question de la phase :** *à quoi ressemble le hub, et est-ce utilisable ?*
+
+- [ ] **4.1** La direction artistique — thème « Foyer » repris de l'existant.
+      *(Pierre + SN)*
+- [ ] **4.2** Les six écrans prioritaires, un par un. *(SN)*
+- [ ] **4.3** Éprouvés **sur un téléphone réel, en connexion réelle**, par
+      cinq GBUssiens de cinq villes. *(testeurs)*
+- [ ] **4.4** Les états vides et d'erreur sont traités. *(Pierre)*
+- [ ] **4.5** Contrastes et cibles tactiles vérifiés, WCAG 2.2 AA. *(Pierre)*
+- [ ] **4.6** Les écrans manquants sont identifiés et priorisés. *(SN + Pierre)*
+
+> **Prérequis à réclamer au Secrétariat National :** le canevas d'études de
+> l'année en cours, de vraies photos, les textes officiels de la vision et du
+> thème. Sans le canevas réel, l'écran le plus important du hub reste
+> maquetté à l'aveugle.
+
+---
+
+## Phase 5 — Stack technique 🟡
+
+**Livrable :** [`02-ARCHITECTURE.md`](02-ARCHITECTURE.md) §3, §6.
+**Question de la phase :** *avec quoi construit-on, et à quel coût ?*
+
+- [x] **5.1** Le **langage** — TypeScript de bout en bout. *(Pierre, 8 sept. 2026)*
+- [ ] **5.2** La **base de données** et sa stratégie de migration. — ADR-003
+- [ ] **5.3** Le **temps réel** — moteur, hébergé ou géré. — ADR-004
+- [ ] **5.4** L'**hébergement** — plateforme gérée ou VPS. — ADR-007
+- [ ] **5.5** Le **coût mensuel** est acceptable et prévisible. *(SN)*
+
+---
+
+## Phase 6 — Plan de développement ⬜
+
+**Livrable :** un document à écrire, `06-PLAN-DE-DEVELOPPEMENT.md`.
+**Question de la phase :** *comment écrit-on ce code, et comment prouve-t-on
+qu'il marche — avant d'en écrire la première ligne ?*
+
+- [ ] **6.1** L'**architecture du code** : contextes, frontières, règles de
+      dépendance. Expliquée, pas seulement décrétée.
+- [ ] **6.2** Le **modèle de données** complet : entités, relations,
+      contraintes.
+- [ ] **6.3** La **stratégie de test** : quoi tester, à quel niveau, ce qu'on
+      ne teste pas.
+- [ ] **6.4** Les **conventions** — [`03-CONVENTIONS-ET-QUALITE.md`](03-CONVENTIONS-ET-QUALITE.md).
+- [ ] **6.5** Le **lotissement** du développement, et l'ordre des lots.
+- [ ] **6.6** La **définition de « terminé »**.
+
+---
+
+## Phase 7 — Développement ⬜
+
+Ne commence qu'à 70 % de la phase 6.
+
+Le découpage ci-dessous est un **premier jet, à revoir en phase 6** — il a été
+écrit avant que les phases 1 à 5 soient validées, et rien ne dit qu'il y
+survivra.
+
+| Lot | Contenu | Estimation |
 |---|---|---|
-| 0.1 | Dépôt, monorepo, conventions, configurations partagées | 2 |
-| 0.2 | Chaîne CI complète : lint, types, tests, a11y, sécurité, performance | 3 |
-| 0.3 | Schéma initial + migrations versionnées + jeu d'essai **anonymisé** | 2 |
-| 0.4 | Authentification (lien magique, mot de passe, TOTP) + sessions | 3 |
-| 0.5 | **Politique d'accès `peut()`** + test génératif rôle × portée (ADR-005) | 3 |
-| 0.6 | Environnements, déploiement automatique, prévisualisation par PR | 2 |
-| 0.7 | Observabilité : Sentry, journaux structurés, page de santé | 1 |
+| 0 | Fondations : dépôt, CI, base, authentification, politique d'accès | 12–16 j |
+| 1 | Vitrine publique et accueil de rentrée | 16–22 j |
+| 2 | Socle et **canevas d'études** | 26–34 j |
+| 3 | Pilotage : rapports, plan d'action, tableaux de bord | 14–18 j |
+| 4 | Reprise des données et bascule ⚠️ | 14–20 j |
+| 5 | Camps, réunions, communication | 30–40 j |
+| 6 | Finances, Amis, parcours | 26–34 j |
+| 7 | Mémoire, langues, raffinements | 20–26 j |
+| | **Total** | **158–210 j** |
 
-**Jalon 0 :** une page vide se déploie toute seule, sur trois environnements,
-avec une CI qui refuse le code non conforme, et une politique d'accès déjà
-testée. *C'est la fondation qui manque le plus à l'existant.*
+**Traduction en calendrier**, pour un développeur bénévole :
 
----
-
-## Lot 1 — Vitrine publique et accueil · **16–22 j** ⭐
-
-*Le premier lot visible. Il sert le mouvement dès le jour de sa mise en ligne.*
-
-| # | Tâche | Réf. CDC | j |
-|---|---|---|---|
-| 1.1 | Design system « Foyer v2 » : tokens, composants, thème clair/sombre | — | 5 |
-| 1.2 | Accueil, présentation, vision décennale, devise, thème de l'année | F1.1 | 3 |
-| 1.3 | « Nous trouver » : villes, campus, cellules publiques, carte | F1.2 | 2 |
-| 1.4 | **Parcours d'accueil de rentrée** + relance à 72 h | **F1.3** | 4 |
-| 1.5 | Agenda public, page « Soutenir », contact | F1.4–F1.7 | 3 |
-| 1.6 | SEO complet, données structurées, `sitemap`, Open Graph | F1.9 | 2 |
-| 1.7 | Contenus éditables par le SN sans développeur | F1.1 | 3 |
-
-**Jalon 1 :** `gbu-maroc.org` est en ligne, rapide, indexée, et un étudiant qui
-cherche un groupe est **mis en relation avec un responsable réel**.
-*L'espace membre actuel continue de tourner en parallèle, intact.*
-
----
-
-## Lot 2 — Socle et canevas · **26–34 j** ⭐⭐⭐
-
-*Le cœur du projet. Ce lot met la mission dans l'outil.*
-
-| # | Tâche | Réf. CDC | j |
-|---|---|---|---|
-| 2.1 | Personnes, structures, rattachements, rôles du GBUM | F2.1–F2.4 | 5 |
-| 2.2 | Annuaire filtrable, paginé, cloisonné par portée | F2.5 | 3 |
-| 2.3 | Comptes : invitation, activation, cycle de vie, 2FA | F2.8–F2.9 | 3 |
-| 2.4 | **Canevas annuel : modèle, études, publication** | **F3.1–F3.2** | 5 |
-| 2.5 | **Consultation du canevas + hors ligne (PWA, IndexedDB)** | **F3.3** | 5 |
-| 2.6 | **Progression par cellule** | **F3.4** | 3 |
-| 2.7 | **Séance de cellule : émargement rapide, hors ligne** | **F3.7–F3.8** | 4 |
-| 2.8 | Préparation de l'animateur, retours de terrain | F3.5–F3.6 | 3 |
-| 2.9 | Export PDF imprimable du canevas | F3.11 | 2 |
-| 2.10 | « Voir à la place de » avec bandeau et journal | F2.10 | 2 |
-
-**Jalon 2 :** un responsable de cellule ouvre le canevas de la semaine **dans
-le train, sans réseau**, anime son étude, et enregistre sa séance en trois
-gestes. **C'est le moment où le hub sert la mission.**
-
----
-
-## Lot 3 — Pilotage · **14–18 j**
-
-| # | Tâche | Réf. CDC | j |
-|---|---|---|---|
-| 3.1 | Rapport mensuel « cinq champs » | F4.1 | 3 |
-| 3.2 | **Le silence est une information** : écran des cellules muettes | F4.2 | 2 |
-| 3.3 | Vision décennale → thème annuel → objectifs → activités | F4.3 | 4 |
-| 3.4 | Plan d'action décentralisé | F4.4 | 3 |
-| 3.5 | Tableaux de bord cellule / ville / national | F4.5 | 4 |
-| 3.6 | Recherche globale filtrée par les droits | FT.2 | 2 |
-
-**Jalon 3 :** le Secrétariat National ouvre un écran le lundi matin et sait
-**quelles cellules vivent, lesquelles s'éteignent, et où en est le canevas.**
-
----
-
-## Lot 4 — ⚠️ Reprise des données et bascule · **14–20 j**
-
-*Le lot le plus risqué du projet. Il ne se rattrape pas.*
-
-| # | Tâche | j |
+| Rythme | Jusqu'au canevas (lot 2) | Total |
 |---|---|---|
-| 4.1 | Extracteur : SQLite + **18 fichiers JSON** → format intermédiaire documenté | 4 |
-| 4.2 | Réconciliation, dédoublonnage, **rapport d'anomalies relu par le SN** | 4 |
-| 4.3 | Chargement avec contrôles d'intégrité bloquants | 3 |
-| 4.4 | **Trois répétitions à blanc**, chronométrées | 3 |
-| 4.5 | Bascule DNS, ancien système en lecture seule, retour arrière préparé | 3 |
-| 4.6 | Accompagnement des utilisateurs, documentation, permanence | 3 |
-
-**Jalon 4 :** `hub.gbu-maroc.org` porte les vraies données. L'ancien système
-passe en lecture seule pour **90 jours**, puis est archivé.
-
-> **Règles non négociables de ce lot :** aucune donnée perdue, aucune donnée
-> devinée, toute anomalie signalée et arbitrée par un humain, retour arrière
-> testé **avant** la bascule.
+| ~1 jour/semaine | ~16 mois | ~4 ans |
+| ~2 jours/semaine | ~8 mois | ~2 ans |
+| ~3 jours/semaine | ~6 mois | ~16 mois |
 
 ---
 
-## Lot 5 — Camps, réunions, communication · **30–40 j**
+## Le risque n°1 reste le calendrier
 
-| # | Tâche | Réf. CDC | j |
-|---|---|---|---|
-| 5.1 | Camps : dossier, participants, chambres, transport | F6.1–F6.5 | 8 |
-| 5.2 | Camps : finances, boutique, attestations, programme | F6.6–F6.10 | 6 |
-| 5.3 | Réunions : moteur unique LiveKit, E2EE, salle d'attente, modération | F7.1–F7.6 | 8 |
-| 5.4 | Enregistrement, transcription, compte rendu assisté, exports | F7.7–F7.9 | 5 |
-| 5.5 | Annonces, envois ciblés, préférences de contact, canaux | F8.1–F8.5 | 6 |
-| 5.6 | Documents, galerie, calendrier, iCal | F8.7–F8.8 | 4 |
+À un jour par semaine, le projet complet dépasse la durée d'études d'une
+génération de GBUssiens. Ce n'est pas un problème technique, et il ne se
+résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 
-**Jalon 5 :** une réunion nationale à 200 participants se tient sans incident,
-**et un redémarrage du serveur ne la coupe pas.**
-
----
-
-## Lot 6 — Finances, Amis, parcours · **26–34 j**
-
-| # | Tâche | Réf. CDC | j |
-|---|---|---|---|
-| 6.1 | Soutiens, versements, budgets multi-niveaux, validation | F9.1–F9.4 | 8 |
-| 6.2 | Engagements, promesses, relances, taux de tenue | F9.5 | 4 |
-| 6.3 | **Journal d'audit inaltérable des écritures financières** | F9.7 | 3 |
-| 6.4 | Finissants, consentement, passage aux Amis | F10.2 | 4 |
-| 6.5 | Espace et place des Amis, cartographie du réseau | F10.3–F10.5 | 5 |
-| 6.6 | Parcours, formations, relève, passation | F11.1–F11.6 | 6 |
-| 6.7 | Activités typées, agapè, sorties, **JTPA cloisonné** | F5.1–F5.7 | 5 |
-
-**Jalon 6 :** parité fonctionnelle complète avec l'existant, **plus** ce qui
-lui manquait.
+1. **Livrer tôt et vraiment.** La vitrine et le canevas valent à eux seuls la
+   peine d'exister. Ne jamais retarder une mise en ligne pour attendre une
+   fonctionnalité de plus.
+2. **Assumer de ne pas tout reprendre.** L'existant couvre douze domaines ;
+   rien ne dit qu'ils servent tous. Mesurer l'usage réel avant de reprendre.
+3. **Faire coexister les deux systèmes longtemps.** L'ancien hub n'a pas à
+   mourir d'un coup.
+4. **Chercher du renfort.** L'architecture cible est faite pour cela ; celle
+   d'aujourd'hui l'interdit.
 
 ---
 
-## Lot 7 — Mémoire, langues, raffinements · **20–26 j**
+## Journal des phases
 
-| # | Tâche | Réf. CDC | j |
-|---|---|---|---|
-| 7.1 | Chronologie, archives, témoignages, photothèque | F12.1–F12.4 | 7 |
-| 7.2 | **Arabe (RTL) et anglais** | F1.10, NF5 | 8 |
-| 7.3 | Notifications *push*, centre de notifications | FT.6 | 3 |
-| 7.4 | Export complet, réversibilité, conformité (registre, AIPD) | FT.7, C1–C8 | 5 |
-
----
-
-## Récapitulatif
-
-| Lot | Contenu | Jours-homme | Cumul |
-|---|---|---:|---:|
-| 0 | Fondations | 12–16 | 16 |
-| 1 | Vitrine et accueil ⭐ | 16–22 | 38 |
-| 2 | Socle et canevas ⭐⭐⭐ | 26–34 | 72 |
-| 3 | Pilotage | 14–18 | 90 |
-| 4 | Reprise et bascule ⚠️ | 14–20 | 110 |
-| 5 | Camps, réunions, communication | 30–40 | 150 |
-| 6 | Finances, Amis, parcours | 26–34 | 184 |
-| 7 | Mémoire, langues, raffinements | 20–26 | 210 |
-| | **Total** | **158–210 j** | |
-
-**Traduction en calendrier réaliste**, pour un développeur bénévole :
-
-| Rythme | Jusqu'au jalon 2 (le canevas) | Jusqu'au jalon 4 (bascule) | Total |
-|---|---|---|---|
-| ~1 jour/semaine | ~16 mois | ~26 mois | ~4 ans |
-| ~2 jours/semaine | ~8 mois | ~13 mois | ~2 ans |
-| ~3 jours/semaine | ~6 mois | ~9 mois | ~16 mois |
-| Temps plein | ~3,5 mois | ~5,5 mois | ~10 mois |
-
-> **La lecture honnête de ce tableau.** À un jour par semaine, le projet
-> complet dépasse la durée d'études d'une génération de GBUssiens. **C'est le
-> risque n°1 du projet — bien avant la technique.**
-
----
-
-## Comment réduire ce risque
-
-Quatre leviers, par ordre d'efficacité :
-
-**1. Livrer tôt, et vraiment.** Les jalons 1 et 2 valent déjà, à eux seuls, la
-peine d'exister : la vitrine et le canevas servent le mouvement dès la
-première mise en ligne, sans attendre le reste. **Ne jamais retarder une mise
-en ligne pour attendre une fonctionnalité de plus.**
-
-**2. Assumer de ne pas tout reprendre.** L'existant couvre douze domaines. Il
-n'est pas certain qu'ils soient tous utilisés. Avant le lot 5, **mesurer
-l'usage réel** de chaque écran de la production : ce qui n'est pas utilisé
-n'est pas repris. Il est probable que 30 à 40 % du périmètre disparaisse ainsi
-— c'est autant de gagné.
-
-**3. Faire coexister les deux systèmes longtemps.** L'ancien hub n'a pas à
-mourir au lot 4. Il peut porter les camps, les finances et la visio pendant
-que le nouveau porte la vitrine, le socle et le canevas, **reliés par une
-authentification commune**. La bascule devient progressive et sans date
-couperet.
-
-**4. Chercher du renfort.** Un second développeur, même à temps très partiel,
-change la nature du projet. La cible est justement conçue pour cela : contextes
-isolés, fichiers courts, types stricts, CI qui protège. **L'architecture
-actuelle, elle, l'interdit** — `TRAVAILLER-A-DEUX.md` demande explicitement de
-se répartir les *fichiers* pour ne pas se marcher dessus.
-
----
-
-## Ordre des risques
-
-| Risque | Prob. | Impact | Parade |
-|---|---|---|---|
-| **Le projet n'aboutit pas faute de temps** | **Élevée** | **Critique** | Jalons livrables, périmètre réduit, coexistence longue |
-| Perte de données à la bascule | Moyenne | Critique | 3 répétitions, rapport d'anomalies, retour arrière testé |
-| Montée en compétence sous-estimée | Moyenne | Élevé | Choisir la pile qu'on maîtrise **déjà** (ADR-002 §3.4) |
-| Fuite de données personnelles | Faible | **Critique** | `peut()` unique, test IDOR génératif, audit externe |
-| Rejet par les utilisateurs | Moyenne | Élevé | 5 testeurs réels dès le lot 1, DoD point 6 |
-| Contenus éditoriaux jamais fournis par le SN | **Élevée** | Moyen | Textes provisoires marqués, relances, responsable produit désigné |
-| Dérive de l'écosystème JS | Moyenne | Faible | Versions verrouillées, mises à jour planifiées |
-
-> **Le risque n°1 n'est pas technique.** Il est de calendrier, et il se traite
-> par le périmètre — pas par la vitesse de frappe.
+| Date | Phase | Événement |
+|---|---|---|
+| 7 sept. 2026 | 0 | Audit de l'existant livré |
+| 8 sept. 2026 | 5 | Langage tranché : TypeScript |
+| 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
+| 9 sept. 2026 | — | **Échéancier réordonné en phases.** Le prototype de code écrit hors phase est supprimé : il anticipait les phases 6 et 7 sur des décisions non validées. |
