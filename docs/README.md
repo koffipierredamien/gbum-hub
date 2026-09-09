@@ -15,12 +15,12 @@
 | # | Document | Ce qu'il répond | Pour qui |
 |---|---|---|---|
 | **00** | [Audit de l'existant](00-AUDIT-EXISTANT.md) | Qu'a-t-on aujourd'hui ? Que faut-il garder, jeter, et que manque-t-il ? | Pierre, SN |
-| **01** | [Cahier des charges](01-CAHIER-DES-CHARGES.md) | Que doit faire le hub, pour qui, avec quelles exigences ? | **SN + Pierre** |
+| **01** | [Cahier des charges](01-CAHIER-DES-CHARGES.md) | Que doit faire le hub, pour qui, avec quelles exigences ? | **Secrétariat National + Pierre** |
 | **02** | [Architecture et décisions](02-ARCHITECTURE.md) | Un site ou plusieurs ? Quelle pile ? Quels arbitrages, et pourquoi ? | Pierre |
 | **03** | [Conventions et qualité](03-CONVENTIONS-ET-QUALITE.md) | Comment écrit-on le code ? Qu'est-ce qui bloque une PR ? | Pierre |
-| **04** | [Plan de route](04-ROADMAP.md) | Dans quel ordre ? Combien de temps ? Quels risques ? | **SN + Pierre** |
+| **04** | [Plan de route](04-ROADMAP.md) | Dans quel ordre ? Combien de temps ? Quels risques ? | **Secrétariat National + Pierre** |
 | **05** | [Prompt Claude Design](05-PROMPT-CLAUDE-DESIGN.md) | Comment faire produire les maquettes ? | Pierre |
-| **07** | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) | Quatre décisions, cinq informations, deux désignations attendues du SN | **SN** |
+| **07** | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) | Quatre décisions, cinq informations, deux désignations attendues du Secrétariat National | **SN** |
 
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.
@@ -38,10 +38,11 @@
    dans le démarrage, déploiement qui ne passe pas par Git. Coût de remise à
    niveau : **67 à 96 jours** — sans rien apporter de neuf.
 
-3. **Le cœur de la mission manque.** « Connaître Christ et Le faire
-   connaître. » Le **canevas d'études bibliques n'existe nulle part** dans le
-   produit — ni entité, ni écran, ni route. Le JTPA non plus. La vision
-   décennale non plus. C'est la lacune n°1, et elle est structurante.
+3. **Deux produits, deux raisons d'être.** Le **site public** doit rendre le
+   mouvement visible et **conserver sa mémoire largement ouverte** ; l'**espace
+   de travail** doit faire travailler ensemble des niveaux qui se renouvellent
+   chaque année. Ce sont deux besoins distincts, et le cahier des charges les
+   traite séparément.
 
 4. **Un site ou plusieurs ? Ni l'un ni l'autre exactement :** un produit, un
    dépôt, **deux surfaces** — c'est ce que font IFES, UCCF, les Scouts et
@@ -67,7 +68,7 @@
 | **D2** | Pile technique | ✅ **TypeScript de bout en bout** — 8 sept. 2026 | 5.1 |
 | **D3** | Dépôt | ✅ **`gbum-hub`** — 8 sept. 2026 | — |
 | **D4** | Périmètre de la v1 | ⬜ à trancher | 2.5 |
-| **D10** | Posture de visibilité publique | ✅ **ouverte** — 9 sept. 2026 *(réserve : confirmation SN)* | 2.4 |
+| **D10** | Posture de visibilité publique | ✅ **ouverte** — 9 sept. 2026 *(réserve : confirmation du Secrétariat National)* | 2.4 |
 | **D5** | Bascule progressive ou non | ⬜ à trancher | 3.7 |
 | **D6** | Langues de la v1 | ⬜ à trancher | 3.3 |
 | **D7** | Hébergement | ⬜ à trancher | 5.4 |
@@ -86,7 +87,7 @@ Nous sommes en **phase 2 — Organisation du hub** ([`04-ROADMAP.md`](04-ROADMAP
    un seul site ou plusieurs ?
 2. **Réclamer au Secrétariat National** le canevas d'études de l'année, de
    vraies photos, et les textes officiels de la vision et du thème.
-3. **Désigner** un responsable produit au SN et cinq testeurs GBUssiens dans
+3. **Désigner** un responsable produit au Secrétariat National et cinq testeurs GBUssiens dans
    cinq villes différentes.
 4. Ouvrir la phase 3 dès que la phase 2 est validée à 70 %.
 

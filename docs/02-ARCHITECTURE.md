@@ -465,13 +465,13 @@ packages/core/src/
 ├── canevas/          Canevas · Étude · Progression · Préparation · Retour
 ├── cellule/          Séance · Présence · Rapport mensuel
 ├── vision/           Vision décennale · Thème annuel · Objectif · Résultat
-├── activites/        Activité · Inscription · Bilan · JTPA (forme à établir, R4)
+├── activites/        Activité typée · Inscription · Bilan · publication publique
+├── memoire/          Histoire · Chronologie · Archives · Témoignages · Photothèque
 ├── camps/            Camp · Participant · Chambre · Transport · Boutique
 ├── reunions/         Salle · Participant · Modération · Compte rendu
 ├── finances/         Soutien · Versement · Budget · Poste · Engagement
 ├── amis/             Ami · Finissant · Promesse · Place des Amis
 ├── communication/    Annonce · Envoi · Audience · Lettre de prière · Préférences
-├── memoire/          Chronologie · Archive · Témoignage
 └── partage/          Types, erreurs, dates (Africa/Casablanca), argent (MAD)
 ```
 
@@ -860,7 +860,7 @@ en C#.
 | # | Décision | Statut |
 |---|---|---|
 | **ADR-001** | **Deux surfaces, une seule source de vérité** | ✅ **accepté** (9 sept. 2026) |
-| **ADR-011** | **Posture de visibilité publique : ouverte** | ✅ **accepté** (9 sept. 2026) — *réserve : confirmation SN* |
+| **ADR-011** | **Posture de visibilité publique : ouverte** | ✅ **accepté** (9 sept. 2026) — *réserve : confirmation du Secrétariat National* |
 | **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
 | ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé — *phase 5.2* |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |

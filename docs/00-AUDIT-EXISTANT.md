@@ -29,11 +29,17 @@ Trois constats, dans l'ordre d'importance :
    défauts de style : ce sont des mécanismes de perte de données et de
    régression silencieuse.
 
-3. **Le cœur de la mission n'est pas dans le produit.** Le GBUM existe pour
-   « connaître Christ et le faire connaître ». L'outil gère les camps, les
-   budgets et la visioconférence — mais **le canevas d'études bibliques,
-   l'activité hebdomadaire de chaque cellule dans chaque ville, n'existe
-   nulle part** (voir §6.1).
+3. **Le mouvement est invisible, et sa mémoire n'est nulle part.** Ouvrir
+   `gbu-maroc.org` mène à un écran de connexion. Rien ne conserve l'histoire du
+   GBUM, ses camps passés, ses canevas d'années antérieures. S'y ajoute une
+   série d'absences fonctionnelles — dont le canevas d'études (voir §6).
+
+   > **Correction du 9 septembre 2026.** Une version antérieure de cet audit
+   > faisait du canevas « le cœur » du hub et en tirait un diagnostic sévère.
+   > **C'était une lecture de la maîtrise d'œuvre, pas une position du
+   > mouvement.** Le canevas est une section importante — pas le centre de
+   > gravité. Ce que le mouvement attend d'abord : être visible et garder
+   > mémoire côté public, travailler ensemble côté interne.
 
 **Verdict.** Refonte justifiée. Mais refonte *par reprise*, pas par
 table rase : le modèle métier se transporte, le code ne se transporte pas.
@@ -457,9 +463,9 @@ Conséquences :
 - Aucune mémoire : les canevas des années passées ne sont nulle part.
 - Aucun retour du terrain vers les auteurs du canevas suivant.
 
-> **Un hub du GBUM qui ne porte pas le canevas d'études bibliques gère
-> l'intendance du mouvement sans porter sa mission.** C'est la fonctionnalité
-> n°1 de la refonte.
+> Le canevas mérite sa section — l'année en cours **et les années
+> antérieures**, côté public comme côté interne. Il n'est pas pour autant le
+> centre de gravité du hub : *(précision du mouvement, 9 sept. 2026)*.
 
 ### 6.2 🔴 L'évangélisation et le JTPA — **absents**
 

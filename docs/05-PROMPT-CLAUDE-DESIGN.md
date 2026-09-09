@@ -23,7 +23,7 @@
 | Le logo officiel du GBUM (fond détouré) | `static/img/gbum.png` |
 | Le logo IFES | `static/img/ifes.png` |
 | 3 à 5 photos réelles de cellules, camps, Ifrane | à demander au Secrétariat National |
-| Le canevas d'études de l'année en cours (PDF) | à demander au SN — **indispensable pour l'écran clé** |
+| Le canevas d'études de l'année en cours (PDF) | à demander au Secrétariat National — **indispensable pour l'écran clé** |
 | Un vrai rapport mensuel rempli | à demander à un responsable de cellule |
 
 > **Sans le canevas réel, l'écran le plus important du hub sera maquetté à
