@@ -123,6 +123,112 @@ maison, pas de second magasin de données. *(P1, P2)*
 
 ---
 
+## 2 bis. ✅ ADR-001 — Deux surfaces, une seule source de vérité
+
+> **Décision prise le 9 septembre 2026** — point 2.1 de l'échéancier.
+> Arbitrée par Pierre, sur l'examen de ce que font quatre organisations
+> comparables.
+
+### La question
+
+Le hub doit-il être **un seul site** où tout se joue aux droits d'accès,
+**deux surfaces** distinctes, ou **plusieurs sites indépendants** ?
+
+### Ce que font les organisations comparables
+
+La décision ne repose pas sur un raisonnement abstrait mais sur l'examen de
+quatre mouvements qui ont résolu le même problème, dont la fédération à
+laquelle le GBUM appartient.
+
+| Organisation | Taille | Site public | Espace membre |
+|---|---|---|---|
+| **IFES** — la fédération du GBUM | 180 mouvements nationaux | `ifesworld.org` | `connect.ifesworld.org` · `elearning.ifesworld.org` |
+| **UCCF** — Royaume-Uni, le pair le plus proche | Groupes chrétiens sur les campus britanniques | `uccf.org.uk` | `resources.uccf.io/login` — **autre domaine** |
+| **Scouts et Guides de France** | 863 groupes locaux, 61 181 jeunes, 27 399 bénévoles | `sgdf.fr` | `intranet.sgdf.fr` · `chefscadres.sgdf.fr` |
+| **Rotary International** — hors sphère chrétienne | Clubs locaux dans le monde entier | `rotary.org` | `my.rotary.org` |
+
+**Les quatre séparent le site public de l'espace membre.** Aucune ne fait tenir
+l'ensemble dans un site unique géré aux droits d'accès — c'est-à-dire aucune ne
+fait ce que fait `gbu-connect` aujourd'hui.
+
+L'usage professionnel le formule ainsi : l'espace membre *« n'a aucune vocation
+SEO ni de visibilité publique. Ce ne sont pas des sites que l'on cherche à
+référencer sur Google, ils ne devraient justement pas être accessibles sans
+authentification. »*
+
+Chez les Scouts et Guides de France, l'accès à l'intranet est d'ailleurs
+conditionné à **trois** conditions cumulées : être membre, être à jour de
+cotisation, **et être nommé à une fonction**. Ce n'est pas de
+l'authentification, c'est déjà du rôle × portée — ce qui documente par
+avance le point 2.2.
+
+### La décision
+
+**Deux surfaces, une seule source de vérité.**
+
+```
+gbu-maroc.org        vitrine publique — pré-générée, légère, référençable, anonyme
+hub.gbu-maroc.org    espace membre — authentifié, riche, cloisonné
+                     ↓
+        un seul dépôt · un seul domaine métier · une seule base
+```
+
+### Ce qui a été écarté, et pourquoi
+
+**Un seul site.** C'est le montage actuel, et il a deux défauts mesurables : la
+page « Nous trouver » charge le code du tableau de bord national — lourd sur un
+téléphone en 3G, alors que c'est *la* page que consulte une nouvelle étudiante ;
+et le trafic anonyme atteint l'application qui porte l'annuaire. Aujourd'hui,
+ouvrir `gbu-maroc.org` menait d'ailleurs à un écran de connexion : le mouvement
+était invisible sur le web.
+
+**Plusieurs sites indépendants.** Les données sont **les mêmes**. Une personne,
+une ville, une cellule existeraient en trois exemplaires qui divergeraient en
+quelques mois — ou il faudrait construire une API centrale, et l'on retomberait
+sur la présente décision avec plus de travail. Trois déploiements, trois
+chaînes de qualité, trois chartes à tenir **par une seule personne**.
+
+### Ce qu'on ne copie pas
+
+Les Scouts et Guides de France ont 88 000 membres et une équipe informatique
+salariée : ils se paient trois sites distincts. **Le GBUM a un développeur
+bénévole.** On reprend donc le *principe* — le public séparé du membre — et non
+le montage : deux surfaces, un dépôt, une base. C'est le principe P1 appliqué.
+
+### Une leçon de périmètre, tirée de la même enquête
+
+**IFES Connect ferme en mai 2026.** La plateforme communautaire de la propre
+fédération du GBUM — où « le personnel des mouvements nationaux, les étudiants
+et les soutiens échangent idées et ressources » — est arrêtée.
+
+Or `elearning.ifesworld.org`, la plateforme de **formation**, subsiste.
+
+Le réseau social meurt, l'outil reste. Cela ne décide pas d'ADR-001, mais cela
+oriente le point 2.5 (périmètre de la v1) : construire des **outils** — le
+canevas, les rapports, les camps —, pas une communauté en ligne. La « Place des
+Amis » de `gbu-connect` mérite d'être réexaminée à cette lumière.
+
+### Conséquences
+
+- Le domaine métier et la base sont **partagés** ; les deux surfaces ne
+  dupliquent jamais une règle.
+- La vitrine ne lit que des données explicitement marquées publiques — la
+  doctrine « rien n'est public par défaut » de `gbu-connect` est conservée.
+- Une faille dans une surface n'expose pas l'autre.
+- Le référencement devient possible ; il ne l'est pas aujourd'hui.
+
+### Sources
+
+[IFES](https://ifesworld.org/en/) · [IFES Connect](https://connect.ifesworld.org/) ·
+[IFES eLearning](https://elearning.ifesworld.org/) · [UCCF](https://www.uccf.org.uk/) ·
+[UCCF CU Resources Hub](https://resources.uccf.io/login) ·
+[Intranet SGDF](https://intranet.sgdf.fr/) ·
+[Wikipédia — Scouts et Guides de France](https://en.wikipedia.org/wiki/Scouts_et_Guides_de_France) ·
+[My Rotary](https://my.rotary.org/) ·
+[Highfive — guide intranet/extranet](https://www.highfive.fr/intranet-extranet-guide-complet/)
+
+---
+
 ## 3. ✅ ADR-002 — La pile technique
 
 > **Décision prise le 8 septembre 2026 : option A, TypeScript de bout en bout.**
@@ -639,7 +745,7 @@ en C#.
 
 | # | Décision | Statut |
 |---|---|---|
-| ADR-001 | Monorepo, deux surfaces (vitrine publique + espace membre) | 🟡 proposé — *phase 2.1* |
+| **ADR-001** | **Deux surfaces, une seule source de vérité** | ✅ **accepté** (9 sept. 2026) |
 | **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
 | ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé — *phase 5.2* |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |

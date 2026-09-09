@@ -43,7 +43,8 @@
    décennale non plus. C'est la lacune n°1, et elle est structurante.
 
 4. **Un site ou plusieurs ? Ni l'un ni l'autre exactement :** un produit, un
-   dépôt, **deux surfaces** — une vitrine publique optimisée pour le référencement
+   dépôt, **deux surfaces** — c'est ce que font IFES, UCCF, les Scouts et
+   Guides de France et Rotary — une vitrine publique optimisée pour le référencement
    et la vitesse, un espace membre riche et authentifié, **une seule source de
    vérité** dessous.
 
@@ -61,7 +62,7 @@
 
 | # | Décision | État | Phase |
 |---|---|---|---|
-| **D1** | Un site ou plusieurs ? | ⬜ **à trancher** | 2.1 |
+| **D1** | Un site ou plusieurs ? | ✅ **deux surfaces, une seule base** — 9 sept. 2026 | 2.1 |
 | **D2** | Pile technique | ✅ **TypeScript de bout en bout** — 8 sept. 2026 | 5.1 |
 | **D3** | Dépôt | ✅ **`gbum-hub`** — 8 sept. 2026 | — |
 | **D4** | Périmètre de la v1 | ⬜ à trancher | 2.5 |

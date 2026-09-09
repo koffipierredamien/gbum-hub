@@ -15,7 +15,7 @@
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
 | 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 écrit | 0/6 |
-| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | 0/7 |
+| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | **1/7** |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | SN + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + SN + 5 testeurs | 🟡 dessinées | 0/6 |
 | 5 | Stack technique | La pile, et pourquoi | Pierre | 🟡 partielle | 1/5 |
@@ -59,8 +59,9 @@ qui en dépendent.
 
 C'est la phase qui décide de la **méthode**, avant toute technique.
 
-- [ ] **2.1** **Un seul site ou plusieurs ?** Trois options possibles, chacune
-      avec ses conséquences. *(Pierre + SN)* — ADR-001
+- [x] **2.1** **Un seul site ou plusieurs ?** → **Deux surfaces, une seule
+      source de vérité.** Décidé le 9 sept. 2026 sur l'examen d'IFES, UCCF,
+      Scouts et Guides de France et Rotary. *(Pierre)* — [ADR-001](02-ARCHITECTURE.md)
 - [ ] **2.2** **Comment se gèrent les accès ?** Rôle simple, rôle × portée, ou
       autre chose. *(Pierre + SN)* — ADR-005
 - [ ] **2.3** La liste des **domaines fonctionnels** D1 à D12 est complète et
@@ -203,4 +204,5 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 7 sept. 2026 | 0 | Audit de l'existant livré |
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
+| 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
 | 9 sept. 2026 | — | **Échéancier réordonné en phases.** Le prototype de code écrit hors phase est supprimé : il anticipait les phases 6 et 7 sur des décisions non validées. |

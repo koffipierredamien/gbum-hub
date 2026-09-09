@@ -234,9 +234,10 @@ anonyme.
 - **Deux surfaces déployables** : chacune optimisée pour son public.
 - **Une source de vérité** : le domaine métier et la base, jamais dupliqués.
 
-> **⚖️ À TRANCHER — D1, point 2.1 de l'échéancier.** Cette organisation
-> n'est **pas** validée. Ce qui précède est une recommandation argumentée.
-> *Recommandation : oui.* Détail et justification technique complète dans
+> **✅ TRANCHÉ le 9 septembre 2026 (point 2.1).** Décision prise sur l'examen
+> de quatre organisations comparables — IFES, UCCF, Scouts et Guides de France,
+> Rotary — qui séparent toutes le site public de l'espace membre.
+> Justification complète et sources : [ADR-001](02-ARCHITECTURE.md). Détail et justification technique complète dans
 > [`02-ARCHITECTURE.md`](02-ARCHITECTURE.md).
 
 ### 4.2 Domaines fonctionnels
@@ -824,7 +825,7 @@ argumentée ; l'arbitrage est attendu avant le lancement du lot 1.
 
 | # | Décision | Recommandation | Détail |
 |---|---|---|---|
-| **D1** | Un site ou plusieurs ? | ⬜ **À TRANCHER — phase 2.1.** La recommandation ci-dessous est une proposition, pas une décision. | [§4.1](#41-réponse-à-la-question--un-site-ou-plusieurs-) |
+| ~~D1~~ | ~~Un site ou plusieurs ?~~ | ✅ **Tranché le 9 sept. 2026 — deux surfaces, une seule source de vérité.** Voir [ADR-001](02-ARCHITECTURE.md). | [§4.1](#41-réponse-à-la-question--un-site-ou-plusieurs-) |
 | ~~D2~~ | ~~Pile technique~~ | ✅ **Tranché — TypeScript de bout en bout** (Next.js + PostgreSQL + LiveKit) | [`02-ARCHITECTURE.md` §3](02-ARCHITECTURE.md) |
 | ~~D3~~ | ~~Dépôt~~ | ✅ **Tranché — dépôt `gbum-hub`** ; `gbu-connect` reste en production | [`02-ARCHITECTURE.md` §8](02-ARCHITECTURE.md) |
 | **D4** | Périmètre du lot 1 | **D1 + D2 + D3 + D4** (vitrine, socle, canevas, pilotage) | [`04-ROADMAP.md`](04-ROADMAP.md) |
