@@ -466,11 +466,15 @@ Conséquences :
 `JTPA` : **0 occurrence**. « Évangélisation » n'apparaît que comme mot dans des
 listes d'activités et un conseil du kit du bureau.
 
-Manquent : le suivi des sorties d'évangélisation, et surtout
-**l'évangélisation par amitié (JTPA)** — un accompagnement relationnel dans la
-durée : qui accompagne qui, depuis quand, sujets de prière, discrétion absolue.
-C'est le second pilier de la devise (« … et le faire connaître ») et il n'a
-aucun support.
+Manquent : le suivi des sorties d'évangélisation, et le **JTPA — Journées de
+Témoignage par Amitié**. C'est le second pilier de la devise (« … et le faire
+connaître ») et il n'a aucun support.
+
+> **Correction du 9 septembre 2026.** Une version antérieure de cet audit
+> glosait le sigle en « évangélisation par amitié » et en déduisait un
+> accompagnement relationnel dans la durée. Le mot **journées** désigne des
+> événements. Ce que le JTPA produit et conserve reste à établir avec le
+> mouvement — voir la réserve R4.
 
 Ce domaine porte une exigence de confidentialité **supérieure à tout le reste
 de l'application** : la liste des personnes approchées, dans le contexte

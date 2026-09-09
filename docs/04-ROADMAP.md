@@ -6,6 +6,7 @@
 |---|---|---|---|
 | **R1** | La posture de visibilité publique (ADR-011) doit être confirmée par le Secrétariat National. | Point 2.4, tranché par Pierre alors que l'échéancier l'attribue au SN. | La première mise en ligne portant de vrais noms — pas la conception. |
 | **R2** | Les maquettes portent des données inventées — thème, chiffres, « plus de trente ans », budget, dates de camp — ainsi qu'un parcours « Trouver mon groupe » qui va au-delà d'ADR-011. | Écrites avant que le cadrage soit validé. | Rien pour l'instant : reprise décidée en **phase 4**. |
+| **R4** | Ce qu'est réellement un **JTPA — Journée de Témoignage par Amitié** — ce qui s'y passe, ce qui en est conservé, par qui et combien de temps. | Le sigle avait été glosé « évangélisation par amitié » et modélisé comme un suivi relationnel continu ; « journées » désigne des événements. | L'exigence F5.6, le modèle de menace correspondant, et le point 2.6. |
 | **R3** | L'histoire des GBU et du GBUM manque entièrement. | Aucune source publique ; le SN sera sollicité. | Rien : **une place est réservée** dans le produit (F1.11, domaine D12). |
 
 ---
@@ -24,7 +25,7 @@
 | # | Phase | Livrable | Qui valide | État | Validé |
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
-| 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 en cours | **2/6** |
+| 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 en cours | **3/6** |
 | **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | **2/7** |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | SN + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + SN + 5 testeurs | 🟡 dessinées | 0/6 |
@@ -59,8 +60,10 @@
 - [ ] **1.3** Toutes les activités du GBUM sont recensées : études, agapès,
       sorties, JTPA, camps. *(SN)* — **liste explicitement ouverte** : le reste
       sera fourni au fil du projet.
-- [ ] **1.4** Les manques identifiés sont réels : canevas d'études, JTPA,
-      vision décennale, accueil de rentrée, mémoire, langues. *(SN + Pierre)*
+- [x] **1.4** Les manques identifiés sont réels. **Confirmé par Pierre le
+      9 sept. 2026** : le canevas, les JTPA et la vision décennale existent
+      bel et bien dans le mouvement, et ne sont nulle part dans l'outil.
+      *(Pierre)*
 - [ ] **1.5** Les objectifs métier O1 à O7 sont les bons, et leurs indicateurs
       atteignables. *(SN)*
 - [ ] **1.6** Les non-objectifs de la v1 sont acceptés. *(SN)*
@@ -93,8 +96,9 @@ C'est la phase qui décide de la **méthode**, avant toute technique.
       noms**.
 - [ ] **2.5** Le **périmètre de la v1** : quels domaines sortent en premier.
       *(SN + Pierre)*
-- [ ] **2.6** Le sort du **JTPA** : dans le hub, cloisonné, ou hors du hub.
-      *(SN — décision du mouvement, pas une décision technique)*
+- [ ] **2.6** Le sort du **JTPA — Journées de Témoignage par Amitié** : dans le
+      hub, cloisonné, ou hors du hub. *(SN — décision du mouvement, pas une
+      décision technique)* — **suppose la réserve R4 levée**.
 - [ ] **2.7** Le sort de la **visioconférence** : la garder, un moteur ou deux.
       *(Pierre + SN)* — ADR-004
 
@@ -228,6 +232,7 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 1 | Point 1.4 validé : les manques sont réels. **JTPA corrigé en « Journées de Témoignage par Amitié »** — réserve R4 ouverte sur sa forme. Composition du mouvement établie : la plupart des GBUssiens viennent des pays du GBUAF |
 | 9 sept. 2026 | 1 | Rattachement IFES établi : **région MENA**. Une place est réservée à l'histoire du GBU et du GBUM (F1.11, D12), dont le contenu sera demandé au SN |
 | 9 sept. 2026 | 2 | Précision : une cellule publie **son nom et son nombre de membres**, rien d'autre |
 | 9 sept. 2026 | 1 | Cadrage réécrit : hiérarchie réelle du GBUM fournie par Pierre ; histoire IFES/GBUAF sourcée ; **tous les indicateurs et personas inventés retirés** |

@@ -49,8 +49,8 @@ Maroc. Un membre du GBU s'appelle un **GBUssien**. *(SN)*
 | **Activité première** | L'**étude biblique hebdomadaire en cellule**, suivant un **canevas édité chaque année** *(SN)* |
 
 **Les activités du mouvement** *(SN)* : études bibliques hebdomadaires,
-sorties, agapès, sorties d'évangélisation, évangélisation par amitié (**JTPA**),
-camp des responsables, camp des témoins, **camp d'Ifrane**.
+sorties, agapès, sorties d'évangélisation, **JTPA — Journées de Témoignage par
+Amitié**, camp des responsables, camp des témoins, **camp d'Ifrane**.
 
 > Le camp d'Ifrane est une retraite étudiante décrite comme transformatrice :
 > un temps de communion, de détente et de surprises. *(SN)*
@@ -145,6 +145,16 @@ GBUssiens
   particulièrement difficile.
   ([IFES MENA](https://ifesworld.org/en/region/mena/),
   [IFES Afrique francophone](https://ifesworld.org/en/region/francophoneafrica/))
+
+> **Pourquoi l'histoire du GBUAF figure ici alors que le GBUM relève de MENA.**
+> *(SN, 9 sept. 2026)* **La plupart des GBUssiens du Maroc viennent des pays du
+> GBUAF.** Ce n'est donc pas une digression : c'est l'histoire du mouvement
+> d'où viennent la plupart de ceux qui composent le GBUM aujourd'hui.
+>
+> Ce fait éclaire aussi ce que le code de `gbu-connect` disait déjà sans le
+> nommer — *« arriver seul dans un pays qu'on ne connaît pas est rude ; le
+> groupe est souvent la première famille »*. Il oriente le français comme
+> langue première du hub, et il donne son poids réel à l'accueil de rentrée.
 
 ### 1.4 Ce qui reste à documenter
 
@@ -440,7 +450,7 @@ anonyme.
 | **F5.3** | Inscriptions et désinscriptions, avec limite de places et liste d'attente. | M | ✅ |
 | **F5.4** | Budget par activité, rattaché au budget de la structure. | S | ✅ `ressources.py` |
 | **F5.5** | Bilan d'activité : présents, ce qui a marché, ce qu'on refera. Alimente la mémoire (D12). | S | Partiel |
-| **F5.6** | **JTPA — évangélisation par amitié** : suivi relationnel discret. Qui accompagne qui, depuis quand, sujets de prière, prochaine étape. **Visible du seul accompagnant** et, s'il le choisit, de son responsable. Jamais dans l'annuaire, jamais dans un export, jamais dans la recherche globale. | M | ❌ **absent** |
+| **F5.6** | **JTPA — Journées de Témoignage par Amitié.** ⚠️ **Exigence à réécrire (réserve R4).** Une version antérieure la décrivait comme un suivi relationnel continu — « qui accompagne qui, depuis quand, prochaine étape » — sur la foi d'une expansion erronée du sigle. Le mot **journées** désigne des événements : il faut savoir ce qui doit être conservé, par qui, et pendant combien de temps, **avant** de fixer le modèle et son cloisonnement. | M | ❌ **absent** |
 | **F5.7** | Sorties d'évangélisation : préparation, équipe, campus visé, bilan, contacts noués (versés au JTPA avec consentement). | S | ❌ absent |
 | **F5.8** | Calendrier unifié du mouvement, filtrable par structure, exportable en **iCal**. | M | ✅ `agenda.py` |
 
@@ -685,7 +695,7 @@ chargement différé.
 |---|---|---|
 | Compromission d'un compte membre | Accès à l'annuaire complet | 2FA sur les rôles élevés, sessions courtes, alerte de connexion inhabituelle, **cloisonnement par structure** |
 | Compromission du serveur | Divulgation totale | Chiffrement au repos, secrets hors du dépôt et hors des sauvegardes, moindre privilège, journalisation externalisée |
-| **Fuite du JTPA** | **Préjudice grave à des tiers non membres** | Cloisonnement fort : visible du seul accompagnant ; **jamais** dans les exports, la recherche globale, les sauvegardes en clair ; chiffrement applicatif dédié |
+| **Fuite de données issues du JTPA** | **Préjudice grave à des tiers non membres** | ⚠️ *Parade à revoir avec F5.6 (réserve R4).* Le principe tient — ce qui touche des personnes approchées ne sort ni en export, ni en recherche globale, ni en sauvegarde claire — mais sa forme dépend de ce que le JTPA conserve réellement |
 | Réquisition ou saisie | Divulgation légale | Minimisation des données, durées de conservation courtes, effacement effectif, sauvegardes hors juridiction |
 | Vol d'un téléphone déverrouillé | Accès aux données mises en cache | Cache hors ligne limité au canevas et aux données non nominatives ; verrouillage applicatif |
 | Ingénierie sociale | Usurpation | Aucune coordonnée exposée publiquement ; validation des demandes par un humain identifié |
@@ -924,7 +934,7 @@ argumentée ; l'arbitrage est attendu avant le lancement du lot 1.
 | **D5** | Bascule : big-bang ou progressive ? | **Progressive** — la vitrine d'abord, l'espace membre ensuite, l'ancien en lecture seule 90 j | [§9.3](#93-stratégie-de-migration-des-données) |
 | **D6** | Langues à la v1 | **FR seul en v1**, architecture i18n + RTL posée dès le départ ; AR et EN au lot 3 | [NF5](#nf5--internationalisation) |
 | **D7** | Hébergement | **Plateforme gérée** (base et applicatif) plutôt que le VPS actuel | [`02-ARCHITECTURE.md` §6](02-ARCHITECTURE.md) |
-| **D8** | Le JTPA fait-il partie du hub ? | **Oui, mais cloisonné** et chiffré à part — ou reporté si le SN juge le risque trop élevé | [§7.1](#71-modèle-de-menace) |
+| **D8** | Le JTPA fait-il partie du hub ? | ⬜ **À trancher au point 2.6**, et seulement une fois établi ce que le JTPA conserve réellement (réserve R4) | [§7.1](#71-modèle-de-menace) |
 
 ---
 

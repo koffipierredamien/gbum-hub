@@ -465,7 +465,7 @@ packages/core/src/
 ├── canevas/          Canevas · Étude · Progression · Préparation · Retour
 ├── cellule/          Séance · Présence · Rapport mensuel
 ├── vision/           Vision décennale · Thème annuel · Objectif · Résultat
-├── activites/        Activité · Inscription · Bilan · JTPA (cloisonné)
+├── activites/        Activité · Inscription · Bilan · JTPA (forme à établir, R4)
 ├── camps/            Camp · Participant · Chambre · Transport · Boutique
 ├── reunions/         Salle · Participant · Modération · Compte rendu
 ├── finances/         Soutien · Versement · Budget · Poste · Engagement
