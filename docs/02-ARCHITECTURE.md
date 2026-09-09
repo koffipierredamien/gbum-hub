@@ -229,6 +229,107 @@ Amis » de `gbu-connect` mérite d'être réexaminée à cette lumière.
 
 ---
 
+## 2 ter. ✅ ADR-011 — Posture de visibilité publique : ouverte
+
+> **Orientation prise le 9 septembre 2026 par Pierre** — point 2.4 de
+> l'échéancier. **Réserve ouverte :** l'échéancier attribue ce point au
+> Secrétariat National ; sa confirmation est requise avant toute mise en ligne
+> portant de vrais noms.
+
+### La question
+
+Que voit-on du GBUM **sans compte** ? Le mouvement doit-il être ouvertement
+visible, ou se protéger par la discrétion ?
+
+### Ce que fait l'existant, et ce qui change
+
+`gbu-connect` pose la doctrine inverse : *« rien n'est public par défaut. Chaque
+page est ouverte délibérément, une par une […] Aucune coordonnée personnelle ne
+sort : on joint un responsable par un formulaire, jamais par son numéro. »*
+Neuf routes publiques seulement, et un drapeau `public` à 0 par défaut sur
+chaque structure.
+
+**ADR-011 renverse cette doctrine.** Ce qui sert la mission est public par
+défaut ; ce qui est retenu doit se justifier.
+
+### La décision
+
+**Posture ouverte**, sur le modèle de GBU France — plus de cent groupes dont
+les villes, campus, jours, heures et contacts sont publiés.
+
+Deviennent publics :
+
+| Publié | Détail |
+|---|---|
+| Présentation du mouvement | Vision décennale, devise, thème de l'année, histoire, appartenance à l'IFES |
+| **Villes, campus et cellules** | Avec **jour, heure et lieu de rencontre** |
+| **Contact d'une cellule** | **Adresse de groupe par défaut** (`gbu.agdal@…`), personnelle seulement à défaut et avec accord |
+| Prénom du responsable | Prénom seul ; nom de famille sur accord |
+| Agenda | Tous les événements ouverts, camps compris |
+| Galerie | Albums publiés explicitement, visages sur consentement |
+| Soutenir | Besoins, moyens de don, formulaire de promesse |
+| Actualités, témoignages | Sur consentement du témoin |
+
+Restent fermés, **sans exception de posture** :
+
+- l'**annuaire** et toute donnée personnelle non consentie ;
+- le **suivi JTPA** — jamais public, jamais exporté ;
+- les **finances**, rapports de cellule, gouvernance ;
+- tout ce qu'une personne n'a pas accepté de rendre public.
+
+### Trois garde-fous qui survivent à la posture ouverte
+
+1. **Consentement explicite et révocable** pour toute personne nommée ou
+   photographiée. Publier n'est pas un droit acquis sur autrui : c'est un
+   accord, retirable à tout moment, et le retrait doit produire un effet
+   immédiat sur le site.
+2. **Adresse de groupe plutôt que personnelle.** GBU France emploie les deux ;
+   l'adresse de groupe offre la même ouverture sans exposer un individu, et
+   elle survit au changement de responsable — un responsable sortant ne
+   continue pas de recevoir les demandes.
+3. **Réversibilité immédiate.** Une cellule doit pouvoir repasser en privé en
+   un geste, sans intervention technique et sans attendre un déploiement.
+
+### Ce qui a été écarté
+
+**Posture prudente** — villes et campus publics, mais jour, heure et
+responsable communiqués après une mise en relation humaine. C'était la
+recommandation initiale, et la doctrine de `gbu-connect`. Écartée : elle
+allonge le chemin d'une étudiante qui cherche un groupe, et le point d'entrée
+du mouvement est la rentrée universitaire.
+
+**Posture discrète** — seules l'existence du mouvement et les villes. Écartée :
+la vitrine perdrait sa raison d'être.
+
+### Le risque, nommé
+
+Le contexte marocain n'est pas neutre. Un rapport du Département d'État
+américain relève des restrictions continues visant les chrétiens, exercées par
+l'État et par la société, qui conduisent ces communautés à rester discrètes ;
+des sources associatives décrivent une pratique en « églises domestiques ».
+
+**Cette décision est prise en connaissance de ce contexte**, par le
+responsable du projet, qui vit sur place. Elle est consignée ici pour que le
+choix reste visible, révisable, et attribuable — et non subi par ceux qu'il
+expose. Les trois garde-fous ci-dessus en sont la contrepartie.
+
+### Conséquences sur les maquettes
+
+Le parcours « Trouver mon groupe » change de forme : l'étape 2 peut désormais
+donner directement le jour, l'heure, le lieu et le contact du groupe. L'étape 3
+— se présenter — devient **facultative** : on peut écrire, ou simplement venir.
+À reprendre en phase 4.
+
+### Sources
+
+[GBU France](https://www.gbu.fr/en/) · [GBU Île-de-France — trouver un groupe](https://idf.gbu.fr/fr/la-rentree-des-groupes-en-ile-de-france-2024/) ·
+[GBU Île-de-France — contacts](https://idf.gbu.fr/fr/contacts/) ·
+[Yabiladi — rapport sur les restrictions](https://www.yabiladi.com/articles/details/139648/maroc-chretiens-chiites-subissent-restrictions.html) ·
+[AED — les chrétiens marocains](https://acninternational.org/fr/les-chretiens-marocains-doivent-pratiquer-leur-foi-en-secret/) ·
+[IFES — région MENA](https://ifesworld.org/en/region/mena/)
+
+---
+
 ## 3. ✅ ADR-002 — La pile technique
 
 > **Décision prise le 8 septembre 2026 : option A, TypeScript de bout en bout.**
@@ -746,6 +847,7 @@ en C#.
 | # | Décision | Statut |
 |---|---|---|
 | **ADR-001** | **Deux surfaces, une seule source de vérité** | ✅ **accepté** (9 sept. 2026) |
+| **ADR-011** | **Posture de visibilité publique : ouverte** | ✅ **accepté** (9 sept. 2026) — *réserve : confirmation SN* |
 | **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
 | ADR-003 | PostgreSQL unique, transactionnel, migrations versionnées | 🟡 proposé — *phase 5.2* |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |

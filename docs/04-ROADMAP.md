@@ -1,5 +1,13 @@
 # Échéancier — Hub officiel du GBUM
 
+### Réserves ouvertes
+
+| # | Réserve | Origine | Bloque |
+|---|---|---|---|
+| **R1** | La posture de visibilité publique (ADR-011) doit être confirmée par le Secrétariat National. | Point 2.4, tranché par Pierre alors que l'échéancier l'attribue au SN. | La première mise en ligne portant de vrais noms — pas la conception. |
+
+---
+
 > **La règle du projet.** Le travail avance par **phases**. On ne commence
 > rien de la phase suivante avant que la phase en cours soit **validée à
 > 70 %**. Les 30 % restants deviennent des réserves écrites, traitées en
@@ -15,7 +23,7 @@
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
 | 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 écrit | 0/6 |
-| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | **1/7** |
+| **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | **2/7** |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | SN + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + SN + 5 testeurs | 🟡 dessinées | 0/6 |
 | 5 | Stack technique | La pile, et pourquoi | Pierre | 🟡 partielle | 1/5 |
@@ -66,8 +74,12 @@ C'est la phase qui décide de la **méthode**, avant toute technique.
       autre chose. *(Pierre + SN)* — ADR-005
 - [ ] **2.3** La liste des **domaines fonctionnels** D1 à D12 est complète et
       correctement nommée. *(SN)*
-- [ ] **2.4** Le partage **public / membre** est au bon endroit : ce qui se voit
-      sans compte, ce qui ne se voit pas. *(SN)*
+- [x] **2.4** Le partage **public / membre** → **posture ouverte** : villes,
+      campus, cellules, jours, heures, lieux et contacts de groupe sont
+      publics. Décidé le 9 sept. 2026. *(Pierre)* — [ADR-011](02-ARCHITECTURE.md)
+      ⚠️ **Réserve R1** — ce point revient au SN selon le présent échéancier.
+      Sa confirmation est requise **avant toute mise en ligne portant de vrais
+      noms**.
 - [ ] **2.5** Le **périmètre de la v1** : quels domaines sortent en premier.
       *(SN + Pierre)*
 - [ ] **2.6** Le sort du **JTPA** : dans le hub, cloisonné, ou hors du hub.
@@ -205,4 +217,5 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 2 | Point 2.4 orienté : posture de visibilité **ouverte** (ADR-011), sur le modèle de GBU France. Réserve R1 : confirmation du SN avant mise en ligne de vrais noms |
 | 9 sept. 2026 | — | **Échéancier réordonné en phases.** Le prototype de code écrit hors phase est supprimé : il anticipait les phases 6 et 7 sur des décisions non validées. |

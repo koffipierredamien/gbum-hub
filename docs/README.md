@@ -66,6 +66,7 @@
 | **D2** | Pile technique | ✅ **TypeScript de bout en bout** — 8 sept. 2026 | 5.1 |
 | **D3** | Dépôt | ✅ **`gbum-hub`** — 8 sept. 2026 | — |
 | **D4** | Périmètre de la v1 | ⬜ à trancher | 2.5 |
+| **D10** | Posture de visibilité publique | ✅ **ouverte** — 9 sept. 2026 *(réserve : confirmation SN)* | 2.4 |
 | **D5** | Bascule progressive ou non | ⬜ à trancher | 3.7 |
 | **D6** | Langues de la v1 | ⬜ à trancher | 3.3 |
 | **D7** | Hébergement | ⬜ à trancher | 5.4 |
