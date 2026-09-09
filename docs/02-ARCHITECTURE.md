@@ -263,7 +263,7 @@ Deviennent publics :
 |---|---|
 | Présentation du mouvement | Vision décennale, devise, thème de l'année, histoire, appartenance à l'IFES |
 | **Villes** où le GBUM est présent | Le niveau auquel la publication s'arrête |
-| **Liste des cellules d'une ville** | Les cellules sont **nommées**, pour montrer que le mouvement est vivant sur place |
+| **Liste des cellules d'une ville** | **Nom de la cellule et nombre de ses membres** — rien d'autre. Ni jour, ni heure, ni lieu, ni responsable. *(précisé le 9 sept. 2026)* |
 | **Contact du responsable de ville** | Le **seul** contact publié — c'est lui qu'on joint au besoin |
 | Agenda | Les événements ouverts, camps compris |
 | Galerie | Albums publiés explicitement, visages sur consentement |
@@ -276,6 +276,9 @@ Restent fermés, **sans exception de posture** :
 
 - **toute information sur les responsables de cellule** — nom, contact, photo :
   la chaîne publique s'arrête au bureau de ville ;
+- **le jour, l'heure et le lieu de rencontre d'une cellule** : une cellule se
+  réunit souvent chez quelqu'un, et publier l'horaire d'un appartement expose
+  un domicile ;
 - l'**annuaire** et toute donnée personnelle non consentie ;
 - le **suivi JTPA** — jamais public, jamais exporté ;
 - les **finances**, rapports de cellule, gouvernance.
@@ -326,8 +329,8 @@ Le parcours « Trouver mon groupe » est à refaire en phase 4. Il montre
 aujourd'hui une cellule nommée avec son jour, son bâtiment, sa salle et le
 prénom de son responsable — **au-delà de ce que cette décision autorise**.
 
-Ce qu'il devra montrer : la **ville**, la **liste de ses cellules**, et le
-**contact du responsable de ville**. L'étape « se présenter » reste utile, mais
+Ce qu'il devra montrer : la **ville**, la **liste de ses cellules — nom et
+nombre de membres**, et le **contact du responsable de ville**. L'étape « se présenter » reste utile, mais
 elle s'adresse désormais au bureau de ville, pas à une cellule.
 
 ### Sources

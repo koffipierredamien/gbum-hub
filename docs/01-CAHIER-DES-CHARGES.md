@@ -138,9 +138,11 @@ GBUssiens
   naissance au **GBUAF**, avec Alastair Kennedy comme premier secrétaire
   régional. Le GBUAF est admis membre affilié de l'IFES en **1972**.
   ([GBUAF](https://gbuaf.org/les-gbuaf/lhistoire-des-gbu/))
-- L'IFES distingue une région **Afrique francophone** et une région **Moyen-
-  Orient et Afrique du Nord (MENA)**. Elle décrit le ministère étudiant en MENA
-  comme particulièrement difficile.
+- **Le GBUM relève de la région MENA** — Moyen-Orient et Afrique du Nord —
+  de l'IFES, et non de l'Afrique francophone. *(SN, 9 sept. 2026)* Ce point ne
+  se déduisait pas des sources publiques : le Maroc ne figure pas parmi les
+  pays membres du GBUAF. L'IFES décrit le ministère étudiant en MENA comme
+  particulièrement difficile.
   ([IFES MENA](https://ifesworld.org/en/region/mena/),
   [IFES Afrique francophone](https://ifesworld.org/en/region/francophoneafrica/))
 
@@ -151,8 +153,7 @@ National** — ces vides ne doivent pas être comblés par des suppositions.
 
 | Manquant | Pourquoi c'est nécessaire |
 |---|---|
-| **Date et histoire de la création du GBUM** | Aucune source publique n'en porte trace. Nécessaire à la page « L'organisation » et au domaine Mémoire. |
-| **Région IFES de rattachement** — MENA ou Afrique francophone ? | Le Maroc **ne figure pas** parmi les pays membres du GBUAF ; le rattachement ne peut donc pas être déduit. |
+| **Date et histoire de la création du GBUM**, et histoire des GBU | Aucune source publique n'en porte trace. **Le Secrétariat National sera sollicité.** Une place leur est réservée dans le produit — voir F1.11 et le domaine D12. |
 | **Le thème de l'année en cours** | Il porte la vision, et l'écran d'accueil du hub s'y adosse. |
 | **Les chiffres du mouvement** — villes, cellules, GBUssiens, Amis | Toute la vitrine et le pilotage en dépendent. |
 | **Le reste des activités** | La liste du §1.1 est explicitement ouverte. |
@@ -373,6 +374,7 @@ anonyme.
 | **F1.8** | Blog / actualités : nouvelles du mouvement, témoignages, comptes rendus de camp. | S | ❌ absent |
 | **F1.9** | SEO complet : métadonnées, Open Graph, données structurées `Organization`/`Event`, `sitemap.xml`, `robots.txt`, URL canoniques, rendu **serveur ou statique**. | M | ❌ absent |
 | **F1.10** | Multilingue **FR / AR / EN**, avec **support RTL complet** pour l'arabe. | S | ❌ absent |
+| **F1.11** | **« Notre histoire »** : la naissance des GBU, celle du GBUM, ses étapes. **L'emplacement est réservé dès la conception** ; le contenu viendra du Secrétariat National. Tant qu'il manque, la page annonce qu'elle est en cours d'écriture plutôt que de rester vide ou d'être meublée. | M | ❌ absent |
 
 ---
 

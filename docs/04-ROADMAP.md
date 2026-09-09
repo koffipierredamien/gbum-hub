@@ -5,6 +5,8 @@
 | # | Réserve | Origine | Bloque |
 |---|---|---|---|
 | **R1** | La posture de visibilité publique (ADR-011) doit être confirmée par le Secrétariat National. | Point 2.4, tranché par Pierre alors que l'échéancier l'attribue au SN. | La première mise en ligne portant de vrais noms — pas la conception. |
+| **R2** | Les maquettes portent des données inventées — thème, chiffres, « plus de trente ans », budget, dates de camp — ainsi qu'un parcours « Trouver mon groupe » qui va au-delà d'ADR-011. | Écrites avant que le cadrage soit validé. | Rien pour l'instant : reprise décidée en **phase 4**. |
+| **R3** | L'histoire des GBU et du GBUM manque entièrement. | Aucune source publique ; le SN sera sollicité. | Rien : **une place est réservée** dans le produit (F1.11, domaine D12). |
 
 ---
 
@@ -22,7 +24,7 @@
 | # | Phase | Livrable | Qui valide | État | Validé |
 |---|---|---|---|---|---|
 | 0 | Connaître l'existant | L'audit | Pierre | ✅ | 1/1 |
-| 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 en cours | **1/6** |
+| 1 | Cadrage | Le mouvement, les acteurs, les besoins | Pierre + SN | 🟡 en cours | **2/6** |
 | **2** | **Organisation du hub** | Un site ou plusieurs · les accès · les domaines | Pierre + SN | 🔵 **en cours** | **2/7** |
 | 3 | Cahier des charges | Le CDC, exigence par exigence | SN + Pierre | 🟡 écrit | 0/7 |
 | 4 | Maquettes | Les écrans, éprouvés sur téléphone réel | Pierre + SN + 5 testeurs | 🟡 dessinées | 0/6 |
@@ -50,9 +52,13 @@
       thème annuel, organisation du national à la cellule. **Hiérarchie
       complète fournie par Pierre le 9 sept. 2026** — SN, Conseil Exécutif,
       bureaux de ville, cellules, Amis. *(Pierre ; confirmation SN attendue)*
-- [ ] **1.2** Les acteurs et les personas correspondent à des gens réels. *(SN)*
+- [x] **1.2** Les acteurs correspondent à des rôles réels du mouvement.
+      **Les cinq personas inventés ont été retirés** le 9 sept. 2026 ; les
+      rôles viennent désormais de la description faite par Pierre.
+      *(Pierre ; confirmation SN attendue)*
 - [ ] **1.3** Toutes les activités du GBUM sont recensées : études, agapès,
-      sorties, JTPA, camps. *(SN)*
+      sorties, JTPA, camps. *(SN)* — **liste explicitement ouverte** : le reste
+      sera fourni au fil du projet.
 - [ ] **1.4** Les manques identifiés sont réels : canevas d'études, JTPA,
       vision décennale, accueil de rentrée, mémoire, langues. *(SN + Pierre)*
 - [ ] **1.5** Les objectifs métier O1 à O7 sont les bons, et leurs indicateurs
@@ -222,6 +228,8 @@ résout pas en codant plus vite. Quatre leviers, par efficacité décroissante :
 | 8 sept. 2026 | 5 | Langage tranché : TypeScript |
 | 8 sept. 2026 | — | Dépôt `gbum-hub` créé |
 | 9 sept. 2026 | 2 | Point 2.1 tranché : deux surfaces, une seule source de vérité (ADR-001), sur précédents IFES / UCCF / SGDF / Rotary |
+| 9 sept. 2026 | 1 | Rattachement IFES établi : **région MENA**. Une place est réservée à l'histoire du GBU et du GBUM (F1.11, D12), dont le contenu sera demandé au SN |
+| 9 sept. 2026 | 2 | Précision : une cellule publie **son nom et son nombre de membres**, rien d'autre |
 | 9 sept. 2026 | 1 | Cadrage réécrit : hiérarchie réelle du GBUM fournie par Pierre ; histoire IFES/GBUAF sourcée ; **tous les indicateurs et personas inventés retirés** |
 | 9 sept. 2026 | 2 | Point 2.4 précisé : la publication s'arrête à la ville. Point 2.4 orienté : posture de visibilité **ouverte** (ADR-011), sur le modèle de GBU France. Réserve R1 : confirmation du SN avant mise en ligne de vrais noms |
 | 9 sept. 2026 | — | **Échéancier réordonné en phases.** Le prototype de code écrit hors phase est supprimé : il anticipait les phases 6 et 7 sur des décisions non validées. |
