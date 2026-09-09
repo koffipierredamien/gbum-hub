@@ -31,11 +31,16 @@ pour la direction complète et les prompts par écran.
 ### Version 2 — « Foyer en mouvement » *(proposition, 9 septembre 2026)*
 
 Le thème « Foyer » est lisible, sobre et honnête — et c'est ce qui le rend
-calme. Une **version 2** est proposée dans
+calme. Une **version 2** est exposée dans
 [`direction-artistique/`](direction-artistique/) : cinq surfaces au lieu d'une,
 un rapport typographique de 8:1 au lieu de 3:1, des voix d'étudiants à la place
 des pictogrammes, un mouvement mesuré qu'un réglage système éteint, et un vide
 qui invite au lieu de s'excuser.
+
+**Elle est appliquée depuis le 9 septembre 2026 aux onze planches du site
+public** ([`site-public/`](site-public/)). Les sept planches listées ci-dessus —
+les écrans du hub — ne le sont pas encore : elles portent toujours des données
+inventées et seront refaites lorsque l'espace de travail viendra (réserve R2).
 
 Les deux règles mesurées ci-dessus y survivent **intactes**, et la palette
 d'origine est conservée en entier — deux valeurs s'y ajoutent. Détail écrit :

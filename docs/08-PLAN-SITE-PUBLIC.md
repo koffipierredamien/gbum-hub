@@ -24,13 +24,25 @@ meurt en trois mois.
 | **2** | **Le mouvement** | Qui nous sommes : vision décennale, devise, thème de l'année, convictions, IFES et GBUAF, **notre histoire** | Éditorial |
 | **3** | **Où nous sommes** | « Y a-t-il un groupe près de moi ? » | Base de données |
 | **4** | **La vie du mouvement** | Ce qu'on fait, en images | Base de données — alimenté par l'espace de travail |
-| **5** | **Le canevas** | L'année en cours et **toutes les archives** | Base de données |
-| **6** | **Agenda** | Les prochains temps forts ouverts | Base de données |
+| **5** | **Agenda** | Les prochains temps forts ouverts | Base de données |
+| **6** | **Le canevas** | L'année en cours et **toutes les archives** | Base de données |
 | **7** | **Soutenir** | Comment aider le mouvement | Éditorial + formulaire |
 | **8** | **Nous écrire** | Joindre le mouvement | Formulaire |
 
 Plus, au pied de page : **Confidentialité et vos données**, et le lien vers
 l'espace membres.
+
+**L'ordre est celui du menu, et il a été décidé le 9 septembre 2026.** Il suit
+le parcours du visiteur, pas l'organigramme du mouvement : **découvrir** (2, 3,
+4), **participer** (5), **approfondir** (6), **s'engager** (7, 8). L'agenda
+passe devant le canevas parce qu'une date est actionnable pour quelqu'un qui
+découvre, là où une archive d'études récompense quelqu'un qui s'y intéresse
+déjà. Et « Rejoindre le GBUM » n'est pas une entrée de menu : c'est l'action,
+l'unique bouton ambre.
+
+Le pied de page reprend le même ordre en trois colonnes — *Découvrir*,
+*Participer*, *Soutenir*. Argumentation :
+[`09-DIRECTION-ARTISTIQUE.md` §7.1](09-DIRECTION-ARTISTIQUE.md).
 
 ### Le parcours « Rejoindre le GBUM »
 
@@ -84,7 +96,8 @@ en cours d'écriture** — jamais un blanc, jamais un texte de remplissage.
 | Le thème de l'année | 1 et 2 |
 | Le canevas de l'année et les archives | 5 — Le canevas |
 | Les chiffres du mouvement | 1, 3 |
-| De vraies photos | Toutes |
+| De vraies photos — **quatre pour l'ouverture** | Toutes |
+| Des témoignages d'étudiants | 1 |
 
 ---
 
@@ -116,10 +129,17 @@ Aucun débordement horizontal à aucune largeur. Cibles tactiles ≥ 44 × 44 px
 **mesurées à l'écran**.
 
 ### Direction artistique
-Thème **« Foyer »**, repris de l'application existante — mêmes jetons de
-couleur, mêmes deux familles de caractères, et les deux corrections de
-contraste que son audit avait mesurées : le texte sur l'ambre est en encre
+Système **« Foyer en mouvement »** — la version 2 du thème « Foyer », appliquée
+aux onze planches le 9 septembre 2026 : cinq surfaces au lieu d'une, un rapport
+typographique de 8:1, des bandes pleine largeur à la place des cartes, un
+mouvement mesuré qu'un réglage système éteint entièrement, et un vide qui
+invite au lieu de s'excuser.
+
+Les deux corrections de contraste héritées de l'audit de l'application
+existante tiennent toujours, intactes : le texte sur l'ambre est en encre
 jamais en blanc, et l'ambre est la couleur des actions jamais celle d'un état.
+Les onze règles, avec leurs mesures et leurs références :
+[`09-DIRECTION-ARTISTIQUE.md`](09-DIRECTION-ARTISTIQUE.md).
 
 ### Performance
 Première page utile en **moins de 2 secondes** sur un téléphone en 4G.

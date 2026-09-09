@@ -10,110 +10,213 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
   <style>
     body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
-    a { color:#96430F; text-decoration:none; } a:hover { color:#C6611C; }
+    a { color:#7A3208; text-decoration:none; }
     button { font-family:inherit; cursor:pointer; }
-    .h1 { font-family:'Newsreader',Georgia,serif; font-size:32px; line-height:1.15; font-weight:600; margin:0 0 14px; text-wrap:pretty; }
-    .h2 { font-family:'Newsreader',Georgia,serif; font-size:24px; line-height:1.22; font-weight:600; margin:0 0 10px; }
-    .p  { font-size:15px; line-height:1.62; color:#5F5346; margin:0 0 16px; }
-    .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; }
-    .cta { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
-           background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700; }
-    .cta2 { display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:11px;
-            background:#FFFFFF; border:1.5px solid #C6611C; color:#96430F; font-size:14.5px; font-weight:700; }
-    .lien { display:flex; align-items:center; min-height:44px; font-size:14px; color:#5F5346; }
-    .lien:hover { color:#2A211B; }
-    .etiq { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 11px; border-radius:999px;
-            background:#F4EADC; border:1px solid #E5D9C9; font-size:11.5px; font-weight:600; color:#5F5346; }
-    /* Marqueur des contenus manquants — voir exigence A1.3 : un emplacement
-       vide ANNONCE qu'il est en cours d'écriture, il ne se meuble pas. */
-    .attente { border:1.5px dashed #8A7458; border-radius:12px; background:#FBF1E6; padding:14px 16px; }
-    .attente .t { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#96430F; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
-    .attente .d { font-size:13px; line-height:1.5; color:#5F5346; }
-    .vide { color:#6E6053; font-style:italic; }
+
+    /* ---- D1 · CINQ SURFACES ------------------------------------------
+       Une bande va d'un bord à l'autre : la gouttière est intérieure.
+       Deux bandes sombres ne se suivent jamais.                         */
+    .b { padding:36px 22px; }
+    .s-creme { background:#FBF6EF; color:#2A211B; }
+    .s-sable { background:#F4EADC; color:#2A211B; }
+    .s-encre { background:#2A211B; color:#FBF6EF; }
+    .s-terre { background:#7A3208; color:#FBF6EF; }
+    .s-foret { background:#12432A; color:#FBF6EF; }
+
+    /* ---- D2 · L'ÉCHELLE — un seul Display par page ------------------- */
+    .disp  { font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1.02; letter-spacing:-.02em; font-weight:500; margin:0; text-wrap:balance; }
+    .titre { font-family:'Newsreader',Georgia,serif; font-size:30px; line-height:1.14; font-weight:600; margin:0 0 12px; text-wrap:pretty; }
+    .titre2{ font-family:'Newsreader',Georgia,serif; font-size:24px; line-height:1.18; font-weight:600; margin:0 0 10px; }
+    .sst   { font-size:20px; font-weight:600; line-height:1.3; margin:0 0 6px; }
+    .corps { font-size:16px; line-height:1.62; margin:0 0 16px; }
+    .petit { font-size:13.5px; line-height:1.55; }
+    .etiq  { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    .num   { font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; width:32px; flex-shrink:0; }
+    .vide  { color:#6E6053; font-style:italic; }
+    .vide-clair { color:#FBF6EF; font-style:italic; }
+
+    /* ---- D7 · L'ambre ne porte que des actions -----------------------
+       Texte encre sur ambre : 5,19:1. Le blanc (3,04:1) reste interdit.
+       Sur Crème et Sable, la bordure #C6611C marque la limite du
+       contrôle (3,81 et 3,44). Sur Terre et Forêt, c'est le fond ambre
+       lui-même qui la marque (3,02 et 3,71) : la bordure y disparaît.  */
+    .cta  { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
+            background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700;
+            transition: transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .cta:hover { transform:translateY(-2px); }
+    .cta-sombre { border-color:transparent; }
+    .cta2 { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:50px; border-radius:12px;
+            background:transparent; border:1.5px solid #7A3208; color:#7A3208; font-size:15.5px; font-weight:700;
+            transition: background-color 120ms cubic-bezier(.05,.7,.1,1); }
+    .cta2:hover { background:#F4EADC; }
+    .lien { display:inline-block; min-height:44px; line-height:44px; font-size:14px; font-weight:700; color:#7A3208; }
+    .lien span { border-bottom:1.5px solid #7A3208; padding-bottom:2px; }
+
+    /* ---- D10 · LE VIDE INVITE ----------------------------------------
+       Un filet plein ouvert vers la page, jamais un cadre pointillé.    */
+    .att { border-inline-start:3px solid #7A3208; padding:12px 0 12px 16px; }
+    .att .t { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#7A3208; margin-bottom:5px; }
+    .att .d { font-size:13.5px; line-height:1.55; color:#5F5346; }
+    .att .q { display:inline-block; margin-top:9px; font-size:13.5px; font-weight:700; color:#7A3208; border-bottom:1.5px solid #7A3208; padding-bottom:2px; }
+    .att-encre { border-inline-start-color:#F0A868; }
+    .att-encre .t { color:#F0A868; } .att-encre .d { color:#B9AA98; } .att-encre .q { color:#F0A868; border-bottom-color:#F0A868; }
+    /* Sur Terre, #B9AA98 ne mesure que 4,05:1 — le secondaire y est #EFC9A6. */
+    .att-terre { border-inline-start-color:#EFC9A6; }
+    .att-terre .t, .att-terre .d, .att-terre .q { color:#EFC9A6; } .att-terre .q { border-bottom-color:#EFC9A6; }
+    .att-foret { border-inline-start-color:#9ED2B4; }
+    .att-foret .t, .att-foret .d, .att-foret .q { color:#9ED2B4; } .att-foret .q { border-bottom-color:#9ED2B4; }
+    /* Par-dessus une photo, le marqueur pose son propre fond encre à 90 % :
+       le composite vaut #3F3732 au pire, l'ambre clair y mesure 5,82:1.
+       Posé à même le voile, il ne mesurerait que 2,58:1.                */
+    .att-photo { border-inline-start-color:#F0A868; background:rgba(42,33,27,.90); padding:12px 16px; border-radius:0 10px 10px 0; }
+    .att-photo .t { color:#F0A868; } .att-photo .d { color:#FBF6EF; }
+
+    /* ---- D3 · LA PHOTOGRAPHIE ----------------------------------------
+       Voile encre à 66 % minimum : sur la photo la plus claire concevable
+       la crème y mesure 4,81:1. Sur un voile, le texte est en crème et
+       seulement en crème.                                               */
+    .photo { position:relative; overflow:hidden; }
+    .voile { position:absolute; inset:0; background:rgba(42,33,27,.66); }
+
+    /* ---- D11 · LE DÉFILÉ D'IMAGES ------------------------------------
+       Fondu d'opacité seulement : ni glissement, ni zoom (WCAG 2.3.3).
+       Quatre vues, 7 s chacune, 900 ms de fondu. Le critère WCAG 2.2.2
+       impose un moyen d'arrêter un contenu qui se met à jour tout seul :
+       ce sont le bouton pause et les pastilles, plus l'arrêt au survol. */
+    .carrousel { position:absolute; inset:0; }
+    .carrousel > .vue { position:absolute; inset:0; opacity:0; animation: fondu 28s linear infinite; }
+    .carrousel > .vue:nth-child(1) { animation-delay: 0s; }
+    .carrousel > .vue:nth-child(2) { animation-delay: 7s; }
+    .carrousel > .vue:nth-child(3) { animation-delay:14s; }
+    .carrousel > .vue:nth-child(4) { animation-delay:21s; }
+    @keyframes fondu { 0% {opacity:0;} 3.2% {opacity:1;} 25% {opacity:1;} 28.2% {opacity:0;} 100% {opacity:0;} }
+    .hero:hover .carrousel > .vue { animation-play-state:paused; }
+    .pastilles { display:flex; align-items:center; gap:4px; }
+    .pastille { width:28px; height:44px; display:flex; align-items:center; justify-content:center; }
+    .pastille i { display:block; width:8px; height:8px; border-radius:999px; background:rgba(251,246,239,.45); }
+    .pastille.on i { background:#FBF6EF; width:22px; }
+    .pause { width:44px; height:44px; border-radius:999px; background:rgba(42,33,27,.90); border:1px solid rgba(251,246,239,.55);
+             display:flex; align-items:center; justify-content:center; }
+
+    /* ---- D5 · LE DÉFILÉ DES VILLES — un filet, pas une bande --------- */
+    .piste { overflow:hidden; }
+    .defile { display:flex; width:max-content; animation: glisse 38s linear infinite; }
+    .defile:hover { animation-play-state:paused; }
+    @keyframes glisse { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+    /* ---- D9 · La carte se mérite : listes énumérables et comparables - */
+    .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; padding:16px;
+             transition: background-color 120ms cubic-bezier(.05,.7,.1,1), transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .carte:hover { background:#FDFAF6; transform:translateY(-2px); }
+    .rang { border-top:1px solid #E5D9C9; padding:16px 0; }
+    .rang-fin { border-bottom:1px solid #E5D9C9; }
+    .rang-terre { border-top:1px solid #A45A25; padding:15px 0; }
+    .rang-foret { border-top:1px solid #2E6B4A; padding:15px 0; }
+    .rang-encre { border-top:1px solid #4A3D33; padding:15px 0; }
+
+    /* ---- Contrôles : la bordure d'un contrôle mesure 3:1 (WCAG 1.4.11).
+       #8A7458 vaut 3,74 sur Sable et 4,14 sur Crème.                    */
+    .champ { width:100%; box-sizing:border-box; min-height:50px; border:1px solid #8A7458; border-radius:11px;
+             background:#FFFFFF; padding:0 14px; font-size:15.5px; color:#2A211B; display:flex; align-items:center; }
+    .champ-zone { min-height:96px; align-items:flex-start; padding-top:14px; }
+    .lab { font-size:12.5px; font-weight:700; color:#5F5346; margin-bottom:6px; display:block; }
+    .puce { display:inline-flex; align-items:center; height:36px; padding:0 15px; border-radius:999px; font-size:13.5px; font-weight:600;
+            transition: background-color 120ms cubic-bezier(.05,.7,.1,1); }
+    .puce-on  { background:#2A211B; color:#FBF6EF; }
+    .puce-off { background:transparent; border:1px solid #8A7458; color:#5F5346; }
+    .puce-off:hover { background:#EADCC7; }
+
+    /* ---- D4 · L'interrupteur. Sous ce réglage la page reste entière. -- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+      .carrousel > .vue { animation:none; opacity:0; }
+      .carrousel > .vue:first-child { opacity:1; }
+    }
   </style>
 </helmet>
 
 <div style="width:390px; background:#FBF6EF;">
-  <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#FBF6EF; border-bottom:1px solid #E5D9C9;">
-    <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-      <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span>
-    </div>
-    <div style="flex-grow:1; line-height:1.15;">
-      <div style="font-size:14.5px; font-weight:700;">GBU Maroc</div>
-      <div style="font-size:11px; color:#6E6053;">Groupe Biblique Universitaire</div>
-    </div>
-    <div style="display:flex; align-items:center; height:36px; border:1px solid #E5D9C9; border-radius:9px; overflow:hidden; background:#FFFFFF;">
-      <span style="padding:0 11px; line-height:34px; font-size:12.5px; font-weight:700; background:#F4EADC; color:#2A211B;">FR</span>
-      <span style="padding:0 11px; line-height:34px; font-size:12.5px; font-weight:600; color:#6E6053;">EN</span>
+
+  <div style="display:flex; align-items:center; gap:10px; padding:14px 18px; background:#FBF6EF; border-bottom:1px solid #E5D9C9;">
+    <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-weight:600; color:#2A211B;">G</span></div><div style="line-height:1.15; white-space:nowrap;"><div style="font-size:14.5px; font-weight:700; color:#2A211B;">GBU Maroc</div><div style="font-size:11px; color:#6E6053;">Groupe Biblique Universitaire</div></div>
+    <div style="flex-grow:1;"></div>
+    <div style="display:flex; align-items:center; height:34px; border:1px solid #E5D9C9; border-radius:9px; overflow:hidden; background:#FFFFFF;">
+      <span style="padding:0 10px; line-height:32px; font-size:12.5px; font-weight:700; background:#F4EADC; color:#2A211B;">FR</span>
+      <span style="padding:0 10px; line-height:32px; font-size:12.5px; font-weight:600; color:#6E6053;">EN</span>
     </div>
     <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-inline-end:-10px;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
     </div>
   </div>
-  <div style="padding:26px 20px 0;">
-    <h1 class="h1">Soutenir le mouvement</h1>
-    <p class="p">Le GBUM vit du soutien de ceux qui croient à ce qui se joue sur les campus. Anciens, amis, églises, partenaires.</p>
+
+  <div class="s-creme" style="padding:34px 22px 30px;">
+    <div class="etiq" style="color:#7A3208; margin-bottom:16px;">Anciens, amis, églises, partenaires</div>
+    <h1 class="disp">Soutenir le<br>mouvement.</h1>
+    <p class="corps" style="margin-top:18px; color:#5F5346;">Le GBUM vit du soutien de ceux qui croient à ce qui se joue sur les campus. Il y a trois manières de le faire, et elles ne se valent pas : la première ne coûte rien et compte le plus.</p>
   </div>
 
-  <div style="padding:8px 20px 0; display:flex; flex-direction:column; gap:10px;">
-    <div class="carte" style="padding:18px;">
-      <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.9"/><path d="M8.1 15.9a5.5 5.5 0 0 1 0-7.8"/><path d="M15.9 8.1a5.5 5.5 0 0 1 0 7.8"/></svg>
-      </div>
-      <div style="font-size:16px; font-weight:700; margin-bottom:5px;">Par la prière</div>
-      <p style="margin:0 0 14px; font-size:13.5px; line-height:1.55; color:#5F5346;">Recevoir la lettre de prière du mouvement et porter les campus dans la prière.</p>
-      <button class="cta2">Recevoir la lettre de prière</button>
+  <!-- ===== 01 · PRIER ===== -->
+  <div class="s-foret b" style="padding-block:40px;">
+    <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#9ED2B4; line-height:1;">01</span>
+      <div class="etiq" style="color:#9ED2B4;">La première, et la plus demandée</div>
     </div>
+    <h2 class="titre" style="color:#FBF6EF; margin:0 0 14px;">Prier.</h2>
+    <p class="corps" style="color:#9ED2B4; margin-bottom:22px;">La lettre de prière du mouvement dit, chaque fois, ce qui se joue vraiment : une ville qui redémarre, un camp qui se prépare, un étudiant qui arrive seul. Elle se lit en trois minutes.</p>
+    <button class="cta cta-sombre">Recevoir la lettre de prière <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
 
-    <div class="carte" style="padding:18px;">
-      <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M3 7l3-3h12l3 3"/><circle cx="12" cy="13" r="2.4"/></svg>
-      </div>
-      <div style="font-size:16px; font-weight:700; margin-bottom:5px;">Par un don</div>
-      <p style="margin:0 0 14px; font-size:13.5px; line-height:1.55; color:#5F5346;">Ponctuel ou régulier. Les dons financent les camps, les déplacements et la formation des responsables.</p>
-      <div class="attente">
-        <div class="t">Moyens de don à préciser</div>
-        <div class="d">Les modalités seront indiquées par le Secrétariat National.</div>
-      </div>
+  <!-- ===== 02 · DONNER ===== -->
+  <div class="s-creme b" style="padding-block:40px;">
+    <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#7A3208; line-height:1;">02</span>
+      <div class="etiq" style="color:#7A3208;">Ponctuel ou régulier</div>
     </div>
+    <h2 class="titre" style="margin:0 0 14px;">Donner.</h2>
+    <p class="corps" style="color:#5F5346;">Les dons financent les camps, les déplacements des étudiants qui n'en ont pas les moyens, et la formation des responsables. Un camp coûte, et c'est souvent là que tout se joue pour quelqu'un.</p>
+    <div class="rang" style="display:flex; gap:14px; align-items:baseline;">
+      <div style="flex-grow:1;"><div class="sst" style="font-size:18px; margin:0;">Un don ponctuel</div><div class="petit" style="color:#5F5346;">Une fois, du montant que vous voulez.</div></div>
+    </div>
+    <div class="rang rang-fin" style="display:flex; gap:14px; align-items:baseline;">
+      <div style="flex-grow:1;"><div class="sst" style="font-size:18px; margin:0;">Un don régulier</div><div class="petit" style="color:#5F5346;">Chaque mois. C'est ce qui permet de prévoir.</div></div>
+    </div>
+    <div style="margin-top:22px;"><div class="att "><div class="t">Moyens de don à préciser</div><div class="d">Le compte, les moyens de paiement acceptés et le reçu éventuel seront indiqués par le Secrétariat National. Tant qu'ils ne le sont pas, aucun bouton de paiement n'est affiché : un don que l'on ne sait pas recevoir ne se demande pas.</div><span class="q">Vous avez cette information ?</span></div></div>
+  </div>
 
-    <div class="carte" style="padding:18px;">
-      <div style="width:38px; height:38px; border-radius:11px; background:#FBF1E6; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9-8.5C1.4 9 3 5.5 6.3 5.5c1.9 0 3.2 1 3.7 1.8h4c.5-.8 1.8-1.8 3.7-1.8C21 5.5 22.6 9 21 12.5 19 16.6 12 21 12 21z"/></svg>
+  <!-- ===== 03 · DEVENIR AMI ===== -->
+  <div class="s-terre b" style="padding-block:40px;">
+    <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;">
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; color:#EFC9A6; line-height:1;">03</span>
+      <div class="etiq" style="color:#EFC9A6;">Pour les anciens GBUssiens</div>
+    </div>
+    <h2 class="titre" style="color:#FBF6EF; margin:0 0 14px;">Devenir Ami du GBU.</h2>
+    <p class="corps" style="color:#EFC9A6; margin-bottom:22px;">Vous êtes passé par le GBU ? Le mouvement reste le vôtre. Les Amis le portent dans la durée — dans la prière, financièrement, ou en venant parler de ce qu'ils ont vécu. C'est un niveau à part entière du mouvement, pas une liste de diffusion.</p>
+    <button class="cta cta-sombre">Rejoindre les Amis du GBU <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+
+  <!-- ===== OÙ VA VOTRE SOUTIEN ===== -->
+  <div class="s-creme b">
+    <h2 class="titre">Où va votre soutien</h2>
+    <p class="corps" style="color:#5F5346;">Le mouvement rend compte de ce qu'il reçoit. Les bilans des activités soutenues — les camps, les rencontres, les formations — sont publiés dans la vie du mouvement, avec leurs photos et leurs récits.</p>
+    <a href="#" class="lien"><span>Voir la vie du mouvement</span></a>
+    <div style="margin-top:22px;"><div class="att "><div class="t">Trois manières, et pas une de plus</div><div class="d">Ce sont les trois manières que le mouvement pratique réellement. Une quatrième serait inventée — et une page qui invente une manière de donner est une page qui ment sur ce qu'elle fait de l'argent.</div></div></div>
+  </div>
+
+  <div class="s-encre" style="padding:34px 22px 38px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;"><div style="width:30px; height:30px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-weight:600; color:#2A211B;">G</span></div><div style="line-height:1.15; white-space:nowrap;"><div style="font-size:14.5px; font-weight:700; color:#FBF6EF;">GBU Maroc</div><div style="font-size:11px; color:#D8CBBB;">Groupe Biblique Universitaire</div></div></div>
+    <div style="font-family:'Newsreader',Georgia,serif; font-size:22px; line-height:1.3; color:#FBF6EF; margin-bottom:10px;">«&nbsp;Connaître Christ et Le faire connaître&nbsp;»</div>
+    <p class="petit" style="color:#B9AA98; margin:0 0 24px;">Groupe Biblique Universitaire au Maroc — membre de l'IFES, région Moyen-Orient et Afrique du Nord.</p>
+    <div style="margin-bottom:18px;"><div class="etiq" style="color:#F0A868; margin-bottom:4px;">Découvrir</div><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Le mouvement</a><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Où nous sommes</a><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">La vie du mouvement</a></div><div style="margin-bottom:18px;"><div class="etiq" style="color:#F0A868; margin-bottom:4px;">Participer</div><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Agenda</a><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Le canevas</a><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Rejoindre un groupe</a></div><div style="margin-bottom:18px;"><div class="etiq" style="color:#F0A868; margin-bottom:4px;">Soutenir</div><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">La lettre de prière</a><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Faire un don</a><a href="#" style="display:block; min-height:38px; line-height:38px; font-size:14.5px; color:#FBF6EF;">Les Amis du GBU</a></div>
+    <div style="border-top:1px solid #4A3D33; margin-top:6px; padding-top:14px;">
+      <a href="#" class="petit" style="color:#F0A868; font-weight:700; display:block; min-height:38px; line-height:38px;">Espace membres</a>
+      <div style="display:flex; gap:18px; flex-wrap:wrap;">
+        <span class="petit" style="color:#B9AA98;">© 2026 GBU Maroc</span>
+        <a href="#" class="petit" style="color:#B9AA98;">Confidentialité</a>
+        <a href="#" class="petit" style="color:#B9AA98;">Vos données</a>
       </div>
-      <div style="font-size:16px; font-weight:700; margin-bottom:5px;">Devenir Ami du GBU</div>
-      <p style="margin:0 0 14px; font-size:13.5px; line-height:1.55; color:#5F5346;">Vous êtes un ancien GBUssien ? Le mouvement reste le vôtre. Les Amis le portent dans la durée.</p>
-      <button class="cta">Rejoindre les Amis du GBU</button>
     </div>
   </div>
 
-  <div style="padding:28px 20px 0;">
-    <div style="padding:18px; background:#F4EADC; border-radius:14px;">
-      <div style="font-size:14px; font-weight:700; margin-bottom:8px;">Où va votre soutien</div>
-      <p style="margin:0; font-size:13.5px; line-height:1.6; color:#5F5346;">Le mouvement rend compte de ce qu’il reçoit. Les bilans des activités soutenues sont publiés dans <a href="#">la vie du mouvement</a>.</p>
-    </div>
-  </div>
-  <div style="margin-top:40px; padding:28px 20px 32px; background:#F4EADC; border-top:1px solid #E5D9C9;">
-    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-      <div style="width:30px; height:30px; border-radius:8px; background:#E8732A; display:flex; align-items:center; justify-content:center;">
-        <span style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-weight:600; color:#2A211B;">G</span>
-      </div>
-      <div style="font-size:14px; font-weight:700;">GBU Maroc</div>
-    </div>
-    <div style="font-family:'Newsreader',Georgia,serif; font-size:15px; font-style:italic; color:#96430F; margin-bottom:16px;">« Connaître Christ et Le faire connaître »</div>
-    <p style="margin:0 0 20px; font-size:13px; line-height:1.6; color:#5F5346;">Groupe Biblique Universitaire au Maroc — membre de l’IFES, région Moyen-Orient et Afrique du Nord.</p>
-    <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:2px 16px; margin-bottom:20px;">
-      <a href="#" class="lien" style="font-size:13.5px;">Le mouvement</a>
-      <a href="#" class="lien" style="font-size:13.5px;">Où nous sommes</a>
-      <a href="#" class="lien" style="font-size:13.5px;">La vie du mouvement</a>
-      <a href="#" class="lien" style="font-size:13.5px;">Le canevas</a>
-      <a href="#" class="lien" style="font-size:13.5px;">Agenda</a>
-      <a href="#" class="lien" style="font-size:13.5px;">Soutenir</a>
-      <a href="#" class="lien" style="font-size:13.5px;">Nous écrire</a>
-      <a href="#" class="lien" style="font-size:13.5px;">Confidentialité</a>
-    </div>
-    <button class="cta2">Espace membres</button>
-  </div>
 </div>
 </x-dc>
 </body>

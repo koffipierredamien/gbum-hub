@@ -1,153 +1,49 @@
 {
   "artboards": [
-    {
-      "file": "Main.dc.html",
-      "x": 0,
-      "y": 500,
-      "w": 390,
-      "h": 2875,
-      "title": "1 · Accueil"
-    },
-    {
-      "file": "LeMouvement.dc.html",
-      "x": 490,
-      "y": 500,
-      "w": 390,
-      "h": 2645,
-      "title": "2 · Le mouvement"
-    },
-    {
-      "file": "OuNousSommes.dc.html",
-      "x": 980,
-      "y": 500,
-      "w": 390,
-      "h": 2012,
-      "title": "3 · Où nous sommes"
-    },
-    {
-      "file": "VieDuMouvement.dc.html",
-      "x": 1470,
-      "y": 500,
-      "w": 390,
-      "h": 1782,
-      "title": "4 · La vie du mouvement"
-    },
-    {
-      "file": "Canevas.dc.html",
-      "x": 1960,
-      "y": 500,
-      "w": 390,
-      "h": 1667,
-      "title": "5 · Le canevas"
-    },
-    {
-      "file": "Agenda.dc.html",
-      "x": 0,
-      "y": 3731,
-      "w": 390,
-      "h": 1322,
-      "title": "6 · Agenda"
-    },
-    {
-      "file": "Soutenir.dc.html",
-      "x": 490,
-      "y": 3731,
-      "w": 390,
-      "h": 1724,
-      "title": "7 · Soutenir"
-    },
-    {
-      "file": "NousEcrire.dc.html",
-      "x": 980,
-      "y": 3731,
-      "w": 390,
-      "h": 1552,
-      "title": "8 · Nous écrire"
-    },
-    {
-      "file": "Rejoindre.dc.html",
-      "x": 1470,
-      "y": 3731,
-      "w": 390,
-      "h": 2989,
-      "title": "9 · Rejoindre le GBUM"
-    },
-    {
-      "file": "AccueilBureau.dc.html",
-      "x": 0,
-      "y": 7076,
-      "w": 1440,
-      "h": 2185,
-      "title": "10 · Accueil — bureau"
-    },
-    {
-      "file": "Administration.dc.html",
-      "x": 1540,
-      "y": 7076,
-      "w": 1440,
-      "h": 1092,
-      "title": "11 · Administration"
-    }
+    { "file": "Main.dc.html",           "x": 0,    "y": 700,   "w": 390,  "h": 5072, "title": "1 · Accueil" },
+    { "file": "LeMouvement.dc.html",    "x": 490,  "y": 700,   "w": 390,  "h": 3778, "title": "2 · Le mouvement" },
+    { "file": "OuNousSommes.dc.html",   "x": 980,  "y": 700,   "w": 390,  "h": 3341, "title": "3 · Où nous sommes" },
+    { "file": "VieDuMouvement.dc.html", "x": 1470, "y": 700,   "w": 390,  "h": 3525, "title": "4 · La vie du mouvement" },
+    { "file": "Agenda.dc.html",         "x": 1960, "y": 700,   "w": 390,  "h": 2848, "title": "5 · Agenda" },
+    { "file": "Canevas.dc.html",        "x": 0,    "y": 6100,  "w": 390,  "h": 2494, "title": "6 · Le canevas" },
+    { "file": "Soutenir.dc.html",       "x": 490,  "y": 6100,  "w": 390,  "h": 3236, "title": "7 · Soutenir" },
+    { "file": "NousEcrire.dc.html",     "x": 980,  "y": 6100,  "w": 390,  "h": 2406, "title": "8 · Nous écrire" },
+    { "file": "Rejoindre.dc.html",      "x": 1470, "y": 6100,  "w": 390,  "h": 3895, "title": "9 · Rejoindre le GBUM" },
+    { "file": "AccueilBureau.dc.html",  "x": 0,    "y": 10300, "w": 1440, "h": 3408, "title": "10 · Accueil — bureau" },
+    { "file": "Administration.dc.html", "x": 1540, "y": 10300, "w": 1440, "h": 1077, "title": "11 · Administration" }
   ],
   "annotations": [
     {
-      "id": "titre",
-      "x": 0,
-      "y": 0,
-      "w": 1400,
-      "text": "SITE PUBLIC DU GBUM — maquettes du lot 1\n\nHuit pages, plus le parcours « Rejoindre » et l'espace d'administration. Composées à 390 px d'abord ; le bureau en est dérivé.\n\nDEUX RÈGLES TIENNENT CES PLANCHES.\n\n1. Rien n'est inventé. Tout contenu que le mouvement n'a pas encore fourni est marqué d'un encadré pointillé « en cours d'écriture ». Ce n'est pas un défaut de maquette : c'est l'exigence A1.3 elle-même — une page qui attend son contenu l'annonce, elle ne se meuble pas et ne reste pas blanche.\n\n2. La publication s'arrête à la ville (ADR-011). Les cellules sont nommées avec leur nombre de membres ; ni jour, ni heure, ni lieu, ni responsable. Le seul contact publié est celui du bureau de ville."
+      "id": "titre", "x": 0, "y": 0, "w": 1440,
+      "text": "SITE PUBLIC DU GBUM — les onze planches, dans la direction « Foyer en mouvement »\n\nLa direction artistique du 9 septembre 2026 est appliquée aux onze planches : cinq surfaces au lieu d'une, un rapport typographique de 8:1, des bandes pleine largeur à la place des cartes, un mouvement mesuré, et un vide qui invite.\n\nCE QUI A ÉTÉ DÉCIDÉ ICI, ET QUI RESTE À RECTIFIER\n\nL'ORDRE DES PAGES. Le mouvement · Où nous sommes · La vie du mouvement · Agenda · Le canevas · Soutenir · Nous écrire. Le parcours du visiteur : découvrir (qui, où, la preuve), participer (ce qui vient), approfondir (le canevas), s'engager. Seul changement par rapport à l'ordre précédent : l'agenda passe devant le canevas — une date est actionnable, une archive d'études récompense qui est déjà intéressé. « Rejoindre le GBUM » n'est pas une page de menu : c'est l'action, l'unique bouton ambre.\n\nLES MANIÈRES DE SOUTENIR. Trois : prier, donner, devenir Ami du GBU — dans cet ordre, du moins coûteux au plus engageant. Une quatrième serait inventée.\n\nLES DEUX RÈGLES QUI TIENNENT CES PLANCHES N'ONT PAS BOUGÉ. Rien n'est inventé (A1.3). La publication s'arrête à la ville (ADR-011).\n\nLe détail écrit : docs/09-DIRECTION-ARTISTIQUE.md et docs/08-PLAN-SITE-PUBLIC.md"
+    },
+    { "id": "r1", "x": 0, "y": 600, "w": 900, "text": "RANGÉE 1 — découvrir, puis participer. Les cinq premières pages du menu, sur téléphone." },
+    {
+      "id": "d-carrousel", "x": 2470, "y": 700, "w": 400,
+      "text": "LE DÉFILÉ D'IMAGES (planche 1, et planche 10)\n\nQuatre photographies se succèdent en fondu sur l'ouverture. Sept secondes chacune, 900 ms de fondu, en boucle. Il fonctionne réellement dans ce canevas.\n\nFONDU SEULEMENT — ni glissement, ni zoom. Ce sont les mouvements de grande amplitude qui posent problème (troubles vestibulaires) ; un fondu d'opacité est l'alternative sûre.\n\nUN MOYEN DE L'ARRÊTER. Le critère WCAG 2.2.2 l'exige pour tout contenu qui se met à jour tout seul : ce sont le bouton pause en bas à droite, les pastilles, et l'arrêt au survol. Sous « réduire les animations », seule la première image reste, et la page ne perd rien."
     },
     {
-      "id": "r1",
-      "x": 0,
-      "y": 294,
-      "w": 900,
-      "text": "RANGÉE 1 — les cinq premières pages, sur téléphone."
+      "id": "d-vide", "x": 2470, "y": 1500, "w": 400,
+      "text": "LE VIDE INVITE, IL NE S'EXCUSE PAS\n\nLe rectangle pointillé a disparu de toutes les planches. À sa place : un filet plein en Terre, ouvert vers la page, une étiquette (8,54:1 sur crème), la phrase qui dit qui doit fournir quoi, et — là où c'est utile — un lien « Vous avez cette information ? ».\n\nC'est le changement qui compte le plus, parce qu'il touche 40 % de la surface. Pour un mouvement d'étudiants, une page qui dit « cette partie de notre histoire n'est pas encore écrite — écris-la avec nous » est plus vivante qu'une page pleine. Et c'est vrai."
     },
     {
-      "id": "d-attente",
-      "x": 2450,
-      "y": 500,
-      "w": 380,
-      "text": "LE MARQUEUR D'ATTENTE\n\nL'encadré pointillé ambre signale un contenu que le Secrétariat National doit fournir : le thème de l'année, l'histoire du GBUM, le canevas, les chiffres, les photos.\n\nIl est visible à dessein. Un lecteur pressé doit voir immédiatement ce qui est réel et ce qui ne l'est pas — c'est ce qui a manqué à la série de maquettes précédente, où des chiffres inventés pouvaient passer pour des faits."
+      "id": "d-frise", "x": 2470, "y": 2300, "w": 400,
+      "text": "LA FRISE DU MOUVEMENT — la question posée, et sa réponse\n\nLa frise porte trois faits datés : 1947 (fondation de l'IFES), 1968 (naissance du GBUAF), 2023 (le camp d'Ifrane et la vision décennale). Entre 1968 et 2023, il manque la fondation du GBUM : le mouvement ne nous a pas encore donné sa date, et rien n'en est publié en ligne.\n\nLA QUESTION ÉTAIT : où mettre ce point sans date ?\n\nLA RÉPONSE RETENUE : nulle part comme point. Un point vide sur une frise se lit comme une erreur de saisie. À sa place, à son rang chronologique, il y a un marqueur d'attente avec son cercle creux — il dit ce qui manque, à qui le demander, et propose de le fournir. La frise reste juste, et le manque devient une invitation."
+    },
+    { "id": "r2", "x": 0, "y": 6000, "w": 900, "text": "RANGÉE 2 — approfondir, s'engager, et le parcours « Rejoindre »." },
+    {
+      "id": "d-soutenir", "x": 1980, "y": 6100, "w": 400,
+      "text": "LES TROIS MANIÈRES DE SOUTENIR (planche 7)\n\n01 PRIER. La lettre de prière. C'est la première parce qu'elle ne coûte rien et qu'elle est la plus demandée dans un mouvement étudiant.\n\n02 DONNER. Ponctuel ou régulier. Les modalités ne sont pas connues : aucun bouton de paiement n'est affiché tant qu'elles ne le sont pas. Un don que l'on ne sait pas recevoir ne se demande pas.\n\n03 DEVENIR AMI DU GBU. Pour les anciens. C'est un niveau à part entière du mouvement, pas une liste de diffusion.\n\nET PAS DE QUATRIÈME. Ce sont les trois manières que le mouvement pratique réellement. Une page qui invente une manière de donner ment sur ce qu'elle fait de l'argent."
     },
     {
-      "id": "d-langues",
-      "x": 2450,
-      "y": 814,
-      "w": 380,
-      "text": "FRANÇAIS ET ANGLAIS\n\nLe sélecteur est dans l'en-tête, à droite. Pas d'arabe : la décision du 9 septembre 2026 retire le RTL.\n\nQuand une traduction anglaise manque, la page affiche le français plutôt qu'un vide — visible sur la planche 11, où l'onglet English porte la mention."
+      "id": "d-rejoindre", "x": 1980, "y": 6900, "w": 400,
+      "text": "LE PARCOURS « REJOINDRE » (planche 9)\n\nTrois étapes, sans compte : la ville, les cellules de la ville avec leur seul effectif, puis un message au bureau. C'est le bureau qui communiquera le lieu et l'horaire — ADR-011.\n\nLe cas « aucun groupe dans ta ville » est traité avec le même soin que le cas nominal, sur la bande Forêt : c'est là qu'on perd quelqu'un ou qu'on le rattrape."
     },
+    { "id": "r3", "x": 0, "y": 10200, "w": 900, "text": "RANGÉE 3 — la version bureau de l'accueil, et l'espace d'administration." },
     {
-      "id": "r2",
-      "x": 0,
-      "y": 3525,
-      "w": 900,
-      "text": "RANGÉE 2 — les trois dernières pages, et le parcours « Rejoindre »."
-    },
-    {
-      "id": "d-rejoindre",
-      "x": 1960,
-      "y": 3731,
-      "w": 380,
-      "text": "LE PARCOURS « REJOINDRE »\n\nRefait selon ADR-011. La version précédente donnait le jour, le bâtiment, la salle et le prénom du responsable de cellule — au-delà de ce que la décision autorise.\n\nIci : ville, puis liste des cellules avec leur seul effectif, puis message au bureau de la ville. C'est le bureau qui communiquera le lieu et l'horaire.\n\nLe cas « aucun groupe dans ta ville » est traité avec le même soin que le cas nominal : c'est là qu'on perd quelqu'un ou qu'on le rattrape."
-    },
-    {
-      "id": "r3",
-      "x": 0,
-      "y": 6870,
-      "w": 900,
-      "text": "RANGÉE 3 — la version bureau de l'accueil, et l'espace d'administration."
-    },
-    {
-      "id": "d-admin",
-      "x": 3080,
-      "y": 7076,
-      "w": 380,
+      "id": "d-admin", "x": 3080, "y": 10300, "w": 400,
       "text": "POURQUOI L'ADMINISTRATION EST DANS CE LOT\n\nSi le Secrétariat National ne peut pas modifier le site lui-même, le site cesse de vivre au bout de trois mois — et l'objectif P3 tombe.\n\nCet écran montre le strict nécessaire : modifier une page, en deux langues, avec la liste des sections qui attendent encore leur contenu. Publier est un geste distinct : rien ne change en ligne tant qu'on n'a pas publié."
     }
   ],
-  "launch": {
-    "view": "canvas"
-  }
+  "launch": { "view": "canvas" }
 }

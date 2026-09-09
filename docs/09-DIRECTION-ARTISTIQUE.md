@@ -321,6 +321,37 @@ mouvement d'étudiants, une page qui dit *« cette partie de notre histoire
 n'est pas encore écrite — écris-la avec nous »* est plus vivante qu'une page
 pleine. Et c'est vrai.
 
+### D11 — Le défilé d'images
+
+*Ajoutée le 9 septembre 2026, à la demande du mouvement : « j'aimerais qu'il y
+ait plusieurs images qui défilent ».*
+
+L'ouverture de l'accueil ne porte pas une photographie, mais **quatre**, qui se
+succèdent. C'est la bonne réponse à un besoin réel : une seule image ne peut pas
+dire à la fois *des étudiants*, *plusieurs villes* et *plusieurs manières de se
+retrouver*. Quatre le peuvent.
+
+Les règles, et elles sont strictes, parce qu'un carrousel est l'endroit où les
+sites se rendent inutilisables :
+
+- **Fondu d'opacité seulement.** Ni glissement, ni zoom, ni panoramique. C'est
+  la même raison qu'en D4 : ce sont les mouvements de grande amplitude qui
+  déclenchent les troubles vestibulaires, et le fondu est l'alternative sûre.
+- **Sept secondes par image, 900 ms de fondu.** Assez lent pour qu'on ne le
+  remarque pas comme un effet ; assez vivant pour que la page respire.
+- **Un moyen de l'arrêter — obligatoire.** Le critère **WCAG 2.2.2 (Pause,
+  Stop, Hide)** s'applique à tout contenu qui se met à jour tout seul. Il y en a
+  trois ici : le bouton pause, les pastilles (choisir une image arrête le
+  défilé), et l'arrêt au survol.
+- **Sous `prefers-reduced-motion`, une seule image reste** — la première — et la
+  page ne perd rien : le texte, le voile et les commandes sont identiques.
+- **Le voile de D3 s'applique à chaque image**, pas à la première seulement :
+  c'est le pire cas de la série qui décide, jamais la plus sombre.
+
+Cela ajoute une précision à la demande N1 : ce ne sont pas une photographie
+qu'il faut, mais **quatre**, et elles doivent se tenir ensemble — même lumière,
+même distance aux visages, même honnêteté.
+
 ---
 
 ## 4. Ce qui ne change pas
@@ -346,15 +377,15 @@ s'ajoutent à la note au Secrétariat National (`07-NOTE-AU-SECRETARIAT-NATIONAL
 
 | # | Demande | Pourquoi elle est décisive |
 |---|---|---|
-| **N1** | **Des photographies d'étudiants du GBUM**, avec accord écrit de publication — au moins une image d'ouverture, et une par temps fort. | D3. Sans elles, la page d'accueil s'ouvre sur un dégradé. C'est la demande la plus importante des trois. |
+| **N1** | **Des photographies d'étudiants du GBUM**, avec accord écrit de publication — **quatre pour l'ouverture**, qui se tiennent ensemble, et une par temps fort. | D3 et D11. Sans elles, la page d'accueil s'ouvre sur un dégradé. C'est la demande la plus importante des trois. |
 | **N2** | **Trois à cinq témoignages courts** — prénom, ville, année d'études, deux ou trois phrases. | D6. C'est ce que le public visé cherche : de l'authenticité, pas de la mise en page. |
 | **N3** | **La liste exacte des villes**, dans l'ordre où le mouvement veut les citer. | D5. Le défilé ne peut pas fonctionner sur une liste approximative. |
 
 ---
 
-## 6. La démonstration
+## 6. La démonstration, puis l'application
 
-Trois planches, dans `maquettes/direction-artistique/` :
+Trois planches de démonstration, dans `maquettes/direction-artistique/` :
 
 | Fichier | Ce qu'elle montre |
 |---|---|
@@ -362,5 +393,81 @@ Trois planches, dans `maquettes/direction-artistique/` :
 | `AccueilV2.dc.html` | L'accueil recomposé avec les dix règles — à comparer directement avec `site-public/Main.dc.html`. |
 | `VieDuMouvementV2.dc.html` | La même grammaire sur une seconde page, pour vérifier qu'elle tient ailleurs que sur l'accueil. |
 
-Les onze planches du lot 1 **restent en place et inchangées**. Rien n'est
-remplacé tant que cette direction n'est pas validée.
+Puis les **onze planches du lot 1**, dans `maquettes/site-public/`, toutes
+recomposées dans cette direction le 9 septembre 2026. Elles partagent un noyau
+de styles identique — les cinq surfaces, l'échelle, les marqueurs, les
+contrôles — de sorte qu'une règle corrigée l'est partout à la fois.
+
+Les trois planches de démonstration restent dans
+`maquettes/direction-artistique/` comme trace de la proposition.
+
+---
+
+## 7. Ce que l'application a tranché
+
+*Le 9 septembre 2026, la direction a été appliquée aux onze planches du lot 1.
+Trois décisions ont dû être prises en chemin ; elles l'ont été, et elles sont
+rectifiables.*
+
+### 7.1 L'ordre des pages
+
+**Le mouvement · Où nous sommes · La vie du mouvement · Agenda · Le canevas ·
+Soutenir · Nous écrire.**
+
+L'ordre suit le parcours d'un visiteur, pas l'organigramme du mouvement :
+**découvrir** (qui nous sommes, où nous sommes, ce que nous vivons), puis
+**participer** (ce qui vient), puis **approfondir** (le canevas), puis
+**s'engager** (soutenir, écrire).
+
+Un seul changement par rapport à l'ordre précédent : **l'agenda passe devant le
+canevas**. Une date est actionnable pour quelqu'un qui découvre le mouvement ;
+une archive d'études récompense quelqu'un qui s'y intéresse déjà. Mettre la
+seconde avant la première fait payer au visiteur pressé le prix du visiteur
+patient.
+
+Et une règle qui n'était pas écrite : **« Rejoindre le GBUM » n'est pas une page
+de menu.** C'est l'action — l'unique bouton ambre, présent dans l'en-tête au
+bureau et à la fin de chaque page. Un menu à huit entrées dont l'une est un
+verbe n'a plus de hiérarchie.
+
+Le pied de page reprend le même ordre, en trois colonnes : *Découvrir*,
+*Participer*, *Soutenir*.
+
+### 7.2 Les manières de soutenir
+
+**Trois, dans cet ordre : prier, donner, devenir Ami du GBU.** Elles sont
+classées du moins coûteux au plus engageant, et chacune tient sa propre bande —
+elles ne sont pas trois cartes interchangeables, parce qu'elles ne se valent
+pas.
+
+| # | | Pourquoi à cette place |
+|---|---|---|
+| **01** | **Prier** — recevoir la lettre de prière | Elle ne coûte rien, elle est la plus demandée dans un mouvement étudiant, et c'est la seule que tout le monde peut faire aujourd'hui. Bande **Forêt**. |
+| **02** | **Donner** — ponctuel ou régulier | Les dons financent les camps, les déplacements de ceux qui n'en ont pas les moyens, et la formation des responsables. Bande **Crème**. |
+| **03** | **Devenir Ami du GBU** | Pour les anciens GBUssiens. C'est un niveau à part entière du mouvement (§4 du cahier des charges), pas une liste de diffusion. Bande **Terre**. |
+
+**Et pas de quatrième.** Ce sont les trois manières que le mouvement pratique
+réellement ; en ajouter une serait l'inventer. Une page qui invente une manière
+de donner ment sur ce qu'elle fait de l'argent — c'est le seul endroit du site
+où la règle « rien n'est inventé » a une conséquence financière.
+
+Les **modalités de don ne sont pas connues**. Tant qu'elles ne le sont pas,
+**aucun bouton de paiement n'est affiché** : un don que l'on ne sait pas
+recevoir ne se demande pas. C'est le marqueur d'attente qui tient la place.
+
+### 7.3 Le point manquant de la frise
+
+La frise de la page *Le mouvement* porte trois faits datés — 1947 (fondation de
+l'IFES), 1968 (naissance du GBUAF), 2023 (le camp d'Ifrane et la vision
+décennale). Entre 1968 et 2023 il manque **la fondation du GBUM** : le mouvement
+ne nous a pas encore donné sa date, et rien n'en est publié en ligne.
+
+La question était : *où placer ce point sans date ?* La réponse retenue :
+**nulle part comme point.** Un point vide sur une frise se lit comme une erreur
+de saisie — le lecteur croit à un bug, pas à un manque assumé. À sa place, **à
+son rang chronologique entre 1968 et 2023**, il y a un marqueur d'attente, avec
+un cercle creux au lieu d'un cercle plein : il dit ce qui manque, à qui le
+demander, et propose de le fournir.
+
+La frise reste exacte, le manque reste visible, et il devient une invitation
+plutôt qu'un trou. C'est D10 appliquée à un cas particulier.

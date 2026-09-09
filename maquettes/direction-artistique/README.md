@@ -10,9 +10,10 @@ Trois planches au format Design Component (`.dc.html`), disposées par
 | `AccueilV2.dc.html` | L'accueil recomposé avec les dix règles | 390 × 4555 |
 | `VieDuMouvementV2.dc.html` | La même grammaire sur une seconde page | 390 × 2996 |
 
-**Les onze planches du lot 1 (`../site-public/`) ne sont pas touchées.** Ceci
-est une proposition, à valider ou à écarter. Rien n'est remplacé tant que la
-décision n'est pas prise.
+**Cette direction a été appliquée aux onze planches du lot 1 le 9 septembre
+2026** (`../site-public/`). Ces trois planches restent comme trace de la
+proposition : le système y est exposé règle par règle, avec ses mesures et ses
+avant/après, ce que les planches finales ne montrent pas.
 
 ## Ce qui bouge réellement
 

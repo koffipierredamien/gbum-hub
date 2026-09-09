@@ -10,131 +10,222 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
   <style>
     body { margin:0; font-family:'Hanken Grotesk', system-ui, sans-serif; background:#FBF6EF; color:#2A211B; -webkit-font-smoothing:antialiased; }
-    a { color:#96430F; text-decoration:none; } a:hover { color:#C6611C; }
+    a { color:#7A3208; text-decoration:none; }
     button { font-family:inherit; cursor:pointer; }
-    .h1 { font-family:'Newsreader',Georgia,serif; font-size:32px; line-height:1.15; font-weight:600; margin:0 0 14px; text-wrap:pretty; }
-    .h2 { font-family:'Newsreader',Georgia,serif; font-size:24px; line-height:1.22; font-weight:600; margin:0 0 10px; }
-    .p  { font-size:15px; line-height:1.62; color:#5F5346; margin:0 0 16px; }
-    .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; }
-    .cta { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
-           background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700; }
-    .cta2 { display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:11px;
-            background:#FFFFFF; border:1.5px solid #C6611C; color:#96430F; font-size:14.5px; font-weight:700; }
-    .lien { display:flex; align-items:center; min-height:44px; font-size:14px; color:#5F5346; }
-    .lien:hover { color:#2A211B; }
-    .etiq { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 11px; border-radius:999px;
-            background:#F4EADC; border:1px solid #E5D9C9; font-size:11.5px; font-weight:600; color:#5F5346; }
-    /* Marqueur des contenus manquants — voir exigence A1.3 : un emplacement
-       vide ANNONCE qu'il est en cours d'écriture, il ne se meuble pas. */
-    .attente { border:1.5px dashed #8A7458; border-radius:12px; background:#FBF1E6; padding:14px 16px; }
-    .attente .t { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#96430F; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
-    .attente .d { font-size:13px; line-height:1.5; color:#5F5346; }
-    .vide { color:#6E6053; font-style:italic; }
+
+    /* ---- D1 · CINQ SURFACES ------------------------------------------
+       Une bande va d'un bord à l'autre : la gouttière est intérieure.
+       Deux bandes sombres ne se suivent jamais.                         */
+    .b { padding:36px 22px; }
+    .s-creme { background:#FBF6EF; color:#2A211B; }
+    .s-sable { background:#F4EADC; color:#2A211B; }
+    .s-encre { background:#2A211B; color:#FBF6EF; }
+    .s-terre { background:#7A3208; color:#FBF6EF; }
+    .s-foret { background:#12432A; color:#FBF6EF; }
+
+    /* ---- D2 · L'ÉCHELLE — un seul Display par page ------------------- */
+    .disp  { font-family:'Newsreader',Georgia,serif; font-size:46px; line-height:1.02; letter-spacing:-.02em; font-weight:500; margin:0; text-wrap:balance; }
+    .titre { font-family:'Newsreader',Georgia,serif; font-size:30px; line-height:1.14; font-weight:600; margin:0 0 12px; text-wrap:pretty; }
+    .titre2{ font-family:'Newsreader',Georgia,serif; font-size:24px; line-height:1.18; font-weight:600; margin:0 0 10px; }
+    .sst   { font-size:20px; font-weight:600; line-height:1.3; margin:0 0 6px; }
+    .corps { font-size:16px; line-height:1.62; margin:0 0 16px; }
+    .petit { font-size:13.5px; line-height:1.55; }
+    .etiq  { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    .num   { font-family:'Newsreader',Georgia,serif; font-size:26px; font-weight:600; width:32px; flex-shrink:0; }
+    .vide  { color:#6E6053; font-style:italic; }
+    .vide-clair { color:#FBF6EF; font-style:italic; }
+
+    /* ---- D7 · L'ambre ne porte que des actions -----------------------
+       Texte encre sur ambre : 5,19:1. Le blanc (3,04:1) reste interdit.
+       Sur Crème et Sable, la bordure #C6611C marque la limite du
+       contrôle (3,81 et 3,44). Sur Terre et Forêt, c'est le fond ambre
+       lui-même qui la marque (3,02 et 3,71) : la bordure y disparaît.  */
+    .cta  { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:54px; border-radius:13px;
+            background:#E8732A; border:1px solid #C6611C; color:#2A211B; font-size:16px; font-weight:700;
+            transition: transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .cta:hover { transform:translateY(-2px); }
+    .cta-sombre { border-color:transparent; }
+    .cta2 { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:50px; border-radius:12px;
+            background:transparent; border:1.5px solid #7A3208; color:#7A3208; font-size:15.5px; font-weight:700;
+            transition: background-color 120ms cubic-bezier(.05,.7,.1,1); }
+    .cta2:hover { background:#F4EADC; }
+    .lien { display:inline-block; min-height:44px; line-height:44px; font-size:14px; font-weight:700; color:#7A3208; }
+    .lien span { border-bottom:1.5px solid #7A3208; padding-bottom:2px; }
+
+    /* ---- D10 · LE VIDE INVITE ----------------------------------------
+       Un filet plein ouvert vers la page, jamais un cadre pointillé.    */
+    .att { border-inline-start:3px solid #7A3208; padding:12px 0 12px 16px; }
+    .att .t { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#7A3208; margin-bottom:5px; }
+    .att .d { font-size:13.5px; line-height:1.55; color:#5F5346; }
+    .att .q { display:inline-block; margin-top:9px; font-size:13.5px; font-weight:700; color:#7A3208; border-bottom:1.5px solid #7A3208; padding-bottom:2px; }
+    .att-encre { border-inline-start-color:#F0A868; }
+    .att-encre .t { color:#F0A868; } .att-encre .d { color:#B9AA98; } .att-encre .q { color:#F0A868; border-bottom-color:#F0A868; }
+    /* Sur Terre, #B9AA98 ne mesure que 4,05:1 — le secondaire y est #EFC9A6. */
+    .att-terre { border-inline-start-color:#EFC9A6; }
+    .att-terre .t, .att-terre .d, .att-terre .q { color:#EFC9A6; } .att-terre .q { border-bottom-color:#EFC9A6; }
+    .att-foret { border-inline-start-color:#9ED2B4; }
+    .att-foret .t, .att-foret .d, .att-foret .q { color:#9ED2B4; } .att-foret .q { border-bottom-color:#9ED2B4; }
+    /* Par-dessus une photo, le marqueur pose son propre fond encre à 90 % :
+       le composite vaut #3F3732 au pire, l'ambre clair y mesure 5,82:1.
+       Posé à même le voile, il ne mesurerait que 2,58:1.                */
+    .att-photo { border-inline-start-color:#F0A868; background:rgba(42,33,27,.90); padding:12px 16px; border-radius:0 10px 10px 0; }
+    .att-photo .t { color:#F0A868; } .att-photo .d { color:#FBF6EF; }
+
+    /* ---- D3 · LA PHOTOGRAPHIE ----------------------------------------
+       Voile encre à 66 % minimum : sur la photo la plus claire concevable
+       la crème y mesure 4,81:1. Sur un voile, le texte est en crème et
+       seulement en crème.                                               */
+    .photo { position:relative; overflow:hidden; }
+    .voile { position:absolute; inset:0; background:rgba(42,33,27,.66); }
+
+    /* ---- D11 · LE DÉFILÉ D'IMAGES ------------------------------------
+       Fondu d'opacité seulement : ni glissement, ni zoom (WCAG 2.3.3).
+       Quatre vues, 7 s chacune, 900 ms de fondu. Le critère WCAG 2.2.2
+       impose un moyen d'arrêter un contenu qui se met à jour tout seul :
+       ce sont le bouton pause et les pastilles, plus l'arrêt au survol. */
+    .carrousel { position:absolute; inset:0; }
+    .carrousel > .vue { position:absolute; inset:0; opacity:0; animation: fondu 28s linear infinite; }
+    .carrousel > .vue:nth-child(1) { animation-delay: 0s; }
+    .carrousel > .vue:nth-child(2) { animation-delay: 7s; }
+    .carrousel > .vue:nth-child(3) { animation-delay:14s; }
+    .carrousel > .vue:nth-child(4) { animation-delay:21s; }
+    @keyframes fondu { 0% {opacity:0;} 3.2% {opacity:1;} 25% {opacity:1;} 28.2% {opacity:0;} 100% {opacity:0;} }
+    .hero:hover .carrousel > .vue { animation-play-state:paused; }
+    .pastilles { display:flex; align-items:center; gap:4px; }
+    .pastille { width:28px; height:44px; display:flex; align-items:center; justify-content:center; }
+    .pastille i { display:block; width:8px; height:8px; border-radius:999px; background:rgba(251,246,239,.45); }
+    .pastille.on i { background:#FBF6EF; width:22px; }
+    .pause { width:44px; height:44px; border-radius:999px; background:rgba(42,33,27,.90); border:1px solid rgba(251,246,239,.55);
+             display:flex; align-items:center; justify-content:center; }
+
+    /* ---- D5 · LE DÉFILÉ DES VILLES — un filet, pas une bande --------- */
+    .piste { overflow:hidden; }
+    .defile { display:flex; width:max-content; animation: glisse 38s linear infinite; }
+    .defile:hover { animation-play-state:paused; }
+    @keyframes glisse { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+    /* ---- D9 · La carte se mérite : listes énumérables et comparables - */
+    .carte { background:#FFFFFF; border:1px solid #E5D9C9; border-radius:14px; padding:16px;
+             transition: background-color 120ms cubic-bezier(.05,.7,.1,1), transform 120ms cubic-bezier(.05,.7,.1,1); }
+    .carte:hover { background:#FDFAF6; transform:translateY(-2px); }
+    .rang { border-top:1px solid #E5D9C9; padding:16px 0; }
+    .rang-fin { border-bottom:1px solid #E5D9C9; }
+    .rang-terre { border-top:1px solid #A45A25; padding:15px 0; }
+    .rang-foret { border-top:1px solid #2E6B4A; padding:15px 0; }
+    .rang-encre { border-top:1px solid #4A3D33; padding:15px 0; }
+
+    /* ---- Contrôles : la bordure d'un contrôle mesure 3:1 (WCAG 1.4.11).
+       #8A7458 vaut 3,74 sur Sable et 4,14 sur Crème.                    */
+    .champ { width:100%; box-sizing:border-box; min-height:50px; border:1px solid #8A7458; border-radius:11px;
+             background:#FFFFFF; padding:0 14px; font-size:15.5px; color:#2A211B; display:flex; align-items:center; }
+    .champ-zone { min-height:96px; align-items:flex-start; padding-top:14px; }
+    .lab { font-size:12.5px; font-weight:700; color:#5F5346; margin-bottom:6px; display:block; }
+    .puce { display:inline-flex; align-items:center; height:36px; padding:0 15px; border-radius:999px; font-size:13.5px; font-weight:600;
+            transition: background-color 120ms cubic-bezier(.05,.7,.1,1); }
+    .puce-on  { background:#2A211B; color:#FBF6EF; }
+    .puce-off { background:transparent; border:1px solid #8A7458; color:#5F5346; }
+    .puce-off:hover { background:#EADCC7; }
+
+    /* ---- D4 · L'interrupteur. Sous ce réglage la page reste entière. -- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+      .carrousel > .vue { animation:none; opacity:0; }
+      .carrousel > .vue:first-child { opacity:1; }
+    }
   </style>
 </helmet>
 
-<div style="width:1440px; min-height:900px; display:flex; background:#FBF6EF;">
+<div style="width:1440px; background:#FBF6EF;">
 
-  <div style="width:250px; flex-shrink:0; background:#FFFFFF; border-inline-end:1px solid #E5D9C9; padding:22px 14px; display:flex; flex-direction:column;">
-    <div style="display:flex; align-items:center; gap:10px; padding:0 8px 20px;">
-      <div style="width:34px; height:34px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center;"><span style="font-family:'Newsreader',Georgia,serif; font-size:16px; font-weight:600; color:#2A211B;">G</span></div>
-      <div style="line-height:1.1;"><div style="font-size:15px; font-weight:700;">Administration</div><div style="font-size:11.5px; color:#6E6053;">du site public</div></div>
+  <!-- ===== BARRE D'ADMINISTRATION ===== -->
+  <div class="s-encre" style="display:flex; align-items:center; gap:14px; padding:16px 40px;">
+    <div style="width:36px; height:36px; border-radius:9px; background:#E8732A; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-family:'Newsreader',Georgia,serif; font-size:18px; font-weight:600; color:#2A211B;">G</span></div>
+    <div style="line-height:1.15;">
+      <div style="font-size:14.5px; font-weight:700; color:#FBF6EF;">Administration</div>
+      <div style="font-size:11px; color:#B9AA98;">du site public</div>
     </div>
-    <div style="display:flex; flex-direction:column; gap:3px;">
-      <div style="display:flex; align-items:center; gap:11px; min-height:44px; padding:0 12px; border-radius:10px; color:#96430F; background:#FBF1E6; font-size:14.5px; font-weight:700; border-inline-start:3px solid #E8732A; padding-inline-start:9px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Les pages</div>
-      <div style="display:flex; align-items:center; gap:11px; min-height:44px; padding:0 12px; border-radius:10px; color:#5F5346; font-size:14.5px; font-weight:500;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-2-2-4 4"/></svg>Actualités et photos</div>
-      <div style="display:flex; align-items:center; gap:11px; min-height:44px; padding:0 12px; border-radius:10px; color:#5F5346; font-size:14.5px; font-weight:500;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Villes et cellules</div>
-      <div style="display:flex; align-items:center; gap:11px; min-height:44px; padding:0 12px; border-radius:10px; color:#5F5346; font-size:14.5px; font-weight:500;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v17H5.5A2.5 2.5 0 0 0 3 22z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H12v17h6.5a2.5 2.5 0 0 1 2.5 2z"/></svg>Canevas</div>
-      <div style="display:flex; align-items:center; gap:11px; min-height:44px; padding:0 12px; border-radius:10px; color:#5F5346; font-size:14.5px; font-weight:500;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Agenda</div>
-      <div style="display:flex; align-items:center; gap:11px; min-height:44px; padding:0 12px; border-radius:10px; color:#5F5346; font-size:14.5px; font-weight:500;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3z"/></svg>Demandes reçues
-        <span style="margin-inline-start:auto; background:#E8732A; color:#2A211B; font-size:11.5px; font-weight:700; padding:1px 7px; border-radius:9px;">2</span></div>
-    </div>
-    <div style="margin-top:auto; display:flex; align-items:center; gap:10px; padding:10px; border-radius:12px; background:#F4EADC; border:1px solid #E5D9C9;">
-      <div style="width:34px; height:34px; border-radius:50%; background:#3E6F58; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; color:#FFF;">SN</div>
-      <div style="line-height:1.15;"><div style="font-size:13px; font-weight:600;">Secrétariat National</div><div style="font-size:12px; color:#5F5346;">peut tout modifier</div></div>
+    <div style="flex-grow:1;"></div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="width:34px; height:34px; border-radius:999px; background:#7A3208; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; color:#FBF6EF;">SN</div>
+      <div style="line-height:1.15;"><div style="font-size:13.5px; font-weight:700; color:#FBF6EF;">Secrétariat National</div><div style="font-size:11px; color:#B9AA98;">peut tout modifier</div></div>
     </div>
   </div>
 
-  <div style="flex-grow:1; min-width:0; padding:26px 34px 40px;">
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px;">
+  <div class="s-sable" style="display:flex; align-items:center; gap:4px; padding:10px 36px;">
+    <div style="display:flex; align-items:center; padding:0 16px; height:44px; border-radius:11px; background:#2A211B; color:#FBF6EF; font-size:14.5px; font-weight:700;">Les pages</div><div style="display:flex; align-items:center; padding:0 16px; height:44px; border-radius:11px; color:#5F5346; font-size:14.5px; font-weight:600;">Actualités et photos</div><div style="display:flex; align-items:center; padding:0 16px; height:44px; border-radius:11px; color:#5F5346; font-size:14.5px; font-weight:600;">Villes et cellules</div><div style="display:flex; align-items:center; padding:0 16px; height:44px; border-radius:11px; color:#5F5346; font-size:14.5px; font-weight:600;">Canevas</div><div style="display:flex; align-items:center; padding:0 16px; height:44px; border-radius:11px; color:#5F5346; font-size:14.5px; font-weight:600;">Agenda</div><div style="display:flex; align-items:center; padding:0 16px; height:44px; border-radius:11px; color:#5F5346; font-size:14.5px; font-weight:600;">Demandes reçues<span style="margin-inline-start:8px; display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:#E8732A; color:#2A211B; font-size:11.5px; font-weight:700;">2</span></div>
+  </div>
+
+  <div class="s-creme" style="padding:36px 40px 48px;">
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
       <div>
-        <div style="font-size:12.5px; color:#5F5346; margin-bottom:5px;">Les pages · <b style="color:#2A211B;">Le mouvement</b></div>
-        <h1 style="margin:0; font-family:'Newsreader',Georgia,serif; font-size:30px; line-height:1.2; font-weight:600;">Modifier une page</h1>
+        <div class="etiq" style="color:#7A3208; margin-bottom:8px;">Les pages · Le mouvement</div>
+        <h1 class="disp" style="font-size:52px;">Modifier une page.</h1>
       </div>
-      <div style="display:flex; gap:10px;">
-        <button style="height:44px; padding:0 17px; border-radius:10px; background:#FFFFFF; border:1px solid #E5D9C9; font-size:14px; font-weight:600; color:#2A211B;">Prévisualiser</button>
-        <button style="height:44px; padding:0 20px; border-radius:10px; background:#E8732A; border:1px solid #C6611C; font-size:14px; font-weight:700; color:#2A211B;">Publier</button>
-      </div>
+      <div style="flex-grow:1;"></div>
+      <button class="cta2" style="width:auto; padding:0 22px;">Prévisualiser</button>
+      <button class="cta" style="width:auto; padding:0 26px;">Publier <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 320px; gap:22px;">
-      <div class="carte" style="padding:0; overflow:hidden;">
-        <div style="display:flex; border-bottom:1px solid #E5D9C9;">
-          <div style="padding:0 20px; line-height:48px; font-size:14px; font-weight:700; color:#96430F; box-shadow:inset 0 -2px 0 #E8732A;">Français</div>
-          <div style="padding:0 20px; line-height:48px; font-size:14px; font-weight:600; color:#6E6053;">English</div>
-          <div style="margin-inline-start:auto; padding:0 20px; line-height:48px; font-size:12.5px; color:#6E6053;">Anglais absent — le français s’affichera</div>
+    <div style="display:flex; gap:28px; align-items:flex-start;">
+      <!-- l'éditeur -->
+      <div style="flex:1.9;">
+        <div style="display:flex; gap:8px; margin-bottom:18px;">
+          <span class="puce puce-on">Français</span>
+          <span class="puce puce-off">English</span>
+          <span class="petit" style="color:#5F5346; align-self:center; margin-inline-start:8px;">Anglais absent — le français s'affichera à sa place.</span>
         </div>
-        <div style="padding:24px;">
-          <div style="font-size:12px; font-weight:700; color:#5F5346; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">Titre</div>
-          <div style="padding:12px 14px; border:1px solid #E5D9C9; border-radius:10px; font-size:16px; font-weight:600; margin-bottom:22px;">Le mouvement</div>
 
-          <div style="font-size:12px; font-weight:700; color:#5F5346; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">Notre histoire</div>
-          <div style="border:1px solid #E5D9C9; border-radius:10px; overflow:hidden; margin-bottom:10px;">
-            <div style="display:flex; gap:2px; padding:7px 9px; background:#FBF6EF; border-bottom:1px solid #E5D9C9;">
-              <span style="min-width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;">B</span>
-              <span style="min-width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:14px; font-style:italic;">I</span>
-              <span style="min-width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600;">H2</span>
-              <span style="min-width:32px; height:32px; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span>
-              <span style="min-width:32px; height:32px; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span>
-              <span style="min-width:32px; height:32px; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A211B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-2-2-4 4"/></svg></span>
-            </div>
-            <div style="padding:16px; min-height:150px;">
-              <div class="attente" style="margin-bottom:12px;">
-                <div class="t">Section vide</div>
-                <div class="d">Tant que rien n’est écrit ici, la page publique annonce « en cours d’écriture » au lieu d’afficher un blanc.</div>
-              </div>
-              <div style="font-size:14.5px; color:#6E6053;">Commencez à écrire l’histoire du mouvement…</div>
-            </div>
+        <div style="border:1px solid #E5D9C9; border-radius:16px; background:#FFFFFF; overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:6px; padding:10px 16px; border-bottom:1px solid #E5D9C9; background:#FBF6EF;">
+            <span style="width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#2A211B;">B</span>
+            <span style="width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-style:italic; font-size:14px; color:#2A211B;">I</span>
+            <span style="width:36px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#2A211B;">H2</span>
+            <div style="flex-grow:1;"></div>
+            <span class="petit" style="color:#5F5346;">Enregistré automatiquement · il y a quelques secondes</span>
           </div>
-          <div style="font-size:12.5px; color:#6E6053;">Enregistré automatiquement · dernière modification il y a quelques secondes</div>
+          <div style="padding:22px 24px;">
+            <span class="lab">Titre</span>
+            <div class="champ" style="margin-bottom:22px;">Le mouvement</div>
+            <div class="etiq" style="color:#7A3208; margin-bottom:10px;">Notre histoire</div>
+            <div style="margin-bottom:16px;"><div class="att "><div class="t">Section vide</div><div class="d">Tant que rien n'est écrit ici, la page publique annonce « en cours d'écriture » et propose au lecteur de fournir l'information — au lieu d'afficher un blanc.</div></div></div>
+            <div class="champ champ-zone" style="min-height:150px; color:#6E6053;"><span style="color:#6E6053;">Commencez à écrire l'histoire du mouvement…</span></div>
+          </div>
         </div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div class="carte" style="padding:18px;">
-          <div style="font-size:14px; font-weight:700; margin-bottom:12px;">État de la page</div>
-          <div style="display:flex; align-items:center; gap:9px; padding:11px 13px; background:#FBF1E6; border-radius:10px; margin-bottom:10px;">
-            <span style="width:8px; height:8px; border-radius:50%; background:#E8732A;"></span>
-            <span style="font-size:13.5px; font-weight:600; color:#96430F;">Modifications non publiées</span>
-          </div>
-          <div style="font-size:12.5px; line-height:1.55; color:#5F5346;">Le site public affiche encore la version précédente. Rien ne change tant que vous n’avez pas publié.</div>
+      <!-- le panneau latéral -->
+      <div style="flex:1;">
+        <div class="s-encre" style="border-radius:16px; padding:24px; margin-bottom:18px;">
+          <div class="etiq" style="color:#F0A868; margin-bottom:10px;">État de la page</div>
+          <div style="font-family:'Newsreader',Georgia,serif; font-size:26px; line-height:1.18; font-weight:500; color:#FBF6EF; margin-bottom:12px;">Modifications non publiées.</div>
+          <p class="petit" style="color:#B9AA98; margin:0;">Le site public affiche encore la version précédente. <b style="color:#FBF6EF;">Rien ne change en ligne tant que vous n'avez pas publié.</b> Publier est un geste distinct, et c'est voulu.</p>
         </div>
 
-        <div class="carte" style="padding:18px;">
-          <div style="font-size:14px; font-weight:700; margin-bottom:12px;">Sections de la page</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="display:flex; align-items:center; gap:9px; min-height:40px; padding:0 12px; border-radius:9px; background:#FBF6EF; font-size:13.5px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#226B42" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Devise</div>
-            <div style="display:flex; align-items:center; gap:9px; min-height:40px; padding:0 12px; border-radius:9px; background:#FBF6EF; font-size:13.5px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#226B42" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Vision décennale</div>
-            <div style="display:flex; align-items:center; gap:9px; min-height:40px; padding:0 12px; border-radius:9px; background:#FBF1E6; font-size:13.5px; color:#96430F; font-weight:600;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>Thème de l’année</div>
-            <div style="display:flex; align-items:center; gap:9px; min-height:40px; padding:0 12px; border-radius:9px; background:#FBF1E6; font-size:13.5px; color:#96430F; font-weight:600;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#96430F" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>Notre histoire</div>
-            <div style="display:flex; align-items:center; gap:9px; min-height:40px; padding:0 12px; border-radius:9px; background:#FBF6EF; font-size:13.5px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#226B42" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Organisation</div>
+        <div style="border:1px solid #E5D9C9; border-radius:16px; background:#FFFFFF; padding:20px 22px;">
+          <div class="etiq" style="color:#7A3208; margin-bottom:6px;">Sections de la page</div>
+<div class="rang" style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><div style="flex-grow:1; font-size:15px; font-weight:600;">Devise</div><div class="petit" style="color:#5F5346;">écrite</div></div>
+<div class="rang" style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><div style="flex-grow:1; font-size:15px; font-weight:600;">Vision décennale</div><div class="petit" style="color:#5F5346;">écrite</div></div>
+<div class="rang" style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><div style="flex-grow:1; font-size:15px; font-weight:600;">Thème de l'année</div><div class="petit" style="color:#7A3208;">en attente</div></div>
+<div class="rang" style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><div style="flex-grow:1; font-size:15px; font-weight:600;">Notre histoire</div><div class="petit" style="color:#7A3208;">en attente</div></div>
+<div class="rang" style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><div style="flex-grow:1; font-size:15px; font-weight:600;">Organisation</div><div class="petit" style="color:#5F5346;">écrite</div></div>
+          <div style="border-top:1px solid #E5D9C9; padding-top:14px; margin-top:2px;">
+            <div class="petit" style="color:#7A3208; font-weight:700;">Deux sections attendent leur contenu.</div>
           </div>
-          <div style="margin-top:14px; padding-top:12px; border-top:1px solid #F0E6D8; font-size:12.5px; color:#5F5346;">Deux sections attendent leur contenu.</div>
-        </div>
-
-        <div class="carte" style="padding:18px; background:#F4EADC;">
-          <div style="font-size:13.5px; font-weight:700; margin-bottom:8px;">Personne n’a besoin du développeur</div>
-          <div style="font-size:12.5px; line-height:1.6; color:#5F5346;">Cet écran est la raison d’être du lot 1 : si le Secrétariat National ne peut pas modifier le site lui-même, le site cesse de vivre au bout de trois mois.</div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="s-terre" style="padding:48px 40px 56px;">
+    <div style="display:flex; gap:40px; align-items:center;">
+      <div style="flex:1.4;">
+        <div class="etiq" style="color:#EFC9A6; margin-bottom:12px;">Pourquoi cet écran est dans le lot 1</div>
+        <div style="font-family:'Newsreader',Georgia,serif; font-size:36px; line-height:1.12; font-weight:500; color:#FBF6EF;">Personne n'a besoin du développeur.</div>
+      </div>
+      <p class="corps" style="flex:1; color:#EFC9A6; margin:0;">Si le Secrétariat National ne peut pas modifier le site lui-même, le site cesse de vivre au bout de trois mois — et l'objectif P3 tombe. Cet écran montre le strict nécessaire : modifier une page, en deux langues, en voyant quelles sections attendent encore leur contenu.</p>
+    </div>
+  </div>
+
 </div>
 </x-dc>
 </body>
