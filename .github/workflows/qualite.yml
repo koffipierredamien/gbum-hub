@@ -1,0 +1,82 @@
+name: Qualité
+
+# Une règle qu'on doit *penser* à appliquer finit par ne plus l'être.
+# Celle-ci s'applique sur chaque proposition de modification, et bloque.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Types (zéro « any », mode strict)
+        run: pnpm types
+
+      - name: Linter (limites dures et huit règles de fond)
+        run: pnpm lint
+
+      - name: Mise en forme
+        run: pnpm format:check
+
+      - name: Tests du domaine
+        run: pnpm test
+
+  # ADR-012 §2.5 — la répétition de déménagement.
+  #
+  # Le plan des fondations prévoyait cette épreuve « une fois par lot ». La
+  # faire tourner à CHAQUE modification ne coûte pas plus cher et vaut
+  # beaucoup mieux : une promesse de portabilité qu'on ne teste pas est fausse
+  # au bout de trois mois, et c'est un mardi ordinaire qu'on s'enferme, pas le
+  # jour du déménagement.
+  demenagement:
+    runs-on: ubuntu-latest
+    services:
+      base:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: gbum
+          POSTGRES_PASSWORD: gbum
+          POSTGRES_DB: gbum
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U gbum -d gbum"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      SOURCE: postgres://gbum:gbum@localhost:5433/gbum
+      DESTINATION: postgres://gbum:gbum@localhost:5433/gbum_ailleurs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Monter la structure à partir des seules migrations
+        run: DATABASE_URL="$SOURCE" pnpm base:migrer
+
+      - name: Poser quelques lignes, pour que la restauration prouve quelque chose
+        run: |
+          psql "$SOURCE" -c "insert into villes (nom, rang) values ('Ville A', 1), ('Ville B', 2)"
+          psql "$SOURCE" -c "insert into cellules (ville_id, nom, nombre_de_membres)
+                             select id, 'Cellule A1', 9 from villes where nom = 'Ville A'"
+
+      - name: Préparer une base d'arrivée vide
+        run: psql "$SOURCE" -c "create database gbum_ailleurs"
+
+      - name: Déménager, et comparer
+        run: ./outils/repetition-demenagement.sh "$SOURCE" "$DESTINATION"

@@ -1,0 +1,25 @@
+# PostgreSQL local, à la MÊME version majeure qu'en production (S1, ADR-012).
+# « Ça marchait chez moi » cesse d'exister quand le moteur est le même partout.
+services:
+  base:
+    image: postgres:16-alpine
+    container_name: gbum-base
+    environment:
+      POSTGRES_USER: gbum
+      POSTGRES_PASSWORD: gbum
+      POSTGRES_DB: gbum
+    # 5433 et non 5432 : ne pas entrer en conflit avec un PostgreSQL déjà
+    # installé sur le poste. Le port est dans DATABASE_URL, donc il ne fuit
+    # nulle part ailleurs.
+    ports:
+      - "5433:5432"
+    volumes:
+      - gbum-base-donnees:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gbum -d gbum"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  gbum-base-donnees:

@@ -1,0 +1,36 @@
+/* Les jetons du système « Foyer en mouvement » — voir docs/09-DIRECTION-ARTISTIQUE.md.
+   Ils sont posés ici dès les fondations pour qu'aucune page n'invente sa
+   propre couleur en attendant. Chaque valeur est mesurée, pas choisie à l'œil. */
+:root {
+  --creme: #fbf6ef;
+  --sable: #f4eadc;
+  --encre: #2a211b;
+  --terre: #7a3208;
+  --foret: #12432a;
+  --ambre: #e8732a;
+  --texte-second: #5f5346;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--encre);
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* D4 — l'interrupteur est posé dès la première page. Sous ce réglage, le site
+   reste entier : rien n'est caché en attendant une animation qui ne viendra pas. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

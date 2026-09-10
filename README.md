@@ -2,10 +2,10 @@
 
 Conception du hub du **GBUM** — Groupe Biblique Universitaire au Maroc.
 
-> **Ce dépôt ne contient pas encore de code, et c'est voulu.**
-> Le projet avance par phases, et rien de la phase suivante ne commence avant
-> que la phase en cours soit validée. Nous sommes en **phase 2**.
-> Voir [`docs/04-ROADMAP.md`](docs/04-ROADMAP.md).
+> **Les fondations du lot 1 sont posées** (10 septembre 2026) — après que leur
+> plan a été écrit, expliqué et validé. Aucune page n'est encore écrite : les
+> fondations ne se voient pas, et c'est normal.
+> Voir [`docs/10-PLAN-DES-FONDATIONS.md`](docs/10-PLAN-DES-FONDATIONS.md).
 
 L'application actuelle, [`gbu-connect`](https://github.com/koffipierredamien/gbu-connect),
 reste **en production** sur gbu-maroc.org. Elle n'est pas touchée, et devient la
@@ -13,16 +13,16 @@ reste **en production** sur gbu-maroc.org. Elle n'est pas touchée, et devient l
 
 ## Où en sommes-nous
 
-| # | Phase | État |
-|---|---|---|
-| 0 | Connaître l'existant | ✅ validée |
-| 1 | Cadrage | 🟡 à valider |
+| #     | Phase                   | État            |
+| ----- | ----------------------- | --------------- |
+| 0     | Connaître l'existant    | ✅ validée      |
+| 1     | Cadrage                 | 🟡 à valider    |
 | **2** | **Organisation du hub** | 🔵 **en cours** |
-| 3 | Cahier des charges | ⬜ |
-| 4 | Maquettes | ⬜ |
-| 5 | Stack technique | 🟡 partielle |
-| 6 | Plan de développement | ⬜ |
-| 7 | Développement | ⬜ |
+| 3     | Cahier des charges      | ⬜              |
+| 4     | Maquettes               | ⬜              |
+| 5     | Stack technique         | 🟡 partielle    |
+| 6     | Plan de développement   | ⬜              |
+| 7     | Développement           | ⬜              |
 
 ## Ce que contient le dépôt
 
@@ -37,6 +37,56 @@ maquettes/                  Les sept écrans du hub (à refaire — réserve R2)
 
 **Commencez par [`docs/README.md`](docs/README.md)**, qui indexe tout et dit ce
 qui est décidé, ce qui est proposé, et ce qui attend un arbitrage.
+
+## Faire tourner le projet
+
+Il faut **Node 22** et **pnpm**. Le reste s'installe tout seul.
+
+```bash
+pnpm install            # les dépendances
+pnpm base:demarrer      # PostgreSQL 16 dans un conteneur, port 5433
+cp .env.example .env    # la configuration ; aucune valeur secrète dedans
+pnpm base:migrer        # monte la structure de la base
+pnpm dev                # le site, sur http://localhost:3000
+```
+
+Et la commande qui dit si tout va bien — la même que celle qui tourne en
+intégration continue :
+
+```bash
+pnpm verifier           # types + linter + mise en forme + tests
+```
+
+### Vérifier que le stockage reste remplaçable
+
+C'est la promesse d'[ADR-012](docs/02-ARCHITECTURE.md), et elle se vérifie
+plutôt qu'elle ne se déclare :
+
+```bash
+createdb gbum_ailleurs
+./outils/repetition-demenagement.sh \
+  postgres://gbum:gbum@localhost:5433/gbum \
+  postgres://gbum:gbum@localhost:5433/gbum_ailleurs
+```
+
+Le script sauvegarde, remonte la structure ailleurs **à partir des seules
+migrations**, restaure, puis compare structure et contenu. Il tourne aussi à
+chaque modification en intégration continue. S'il échoue, c'est qu'une base a
+été modifiée à la main quelque part — et c'est ce jour-là qu'il faut
+l'apprendre, pas le jour du vrai déménagement.
+
+## Ce que contient l'atelier
+
+| Paquet              | Ce qu'il contient                                         | Ce dont il dépend |
+| ------------------- | --------------------------------------------------------- | ----------------- |
+| `apps/site`         | Le site public, et l'espace d'administration              | de tout le reste  |
+| `packages/core`     | **Le domaine** : ville, cellule, mandat, publication      | **de rien**       |
+| `packages/db`       | Le schéma, les migrations, la seule porte vers PostgreSQL | de `core`         |
+| `packages/stockage` | L'interface des fichiers, et ses implémentations          | de rien           |
+
+La ligne qui compte est la deuxième : `packages/core` n'importe rien — ni
+`next`, ni `react`, ni `drizzle`, ni le réseau. La règle est tenue par le
+linter, pas par la bonne volonté.
 
 ## La méthode
 

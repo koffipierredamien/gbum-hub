@@ -1,0 +1,22 @@
+{
+  "name": "@gbum/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "types": "tsc --build",
+    "generer": "drizzle-kit generate",
+    "migrer": "tsx src/migrer.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.7",
+    "postgres": "^3.4.7"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.6",
+    "tsx": "^4.20.7"
+  }
+}

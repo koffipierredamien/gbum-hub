@@ -10,3 +10,20 @@ Thumbs.db
 
 # La proposition de direction artistique, assemblée : régénérable.
 maquettes/direction-artistique/foyer-en-mouvement.html
+
+# Le chantier de code.
+dist/
+.next/
+.turbo/
+*.tsbuildinfo
+.donnees/
+
+# La configuration réelle n'est JAMAIS versionnée (S2, ADR-012).
+# Seul .env.example l'est, et il ne contient aucune valeur.
+.env
+.env.*
+!.env.example
+
+# Engendrés par les outils.
+coverage/
+next-env.d.ts

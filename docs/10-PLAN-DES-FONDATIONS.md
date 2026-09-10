@@ -164,10 +164,14 @@ dans le dépôt, relu comme du code, rejouable sur une base vide.
 
 ```
 packages/db/migrations/
-  0001_villes_et_cellules.sql
+  0000_villes_et_cellules.sql      ← écrite le 10 septembre 2026
+  0001_pages_editoriales.sql       ← viendra avec les écrans qui l'utilisent
   0002_activites.sql
-  0003_pages_editoriales.sql
 ```
+
+*(La numérotation commence à 0000 : c'est celle de l'outil, et on ne se bat pas
+avec un outil pour un chiffre. Le nom, lui, est réécrit à la main — un fichier
+de migration qui s'appelle `0000_lumpy_red_ghost.sql` n'est pas relisible.)*
 
 Trois conséquences immédiates :
 
@@ -315,3 +319,38 @@ l'obtenez — sans repasser par moi. C'est la raison d'être du lot 1 tout entie
 **Ce qui n'est donc pas bloqué par l'attente du Secrétariat National :** les
 fondations, les huit pages, et l'administration. C'est-à-dire tout ce qui
 suit.
+
+---
+
+## 8. État au 10 septembre 2026
+
+| | Fondation | État |
+|---|---|---|
+| **F1** | Le squelette du dépôt | ✅ posée — quatre paquets, `packages/core` sans aucune dépendance |
+| **F2** | La chaîne de qualité | ✅ posée — et **elle mord** : les deux règles maison ont été mises à l'épreuve sur du code fautif avant d'être déclarées bonnes |
+| **F3** | La base et ses migrations | ✅ posée — première migration écrite, appliquée sur un PostgreSQL 16 réel, et rejouée sans dégât |
+| **F4** | Le stockage des fichiers | ✅ posée — interface, implémentation disque, et la garde contre la remontée de dossier |
+| **F5** | Mise en ligne et sauvegardes | 🟡 **la moitié** — voir ci-dessous |
+
+**Ce qui manque à F5, et pourquoi ce n'est pas un retard.** La configuration
+par l'environnement est en place, la sauvegarde et sa restauration sont
+éprouvées par la répétition de déménagement. Ce qui reste — le déploiement
+automatique — a besoin d'une chose que nous n'avons pas encore : **une adresse
+où déployer.** C'est précisément la décision qu'ADR-012 permet de reporter. Ce
+n'est donc pas une dette : c'est la conséquence voulue.
+
+**Deux choses que la répétition de déménagement a trouvées du premier coup**,
+et qui auraient été des pannes silencieuses le jour du vrai déménagement :
+
+1. la sauvegarde des données emportait aussi **le registre des migrations** —
+   or ce registre appartient à la base d'arrivée, qui vient de le remplir
+   elle-même. La restauration échouait sur une clé en double ;
+2. l'implémentation disque rendait un **`Buffer` de Node** au lieu du
+   `Uint8Array` promis par l'interface. Les deux se ressemblent — et le jour du
+   basculement vers S3, la panne serait apparue ailleurs que dans le code
+   changé.
+
+**Et une décision prise en chemin :** la répétition ne tourne plus une fois par
+lot, mais **à chaque modification**, en intégration continue. Cela ne coûte pas
+plus cher, et vaut beaucoup mieux : c'est un mardi ordinaire qu'on s'enferme,
+pas le jour du déménagement.
