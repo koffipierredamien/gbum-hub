@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 /**
  * Charge le fichier `.env` de la racine du dépôt.
@@ -56,7 +57,9 @@ function lireLigne(ligne: string): { nom: string; valeur: string } | null {
  * paquet, ou par Next depuis `apps/site`.
  */
 function trouverEnv(): string | null {
-  let dossier = dirname(new URL(import.meta.url).pathname);
+  // fileURLToPath, et non « .pathname » : sous Windows, pathname rend
+  // « /C:/Users/... », que Node relit ensuite comme « C:\C:\Users\... ».
+  let dossier = dirname(fileURLToPath(import.meta.url));
   for (let remontee = 0; remontee < 8; remontee += 1) {
     const candidat = join(dossier, ".env");
     if (existsSync(candidat)) return candidat;

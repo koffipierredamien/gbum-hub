@@ -1,8 +1,10 @@
 import { execFile } from "node:child_process";
 import { copyFile, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { join } from "node:path";
 import process from "node:process";
 import { setTimeout as patienter } from "node:timers/promises";
+import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { baseJoignable, compterComptes, creerCompte, joindreLaBase } from "@gbum/db";
 import { hacher } from "@gbum/identite";
@@ -21,8 +23,36 @@ import { demanderIdentifiants } from "./identifiants";
  * dont la quatrième échoue en silence suffit à décourager.
  */
 
-const executer = promisify(execFile);
-const RACINE = new URL("../../../", import.meta.url).pathname;
+const executerFichier = promisify(execFile);
+
+/**
+ * La racine du dépôt, en chemin de système de fichiers.
+ *
+ * `new URL(…).pathname` rendrait « /C:/Users/… » sous Windows, que Node relit
+ * ensuite comme « C:\C:\Users\… » — c'est la panne rapportée le 10 septembre
+ * 2026. `fileURLToPath` est la seule conversion juste des deux côtés, et elle
+ * décode au passage les espaces d'un chemin comme « Mes documents ».
+ */
+const RACINE = fileURLToPath(new URL("../../../", import.meta.url));
+
+/**
+ * Lance une commande du système, depuis la racine du dépôt.
+ *
+ * Sous Windows, `pnpm` est un script `.cmd`, et depuis un correctif de
+ * sécurité de Node (CVE-2024-27980) un `.cmd` ne peut être lancé que par
+ * l'interpréteur de commandes. Les arguments passés ici sont écrits en dur
+ * dans ce fichier — jamais une saisie de l'utilisateur — donc l'interpréteur
+ * ne transporte rien d'imprévu.
+ */
+function executer(
+  commande: string,
+  parametres: readonly string[],
+): Promise<{ stdout: string; stderr: string }> {
+  return executerFichier(commande, [...parametres], {
+    cwd: RACINE,
+    shell: process.platform === "win32",
+  });
+}
 
 function dire(etape: string, message: string): void {
   console.info(`\n${etape}  ${message}`);
@@ -48,18 +78,18 @@ async function principal(): Promise<void> {
 
 /** 1. Le fichier de configuration, copié du modèle s'il n'existe pas. */
 async function etapeConfiguration(): Promise<void> {
-  const cible = `${RACINE}.env`;
+  const cible = join(RACINE, ".env");
   if (existsSync(cible)) {
     dire("1/4", "Configuration : .env existe déjà, on n'y touche pas.");
     return;
   }
-  await copyFile(`${RACINE}.env.example`, cible);
+  await copyFile(join(RACINE, ".env.example"), cible);
   dire("1/4", "Configuration : .env créé à partir de .env.example.");
   conseil("Aucune valeur secrète dedans — il n'est pas versionné.");
 }
 
 async function lireAdresseDeLaBase(): Promise<string> {
-  const contenu = await readFile(`${RACINE}.env`, "utf8");
+  const contenu = await readFile(join(RACINE, ".env"), "utf8");
   const ligne = contenu.split("\n").find((l) => l.startsWith("DATABASE_URL="));
   const url = ligne?.slice("DATABASE_URL=".length).trim() ?? "";
   if (url === "") throw new Error("DATABASE_URL est absente de .env.");
@@ -85,7 +115,7 @@ async function etapeBase(url: string): Promise<void> {
 
   dire("2/4", "Base de données : elle ne répond pas, on essaie de la démarrer…");
   try {
-    await executer("docker", ["compose", "up", "-d"], { cwd: RACINE });
+    await executer("docker", ["compose", "up", "-d"]);
   } catch (cause) {
     conseil(`Docker a répondu : ${raison(cause)}`);
     expliquerSansDocker(url);
@@ -126,7 +156,7 @@ function expliquerSansDocker(url: string): void {
 /** 3. La structure de la base, rejouée. Sans effet si elle est à jour. */
 async function etapeMigrations(): Promise<void> {
   dire("3/4", "Structure de la base : on rejoue les migrations…");
-  await executer("pnpm", ["base:migrer"], { cwd: RACINE });
+  await executer("pnpm", ["base:migrer"]);
   conseil("À jour.");
 }
 

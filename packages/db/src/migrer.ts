@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
 import { adresseDeLaBase, ouvrirBase } from "./connexion";
 
@@ -14,7 +15,8 @@ async function principal(): Promise<void> {
   const { base, fermer } = ouvrirBase(url);
   try {
     await migrate(base, {
-      migrationsFolder: new URL("../migrations", import.meta.url).pathname,
+      // fileURLToPath : « .pathname » donne « /C:/... » sous Windows.
+      migrationsFolder: fileURLToPath(new URL("../migrations", import.meta.url)),
     });
     console.info("migrations appliquées");
   } finally {

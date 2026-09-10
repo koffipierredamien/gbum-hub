@@ -60,6 +60,24 @@ export default ts.config(
 
       // --- R3 Les états impossibles doivent être impossibles ---------------
       "@typescript-eslint/switch-exhaustiveness-check": "error",
+
+      // --- Le projet doit démarrer sous Windows ----------------------------
+      // « new URL(…).pathname » rend « /C:/Users/… » sous Windows : Node relit
+      // ce chemin comme « C:\C:\Users\… » et la mise en route échoue à la
+      // première étape. La panne a été rapportée sur une vraie machine le
+      // 10 septembre 2026. Deux des trois occurrences n'étaient pas dans le
+      // fichier qui a échoué — d'où une règle plutôt qu'une correction.
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            'MemberExpression[property.name="pathname"][object.type="NewExpression"][object.callee.name="URL"]',
+          message:
+            "Un chemin de fichier se tire d'une URL avec fileURLToPath(), jamais " +
+            "avec .pathname : sous Windows, .pathname rend « /C:/… », que Node " +
+            "relit comme « C:\\C:\\… ».",
+        },
+      ],
     },
   },
 

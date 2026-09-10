@@ -3,7 +3,8 @@
 **10 septembre 2026.** Ce document a été écrit en jouant la manœuvre depuis
 zéro — base effacée, `.env` supprimé, dossier de construction vidé. Les
 commandes qui suivent sont celles qui ont réellement fonctionné, dans cet
-ordre. Deux défauts ont été trouvés en le faisant ; ils sont corrigés.
+ordre. Trois défauts ont été trouvés en le faisant, un quatrième en le
+rejouant sous Windows le 11 septembre ; tous sont corrigés.
 
 ---
 
@@ -16,6 +17,11 @@ ordre. Deux défauts ont été trouvés en le faisant ; ils sont corrigés.
 | **Docker Desktop** *ou* **PostgreSQL 16** | La base de données | `docker --version` |
 
 Si pnpm manque : `corepack enable` suffit, il est livré avec Node.
+
+**Sous Windows**, tout se lance depuis PowerShell ou le Terminal Windows, et
+Docker Desktop doit être **démarré** (son icône dans la barre des tâches) avant
+`pnpm mise-en-route`. Le projet a été rejoué sur une machine Windows : ce qui
+en est ressorti est au §9.
 
 **Sur Docker.** Il n'est pas obligatoire : il évite d'installer PostgreSQL sur
 votre machine, et garantit que vous travaillez sur la **même version majeure**
@@ -151,6 +157,8 @@ chez vous passe sur GitHub.
 | Le port 3000 est déjà pris | Un autre projet tourne | Fermer l'autre, ou `pnpm --filter @gbum/site dev -- -p 3001` |
 | La page met dix secondes | Construction à la demande | Normal en développement, seulement la première fois |
 | `Courriel ou mot de passe incorrect` alors qu'il est bon | Le compte est dans une **autre** base | Vérifier `DATABASE_URL` dans `.env` |
+| Un chemin doublé, `C:\C:\Users\…` | Un défaut corrigé le 11 septembre 2026 | Mettre à jour : `git pull` |
+| `docker : commande introuvable` sous Windows | Docker Desktop n'est pas lancé | Le démarrer, attendre qu'il dise « running », relancer |
 
 **Repartir de zéro**, si quelque chose est vraiment coincé :
 
@@ -193,7 +201,8 @@ trahir.
 ## 9. Ce que cette répétition a trouvé
 
 Le document n'aurait pas eu de valeur si je l'avais écrit de mémoire. En le
-jouant depuis zéro, trois choses ont cassé :
+jouant depuis zéro — puis sur une machine qui n'était pas la mienne — quatre
+choses ont cassé :
 
 1. **Rien ne lisait le fichier `.env`.** Le projet le documentait, les
    commandes échouaient sur « DATABASE_URL n'est pas définie » alors que la
@@ -211,6 +220,24 @@ jouant depuis zéro, trois choses ont cassé :
    fonction jamais importée y a survécu — c'est le linter, et non le
    compilateur, qui a fini par le voir. La référence manquante est ajoutée :
    la chaîne couvre maintenant tout le code TypeScript du dépôt.
+
+4. **Le projet ne démarrait pas du tout sous Windows.** `pnpm mise-en-route`
+   s'arrêtait à la première étape sur un chemin doublé :
+   `C:\C:\Users\lenovo\Downloads\gbum-hub\.env.example`. La cause tient en
+   un mot : `new URL(…).pathname` rend `/C:/Users/…`, que Node relit ensuite
+   comme un chemin relatif à la racine du disque courant. La conversion juste
+   des deux côtés est `fileURLToPath()` — elle décode aussi les espaces d'un
+   dossier « Mes documents ».
+
+   Trois fichiers faisaient la même faute, et **deux n'étaient pas celui qui a
+   échoué** : la corriger là où ça cassait aurait déplacé la panne d'une étape.
+   Il y a donc désormais une règle de lint qui refuse `new URL(…).pathname`
+   dans tout le dépôt — vérifiée en la faisant échouer sur du code fautif.
+
+   Une seconde marche attendait juste derrière : sous Windows `pnpm` est un
+   script `.cmd`, et depuis un correctif de sécurité de Node (CVE-2024-27980)
+   un `.cmd` ne se lance qu'à travers l'interpréteur de commandes. L'étape des
+   migrations aurait échoué à son tour ; elle est corrigée en même temps.
 
 C'est la même règle que pour la répétition de déménagement : **une manœuvre
 qu'on n'a jamais jouée ne marche pas.**
