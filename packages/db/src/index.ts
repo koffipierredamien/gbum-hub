@@ -1,4 +1,5 @@
 export * from "./schema";
+export * from "./environnement";
 export * from "./connexion";
 export * from "./depot-villes";
 export * from "./depot-demandes";

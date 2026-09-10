@@ -1,5 +1,11 @@
 import type { NextConfig } from "next";
 import creerPluginIntl from "next-intl/plugin";
+import { chargerEnvironnement } from "@gbum/db";
+
+// Next ne lit que le `.env` de ce dossier ; le nôtre est à la racine du dépôt,
+// là où le projet le documente. On le charge donc ici, avant tout le reste :
+// ce fichier est évalué au démarrage du serveur comme à la construction.
+chargerEnvironnement();
 
 const avecIntl = creerPluginIntl("./src/i18n/requete.ts");
 

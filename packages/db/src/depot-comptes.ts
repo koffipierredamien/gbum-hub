@@ -1,4 +1,4 @@
-import { and, eq, gt, lt } from "drizzle-orm";
+import { and, count, eq, gt, lt } from "drizzle-orm";
 import { ouvrirBase } from "./connexion";
 import { comptes, sessions } from "./schema";
 
@@ -131,6 +131,17 @@ export async function purgerSessionsEchues(maintenant: Date): Promise<void> {
   const { base, fermer } = ouvrirBase();
   try {
     await base.delete(sessions).where(lt(sessions.expireLe, maintenant));
+  } finally {
+    await fermer();
+  }
+}
+
+/** Combien de comptes existent — pour savoir s'il faut créer le premier. */
+export async function compterComptes(): Promise<number> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    const [ligne] = await base.select({ combien: count() }).from(comptes);
+    return ligne?.combien ?? 0;
   } finally {
     await fermer();
   }

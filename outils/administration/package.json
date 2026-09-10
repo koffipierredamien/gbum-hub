@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "types": "tsc --build",
-    "compte:creer": "tsx src/creer-compte.ts"
+    "compte:creer": "tsx src/creer-compte.ts",
+    "mise-en-route": "tsx src/mise-en-route.ts"
   },
   "dependencies": {
     "@gbum/db": "workspace:*",

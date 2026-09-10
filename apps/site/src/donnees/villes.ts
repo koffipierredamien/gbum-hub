@@ -1,5 +1,5 @@
 import "server-only";
-import { lireVillesEtCellules } from "@gbum/db";
+import { chargerEnvironnement, lireVillesEtCellules } from "@gbum/db";
 import {
   celluleId,
   echec,
@@ -47,6 +47,7 @@ export interface VilleAvecId {
 export async function lireVillesPubliees(
   maintenant: Instant,
 ): Promise<Resultat<readonly VilleAvecId[], ErreurLecture>> {
+  chargerEnvironnement();
   if (process.env["DATABASE_URL"] === undefined) {
     return echec({ type: "base-non-configuree" });
   }

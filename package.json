@@ -19,7 +19,8 @@
     "dev": "pnpm --filter @gbum/site dev",
     "verifier:acces": "node outils/verifier-accessibilite.mjs",
     "compte:creer": "pnpm --filter @gbum/administration-cli compte:creer",
-    "verifier:admin": "node outils/verifier-administration.mjs"
+    "verifier:admin": "node outils/verifier-administration.mjs",
+    "mise-en-route": "pnpm --filter @gbum/administration-cli mise-en-route"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

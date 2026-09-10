@@ -3,7 +3,7 @@ import { hasLocale } from "next-intl";
 import { LANGUES, routage } from "./routage";
 import fr from "../../messages/fr.json";
 import en from "../../messages/en.json";
-import { lireSectionsPubliees } from "@gbum/db";
+import { chargerEnvironnement, lireSectionsPubliees } from "@gbum/db";
 
 const MESSAGES = { fr, en } as const;
 
@@ -58,6 +58,7 @@ type Catalogue = Record<string, Record<string, unknown>>;
  * inaccessible serait une panne bien pire que le texte d'origine.
  */
 async function recouvrir(catalogue: Catalogue, langue: string): Promise<Catalogue> {
+  chargerEnvironnement();
   if (process.env["DATABASE_URL"] === undefined) return catalogue;
 
   try {

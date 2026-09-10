@@ -43,15 +43,18 @@ qui est décidé, ce qui est proposé, et ce qui attend un arbitrage.
 
 ## Faire tourner le projet
 
-Il faut **Node 22** et **pnpm**. Le reste s'installe tout seul.
+Il faut **Node 22**, **pnpm**, et **Docker Desktop** _ou_ PostgreSQL 16.
 
 ```bash
 pnpm install            # les dépendances
-pnpm base:demarrer      # PostgreSQL 16 dans un conteneur, port 5433
-cp .env.example .env    # la configuration ; aucune valeur secrète dedans
-pnpm base:migrer        # monte la structure de la base
+pnpm mise-en-route      # la configuration, la base, sa structure, un compte
 pnpm dev                # le site, sur http://localhost:3000
 ```
+
+`pnpm mise-en-route` dit ce qu'elle fait à chaque étape, et se relance sans
+dégât. Le guide complet — ce que vous devez voir, le parcours à essayer une
+fois, et quoi faire quand ça coince — est dans
+**[`docs/11-DEMARRER-EN-LOCAL.md`](docs/11-DEMARRER-EN-LOCAL.md)**.
 
 Et la commande qui dit si tout va bien — la même que celle qui tourne en
 intégration continue :

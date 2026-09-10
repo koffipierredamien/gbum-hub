@@ -24,6 +24,7 @@
 | **08** | [Plan du site public](08-PLAN-SITE-PUBLIC.md) | Le lot 1 : quelles pages, quel contenu, quelle administration ? | Pierre, SN |
 | **09** | [Direction artistique](09-DIRECTION-ARTISTIQUE.md) | Pourquoi les maquettes étaient calmes, et les onze règles qui les rendent vivantes | Pierre, SN |
 | **10** | [Plan des fondations](10-PLAN-DES-FONDATIONS.md) | Ce qu'on pose sous les pages, dans quel ordre — et comment le stockage restera remplaçable | **Pierre** |
+| **11** | [Démarrer en local](11-DEMARRER-EN-LOCAL.md) | Faire tourner le projet sur sa machine, et le parcours à essayer une fois | **Pierre** |
 
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.

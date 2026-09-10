@@ -45,22 +45,27 @@ verifier(
 );
 
 // 2 — un mauvais mot de passe est refusé.
-await p.fill("#courriel", COURRIEL);
-await p.fill("#motDePasse", "ce-n-est-pas-le-bon");
-await p.click("button[type=submit]");
-await p.waitForTimeout(1200);
-verifier(
-  "un mauvais mot de passe est refusé",
-  (await p.locator("[role=alert]").count()) > 0 && p.url().includes("connexion"),
-);
+//
+// Sur SA PROPRE page, refermée ensuite. Rejouer une connexion réussie dans le
+// même formulaire qu'un échec fait courir la saisie contre le rendu de React :
+// on remplit le champ, React remonte le formulaire, et le mot de passe part
+// vide. Un humain qui retape met plusieurs secondes et ne le voit jamais ; un
+// script, si. Deux pages, deux histoires — et le doute disparaît.
+const essai = await ctx.newPage();
+await essai.goto(`${B}/admin/connexion`, { waitUntil: "load" });
+await essai.fill("#courriel", COURRIEL);
+await essai.fill("#motDePasse", "ce-n-est-pas-le-bon");
+await essai.click("button[type=submit]");
+await essai.waitForSelector("[role=alert]", { timeout: 60000 });
+verifier("un mauvais mot de passe est refusé", essai.url().includes("connexion"));
+await essai.close();
 
 // 3 — le bon mot de passe ouvre la session.
-// On remplit LES DEUX champs : après un échec, React remonte le formulaire, et
-// ne remplir que le mot de passe testerait un formulaire à moitié vide.
+await p.goto(`${B}/admin/connexion`, { waitUntil: "load" });
 await p.fill("#courriel", COURRIEL);
 await p.fill("#motDePasse", MOT_DE_PASSE);
 await p.click("button[type=submit]");
-await p.waitForURL(`${B}/admin`, { timeout: 20000 });
+await p.waitForURL(`${B}/admin`, { timeout: 60000 });
 verifier("le bon mot de passe ouvre la session", p.url() === `${B}/admin`);
 
 // 4 — avant toute écriture, le site annonce le thème comme attendu.
@@ -75,7 +80,7 @@ verifier(
 await p.goto(`${B}/admin/pages/commun`, { waitUntil: "load" });
 await p.fill("#section\\:themeNom", THEME);
 await p.click('button[type=submit]:has-text("Enregistrer le brouillon")');
-await p.waitForTimeout(2000);
+await p.waitForSelector("text=Brouillon enregistré", { timeout: 60000 });
 const apresBrouillon = await p.locator("body").innerText();
 verifier(
   "le brouillon est enregistré",
@@ -95,11 +100,8 @@ verifier(
 
 // 7 — on publie.
 await p.click('button[type=submit]:has-text("Publier la page")');
-await p.waitForTimeout(3000);
-verifier(
-  "la publication est confirmée",
-  (await p.locator("body").innerText()).includes("Page publiée"),
-);
+await p.waitForSelector("text=Page publiée", { timeout: 60000 });
+verifier("la publication est confirmée", true);
 
 // 8 — et le site public l'affiche, tout de suite.
 await pub.reload({ waitUntil: "load" });
@@ -113,7 +115,7 @@ const ville = `Ville ${String(Date.now()).slice(-5)}`;
 await p.goto(`${B}/admin/villes`, { waitUntil: "load" });
 await p.fill("input[name=nom]", ville);
 await p.click('button:has-text("Enregistrer")');
-await p.waitForTimeout(2500);
+await p.waitForTimeout(5000);
 const ou = await ctx.newPage();
 await ou.goto(`${B}/fr/ou-nous-sommes`, { waitUntil: "load" });
 verifier(
@@ -124,7 +126,7 @@ verifier(
 // 10 — se déconnecter referme la porte.
 await p.goto(`${B}/admin`, { waitUntil: "load" });
 await p.click('button:has-text("Se déconnecter")');
-await p.waitForTimeout(1500);
+await p.waitForURL(/connexion/, { timeout: 60000 });
 await p.goto(`${B}/admin/villes`, { waitUntil: "load" });
 verifier(
   "après déconnexion, /admin/villes renvoie vers la connexion",
@@ -139,7 +141,7 @@ await p.goto(`${B}/admin/connexion`, { waitUntil: "load" });
 await p.fill("#courriel", COURRIEL);
 await p.fill("#motDePasse", MOT_DE_PASSE);
 await p.click("button[type=submit]");
-await p.waitForURL(`${B}/admin`, { timeout: 20000 });
+await p.waitForURL(`${B}/admin`, { timeout: 60000 });
 
 for (const ecran of [
   "/admin",
