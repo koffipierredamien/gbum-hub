@@ -16,14 +16,17 @@
     "test:suivi": "vitest",
     "base:demarrer": "docker compose up -d",
     "base:migrer": "pnpm --filter @gbum/db migrer",
-    "dev": "pnpm --filter @gbum/site dev"
+    "dev": "pnpm --filter @gbum/site dev",
+    "verifier:acces": "node outils/verifier-accessibilite.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^9.39.1",
     "@gbum/eslint-regles": "workspace:*",
     "@types/node": "^22.19.1",
     "@vitest/coverage-v8": "^3.2.7",
     "eslint": "^9.39.1",
+    "playwright": "^1.63.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4",

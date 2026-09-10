@@ -119,10 +119,38 @@ export default ts.config(
   },
 
   {
-    // Les fichiers de configuration ne sont dans aucun tsconfig — le linter
-    // typé ne peut donc pas les analyser. On les vérifie sans types plutôt que
-    // de les exclure : un fichier non lu est un fichier où tout est permis.
-    files: ["**/*.config.mjs", "**/*.config.ts"],
+    // Un composant React a son propre budget : 150 lignes, et non 50.
+    // C'est ce que fixe docs/03-CONVENTIONS-ET-QUALITE.md §2 — une fonction de
+    // 50 lignes qui fait une seule chose et un composant de 120 lignes qui
+    // décrit une seule section sont deux objets différents. Au-delà de 150,
+    // la règle reste la même : extraire un sous-composant.
+    files: ["**/*.tsx"],
+    rules: {
+      "max-lines-per-function": [
+        "error",
+        { max: 150, skipBlankLines: true, skipComments: true },
+      ],
+    },
+  },
+
+  {
+    // Les fichiers de configuration et les outils en JavaScript ne sont dans
+    // aucun tsconfig — le linter typé ne peut donc pas les analyser. On les
+    // vérifie sans types plutôt que de les exclure : un fichier non lu est un
+    // fichier où tout est permis.
+    files: ["**/*.config.mjs", "**/*.config.ts", "outils/**/*.mjs"],
     extends: [ts.configs.disableTypeChecked],
+    languageOptions: {
+      globals: {
+        process: "readonly",
+        console: "readonly",
+        // `document` et `window` n'existent pas dans Node : ils apparaissent
+        // dans les fonctions passées à `page.evaluate`, qui sont sérialisées
+        // et exécutées DANS le navigateur. Le linter, lui, lit le fichier
+        // depuis Node — d'où cette déclaration.
+        document: "readonly",
+        window: "readonly",
+      },
+    },
   },
 );

@@ -162,14 +162,32 @@ Quatre étapes. **Chacune se montre avant de passer à la suivante.**
 
 | # | Étape | Livrable | Ce qui le valide |
 |---|---|---|---|
-| **1** | **Les maquettes** | Les 8 pages dessinées, téléphone puis bureau | Vous, puis le Secrétariat National |
-| **2** | **Les fondations** | Dépôt, chaîne de qualité, base de données, premières pages sans contenu réel | La chaîne passe au vert |
-| **3** | **Les pages** | Les 8 pages, avec leur contenu et leurs deux langues | Chaque page se montre à la fin de son écriture |
+| **1** | **Les maquettes** | Les 8 pages dessinées, téléphone puis bureau | ✅ faite — 9 sept. 2026, puis recomposées dans « Foyer en mouvement » |
+| **2** | **Les fondations** | Dépôt, chaîne de qualité, base de données, stockage | ✅ faite — 10 sept. 2026, la chaîne est au vert |
+| **3** | **Les pages** | Les 8 pages, plus le parcours « Rejoindre », avec leurs deux langues | ✅ faite — 10 sept. 2026, 18 pages sans manquement WCAG 2.2 AA |
 | **4** | **L'administration** | L'espace minimal de mise à jour | Le Secrétariat National modifie une page **sans moi** |
 
-> Les maquettes actuelles sont à refaire : elles portent des données inventées
-> et un parcours « Trouver mon groupe » antérieur à [ADR-011](02-ARCHITECTURE.md).
-> C'est la réserve **R2**, et l'étape 1 la lève.
+> La réserve **R2** ne porte plus que sur les sept écrans du *hub*
+> (`maquettes/`), qui gardent des données inventées et seront refaits quand
+> l'espace de travail viendra. Les onze planches du site public l'ont levée le
+> 9 septembre 2026.
+
+**Ce que l'étape 3 a livré**, et qui n'était pas prévu à ce niveau de détail :
+
+- les 8 pages **plus le parcours « Rejoindre »**, en français et en anglais,
+  soit 18 pages ;
+- le repli de traduction : quand l'anglais manque, le français s'affiche à sa
+  place — et une clé absente des DEUX langues s'affiche en clair, pour qu'une
+  faute de frappe se voie au lieu de se cacher ;
+- un formulaire réellement branché : validation à la frontière, piège à robots,
+  enregistrement en base, et les trois issues DITES à l'utilisateur — envoyé,
+  champs incomplets, base injoignable. Répondre « envoyé » quand rien n'est
+  parti serait la pire des réponses ;
+- les deux fontes servies par le site lui-même, et non chargées chez un tiers
+  à chaque visite ;
+- une vérification d'accessibilité **versionnée et bloquante** :
+  `pnpm verifier:acces` passe les 18 pages au crible de WCAG 2.2 AA, du
+  débordement horizontal et des traductions manquantes.
 
 ## 7. Ce qui prouve que c'est bon
 

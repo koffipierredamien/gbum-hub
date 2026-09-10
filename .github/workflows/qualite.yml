@@ -80,3 +80,29 @@ jobs:
 
       - name: Déménager, et comparer
         run: ./outils/repetition-demenagement.sh "$SOURCE" "$DESTINATION"
+
+  # L'accessibilité est bloquante (docs/03-CONVENTIONS-ET-QUALITE.md §4) :
+  # WCAG 2.2 AA, sur chaque écran, zéro manquement. Une exigence qu'on vérifie
+  # à la main une fois n'est pas une exigence — c'est un souvenir.
+  accessibilite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - name: Construire le site
+        run: pnpm --filter @gbum/site build
+
+      - name: Le mettre en ligne le temps de la vérification
+        run: |
+          pnpm --filter @gbum/site start &
+          until curl -sf http://localhost:3000/fr > /dev/null; do sleep 1; done
+
+      - name: WCAG 2.2 AA, débordements et traductions — sur les 18 pages
+        run: pnpm verifier:acces

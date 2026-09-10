@@ -1,4 +1,4 @@
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 /**
  * La structure de la base.
@@ -58,4 +58,29 @@ export const cellules = pgTable("cellules", {
 
   creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
   modifieLe: timestamp("modifie_le", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/**
+ * Les messages reçus par les formulaires publics.
+ *
+ * Ils vont au bureau de la ville, et à lui seul — c'est ce que la page promet
+ * au visiteur, et c'est donc ce que la structure doit rendre vrai : la
+ * demande porte la ville à laquelle elle appartient, et rien ne la duplique
+ * ailleurs.
+ *
+ * `traitee` existe dès maintenant parce qu'une boîte de réception sans état de
+ * traitement se remplit et n'est plus lue — c'est la raison pour laquelle
+ * l'écran « Demandes reçues » de l'administration porte un compteur.
+ */
+export const demandes = pgTable("demandes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  sujet: text("sujet").notNull(),
+  nom: text("nom").notNull(),
+  contact: text("contact").notNull(),
+  villeId: uuid("ville_id").references(() => villes.id, { onDelete: "set null" }),
+  /** Saisi librement quand la ville n'est pas encore dans la liste. */
+  villeLibre: text("ville_libre"),
+  message: text("message").notNull(),
+  traitee: boolean("traitee").notNull().default(false),
+  creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
 });

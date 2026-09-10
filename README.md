@@ -2,10 +2,12 @@
 
 Conception du hub du **GBUM** — Groupe Biblique Universitaire au Maroc.
 
-> **Les fondations du lot 1 sont posées** (10 septembre 2026) — après que leur
-> plan a été écrit, expliqué et validé. Aucune page n'est encore écrite : les
-> fondations ne se voient pas, et c'est normal.
-> Voir [`docs/10-PLAN-DES-FONDATIONS.md`](docs/10-PLAN-DES-FONDATIONS.md).
+> **Le site public existe** (10 septembre 2026) : ses huit pages et le parcours
+> « Rejoindre », en français et en anglais, sur les fondations posées le même
+> jour. Il est encore presque vide — c'est voulu, et chaque emplacement dit ce
+> qu'il attend et à qui le demander.
+> Voir [`docs/08-PLAN-SITE-PUBLIC.md`](docs/08-PLAN-SITE-PUBLIC.md) et
+> [`docs/10-PLAN-DES-FONDATIONS.md`](docs/10-PLAN-DES-FONDATIONS.md).
 
 L'application actuelle, [`gbu-connect`](https://github.com/koffipierredamien/gbu-connect),
 reste **en production** sur gbu-maroc.org. Elle n'est pas touchée, et devient la
@@ -55,7 +57,13 @@ intégration continue :
 
 ```bash
 pnpm verifier           # types + linter + mise en forme + tests
+pnpm verifier:acces     # WCAG 2.2 AA sur les 18 pages — bloquant
 ```
+
+La seconde commande demande que le site tourne (`pnpm dev` ou
+`pnpm --filter @gbum/site start`). Elle vérifie trois choses d'un seul
+passage : aucun manquement WCAG 2.2 AA, aucun débordement horizontal, aucune
+clé de traduction manquante.
 
 ### Vérifier que le stockage reste remplaçable
 

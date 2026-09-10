@@ -54,8 +54,20 @@ if ! diff <(normaliser "$TRAVAIL/structure-source.sql") \
 fi
 
 echo "5/5  comparaison des contenus"
-compter() { psql --quiet --no-align --tuples-only "$1" \
-  -c "select 'villes', count(*) from villes union all select 'cellules', count(*) from cellules order by 1"; }
+# On compte TOUTES les tables du schéma public, pas une liste écrite à la main :
+# une liste écrite à la main ne grandit pas avec le schéma, et le jour où l'on
+# ajoute une table, la comparaison cesse de la voir sans rien dire.
+compter() {
+  psql --quiet --no-align --tuples-only "$1" -c "
+    select string_agg(ligne, E'\n' order by ligne) from (
+      select format('%s=%s', c.relname,
+                    (xpath('/row/c/text()',
+                           query_to_xml(format('select count(*) as c from public.%I', c.relname),
+                                        false, true, '')))[1]::text) as ligne
+      from pg_class c join pg_namespace n on n.oid = c.relnamespace
+      where n.nspname = 'public' and c.relkind = 'r'
+    ) t"
+}
 if ! diff <(compter "$SOURCE") <(compter "$DESTINATION"); then
   echo "ÉCART DE CONTENU — la restauration a perdu des lignes."
   exit 1
