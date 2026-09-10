@@ -1,4 +1,4 @@
-import { asc } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { ouvrirBase } from "./connexion";
 import { cellules, villes } from "./schema";
 
@@ -62,6 +62,94 @@ export async function lireVillesEtCellules(): Promise<VillesEtCellules> {
       .orderBy(asc(cellules.rang), asc(cellules.nom));
 
     return { villes: lignesVilles, cellules: lignesCellules };
+  } finally {
+    await fermer();
+  }
+}
+
+// --- L'écriture, depuis l'espace d'administration -------------------------
+
+export async function creerVille(entree: {
+  nom: string;
+  rang: number;
+}): Promise<string> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    const [ligne] = await base
+      .insert(villes)
+      .values({ nom: entree.nom, rang: entree.rang })
+      .returning({ id: villes.id });
+    if (ligne === undefined) throw new Error("la ville n'a pas été créée");
+    return ligne.id;
+  } finally {
+    await fermer();
+  }
+}
+
+export async function modifierVille(
+  id: string,
+  entree: {
+    nom: string;
+    rang: number;
+    bureauCourriel: string | null;
+    bureauMandatDebut: Date | null;
+    bureauMandatFin: Date | null;
+  },
+): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base
+      .update(villes)
+      .set({ ...entree, modifieLe: new Date() })
+      .where(eq(villes.id, id));
+  } finally {
+    await fermer();
+  }
+}
+
+/** Les cellules d'une ville partent avec elle : c'est la cascade du schéma. */
+export async function supprimerVille(id: string): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base.delete(villes).where(eq(villes.id, id));
+  } finally {
+    await fermer();
+  }
+}
+
+export async function creerCellule(entree: {
+  villeId: string;
+  nom: string;
+  nombreDeMembres: number | null;
+  rang: number;
+}): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base.insert(cellules).values(entree);
+  } finally {
+    await fermer();
+  }
+}
+
+export async function modifierCellule(
+  id: string,
+  entree: { nom: string; nombreDeMembres: number | null; rang: number },
+): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base
+      .update(cellules)
+      .set({ ...entree, modifieLe: new Date() })
+      .where(eq(cellules.id, id));
+  } finally {
+    await fermer();
+  }
+}
+
+export async function supprimerCellule(id: string): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base.delete(cellules).where(eq(cellules.id, id));
   } finally {
     await fermer();
   }

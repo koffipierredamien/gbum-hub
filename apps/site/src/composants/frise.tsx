@@ -23,6 +23,9 @@ export async function Frise() {
     { annee: "1968", texte: t("frise1968") },
   ];
 
+  const annee = t("friseGbumAnnee");
+  const recit = t("friseGbumTexte");
+
   return (
     <div className="frise">
       {dates.map((point) => (
@@ -35,14 +38,29 @@ export async function Frise() {
         </div>
       ))}
 
-      <div className="frise-point" key="manquant">
-        <span className="frise-puce frise-puce-creuse" aria-hidden="true" />
-        <Attente
-          titre={t("friseManquantTitre")}
-          texte={t("friseManquantTexte")}
-          lien={{ texte: c("vousAvezCetteInformation"), href: "/nous-ecrire" }}
-        />
-      </div>
+      {/* Le jour où le Secrétariat National donne l'année et le récit de la
+          fondation du GBUM depuis l'espace d'administration, ce point cesse
+          d'être une place réservée et devient un fait daté comme les autres.
+          C'est la même règle que partout ailleurs : l'emplacement est dessiné
+          avant que le contenu arrive, et il n'a rien à réapprendre. */}
+      {annee !== "" && recit !== "" ? (
+        <div className="frise-point" key="gbum">
+          <span className="frise-puce" aria-hidden="true" />
+          <p className="frise-annee accent">{annee}</p>
+          <p className="petit second" style={{ margin: "6px 0 0" }}>
+            {recit}
+          </p>
+        </div>
+      ) : (
+        <div className="frise-point" key="manquant">
+          <span className="frise-puce frise-puce-creuse" aria-hidden="true" />
+          <Attente
+            titre={t("friseManquantTitre")}
+            texte={t("friseManquantTexte")}
+            lien={{ texte: c("vousAvezCetteInformation"), href: "/nous-ecrire" }}
+          />
+        </div>
+      )}
 
       <div className="frise-point frise-dernier" key="2023">
         <span className="frise-puce" aria-hidden="true" />

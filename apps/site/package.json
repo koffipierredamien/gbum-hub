@@ -12,6 +12,7 @@
   "dependencies": {
     "@gbum/core": "workspace:*",
     "@gbum/db": "workspace:*",
+    "@gbum/identite": "workspace:*",
     "@gbum/stockage": "workspace:*",
     "next": "^15.5.4",
     "next-intl": "^4.14.2",

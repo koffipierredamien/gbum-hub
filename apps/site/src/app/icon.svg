@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- La marque du mouvement : le jeton ambre et son « G » en Newsreader.
+       Sans ce fichier, chaque page demandait /favicon.ico, Next rendait la
+       page « introuvable », et celle-ci appelait la configuration de langue —
+       ce qui produisait une erreur 500 à chaque visite, invisible pour le
+       lecteur et bruyante dans les journaux. Trouvé le 10 septembre 2026. -->
+  <rect width="64" height="64" rx="16" fill="#E8732A"/>
+  <text x="32" y="45" text-anchor="middle" font-family="Newsreader, Georgia, serif"
+        font-size="38" font-weight="600" fill="#2A211B">G</text>
+</svg>

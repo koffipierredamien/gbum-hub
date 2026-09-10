@@ -1,4 +1,12 @@
-import { boolean, integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  unique,
+  uuid,
+} from "drizzle-orm/pg-core";
 
 /**
  * La structure de la base.
@@ -84,3 +92,73 @@ export const demandes = pgTable("demandes", {
   traitee: boolean("traitee").notNull().default(false),
   creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
 });
+
+/**
+ * Les comptes de l'espace d'administration.
+ *
+ * Il n'y a PAS d'inscription : les comptes sont créés en ligne de commande
+ * (`pnpm compte:creer`). Un espace d'administration où l'on peut s'inscrire
+ * soi-même n'est pas un espace d'administration.
+ *
+ * `role` ne porte pour l'instant que deux valeurs — le Secrétariat National et
+ * l'administration technique. Le modèle d'accès complet (ADR-005 : cumulatif
+ * vertical, cloisonné latéral, ouvertures datées) viendra avec l'espace de
+ * travail, où il y a des niveaux à cloisonner. Ici, il n'y en a pas.
+ */
+export const comptes = pgTable("comptes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  courriel: text("courriel").notNull().unique(),
+  nom: text("nom").notNull(),
+  /** Le condensat scrypt, paramètres compris. Jamais le mot de passe. */
+  motDePasse: text("mot_de_passe").notNull(),
+  role: text("role").notNull().default("secretariat"),
+  actif: boolean("actif").notNull().default(true),
+  creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
+  derniereConnexion: timestamp("derniere_connexion", { withTimezone: true }),
+});
+
+/**
+ * Les sessions ouvertes.
+ *
+ * La clé est l'EMPREINTE du jeton, jamais le jeton : une fuite de la base ne
+ * donne aucune session utilisable. C'est la même règle que pour les mots de
+ * passe, et pour la même raison.
+ */
+export const sessions = pgTable("sessions", {
+  empreinte: text("empreinte").primaryKey(),
+  compteId: uuid("compte_id")
+    .notNull()
+    .references(() => comptes.id, { onDelete: "cascade" }),
+  expireLe: timestamp("expire_le", { withTimezone: true }).notNull(),
+  creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/**
+ * Le contenu éditorial du site public, section par section et langue par
+ * langue.
+ *
+ * DEUX COLONNES DE TEXTE, ET C'EST TOUT L'ENJEU. `brouillon` est ce que le
+ * Secrétariat National est en train d'écrire ; `publie` est ce que le site
+ * montre. Publier, c'est recopier l'un dans l'autre — un geste distinct, et
+ * c'est voulu : rien ne change en ligne tant qu'on n'a pas publié.
+ *
+ * `cle` est la clé de traduction de la page publique. Une section absente
+ * d'ici n'est pas un trou : c'est le texte livré avec le site qui s'affiche.
+ * Le mouvement ne remplit donc que ce qu'il veut changer.
+ */
+export const sectionsEditoriales = pgTable(
+  "sections_editoriales",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    page: text("page").notNull(),
+    cle: text("cle").notNull(),
+    langue: text("langue").notNull(),
+    brouillon: text("brouillon"),
+    publie: text("publie"),
+    modifieLe: timestamp("modifie_le", { withTimezone: true }).notNull().defaultNow(),
+    modifiePar: uuid("modifie_par").references(() => comptes.id, {
+      onDelete: "set null",
+    }),
+  },
+  (table) => [unique("section_unique").on(table.page, table.cle, table.langue)],
+);

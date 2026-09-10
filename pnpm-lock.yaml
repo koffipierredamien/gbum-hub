@@ -50,6 +50,9 @@ importers:
       '@gbum/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@gbum/identite':
+        specifier: workspace:*
+        version: link:../../packages/identite
       '@gbum/stockage':
         specifier: workspace:*
         version: link:../../packages/stockage
@@ -79,6 +82,19 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
 
+  outils/administration:
+    dependencies:
+      '@gbum/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@gbum/identite':
+        specifier: workspace:*
+        version: link:../../packages/identite
+    devDependencies:
+      tsx:
+        specifier: ^4.20.7
+        version: 4.23.13
+
   outils/eslint-regles: {}
 
   packages/core: {}
@@ -98,6 +114,8 @@ importers:
       tsx:
         specifier: ^4.20.7
         version: 4.23.13
+
+  packages/identite: {}
 
   packages/stockage: {}
 

@@ -50,7 +50,9 @@
     "notificationTitre": "Alerte au bureau de ville · non branchée",
     "notificationTexte": "Le message est bien enregistré et apparaîtra dans l'espace d'administration. L'envoi automatique d'une alerte au bureau de la ville reste à brancher : il demande une adresse d'expédition que le mouvement n'a pas encore fournie.",
     "envoyer": "Envoyer",
-    "villeChoix": "Votre ville"
+    "villeChoix": "Votre ville",
+    "themeNom": "",
+    "themeEtiquette": "Thème de l'année"
   },
   "accueil": {
     "titre": "Accueil",
@@ -130,7 +132,9 @@
     "renvoiTitre": "Le mouvement est près de chez vous.",
     "renvoiTexte": "Les villes universitaires où le GBUM est présent, et le moyen de joindre le bureau de chacune.",
     "renvoiAction": "Voir où nous sommes",
-    "renvoiLien": "Le canevas d'études"
+    "renvoiLien": "Le canevas d'études",
+    "friseGbumAnnee": "",
+    "friseGbumTexte": ""
   },
   "ouNousSommes": {
     "titre": "Où nous sommes",

@@ -50,7 +50,9 @@
     "notificationTitre": "Alert to the city committee · not connected",
     "notificationTexte": "The message is stored and will appear in the administration space. Automatically alerting the city committee is still to be connected: it needs a sending address that the movement has not yet provided.",
     "envoyer": "Send",
-    "villeChoix": "Your city"
+    "villeChoix": "Your city",
+    "themeNom": "",
+    "themeEtiquette": "Theme of the year"
   },
   "accueil": {
     "titre": "Home",
@@ -130,7 +132,9 @@
     "renvoiTitre": "The movement is near you.",
     "renvoiTexte": "The university cities where the GBUM is present, and how to reach each city's committee.",
     "renvoiAction": "See where we are",
-    "renvoiLien": "The study outline"
+    "renvoiLien": "The study outline",
+    "friseGbumAnnee": "",
+    "friseGbumTexte": ""
   },
   "ouNousSommes": {
     "titre": "Where we are",

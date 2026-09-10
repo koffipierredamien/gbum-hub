@@ -15,6 +15,13 @@
       "when": 1789003545640,
       "tag": "0001_demandes",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789037964393,
+      "tag": "0002_comptes_et_editorial",
+      "breakpoints": true
     }
   ]
 }

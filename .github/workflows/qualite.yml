@@ -106,3 +106,53 @@ jobs:
 
       - name: WCAG 2.2 AA, débordements et traductions — sur les 18 pages
         run: pnpm verifier:acces
+
+  # Le parcours qui décide si le lot 1 a atteint son but : le Secrétariat
+  # National modifie une page, et le site public change — sans développeur.
+  # Il tourne contre une vraie base, dans un vrai navigateur, à chaque
+  # modification. C'est la seule manière de garantir qu'« enregistrer » ne
+  # publie pas : un espace d'administration qui publie sans le dire est plus
+  # dangereux que pas d'espace d'administration du tout.
+  administration:
+    runs-on: ubuntu-latest
+    services:
+      base:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: gbum
+          POSTGRES_PASSWORD: gbum
+          POSTGRES_DB: gbum
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U gbum -d gbum"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgres://gbum:gbum@localhost:5433/gbum
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - name: Monter la base
+        run: pnpm base:migrer
+
+      - name: Créer le compte de vérification
+        env:
+          COMPTE_COURRIEL: sn@exemple.org
+          COMPTE_NOM: Vérification
+          COMPTE_MOT_DE_PASSE: motdepassedetest2026
+        run: pnpm compte:creer
+
+      - name: Construire et mettre en ligne
+        run: |
+          pnpm --filter @gbum/site build
+          pnpm --filter @gbum/site start &
+          until curl -sf http://localhost:3000/fr > /dev/null; do sleep 1; done
+
+      - name: Écrire, ne rien publier, publier, voir
+        run: pnpm verifier:admin

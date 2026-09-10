@@ -165,7 +165,7 @@ Quatre étapes. **Chacune se montre avant de passer à la suivante.**
 | **1** | **Les maquettes** | Les 8 pages dessinées, téléphone puis bureau | ✅ faite — 9 sept. 2026, puis recomposées dans « Foyer en mouvement » |
 | **2** | **Les fondations** | Dépôt, chaîne de qualité, base de données, stockage | ✅ faite — 10 sept. 2026, la chaîne est au vert |
 | **3** | **Les pages** | Les 8 pages, plus le parcours « Rejoindre », avec leurs deux langues | ✅ faite — 10 sept. 2026, 18 pages sans manquement WCAG 2.2 AA |
-| **4** | **L'administration** | L'espace minimal de mise à jour | Le Secrétariat National modifie une page **sans moi** |
+| **4** | **L'administration** | L'espace minimal de mise à jour | ✅ faite — 10 sept. 2026, le parcours complet est vérifié à chaque modification |
 
 > La réserve **R2** ne porte plus que sur les sept écrans du *hub*
 > (`maquettes/`), qui gardent des données inventées et seront refaits quand

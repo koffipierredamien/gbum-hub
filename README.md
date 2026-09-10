@@ -2,9 +2,10 @@
 
 Conception du hub du **GBUM** — Groupe Biblique Universitaire au Maroc.
 
-> **Le site public existe** (10 septembre 2026) : ses huit pages et le parcours
-> « Rejoindre », en français et en anglais, sur les fondations posées le même
-> jour. Il est encore presque vide — c'est voulu, et chaque emplacement dit ce
+> **Le lot 1 est complet** (10 septembre 2026) : les fondations, les huit pages
+> du site public plus le parcours « Rejoindre » en deux langues, et l'espace
+> d'administration qui permet au Secrétariat National de les remplir lui-même.
+> Le site est encore presque vide — c'est voulu, et chaque emplacement dit ce
 > qu'il attend et à qui le demander.
 > Voir [`docs/08-PLAN-SITE-PUBLIC.md`](docs/08-PLAN-SITE-PUBLIC.md) et
 > [`docs/10-PLAN-DES-FONDATIONS.md`](docs/10-PLAN-DES-FONDATIONS.md).
@@ -58,12 +59,32 @@ intégration continue :
 ```bash
 pnpm verifier           # types + linter + mise en forme + tests
 pnpm verifier:acces     # WCAG 2.2 AA sur les 18 pages — bloquant
+pnpm verifier:admin     # le parcours complet de l'administration — bloquant
 ```
 
-La seconde commande demande que le site tourne (`pnpm dev` ou
-`pnpm --filter @gbum/site start`). Elle vérifie trois choses d'un seul
-passage : aucun manquement WCAG 2.2 AA, aucun débordement horizontal, aucune
-clé de traduction manquante.
+Les deux dernières demandent que le site tourne (`pnpm dev` ou
+`pnpm --filter @gbum/site start`).
+
+`verifier:acces` vérifie trois choses d'un seul passage : aucun manquement
+WCAG 2.2 AA, aucun débordement horizontal, aucune clé de traduction manquante.
+
+`verifier:admin` joue le parcours qui décide si le lot 1 a atteint son but —
+se connecter, écrire un brouillon, **vérifier que le site public n'a pas
+changé**, publier, et vérifier qu'il a changé.
+
+## L'espace d'administration
+
+```bash
+pnpm compte:creer       # crée un compte — il n'y a pas d'inscription
+```
+
+Puis `/admin`. Le Secrétariat National y modifie le texte du site en deux
+langues, tient la liste des villes et de leurs cellules, et lit les messages
+reçus par les formulaires.
+
+**Publier est un geste distinct de celui d'enregistrer**, et c'est la
+propriété que la vérification automatique protège : un brouillon ne change
+rien en ligne.
 
 ### Vérifier que le stockage reste remplaçable
 

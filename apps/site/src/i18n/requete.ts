@@ -3,6 +3,7 @@ import { hasLocale } from "next-intl";
 import { LANGUES, routage } from "./routage";
 import fr from "../../messages/fr.json";
 import en from "../../messages/en.json";
+import { lireSectionsPubliees } from "@gbum/db";
 
 const MESSAGES = { fr, en } as const;
 
@@ -18,8 +19,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale: langue,
-    // Le français est toujours chargé sous l'anglais : c'est le repli.
-    messages: { ...MESSAGES.fr, ...MESSAGES[langue] },
+    // Trois couches, de la plus générale à la plus précise : le français livré
+    // avec le site, la traduction de la langue demandée, puis ce que le
+    // Secrétariat National a PUBLIÉ depuis l'espace d'administration.
+    messages: await recouvrir({ ...MESSAGES.fr, ...MESSAGES[langue] }, langue),
 
     /**
      * Quand une traduction anglaise manque, on affiche le français plutôt
@@ -37,3 +40,38 @@ export default getRequestConfig(async ({ requestLocale }) => {
     timeZone: "Africa/Casablanca",
   };
 });
+
+type Catalogue = Record<string, Record<string, unknown>>;
+
+/**
+ * Recouvre le texte livré avec le site par celui que le mouvement a publié.
+ *
+ * Seul `publie` est lu — jamais `brouillon`. C'est ce qui rend vraie la
+ * promesse faite au Secrétariat National sur son écran : rien ne change en
+ * ligne tant qu'il n'a pas publié.
+ *
+ * Une section absente d'ici n'est pas un trou : le texte livré s'affiche. Le
+ * mouvement ne remplit donc que ce qu'il veut changer.
+ *
+ * R2 — si la base ne répond pas, on journalise et on rend le catalogue livré.
+ * Un site public qui refuse de s'afficher parce qu'une surcharge de texte est
+ * inaccessible serait une panne bien pire que le texte d'origine.
+ */
+async function recouvrir(catalogue: Catalogue, langue: string): Promise<Catalogue> {
+  if (process.env["DATABASE_URL"] === undefined) return catalogue;
+
+  try {
+    const sections = await lireSectionsPubliees();
+    const recouvert: Catalogue = { ...catalogue };
+    for (const section of sections) {
+      if (section.langue !== langue || section.publie === null) continue;
+      const espace = recouvert[section.page];
+      if (espace === undefined) continue;
+      recouvert[section.page] = { ...espace, [section.cle]: section.publie };
+    }
+    return recouvert;
+  } catch (cause) {
+    console.error("lecture du contenu éditorial publié", { langue, cause });
+    return catalogue;
+  }
+}
