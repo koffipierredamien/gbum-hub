@@ -7,12 +7,13 @@
     "node": ">=22"
   },
   "scripts": {
-    "verifier": "pnpm types && pnpm lint && pnpm format:check && pnpm test",
+    "verifier": "pnpm types && pnpm lint && pnpm format:check && pnpm test && pnpm construire",
     "types": "tsc --build --force && pnpm --filter @gbum/site types",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run --coverage",
+    "construire": "pnpm --filter @gbum/site build",
     "test:suivi": "vitest",
     "base:demarrer": "docker compose up -d",
     "base:migrer": "pnpm --filter @gbum/db migrer",

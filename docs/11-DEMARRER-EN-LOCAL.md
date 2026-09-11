@@ -3,8 +3,8 @@
 **10 septembre 2026.** Ce document a été écrit en jouant la manœuvre depuis
 zéro — base effacée, `.env` supprimé, dossier de construction vidé. Les
 commandes qui suivent sont celles qui ont réellement fonctionné, dans cet
-ordre. Trois défauts ont été trouvés en le faisant, un quatrième en le
-rejouant sous Windows le 11 septembre ; tous sont corrigés.
+ordre. Trois défauts ont été trouvés en le faisant, deux autres en le rejouant
+sous Windows les 10 et 11 septembre ; tous sont corrigés.
 
 ---
 
@@ -21,12 +21,12 @@ Si pnpm manque : `corepack enable` suffit, il est livré avec Node.
 **Sous Windows**, tout se lance depuis PowerShell ou le Terminal Windows, et
 Docker Desktop doit être **démarré** (son icône dans la barre des tâches) avant
 `pnpm mise-en-route`. Le projet a été rejoué sur une machine Windows : ce qui
-en est ressorti est au §9.
+en est ressorti est au §10.
 
 **Sur Docker.** Il n'est pas obligatoire : il évite d'installer PostgreSQL sur
 votre machine, et garantit que vous travaillez sur la **même version majeure**
 qu'en production — c'est la règle S1 d'[ADR-012](02-ARCHITECTURE.md).
-Si vous avez déjà PostgreSQL 16 installé, gardez-le : le §5 dit quoi changer.
+Si vous avez déjà PostgreSQL 16 installé, gardez-le : le §6 dit quoi changer.
 
 ---
 
@@ -112,7 +112,45 @@ Puis, si vous voulez voir la frise répondre à votre question :
 
 ---
 
-## 5. Si vous préférez votre propre PostgreSQL
+## 5. Pourquoi la première page est lente — et ce qu'elle vaut vraiment
+
+`pnpm dev` **construit chaque page au moment où vous la demandez**. C'est fait
+exprès : c'est ce qui permet de modifier un fichier et de voir le résultat une
+seconde plus tard, sans rien relancer. Le prix est la première visite.
+
+Mesuré le 11 septembre 2026, sur la même machine, avec les mêmes pages
+(temps de réponse du serveur, dossier de construction vidé avant chaque série) :
+
+| Page | `pnpm dev` (1re visite) | `pnpm dev` (ensuite) | Construite (1re) | Construite (ensuite) |
+|---|---|---|---|---|
+| Accueil | **16,0 s** | 0,05 s | **0,09 s** | 0,008 s |
+| Le mouvement | 0,40 s | 0,02 s | 0,011 s | 0,005 s |
+| Où nous sommes | 0,41 s | 0,02 s | 0,011 s | 0,005 s |
+| Agenda | 0,40 s | 0,02 s | 0,010 s | 0,005 s |
+
+La première page paie pour toutes les autres : elle compile le socle commun.
+Ensuite, le développement est instantané.
+
+**Pour voir le site tel que le public l'aura** — c'est-à-dire la colonne de
+droite, environ **170 fois plus rapide** à la première visite :
+
+```bash
+pnpm construire        # une trentaine de secondes
+pnpm --filter @gbum/site start
+```
+
+Sous Windows, comptez davantage : l'antivirus inspecte chaque fichier écrit
+pendant la construction. Exclure le dossier du projet de l'analyse en temps
+réel change beaucoup les choses, si votre politique interne le permet.
+
+**Ce que cela veut dire pour la suite.** La lenteur que vous avez vue n'est pas
+celle du site : c'est celle de l'atelier. Le site, lui, est rendu **en avance**
+(les huit pages sont construites une fois, pas à chaque visite) — c'est la
+raison pour laquelle il tiendra sur un hébergement modeste.
+
+---
+
+## 6. Si vous préférez votre propre PostgreSQL
 
 Créez une base `gbum`, puis changez **une seule ligne** dans `.env` :
 
@@ -129,11 +167,12 @@ c'est la première fois qu'elle sert.
 
 ---
 
-## 6. Les commandes utiles
+## 7. Les commandes utiles
 
 ```bash
 pnpm dev                # le site, avec rechargement à chaud
-pnpm verifier           # types + linter + mise en forme + tests
+pnpm construire         # le site tel que le public l'aura (voir §5)
+pnpm verifier           # types + linter + mise en forme + tests + construction
 pnpm verifier:acces     # WCAG 2.2 AA sur les 18 pages
 pnpm verifier:admin     # le parcours complet de l'administration
 pnpm compte:creer       # un compte d'administration de plus
@@ -147,7 +186,7 @@ chez vous passe sur GitHub.
 
 ---
 
-## 7. Quand ça ne marche pas
+## 8. Quand ça ne marche pas
 
 | Ce que vous voyez | Ce que c'est | Le remède |
 |---|---|---|
@@ -170,7 +209,7 @@ pnpm mise-en-route
 
 ---
 
-## 8. Où est quoi
+## 9. Où est quoi
 
 ```
 apps/site/          Le site public et l'administration
@@ -198,11 +237,11 @@ trahir.
 
 ---
 
-## 9. Ce que cette répétition a trouvé
+## 10. Ce que cette répétition a trouvé
 
 Le document n'aurait pas eu de valeur si je l'avais écrit de mémoire. En le
-jouant depuis zéro — puis sur une machine qui n'était pas la mienne — quatre
-choses ont cassé :
+jouant depuis zéro — puis sur une machine qui n'était pas la mienne — cinq choses ont
+cassé :
 
 1. **Rien ne lisait le fichier `.env`.** Le projet le documentait, les
    commandes échouaient sur « DATABASE_URL n'est pas définie » alors que la
@@ -238,6 +277,23 @@ choses ont cassé :
    script `.cmd`, et depuis un correctif de sécurité de Node (CVE-2024-27980)
    un `.cmd` ne se lance qu'à travers l'interpréteur de commandes. L'étape des
    migrations aurait échoué à son tour ; elle est corrigée en même temps.
+
+5. **Un avertissement de sécurité de Node, DEP0190.** Pour rejouer les
+   migrations, la mise en route lançait `pnpm base:migrer` — une commande
+   externe, donc l'interpréteur de commandes sous Windows, donc des arguments
+   concaténés au lieu d'être passés tels quels. Node le signale, et il a
+   raison. La réponse n'est pas de faire taire l'avertissement : les migrations
+   s'appliquent maintenant **dans le même processus**, par un appel de
+   fonction. Plus d'interpréteur, plus de concaténation, plus d'avertissement —
+   et un message d'erreur lisible si quelque chose casse.
+
+   En déplaçant ce code, la construction du site s'est mise à échouer :
+   webpack traite `new URL("…", import.meta.url)` comme une ressource à
+   empaqueter. Deux corrections en sont sorties — une porte dédiée
+   (`@gbum/db/migrations`), que le site n'emprunte jamais, et un chemin
+   assemblé à la main. Surtout, `pnpm verifier` **construit désormais le site**
+   à la fin : la chaîne n'aurait pas vu cette panne, et c'est l'intégration
+   continue qui me l'aurait apprise après coup.
 
 C'est la même règle que pour la répétition de déménagement : **une manœuvre
 qu'on n'a jamais jouée ne marche pas.**

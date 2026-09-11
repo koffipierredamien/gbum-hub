@@ -26,6 +26,8 @@
 | **10** | [Plan des fondations](10-PLAN-DES-FONDATIONS.md) | Ce qu'on pose sous les pages, dans quel ordre — et comment le stockage restera remplaçable | **Pierre** |
 | **11** | [Démarrer en local](11-DEMARRER-EN-LOCAL.md) | Faire tourner le projet sur sa machine, et le parcours à essayer une fois | **Pierre** |
 
+| **12** | [Ce qu'il reste](12-CE-QU-IL-RESTE.md) | Les vides du site, un par un : ce que vous remplissez, ce qu'attend le SN, ce qui reste à construire | **Pierre, SN** |
+
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.
 

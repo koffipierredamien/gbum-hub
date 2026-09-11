@@ -7,6 +7,7 @@ import { setTimeout as patienter } from "node:timers/promises";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { baseJoignable, compterComptes, creerCompte, joindreLaBase } from "@gbum/db";
+import { appliquerMigrations } from "@gbum/db/migrations";
 import { hacher } from "@gbum/identite";
 import { demanderIdentifiants } from "./identifiants";
 
@@ -38,20 +39,42 @@ const RACINE = fileURLToPath(new URL("../../../", import.meta.url));
 /**
  * Lance une commande du système, depuis la racine du dépôt.
  *
- * Sous Windows, `pnpm` est un script `.cmd`, et depuis un correctif de
- * sécurité de Node (CVE-2024-27980) un `.cmd` ne peut être lancé que par
- * l'interpréteur de commandes. Les arguments passés ici sont écrits en dur
- * dans ce fichier — jamais une saisie de l'utilisateur — donc l'interpréteur
- * ne transporte rien d'imprévu.
+ * Sans interpréteur de commandes : les arguments partent tels quels, rien
+ * n'est concaténé, rien n'a besoin d'être échappé. C'est ce que Node demande
+ * (DEP0190) et c'est plus sûr.
+ *
+ * Le repli n'existe que pour Windows. Un `.cmd` ou un `.bat` ne peut y être
+ * lancé qu'à travers l'interpréteur depuis un correctif de sécurité de Node
+ * (CVE-2024-27980) ; Node le refuse alors avec EINVAL. Si l'installation de
+ * quelqu'un expose `docker` sous cette forme, on repasse par l'interpréteur
+ * avec une ligne complète — et sans tableau d'arguments, ce qui évite
+ * l'avertissement. Les mots passés ici sont écrits en dur dans ce fichier,
+ * jamais saisis.
  */
-function executer(
+async function executer(
   commande: string,
   parametres: readonly string[],
-): Promise<{ stdout: string; stderr: string }> {
-  return executerFichier(commande, [...parametres], {
-    cwd: RACINE,
-    shell: process.platform === "win32",
-  });
+): Promise<void> {
+  try {
+    await executerFichier(commande, [...parametres], { cwd: RACINE });
+  } catch (cause) {
+    if (!scriptWindows(cause)) throw cause;
+    await executerFichier([commande, ...parametres].join(" "), {
+      cwd: RACINE,
+      shell: true,
+    });
+  }
+}
+
+/** Node refuse un `.cmd` lancé sans interpréteur : EINVAL, sous Windows seul. */
+function scriptWindows(cause: unknown): boolean {
+  return (
+    process.platform === "win32" &&
+    typeof cause === "object" &&
+    cause !== null &&
+    "code" in cause &&
+    cause.code === "EINVAL"
+  );
 }
 
 function dire(etape: string, message: string): void {
@@ -68,7 +91,7 @@ async function principal(): Promise<void> {
   await etapeConfiguration();
   const url = await lireAdresseDeLaBase();
   await etapeBase(url);
-  await etapeMigrations();
+  await etapeMigrations(url);
   await etapeCompte();
 
   console.info("\n─── Prêt ───\n");
@@ -154,9 +177,11 @@ function expliquerSansDocker(url: string): void {
 }
 
 /** 3. La structure de la base, rejouée. Sans effet si elle est à jour. */
-async function etapeMigrations(): Promise<void> {
+async function etapeMigrations(url: string): Promise<void> {
   dire("3/4", "Structure de la base : on rejoue les migrations…");
-  await executer("pnpm", ["base:migrer"]);
+  // Dans ce processus-ci : pas de sous-commande, donc pas d'interpréteur à
+  // traverser, et un message d'erreur qui reste lisible s'il y en a un.
+  await appliquerMigrations(url);
   conseil("À jour.");
 }
 

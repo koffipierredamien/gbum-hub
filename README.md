@@ -56,6 +56,9 @@ dégât. Le guide complet — ce que vous devez voir, le parcours à essayer une
 fois, et quoi faire quand ça coince — est dans
 **[`docs/11-DEMARRER-EN-LOCAL.md`](docs/11-DEMARRER-EN-LOCAL.md)**.
 
+Ce qui manque encore, vide par vide, et qui doit le fournir :
+**[`docs/12-CE-QU-IL-RESTE.md`](docs/12-CE-QU-IL-RESTE.md)**.
+
 Et la commande qui dit si tout va bien — la même que celle qui tourne en
 intégration continue :
 
