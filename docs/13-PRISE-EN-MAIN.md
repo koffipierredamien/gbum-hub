@@ -290,15 +290,316 @@ jamais en relevant la limite.
 
 ---
 
+## Chapitre 6 — La base de données, et comment lire le code qui la décrit
+
+Ce chapitre fait deux choses à la fois : il vous montre ce que la base
+contient, **et** il vous apprend à lire du code. Le fichier que nous allons
+lire est le plus simple du projet — il ne calcule rien, il décrit. C'est le
+bon endroit pour commencer.
+
+### 6.1 Six feuilles dans le classeur
+
+Rappel du chapitre 0 : une **table** est une feuille du classeur, une **ligne**
+une fiche, une **colonne** une case.
+
+| La feuille | Ce qu'elle retient | Qui écrit dedans |
+|---|---|---|
+| `villes` | Une ville où le mouvement est présent, le contact de son bureau, les dates de son mandat, son rang d'affichage | Vous, écran « Les villes » |
+| `cellules` | Un groupe d'étudiants : son nom, son effectif, et la ville dont il dépend | Vous, même écran |
+| `demandes` | Un message envoyé par un visiteur, et s'il a été traité | Le site public, tout seul |
+| `comptes` | Les personnes autorisées dans l'administration | La ligne de commande, jamais le site |
+| `sessions` | Les connexions ouvertes en ce moment | Le site, à chaque connexion |
+| `sections_editoriales` | Les dix-neuf textes modifiables, en brouillon et en publié | Vous, écran « Les pages » |
+
+Tout cela est décrit dans **un seul fichier** :
+`packages/db/src/schema.ts`. Ouvrez-le maintenant, et lisons-le ensemble.
+
+### 6.2 La première table, mot à mot
+
+Voici la table `villes`. J'en ai retiré quatre cases pour l'instant — les deux
+dates du mandat et les deux dates de création — mais **tout ce qui suit est mot
+pour mot dans le fichier** ; vous les retrouverez en l'ouvrant. Ne cherchez pas
+à comprendre d'un coup : on va le démonter.
+
+```ts
+export const villes = pgTable("villes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  nom: text("nom").notNull(),
+  bureauCourriel: text("bureau_courriel"),
+  rang: integer("rang").notNull().default(0),
+});
+```
+
+**Ligne par ligne.**
+
+`export` — « ce qui suit peut être utilisé par d'autres fichiers ». Sans ce
+mot, la table n'existerait que dans son fichier. C'est une porte ouverte.
+
+`const villes` — « je crée une chose, elle s'appelle `villes`, et **elle ne
+changera plus** ». `const` vient de *constant*. En TypeScript, on utilise
+`const` presque partout : une valeur qui ne bouge pas est une valeur dont on
+n'a pas à se méfier.
+
+`=` — « c'est ceci ». Pas une égalité mathématique : une attribution.
+
+`pgTable("villes", { … })` — un **appel de fonction**. Les parenthèses
+signifient « fais-le, avec ceci ». `pgTable` veut dire « table PostgreSQL ».
+On lui donne deux choses, séparées par une virgule : le nom de la feuille dans
+la base (`"villes"`, entre guillemets car c'est du texte), puis la liste de ses
+cases.
+
+`{ … }` — les **accolades** entourent une liste de cases nommées. Chaque ligne
+dedans a la forme `nom_de_la_case : description`, et se termine par une
+virgule.
+
+`id: uuid("id").primaryKey().defaultRandom()` — voici la case `id` :
+
+- `uuid(…)` : son type. Un **uuid** est un identifiant unique, long et
+  imprévisible, du genre `3f2b…-…`. On ne numérote pas les villes 1, 2, 3 :
+  un identifiant qui se devine se manipule, et l'on peut alors compter les
+  fiches d'un simple coup d'œil à l'adresse.
+- `.primaryKey()` : « c'est par cette case qu'on retrouve une fiche ». Le
+  **point** veut dire « et en plus ». On les enchaîne : `uuid` **puis** clé
+  principale **puis** valeur par défaut.
+- `.defaultRandom()` : « si personne ne le donne, tire-en un au hasard ».
+
+`nom: text("nom").notNull()` — la case `nom` contient du texte, et
+`.notNull()` veut dire **« vide interdit »**. Une ville sans nom ne peut pas
+entrer dans la base : ce n'est pas le site qui le vérifie, c'est PostgreSQL
+lui-même qui refuse. Une règle posée à cet endroit ne peut être contournée par
+aucun écran, présent ou futur.
+
+`bureauCourriel: text("bureau_courriel")` — du texte, **sans** `.notNull()` :
+il a donc le droit d'être vide. C'est voulu : un bureau en cours de
+renouvellement n'a pas de courriel à donner.
+
+Vous remarquez deux orthographes : `bureauCourriel` dans le code,
+`"bureau_courriel"` dans la base. Ce n'est pas une faute. Le monde du code
+écrit les mots collés avec une majuscule au milieu ; le monde des bases de
+données les sépare par des tirets bas. Cette ligne fait le pont entre les deux,
+une fois pour toutes.
+
+`rang: integer("rang").notNull().default(0)` — un nombre entier, jamais vide,
+et qui vaut `0` si on ne dit rien. C'est l'ordre d'affichage des villes.
+
+Les quatre cases que j'ai retirées ne diraient rien de plus : deux
+`timestamp` — un instant daté — pour les bornes du mandat du bureau, et deux
+autres pour savoir quand la fiche a été créée et modifiée.
+
+`});` — on referme la liste des cases (`}`), puis l'appel de fonction (`)`),
+puis on termine l'instruction (`;`). Ces trois signes se lisent comme un point
+final.
+
+### 6.3 Le dictionnaire des signes
+
+Gardez-le : ces signes reviennent dans **tous** les fichiers.
+
+| Signe | Ce qu'il veut dire | Se lit |
+|---|---|---|
+| `( )` | Un appel : fais quelque chose | « avec » |
+| `{ }` | Un groupe de choses nommées | « contenant » |
+| `[ ]` | Une liste ordonnée | « la liste de » |
+| `.` | Et en plus, sur la même chose | « puis » |
+| `,` | Séparateur d'éléments | « et » |
+| `;` | Fin d'instruction | « point » |
+| `:` | Le type, ou la valeur d'une case nommée | « est un » |
+| `//` | Un commentaire sur une ligne — ignoré par la machine | « note » |
+| `/** … */` | Un commentaire long, souvent l'explication du pourquoi | « note » |
+| `=>` | « donne », dans une petite fonction sans nom | « donne » |
+
+Et les mots qui reviennent sans cesse :
+
+| Mot | Ce qu'il veut dire |
+|---|---|
+| `import` | « j'ai besoin de ceci, qui vient d'ailleurs » — toujours en haut du fichier |
+| `export` | « ceci peut servir ailleurs » |
+| `const` | « je nomme une chose, elle ne changera pas » |
+| `function` | « voici une recette » |
+| `async` / `await` | « cela prend du temps ; attends la réponse avant de continuer » — typiquement une lecture de base |
+| `interface` / `type` | « voici la forme que doit avoir une donnée » |
+| `readonly` | « une fois posé, on n'y touche plus » |
+
+Avec ces deux tableaux, vous pouvez ouvrir n'importe quel fichier du projet et
+suivre ce qu'il raconte. Pas l'écrire — le lire. C'est la première marche, et
+c'est la plus haute.
+
+### 6.4 Les cases qui manquent **exprès**
+
+Regardez la table `cellules` dans le fichier. Elle contient : un identifiant,
+la ville dont elle dépend, un nom, un effectif, un rang, deux dates.
+
+Regardez maintenant ce qu'elle **ne contient pas** : ni jour, ni heure, ni
+lieu, ni responsable.
+
+Ce n'est pas un oubli, et c'est le point le plus important de tout ce chapitre.
+**La colonne n'existe pas.** Donc :
+
+- aucun écran ne peut l'afficher, même par erreur ;
+- aucune sauvegarde partagée ne la contient ;
+- aucun export ne la laisse fuir ;
+- et le jour où quelqu'un voudrait vraiment publier ces informations, il
+  devrait modifier la base, écrire une migration, et passer devant une
+  relecture. Ce ne serait plus un accident, ce serait une décision.
+
+C'est la différence entre écrire « ne pas afficher le responsable » dans une
+consigne, et ne pas avoir de responsable à afficher. **Ce qui n'existe pas ne
+fuit pas.**
+
+Même raisonnement dans `sessions`. Quand vous vous connectez, le site vous
+donne un jeton — une longue suite de caractères, gardée par votre navigateur.
+La base, elle, ne retient que son **empreinte** : une trace calculée à partir
+du jeton, dont on ne peut pas remonter au jeton. Si la base entière fuitait,
+aucune session ne serait utilisable. C'est la même règle que pour les mots de
+passe, et nous la verrons en détail au chapitre 7.
+
+### 6.5 Comment les feuilles se tiennent entre elles
+
+Une cellule appartient à une ville. Dans le code :
+
+```ts
+villeId: uuid("ville_id")
+  .notNull()
+  .references(() => villes.id, { onDelete: "cascade" }),
+```
+
+`.references(…)` crée un **lien** : la valeur de `ville_id` doit correspondre
+à une ville qui existe vraiment. PostgreSQL refuse une cellule rattachée à une
+ville inexistante — là encore, ce n'est pas le site qui vérifie.
+
+`{ onDelete: "cascade" }` répond à la question « et si on supprime la ville ? ».
+`cascade` veut dire : ses cellules partent avec elle. C'est juste — une cellule
+sans ville n'a aucun sens.
+
+Comparez avec les demandes :
+
+```ts
+villeId: uuid("ville_id").references(() => villes.id, { onDelete: "set null" }),
+```
+
+Ici, `set null` : si la ville disparaît, **le message reste**, il perd
+seulement son rattachement. C'est juste aussi, et pour une autre raison — un
+message envoyé par une personne réelle ne doit pas s'effacer parce qu'on a
+réorganisé une liste de villes.
+
+Deux liens, deux décisions opposées, chacune réfléchie. C'est ce genre de
+choix que vous apprendrez à faire.
+
+### 6.6 Une migration, concrètement
+
+Quand je modifie `schema.ts`, la base ne change pas toute seule. Une commande
+compare l'ancien état au nouveau et **écrit un fichier d'instructions**, daté et
+numéroté. Le projet en a trois :
+
+```
+packages/db/migrations/0000_villes_et_cellules.sql
+packages/db/migrations/0001_demandes.sql
+packages/db/migrations/0002_comptes_et_editorial.sql
+```
+
+Ouvrez le premier. Vous y lirez, en clair :
+
+```sql
+CREATE TABLE "villes" (
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+  "nom" text NOT NULL,
+  ...
+);
+```
+
+C'est exactement ce que nous venons de lire en TypeScript, traduit dans la
+langue de PostgreSQL. Ces fichiers sont **rejouables dans l'ordre, sur
+n'importe quelle base vide** : c'est ce qui s'est passé sur votre machine
+pendant `pnpm mise-en-route`, étape 3.
+
+D'où la règle la plus sévère du projet : **on ne modifie jamais la base à la
+main.** Pas une colonne ajoutée directement, pas une valeur corrigée en douce.
+Sinon votre base et celle du serveur divergent, et plus rien ne garantit
+qu'installer le projet ailleurs reproduise la même chose. Une commande vérifie
+d'ailleurs cette promesse à chaque envoi de code : elle vide une base, rejoue
+les trois migrations, et compare le résultat.
+
+### 6.7 À essayer : regarder dans le classeur
+
+Vous pouvez ouvrir la base et regarder vos propres données. Docker doit
+tourner :
+
+```powershell
+docker compose exec base psql -U gbum -d gbum
+```
+
+Vous voilà devant l'invite `gbum=#`. Trois commandes suffisent :
+
+```sql
+\dt                      -- la liste des six feuilles
+select nom, rang from villes order by rang;   -- vos villes
+select page, cle, publie is not null as en_ligne from sections_editoriales;
+\q                       -- quitter
+```
+
+La troisième est la plus parlante : elle vous montre, section par section, ce
+qui est réellement en ligne — `t` pour vrai, `f` pour faux. Vous verrez de vos
+yeux la différence entre ce que vous avez enregistré et ce que le public voit.
+
+> **Ne modifiez rien ici.** Regarder est sans danger ; écrire violerait la
+> règle du 6.6. Tout ce qui se modifie se modifie par un écran ou par une
+> migration.
+
+---
+
+## Votre chemin vers l'autonomie
+
+Vous m'avez dit vouloir être capable, à la fin, de réaliser un tel projet
+seul. C'est un objectif juste, et atteignable. Voici comment il s'atteint
+vraiment, sans vous raconter d'histoire.
+
+**On n'apprend pas à programmer en lisant.** On apprend en trois temps, et il
+n'y a pas de raccourci :
+
+| | L'étape | Ce que vous faites | Ce que je fais |
+|---|---|---|---|
+| **1** | **Lire** | Ouvrir un fichier et suivre ce qu'il raconte | J'annote du vrai code, ligne par ligne, comme au 6.2 |
+| **2** | **Modifier** | Changer une chose qui existe, voir l'effet, comprendre l'erreur quand elle vient | Je propose des modifications sûres, de plus en plus larges |
+| **3** | **Écrire** | Ajouter quelque chose qui n'existait pas | Je relis, je dis pourquoi c'est juste ou pourquoi ça casse |
+
+L'étape 2 est celle qui fait le développeur. Se tromper devant une machine qui
+refuse poliment, comprendre pourquoi, recommencer : c'est cela, apprendre.
+C'est aussi pour cela que ce projet refuse tant de choses — chaque refus est
+une explication qui arrive avant la panne, pas après.
+
+**Ce que le code contient déjà, et ce qu'il ne contiendra pas.** Les
+commentaires du projet expliquent le **pourquoi** : pourquoi deux colonnes,
+pourquoi cette couleur et pas une autre, quel incident a produit cette ligne.
+Ils n'expliquent pas la **syntaxe** — sinon chaque fichier serait illisible
+pour celui qui la connaît, et le projet deviendrait impossible à maintenir à
+plusieurs. La syntaxe s'apprend ici, dans ce document, où l'explication reste
+et ne gêne personne.
+
+**Ce que je change à partir de maintenant :**
+
+1. Chaque chapitre qui suit est bâti sur du **vrai code du projet**, annoté
+   comme au 6.2 — jamais sur un exemple inventé.
+2. Chaque chapitre finit par une **chose à faire vous-même**, et non seulement
+   à lire.
+3. À partir du chapitre 9, vous écrivez et je relis — l'inverse d'aujourd'hui.
+
+**Une chose à ne pas croire.** Personne ne construit seul, de tête, un projet
+de cette taille : on s'appuie sur des bibliothèques écrites par d'autres, sur
+des normes, sur des relectures. Ce que vous pouvez viser — et ce que vous
+aurez — c'est de **comprendre chaque décision, savoir où elle est écrite,
+pouvoir la changer, et juger le travail de quiconque y touchera après vous.**
+C'est exactement ce qui manque au GBUM aujourd'hui, et c'est ce qui rend un
+projet durable.
+
+---
+
 ## Ce qu'on verra ensuite
 
-Quand ces cinq chapitres seront digérés :
-
-- **6.** La base de données en détail : les six tables, ce que chacune retient
 - **7.** Les mots de passe et les sessions : pourquoi le vôtre n'est stocké
-  nulle part, même pas chiffré
-- **8.** La mise en ligne : ce qu'il faut acheter, combien, et ce qui change
-- **9.** Modifier quelque chose vous-même, du texte au code
+  nulle part, même pas chiffré — et comment lire une fonction qui calcule
+- **8.** Une page, de haut en bas : lire un fichier `.tsx` en entier
+- **9.** Votre première modification : changer un texte, puis du code
+- **10.** Votre première fonctionnalité, écrite par vous, relue par moi
+- **11.** La mise en ligne : ce qu'il faut acheter, combien, et ce qui change
 
 ## Comment poser une question
 
