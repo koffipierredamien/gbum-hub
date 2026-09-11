@@ -231,7 +231,8 @@ maquettes/          Les planches, telles qu'elles ont été dessinées
 
 **Le fichier à lire en premier**, si vous n'en lisez qu'un :
 [`packages/core/src/publication.ts`](../packages/core/src/publication.ts).
-Quarante lignes qui contiennent la décision centrale du site — la publication
+Cinquante lignes de code — et autant d'explications — qui portent la décision
+centrale du site — la publication
 s'arrête à la ville — et qui expliquent pourquoi aucune page ne *peut* la
 trahir.
 
