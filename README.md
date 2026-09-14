@@ -59,6 +59,9 @@ fois, et quoi faire quand ça coince — est dans
 Ce qui manque encore, vide par vide, et qui doit le fournir :
 **[`docs/12-CE-QU-IL-RESTE.md`](docs/12-CE-QU-IL-RESTE.md)**.
 
+Pour remplir le site — les textes, les villes, les contacts, les photographies :
+**[`docs/16-REMPLIR-LE-SITE.md`](docs/16-REMPLIR-LE-SITE.md)**.
+
 Vous découvrez le projet, ou le développement en général ? Commencez ici :
 **[`docs/13-PRISE-EN-MAIN.md`](docs/13-PRISE-EN-MAIN.md)** — un dictionnaire,
 puis six chapitres qui ne supposent aucune connaissance technique.

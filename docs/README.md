@@ -34,6 +34,8 @@
 
 | **15** | [Les livraisons](15-LIVRAISONS.md) | Une fiche par chantier livré : ce qu'il fait, comment l'essayer, et le seul concept qu'il enseigne | **Pierre** |
 
+| **16** | [Remplir le site](16-REMPLIR-LE-SITE.md) | Écran par écran : ce qu'on tape, ce que cela fait disparaître — et comment préparer les photographies | **Pierre, SN** |
+
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.
 
