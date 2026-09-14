@@ -32,6 +32,8 @@
 
 | **14** | [Les concepts](14-CONCEPTS.md) | Le catalogue des notions — architecture, sécurité, données — chacune ancrée dans une décision réelle du projet | **Pierre** |
 
+| **15** | [Les livraisons](15-LIVRAISONS.md) | Une fiche par chantier livré : ce qu'il fait, comment l'essayer, et le seul concept qu'il enseigne | **Pierre** |
+
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.
 

@@ -10,3 +10,4 @@ export * from "./resultat";
 export * from "./identifiants";
 export * from "./temps";
 export * from "./publication";
+export * from "./acces";

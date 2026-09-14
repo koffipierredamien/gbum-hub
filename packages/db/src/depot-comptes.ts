@@ -1,4 +1,4 @@
-import { and, count, eq, gt, lt } from "drizzle-orm";
+import { and, asc, count, eq, gt, lt } from "drizzle-orm";
 import { ouvrirBase } from "./connexion";
 import { comptes, sessions } from "./schema";
 
@@ -142,6 +142,116 @@ export async function compterComptes(): Promise<number> {
   try {
     const [ligne] = await base.select({ combien: count() }).from(comptes);
     return ligne?.combien ?? 0;
+  } finally {
+    await fermer();
+  }
+}
+
+/** Le compte tel que l'écran des comptes l'affiche — jamais le condensat. */
+export interface CompteDetaille extends Compte {
+  readonly actif: boolean;
+  readonly creeLe: Date;
+  readonly derniereConnexion: Date | null;
+}
+
+export async function listerComptes(): Promise<readonly CompteDetaille[]> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    return await base
+      .select({
+        id: comptes.id,
+        courriel: comptes.courriel,
+        nom: comptes.nom,
+        role: comptes.role,
+        actif: comptes.actif,
+        creeLe: comptes.creeLe,
+        derniereConnexion: comptes.derniereConnexion,
+      })
+      .from(comptes)
+      .orderBy(asc(comptes.creeLe));
+  } finally {
+    await fermer();
+  }
+}
+
+/** Rend aussi le condensat : c'est l'appelant qui vérifie, pas ce dépôt. */
+export async function lireCompteParId(
+  id: string,
+): Promise<(Compte & { readonly motDePasse: string; readonly actif: boolean }) | null> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    const [ligne] = await base
+      .select()
+      .from(comptes)
+      .where(eq(comptes.id, id))
+      .limit(1);
+    if (ligne === undefined) return null;
+    return {
+      id: ligne.id,
+      courriel: ligne.courriel,
+      nom: ligne.nom,
+      role: ligne.role,
+      motDePasse: ligne.motDePasse,
+      actif: ligne.actif,
+    };
+  } finally {
+    await fermer();
+  }
+}
+
+/**
+ * Combien de comptes techniques sont encore actifs.
+ *
+ * Sert à l'invariant du domaine : il en reste toujours au moins un. La
+ * DÉCISION est dans `@gbum/core` ; ce dépôt ne fait que compter.
+ */
+export async function compterTechniquesActifs(): Promise<number> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    const [ligne] = await base
+      .select({ combien: count() })
+      .from(comptes)
+      .where(and(eq(comptes.role, "technique"), eq(comptes.actif, true)));
+    return ligne?.combien ?? 0;
+  } finally {
+    await fermer();
+  }
+}
+
+/**
+ * Change le mot de passe ET ferme toutes les sessions du compte.
+ *
+ * Les deux gestes ne se séparent pas : changer son mot de passe parce qu'on
+ * le croit connu, tout en laissant ouvertes les sessions déjà volées, ne
+ * protège de rien. L'écran rouvre ensuite une session pour le navigateur qui
+ * vient de faire la demande — les autres doivent se reconnecter.
+ */
+export async function definirMotDePasse(
+  compteId: string,
+  motDePasseHache: string,
+): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base
+      .update(comptes)
+      .set({ motDePasse: motDePasseHache })
+      .where(eq(comptes.id, compteId));
+    await base.delete(sessions).where(eq(sessions.compteId, compteId));
+  } finally {
+    await fermer();
+  }
+}
+
+/**
+ * Active ou désactive un compte. Une désactivation ferme aussi ses sessions :
+ * sans cela, la personne resterait connectée jusqu'à trente jours après le
+ * retrait de son accès.
+ */
+export async function definirActivite(compteId: string, actif: boolean): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base.update(comptes).set({ actif }).where(eq(comptes.id, compteId));
+    if (!actif) await base.delete(sessions).where(eq(sessions.compteId, compteId));
   } finally {
     await fermer();
   }

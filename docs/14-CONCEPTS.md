@@ -368,7 +368,22 @@ comparons : c'est la comparaison qui instruit, pas la note.
 
 ---
 
-## 4. Ce que je vous demande de valider
+## 4. Ce catalogue est une référence, pas un cursus
+
+**Décidé le 14 septembre**, après une objection juste : terminer six modules
+avant de reprendre le développement, c'est arrêter de livrer pour apprendre —
+et l'apprentissage n'a pas de date de fin.
+
+Les modules M1, M2, M3, M5 et M6 ne seront donc pas écrits d'un bloc. Ils se
+rempliront **par en dessous**, un concept à la fois, à mesure que les chantiers
+les rencontrent : chaque livraison porte sa fiche d'une page, et cette fiche
+alimente le module concerné. Voir [`15-LIVRAISONS.md`](15-LIVRAISONS.md).
+
+On consulte ce catalogue quand une notion revient. On ne le termine pas.
+
+---
+
+## 5. Ce que je vous demande de valider
 
 Avant que j'écrive M1, M2, M3, M5 et M6 :
 

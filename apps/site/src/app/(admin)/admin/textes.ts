@@ -28,8 +28,61 @@ export const T = {
     pages: "Les pages",
     villes: "Villes et cellules",
     demandes: "Demandes reçues",
+    comptes: "Comptes",
   },
   deconnexion: "Se déconnecter",
+  comptes: {
+    titre: "Les comptes.",
+    accroche:
+      "Qui peut entrer ici, et avec quel mot de passe. Il n'y a pas d'inscription : un compte se crée depuis cet écran, par l'administration technique.",
+
+    monMotDePasse: "Changer mon mot de passe",
+    monMotDePasseAide:
+      "L'ancien mot de passe est demandé même si vous êtes déjà connecté. Toutes vos autres sessions seront fermées : si quelqu'un était entré avec l'ancien, il en sort.",
+    ancien: "Mot de passe actuel",
+    nouveau: "Nouveau mot de passe (12 caractères au moins)",
+    confirmation: "Le nouveau, une seconde fois",
+    changer: "Changer le mot de passe",
+    change: "C'est fait. Les autres sessions ont été fermées.",
+    ancienFaux: "Le mot de passe actuel n'est pas le bon.",
+    tropCourt: "Douze caractères au minimum. Aucune autre contrainte.",
+    sansConfirmation: "Les deux saisies ne sont pas identiques.",
+    indisponible: "Le site n'arrive pas à sa base. Ce n'est pas votre mot de passe.",
+
+    ajouter: "Créer un compte",
+    ajouterAide:
+      "Donnez un mot de passe provisoire à la personne, et demandez-lui de le changer à sa première entrée — depuis cet écran.",
+    nom: "Nom",
+    courriel: "Courriel",
+    motDePasseInitial: "Mot de passe provisoire (12 caractères au moins)",
+    role: "Rôle",
+    roleSecretariat: "Secrétariat National — écrit et publie",
+    roleTechnique: "Technique — écrit, publie, et gère les comptes",
+    creer: "Créer le compte",
+    cree: "Compte créé :",
+    saisieIncomplete: "Il manque quelque chose dans le formulaire.",
+    roleInconnu: "Ce rôle n'existe pas.",
+    dejaPris: "Cette adresse a déjà un compte.",
+    roleInsuffisant: "Seule l'administration technique peut gérer les comptes.",
+
+    liste: "Les comptes existants",
+    lectureSeule:
+      "Vous voyez la liste, mais la création et le retrait d'accès appartiennent à l'administration technique.",
+    vous: "vous",
+    actif: "accès ouvert",
+    retire: "accès retiré",
+    derniereVenue: "dernière venue :",
+    jamais: "jamais venu",
+    retirer: "Retirer l'accès",
+    rendre: "Rendre l'accès",
+    dernierTechnique:
+      "Impossible : c'est le dernier compte technique actif. Le retirer fermerait la porte de l'intérieur — plus personne ne pourrait créer de compte. Créez-en un autre d'abord.",
+    roles: {
+      technique: "technique",
+      secretariat: "Secrétariat National",
+    } as Record<string, string>,
+  },
+
   tableau: {
     titre: "Ce qui attend votre main.",
     accroche:

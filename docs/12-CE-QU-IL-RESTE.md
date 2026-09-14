@@ -94,12 +94,15 @@ ils attendent tous une information de la colonne B : ce sont donc des chantiers
 | **C5** | **Le canevas** — la liste des études, le fichier à télécharger, les archives des années passées | C'est l'écran central du hub ; le concevoir sans le canevas réel serait le concevoir à l'aveugle | B1 |
 | **C6** | **La vie du mouvement** — un compte par ville, et la saisie d'une activité | C'est ce qui rend le site vivant **sans** que le national le nourrisse à la main. Le plus gros chantier du lot 2. | — |
 | **C7** | **L'alerte au bureau de ville** quand un étudiant écrit | Il faut une adresse d'expédition | B |
-| **C8** | **Les comptes** — changer son mot de passe, désactiver un compte, voir qui a publié quoi | La mise en route crée le premier compte ; elle ne sait pas encore en modifier un | — |
+| ~~**C8**~~ | ~~**Les comptes**~~ — **livré le 14 septembre** : changer son mot de passe, créer un compte, retirer un accès. Reste à faire : le journal « qui a publié quoi » | — | [Fiche L1](15-LIVRAISONS.md) |
 | **C9** | **La mise en ligne** — hébergement, nom de domaine, sauvegardes automatiques | [ADR-012](02-ARCHITECTURE.md) rend ce choix reportable sans dette : le jour où quelqu'un paie, seule l'adresse de la base change | Une décision de paiement |
 
-**C8 est le plus urgent des trois derniers**, pour une raison bête : aujourd'hui,
-un mot de passe oublié n'a aucune issue autre que la création d'un second
-compte.
+**C8 est livré** (14 septembre) : c'était le plus urgent des trois derniers,
+parce qu'un mot de passe oublié n'avait aucune issue, et qu'aucun membre du
+Secrétariat National ne pouvait recevoir d'accès sans passer par une ligne de
+commande sur ma machine. **C9, la mise en ligne, devient le suivant** — c'est
+lui qui transforme le projet en quelque chose que des responsables peuvent
+ouvrir sur leur téléphone.
 
 ---
 

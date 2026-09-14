@@ -143,12 +143,99 @@ await p.fill("#motDePasse", MOT_DE_PASSE);
 await p.click("button[type=submit]");
 await p.waitForURL(`${B}/admin`, { timeout: 60000 });
 
+// 12 à 16 — les comptes.
+//
+// L'invariant « il reste toujours un compte technique actif » n'est PAS
+// vérifié ici : il est prouvé en mémoire par les tests du domaine
+// (packages/core/src/acces.test.ts), et le vérifier dans un navigateur
+// demanderait deux comptes techniques — auquel cas ce ne serait plus le
+// dernier. Ce script vérifie ce que seul un navigateur peut dire : que les
+// écrans font ce qu'ils annoncent.
+const NOUVEAU = `${MOT_DE_PASSE}-change`;
+const formMdp = 'form:has(button:has-text("Changer le mot de passe"))';
+
+const changerMdp = async (ancien, nouveau, confirmation = nouveau) => {
+  await p.goto(`${B}/admin/comptes`, { waitUntil: "load" });
+  await p.fill(`${formMdp} #ancien`, ancien);
+  await p.fill(`${formMdp} #nouveau`, nouveau);
+  await p.fill(`${formMdp} #confirmation`, confirmation);
+  await p.click(`${formMdp} button[type=submit]`);
+  await p.waitForSelector(`${formMdp} .filet-texte`, { timeout: 60000 });
+  return p.locator(`${formMdp} .filet-texte`).innerText();
+};
+
+verifier(
+  "un mot de passe actuel faux est refusé",
+  (await changerMdp("ce-n-est-pas-le-bon", NOUVEAU)).includes("n'est pas le bon"),
+);
+
+verifier(
+  "un nouveau mot de passe trop court est refusé",
+  (await changerMdp(MOT_DE_PASSE, "court")).includes("Douze"),
+);
+
+verifier(
+  "deux saisies différentes sont refusées",
+  (await changerMdp(MOT_DE_PASSE, NOUVEAU, `${NOUVEAU}x`)).includes("identiques"),
+);
+
+verifier(
+  "le changement aboutit, et la session reste ouverte",
+  (await changerMdp(MOT_DE_PASSE, NOUVEAU)).includes("C'est fait"),
+);
+
+// L'ancien ne doit plus ouvrir de session, le nouveau doit en ouvrir une.
+const apres = await ctx.browser().newContext();
+const essaiMdp = await apres.newPage();
+await essaiMdp.goto(`${B}/admin/connexion`, { waitUntil: "load" });
+await essaiMdp.fill("#courriel", COURRIEL);
+await essaiMdp.fill("#motDePasse", MOT_DE_PASSE);
+await essaiMdp.click("button[type=submit]");
+await essaiMdp.waitForSelector("[role=alert]", { timeout: 60000 });
+verifier("l'ancien mot de passe ne marche plus", essaiMdp.url().includes("connexion"));
+
+const neuf = await apres.newPage();
+await neuf.goto(`${B}/admin/connexion`, { waitUntil: "load" });
+await neuf.fill("#courriel", COURRIEL);
+await neuf.fill("#motDePasse", NOUVEAU);
+await neuf.click("button[type=submit]");
+await neuf.waitForURL(`${B}/admin`, { timeout: 60000 });
+verifier("le nouveau mot de passe ouvre la session", neuf.url() === `${B}/admin`);
+await apres.close();
+
+// Un compte créé depuis l'écran apparaît dans la liste, et son accès se retire.
+const invite = `invite-${String(Date.now()).slice(-6)}@exemple.org`;
+const formNouveau = 'form:has(button:has-text("Créer le compte"))';
+await p.goto(`${B}/admin/comptes`, { waitUntil: "load" });
+await p.fill(`${formNouveau} #nom`, "Invité de vérification");
+await p.fill(`${formNouveau} #courriel`, invite);
+await p.fill(`${formNouveau} #motDePasse`, "unmotdepasseprovisoire");
+await p.click(`${formNouveau} button[type=submit]`);
+await p.waitForSelector(`${formNouveau} .filet-texte`, { timeout: 60000 });
+await p.goto(`${B}/admin/comptes`, { waitUntil: "load" });
+verifier(
+  "le compte créé apparaît dans la liste",
+  (await p.locator("body").innerText()).includes(invite),
+);
+
+const carteInvite = `div.carte-admin:has-text("${invite}")`;
+await p.click(`${carteInvite} button:has-text("Retirer l'accès")`);
+await p.waitForSelector(`${carteInvite}:has-text("accès retiré")`, { timeout: 60000 });
+verifier("l'accès d'un compte se retire", true);
+
+// On remet le mot de passe d'origine : ce script doit pouvoir être rejoué.
+verifier(
+  "le mot de passe d'origine est rétabli",
+  (await changerMdp(NOUVEAU, MOT_DE_PASSE)).includes("C'est fait"),
+);
+
 for (const ecran of [
   "/admin",
   "/admin/pages",
   "/admin/pages/commun",
   "/admin/villes",
   "/admin/demandes",
+  "/admin/comptes",
 ]) {
   await p.goto(`${B}${ecran}`, { waitUntil: "load" });
   const { violations } = await new AxeBuilder({ page: p })
