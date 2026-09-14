@@ -601,6 +601,15 @@ projet durable.
 - **10.** Votre première fonctionnalité, écrite par vous, relue par moi
 - **11.** La mise en ligne : ce qu'il faut acheter, combien, et ce qui change
 
+## Si vous êtes déjà informaticien
+
+Ce document part de zéro, ce qui est parfois trop lent pour qui connaît déjà
+les notions. Le parcours par concepts — architecture, sécurité, données,
+qualité, chacun avec son compromis et son transfert vers d'autres piles
+techniques — est dans [`14-CONCEPTS.md`](14-CONCEPTS.md).
+
+---
+
 ## Comment poser une question
 
 Dites-moi simplement **le mot ou le passage qui coince**. Une question du

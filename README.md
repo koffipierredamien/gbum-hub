@@ -61,7 +61,12 @@ Ce qui manque encore, vide par vide, et qui doit le fournir :
 
 Vous découvrez le projet, ou le développement en général ? Commencez ici :
 **[`docs/13-PRISE-EN-MAIN.md`](docs/13-PRISE-EN-MAIN.md)** — un dictionnaire,
-puis cinq chapitres qui ne supposent aucune connaissance technique.
+puis six chapitres qui ne supposent aucune connaissance technique.
+
+Vous êtes de la partie et cherchez les notions plutôt que la syntaxe :
+**[`docs/14-CONCEPTS.md`](docs/14-CONCEPTS.md)** — un catalogue de concepts,
+chacun avec sa panne évitée, son ancre dans le code, son compromis et ce qui le
+fait respecter.
 
 Et la commande qui dit si tout va bien — la même que celle qui tourne en
 intégration continue :
