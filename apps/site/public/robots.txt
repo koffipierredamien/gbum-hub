@@ -1,0 +1,7 @@
+# L'espace d'administration n'a rien à faire dans un moteur de recherche.
+# Ce fichier ne le PROTÈGE pas — c'est la session qui le protège ; il évite
+# seulement qu'une page de connexion du GBUM apparaisse dans des résultats.
+User-agent: *
+Disallow: /admin
+
+Allow: /

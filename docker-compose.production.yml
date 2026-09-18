@@ -1,0 +1,69 @@
+# La mise en ligne, en trois services.
+#
+# Elle se joue à l'identique ici et sur le serveur : c'est la parité des
+# environnements (facteur X des douze), et c'est ce qui fait qu'« ça marchait
+# chez moi » cesse d'exister.
+#
+#   base        PostgreSQL 16, la même version majeure qu'en développement (S1)
+#   migrations  rejoue les migrations, une fois, puis s'arrête (S4)
+#   site        le serveur, qui ne démarre QUE si les migrations ont réussi
+#
+# Le site n'écoute que sur 127.0.0.1 : c'est un serveur web public (Caddy ou
+# nginx) qui le publie vers l'extérieur, avec le certificat. Exposer
+# directement le port 3000 sur internet marcherait — sans chiffrement, et les
+# mots de passe passeraient en clair.
+
+services:
+  base:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-gbum}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?il faut un mot de passe de base}
+      POSTGRES_DB: ${POSTGRES_DB:-gbum}
+    volumes:
+      - donnees-postgres:/var/lib/postgresql/data
+      - ./.sauvegardes:/sauvegardes
+      # En lecture seule : le conteneur de la base exécute le script de
+      # sauvegarde, il n'a aucune raison de pouvoir le modifier.
+      - ./outils:/outils:ro
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-gbum} -d ${POSTGRES_DB:-gbum}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  migrations:
+    build:
+      context: .
+      target: constructeur
+    command: pnpm base:migrer
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?il faut l'adresse de la base}
+    depends_on:
+      base:
+        condition: service_healthy
+    restart: "no"
+
+  site:
+    build:
+      context: .
+      target: execution
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?il faut l'adresse de la base}
+      STOCKAGE_PILOTE: ${STOCKAGE_PILOTE:-disque}
+      STOCKAGE_DISQUE_RACINE: /fichiers
+      STOCKAGE_URL_PUBLIQUE: ${STOCKAGE_URL_PUBLIQUE:?il faut l'adresse publique des fichiers}
+    volumes:
+      - fichiers:/fichiers
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+
+volumes:
+  donnees-postgres:
+  fichiers:

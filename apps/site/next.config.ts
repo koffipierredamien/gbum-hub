@@ -1,3 +1,5 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 import creerPluginIntl from "next-intl/plugin";
 import { chargerEnvironnement } from "@gbum/db";
@@ -9,7 +11,20 @@ chargerEnvironnement();
 
 const avecIntl = creerPluginIntl("./src/i18n/requete.ts");
 
+/**
+ * `standalone` : la construction produit un dossier qui se suffit à lui-même —
+ * le serveur, et les seules dépendances qu'il utilise vraiment. C'est ce qui
+ * permet une image de production légère, sans l'atelier ni ses outils.
+ *
+ * `outputFileTracingRoot` doit désigner la RACINE du dépôt : les paquets de
+ * l'atelier vivent au-dessus de `apps/site`, et sans cette ligne Next cherche
+ * ce qu'il doit emporter dans le mauvais dossier.
+ */
+const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+
 const config: NextConfig = {
+  output: "standalone",
+  outputFileTracingRoot: RACINE,
   // Les paquets de l'atelier sont livrés en TypeScript source, sans étape de
   // compilation : c'est Next qui les transpile. Un paquet de moins à construire
   // est une commande de moins à oublier.

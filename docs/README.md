@@ -36,6 +36,8 @@
 
 | **16** | [Remplir le site](16-REMPLIR-LE-SITE.md) | Écran par écran : ce qu'on tape, ce que cela fait disparaître — et comment préparer les photographies | **Pierre, SN** |
 
+| **17** | [Mettre en ligne](17-METTRE-EN-LIGNE.md) | Ce qu'il faut louer, la marche à suivre, les sauvegardes — et ce qui a été répété ou non | **Pierre** |
+
 **Ordre de lecture conseillé :** 00 → 01 → 02 → 04 → 03 → 05.
 **Si vous n'avez qu'une heure :** 00 §1 et §6, puis 01 §4 et §12, puis 04.
 

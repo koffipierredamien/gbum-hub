@@ -23,7 +23,9 @@ dist/
 .env
 .env.*
 !.env.example
+!.env.production.exemple
 
 # Engendrés par les outils.
 coverage/
 next-env.d.ts
+.sauvegardes/

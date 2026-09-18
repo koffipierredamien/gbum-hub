@@ -156,3 +156,49 @@ mesurée, pas un relâchement : ces règles de composition produisent
 « Rabat2026! » sur toutes les machines du mouvement et poussent à écrire le mot
 de passe sur un papier. C'est la position du NIST (SP 800-63B) et de l'OWASP
 depuis 2017 : exiger de la longueur, laisser tomber le reste.
+
+---
+
+## L2 — Le paquet de mise en ligne *(18 septembre 2026)*
+
+### Ce qui est livré
+
+De quoi mettre le site en ligne le jour où une machine est louée : une image de
+production en deux étages, trois services qui démarrent dans le bon ordre, un
+modèle de configuration serveur, et une sauvegarde nocturne qui **se relit
+elle-même**. Tout est dans [`17-METTRE-EN-LIGNE.md`](17-METTRE-EN-LIGNE.md).
+
+### Le concept du jour — la parité des environnements
+
+> *En anglais : dev/prod parity (facteur X des douze).*
+
+**Le concept.** Plus l'atelier et la production se ressemblent, moins il y a de
+pannes qui n'apparaissent qu'en ligne. Ici : **le même PostgreSQL 16**, **les
+mêmes migrations rejouées de la même façon**, **la même configuration lue dans
+l'environnement**. « Ça marchait chez moi » n'est pas une excuse : c'est le
+symptôme d'un écart qu'on a laissé s'installer.
+
+**La panne qu'il empêche.** Celle qu'on ne peut pas reproduire — la pire, parce
+qu'on la corrige à l'aveugle, en ligne, devant des utilisateurs.
+
+**Le compromis.** L'atelier est plus lourd : il faut Docker sur le poste de
+travail, et une base qui tourne pour développer. C'est un coût d'entrée réel,
+payé chaque matin par le développeur, contre des pannes évitées qu'on ne verra
+jamais — un échange où le coût est visible et le gain invisible. C'est ce qui
+le rend difficile à défendre, et néanmoins juste.
+
+**La preuve.** La répétition de déménagement, déjà en place, vide une base,
+rejoue les trois migrations, restaure et compare **toutes** les tables. Depuis
+aujourd'hui, la sauvegarde fait de même à chaque exécution.
+
+**Ailleurs.** C'est la raison d'être des conteneurs, et le sens de la formule
+de Heroku : *keep development, staging, and production as similar as possible*.
+
+### Ce qui reste incertain, et je préfère le dire
+
+La construction de l'image Docker n'a **pas** pu être répétée ici : le réseau
+de mon atelier bloque le registre d'images public. Tout le reste l'a été — le
+serveur de production démarre, sert ses styles, passe les 26 points du parcours
+d'administration et les 18 pages d'accessibilité, et une sauvegarde restaurée
+rend bien les comptes. C'est donc la première étape à jouer sur le serveur, et
+la seule dont je ne garantis pas qu'elle passe du premier coup.

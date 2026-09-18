@@ -156,3 +156,25 @@ jobs:
 
       - name: Écrire, ne rien publier, publier, voir
         run: pnpm verifier:admin
+
+  # La seule étape de la mise en ligne que je n'ai pas pu jouer dans mon
+  # atelier : le réseau y bloque le registre d'images public. Ici, elle se joue
+  # à chaque envoi de code — et si l'image cesse un jour de se construire, on
+  # l'apprend le jour même, pas le soir du déploiement.
+  image:
+    name: L'image de production se construit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Construire l'étage d'exécution
+        run: docker build --target execution -t gbum-hub:verification .
+
+      - name: Vérifier qu'elle contient ce qu'il faut pour servir des styles
+        run: |
+          docker run --rm gbum-hub:verification \
+            sh -c 'test -f apps/site/server.js && test -d apps/site/.next/static'
+
+      - name: Elle ne doit pas tourner en root
+        run: |
+          test "$(docker run --rm gbum-hub:verification id -u)" = "1001"

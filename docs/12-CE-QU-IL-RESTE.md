@@ -95,7 +95,7 @@ ils attendent tous une information de la colonne B : ce sont donc des chantiers
 | **C6** | **La vie du mouvement** — un compte par ville, et la saisie d'une activité | C'est ce qui rend le site vivant **sans** que le national le nourrisse à la main. Le plus gros chantier du lot 2. | — |
 | **C7** | **L'alerte au bureau de ville** quand un étudiant écrit | Il faut une adresse d'expédition | B |
 | ~~**C8**~~ | ~~**Les comptes**~~ — **livré le 14 septembre** : changer son mot de passe, créer un compte, retirer un accès. Reste à faire : le journal « qui a publié quoi » | — | [Fiche L1](15-LIVRAISONS.md) |
-| **C9** | **La mise en ligne** — hébergement, nom de domaine, sauvegardes automatiques | [ADR-012](02-ARCHITECTURE.md) rend ce choix reportable sans dette : le jour où quelqu'un paie, seule l'adresse de la base change | Une décision de paiement |
+| **C9** | **La mise en ligne** — **préparée le 18 septembre** : image de production, trois services, sauvegardes qui se relisent ([guide](17-METTRE-EN-LIGNE.md)). Reste à louer la machine et le nom | [ADR-012](02-ARCHITECTURE.md) rend ce choix reportable sans dette : le jour où quelqu'un paie, seule l'adresse de la base change | Une décision de paiement |
 
 **C8 est livré** (14 septembre) : c'était le plus urgent des trois derniers,
 parce qu'un mot de passe oublié n'avait aucune issue, et qu'aucun membre du
