@@ -5,15 +5,17 @@ import { Attente } from "../composants/attente";
 import { DefileImages } from "../composants/defile-images";
 import { Photo } from "../composants/photo";
 import { Fleche } from "../composants/fleche";
+import { photosDAccueil } from "../donnees/photos";
 import { RangNumerote } from "../composants/rang-numerote";
 
 /** L'ouverture : le défilé d'images, la barre posée dessus, l'unique Display. */
 export async function Ouverture() {
   const t = await getTranslations("accueil");
+  const photos = photosDAccueil();
 
   return (
     <div className="heros">
-      <DefileImages />
+      <DefileImages photos={photos} />
       <div
         aria-hidden="true"
         style={{
@@ -24,9 +26,11 @@ export async function Ouverture() {
         }}
       />
       <div className="heros-contenu">
-        <div style={{ padding: "76px var(--gouttiere) 0" }}>
-          <Attente titre={t("photoTitre")} texte={t("photoTexte")} surface="photo" />
-        </div>
+        {photos.length === 0 ? (
+          <div style={{ padding: "76px var(--gouttiere) 0" }}>
+            <Attente titre={t("photoTitre")} texte={t("photoTexte")} surface="photo" />
+          </div>
+        ) : null}
         <div style={{ flexGrow: 1 }} />
         <div style={{ padding: "0 var(--gouttiere) 62px" }}>
           <p className="etiquette" style={{ color: "var(--sur-encre)" }}>

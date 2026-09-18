@@ -3,7 +3,7 @@ import { hasLocale } from "next-intl";
 import { LANGUES, routage } from "./routage";
 import fr from "../../messages/fr.json";
 import en from "../../messages/en.json";
-import { chargerEnvironnement, lireSectionsPubliees } from "@gbum/db";
+import { chargerEnvironnement, expliquerPanne, lireSectionsPubliees } from "@gbum/db";
 
 const MESSAGES = { fr, en } as const;
 
@@ -72,7 +72,14 @@ async function recouvrir(catalogue: Catalogue, langue: string): Promise<Catalogu
     }
     return recouvert;
   } catch (cause) {
-    console.error("lecture du contenu éditorial publié", { langue, cause });
+    const explication = expliquerPanne(cause);
+    if (explication === null) {
+      console.error("lecture du contenu éditorial publié", { langue, cause });
+    } else {
+      // Le site s'affiche quand même, avec les textes livrés : ce n'est pas
+      // une panne du site, et le message doit le dire en une ligne.
+      console.error(`Contenu éditorial : ${explication}`);
+    }
     return catalogue;
   }
 }

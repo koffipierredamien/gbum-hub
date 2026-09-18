@@ -64,3 +64,39 @@ export async function joindreLaBase(url: string): Promise<EtatDeLaBase> {
 export async function baseJoignable(url: string): Promise<boolean> {
   return (await joindreLaBase(url)).ok;
 }
+
+/**
+ * Traduit une panne de base en une phrase utile, ou rend `null` si la cause
+ * n'est pas connue — auquel cas l'appelant journalise la trace complète.
+ *
+ * Pourquoi : « ECONNREFUSED » au fond de vingt lignes de trace ressemble à un
+ * bug du site alors que c'est, neuf fois sur dix, une base qu'on a oublié de
+ * démarrer. Rapporté par Pierre le 18 septembre 2026.
+ */
+export function expliquerPanne(cause: unknown): string | null {
+  const code = codeDErreur(cause, 0);
+  if (code === null) return null;
+
+  switch (code) {
+    case "ECONNREFUSED":
+      return "la base ne répond pas — lancez-la avec : pnpm base:demarrer";
+    case "28P01":
+    case "28000":
+      return "la base refuse les identifiants — vérifiez DATABASE_URL dans .env";
+    case "3D000":
+      return "la base n'existe pas encore — lancez : pnpm mise-en-route";
+    default:
+      return null;
+  }
+}
+
+/** Le code se cache parfois sous `cause`, une ou deux couches plus bas. */
+function codeDErreur(cause: unknown, profondeur: number): string | null {
+  if (profondeur > 3 || typeof cause !== "object" || cause === null) return null;
+  if ("code" in cause && typeof cause.code === "string") return cause.code;
+  if ("errors" in cause && Array.isArray(cause.errors)) {
+    return codeDErreur(cause.errors[0], profondeur + 1);
+  }
+  if ("cause" in cause) return codeDErreur(cause.cause, profondeur + 1);
+  return null;
+}

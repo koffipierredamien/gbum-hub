@@ -1,5 +1,5 @@
 import "server-only";
-import { chargerEnvironnement, lireVillesEtCellules } from "@gbum/db";
+import { chargerEnvironnement, expliquerPanne, lireVillesEtCellules } from "@gbum/db";
 import {
   celluleId,
   echec,
@@ -91,7 +91,9 @@ export async function lireVillesPubliees(
     // On journalise avec le contexte, puis on remonte un échec typé. Ne rien
     // faire rendrait une panne, une faute de frappe et une base vide
     // indiscernables.
-    console.error("lecture des villes publiées", { cause });
+    const explication = expliquerPanne(cause);
+    if (explication === null) console.error("lecture des villes publiées", { cause });
+    else console.error(`Villes : ${explication}`);
     return echec({ type: "base-injoignable", cause });
   }
 }

@@ -20,6 +20,7 @@
     "dev": "pnpm --filter @gbum/site dev",
     "verifier:acces": "node outils/verifier-accessibilite.mjs",
     "compte:creer": "pnpm --filter @gbum/administration-cli compte:creer",
+    "villes:importer": "pnpm --filter @gbum/administration-cli villes:importer",
     "verifier:admin": "node outils/verifier-administration.mjs",
     "mise-en-route": "pnpm --filter @gbum/administration-cli mise-en-route"
   },

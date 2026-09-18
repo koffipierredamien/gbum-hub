@@ -16,8 +16,8 @@ celui-ci._
 
 | Ce qui manque                                                     | Qui                 | Bloque quoi                                |
 | ----------------------------------------------------------------- | ------------------- | ------------------------------------------ |
-| La liste des villes et cellules                                   | **Vous** (ou le SN) | La moitié du site                          |
-| Des photos                                                        | **Vous**            | L'ouverture, les pages de ville            |
+| Les villes autres que Casablanca                                  | Le SN               | La liste, le bandeau défilant              |
+| Des photos                                                        | **Vous**            | L'ouverture du site                        |
 | Le thème de l'année, le canevas, les chiffres, l'histoire du GBUM | **Le SN**           | Cinq encadrés, qui resteront visibles      |
 | Une adresse d'envoi de courriel                                   | Le SN               | L'alerte au bureau quand un étudiant écrit |
 | Un serveur                                                        | **Vercel, gratuit** | Montrer le site                            |
@@ -36,9 +36,12 @@ les responsables verront exactement quelles informations débloquent quelles pag
 
 ## Ce que j'attends de vous
 
-1. Les **photos** que vous avez (campus, rencontres), même imparfaites.
-2. La **liste des villes** et, pour chacune, ses cellules et leur effectif.
-3. Un **compte Vercel** gratuit, créé avec votre compte GitHub.
+1. **Vos photos** : déposez-les dans `apps/site/public/photos/`, décrivez-les dans
+   `photos.json` à côté. Le mode d'emploi est dans le même dossier.
+2. Un **compte Vercel** gratuit, créé avec votre compte GitHub.
+
+Casablanca et ses neuf cellules sont dans `donnees/villes.txt` :
+`pnpm villes:importer` les charge, et la commande se rejoue sans dégât.
 
 ## Les documents
 

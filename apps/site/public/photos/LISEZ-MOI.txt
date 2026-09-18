@@ -1,0 +1,32 @@
+LES PHOTOGRAPHIES DU SITE
+=========================
+
+1. Déposez vos images DANS CE DOSSIER.
+   Noms sans accent, sans espace, sans apostrophe :
+   camp-ifrane-2025.jpg, seminaire-casablanca.jpg, cellule-sidi-othmane.jpg
+
+2. Décrivez-les dans photos.json, à côté. Une image sans description n'est PAS
+   affichée : la description est lue à voix haute par les lecteurs d'écran, et
+   c'est elle qui rend la photo compréhensible pour un malvoyant.
+
+   [
+     {
+       "fichier": "camp-ifrane-2025.jpg",
+       "description": "Des étudiants réunis au camp d'Ifrane, été 2025",
+       "usage": "accueil"
+     }
+   ]
+
+   « usage » vaut « accueil » : ces images défilent en ouverture du site.
+
+3. Avant de déposer : effacez les données cachées de chaque photo (clic droit >
+   Propriétés > Détails > Supprimer les propriétés et les informations
+   personnelles). Une photo de téléphone contient souvent les coordonnées GPS
+   du lieu — donc le lieu de rencontre d'une cellule.
+
+4. N'y mettez que des photos dont les personnes ont accepté la publication.
+
+CE DOSSIER N'EST PAS UNE GALERIE DE SOUVENIRS.
+Quatre à six images, choisies, qui montrent ce qu'est le mouvement. Les albums
+d'événements viendront ailleurs, avec leur date et leur légende — c'est une
+autre fonction, et elle n'est pas encore construite.

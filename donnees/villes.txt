@@ -1,0 +1,19 @@
+# Les villes du GBUM, et leurs cellules.
+#
+# Une ville commence en début de ligne. Ses cellules sont indentées, avec leur
+# effectif. Les lignes vides et les lignes commençant par # sont ignorées.
+#
+# Pour importer : pnpm villes:importer
+# La commande est rejouable : elle met à jour ce qui existe, ajoute ce qui
+# manque, et ne supprime jamais rien.
+
+Casablanca
+  Ziraoui        40
+  Sidi Othmane   18
+  Sidi Maarouf   11
+  Maarif          9
+  Beauséjour      7
+  En ligne        7
+  Ferdaous        6
+  La Gironde      3
+  Hay Salam       2
