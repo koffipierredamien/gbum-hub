@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "fichier": "camp-ifrane-2026-bouznika.jpg",
+    "description": "Des étudiants debout pendant un temps de louange, au camp d'Ifrane spécial Bouznika 2026",
+    "usage": "accueil"
+  },
+  {
+    "fichier": "camp-ifrane-2026-ramassage.jpg",
+    "description": "Les campeurs réunis après avoir ramassé les déchets aux abords du site, camp d'Ifrane spécial Bouznika 2026",
+    "usage": "accueil"
+  },
+  {
+    "fichier": "rencontre-groupe-2026.jpg",
+    "description": "Un groupe d'étudiants du GBUM réunis à la fin d'une rencontre",
+    "usage": "accueil"
+  },
+  {
+    "fichier": "camp-ifrane-2025-bouznika.jpg",
+    "description": "Des étudiants du GBUM au camp d'Ifrane spécial Bouznika 2025",
+    "usage": "accueil"
+  }
+]
