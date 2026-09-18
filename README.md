@@ -1,5 +1,8 @@
 # Hub officiel du GBUM
 
+> **Commencez par [`ETAT.md`](ETAT.md)** — une page : ce qui marche, ce qui manque,
+> et ce qu'on fait ensuite.
+
 Conception du hub du **GBUM** — Groupe Biblique Universitaire au Maroc.
 
 > **Le lot 1 est complet** (10 septembre 2026) : les fondations, les huit pages
