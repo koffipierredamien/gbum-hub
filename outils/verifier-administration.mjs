@@ -204,24 +204,40 @@ verifier("le nouveau mot de passe ouvre la session", neuf.url() === `${B}/admin`
 await apres.close();
 
 // Un compte créé depuis l'écran apparaît dans la liste, et son accès se retire.
+//
+// Ces deux écrans n'appartiennent qu'au rôle technique : un compte du
+// Secrétariat National ne les voit pas, et c'est voulu. Plutôt que d'attendre
+// trente secondes un formulaire qui n'existe pas — ce qu'a fait ce script le
+// 14 septembre, avec un message illisible — on le constate et on le DIT.
 const invite = `invite-${String(Date.now()).slice(-6)}@exemple.org`;
 const formNouveau = 'form:has(button:has-text("Créer le compte"))';
 await p.goto(`${B}/admin/comptes`, { waitUntil: "load" });
-await p.fill(`${formNouveau} #nom`, "Invité de vérification");
-await p.fill(`${formNouveau} #courriel`, invite);
-await p.fill(`${formNouveau} #motDePasse`, "unmotdepasseprovisoire");
-await p.click(`${formNouveau} button[type=submit]`);
-await p.waitForSelector(`${formNouveau} .filet-texte`, { timeout: 60000 });
-await p.goto(`${B}/admin/comptes`, { waitUntil: "load" });
+const peutGerer = (await p.locator(formNouveau).count()) > 0;
 verifier(
-  "le compte créé apparaît dans la liste",
-  (await p.locator("body").innerText()).includes(invite),
+  "le compte de vérification peut gérer les comptes",
+  peutGerer,
+  peutGerer ? "" : "ce compte n'est pas « technique » — voir COMPTE_ROLE",
 );
 
-const carteInvite = `div.carte-admin:has-text("${invite}")`;
-await p.click(`${carteInvite} button:has-text("Retirer l'accès")`);
-await p.waitForSelector(`${carteInvite}:has-text("accès retiré")`, { timeout: 60000 });
-verifier("l'accès d'un compte se retire", true);
+if (peutGerer) {
+  await p.fill(`${formNouveau} #nom`, "Invité de vérification");
+  await p.fill(`${formNouveau} #courriel`, invite);
+  await p.fill(`${formNouveau} #motDePasse`, "unmotdepasseprovisoire");
+  await p.click(`${formNouveau} button[type=submit]`);
+  await p.waitForSelector(`${formNouveau} .filet-texte`, { timeout: 60000 });
+  await p.goto(`${B}/admin/comptes`, { waitUntil: "load" });
+  verifier(
+    "le compte créé apparaît dans la liste",
+    (await p.locator("body").innerText()).includes(invite),
+  );
+
+  const carteInvite = `div.carte-admin:has-text("${invite}")`;
+  await p.click(`${carteInvite} button:has-text("Retirer l'accès")`);
+  await p.waitForSelector(`${carteInvite}:has-text("accès retiré")`, {
+    timeout: 60000,
+  });
+  verifier("l'accès d'un compte se retire", true);
+}
 
 // On remet le mot de passe d'origine : ce script doit pouvoir être rejoué.
 verifier(

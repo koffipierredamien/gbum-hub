@@ -146,6 +146,13 @@ jobs:
           COMPTE_COURRIEL: sn@exemple.org
           COMPTE_NOM: Vérification
           COMPTE_MOT_DE_PASSE: motdepassedetest2026
+          # « technique », parce que le parcours vérifie aussi la création de
+          # comptes et le retrait d'accès — que le Secrétariat National ne voit
+          # pas. Sans cette ligne, le compte créé était un compte du SN, les
+          # écrans de gestion n'étaient pas rendus, et le parcours échouait sur
+          # un formulaire absent. Trouvé par l'intégration continue le
+          # 14 septembre 2026 : chez moi le compte était technique.
+          COMPTE_ROLE: technique
         run: pnpm compte:creer
 
       - name: Construire et mettre en ligne
