@@ -24,11 +24,10 @@ celui-ci._
 
 ## Le plan, en trois étapes
 
-1. **Déployer sur Vercel** (gratuit, sans carte bancaire) avec une base de données
-   gratuite. Vous obtenez une adresse à ouvrir sur un téléphone.
-2. **Afficher vos photos** : vous les déposez dans un dossier du projet, elles
-   apparaissent. Pas d'écran de téléversement pour l'instant — c'est plus long à
-   construire et inutile pour une démonstration.
+1. **Déployer sur Vercel** — la marche à suivre est dans
+   [`docs/DEPLOIEMENT-VERCEL.md`](docs/DEPLOIEMENT-VERCEL.md), vingt minutes.
+2. ~~**Afficher vos photos**~~ — fait le 18 septembre : quatre photographies des
+   camps d'Ifrane et d'une rencontre défilent en ouverture.
 3. **Remplir** tout ce qui ne dépend pas du SN, ensemble, depuis l'administration.
 
 Ce qui dépend du SN restera marqué « attendu ». **C'est ce qu'il faut montrer** :
