@@ -29,8 +29,18 @@ export const T = {
     villes: "Villes et cellules",
     demandes: "Demandes reçues",
     comptes: "Comptes",
+    reponses: "Réponses reçues",
   },
   deconnexion: "Se déconnecter",
+  reponses: {
+    titre: "Ce que le mouvement a répondu.",
+    accroche:
+      "Les réponses au formulaire envoyé au Secrétariat National, groupées par question, la plus récente en premier. Rien n'est recopié tout seul : vous relisez, vous collez dans « Les pages », vous publiez.",
+    aucune:
+      "Aucune réponse pour l'instant. Le formulaire s'ouvre avec le lien secret : /collecte?cle=…",
+    precedente: "réponse précédente",
+  },
+
   comptes: {
     titre: "Les comptes.",
     accroche:

@@ -29,6 +29,8 @@ celui-ci._
 2. ~~**Afficher vos photos**~~ — fait le 18 septembre : quatre photographies des
    camps d'Ifrane et d'une rencontre défilent en ouverture.
 3. **Remplir** tout ce qui ne dépend pas du SN, ensemble, depuis l'administration.
+4. **Envoyer le formulaire au Secrétariat National** pour le reste —
+   [`docs/FORMULAIRE-DE-COLLECTE.md`](docs/FORMULAIRE-DE-COLLECTE.md).
 
 Ce qui dépend du SN restera marqué « attendu ». **C'est ce qu'il faut montrer** :
 les responsables verront exactement quelles informations débloquent quelles pages.

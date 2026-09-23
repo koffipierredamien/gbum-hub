@@ -7,6 +7,7 @@
 | [Démarrer en local](11-DEMARRER-EN-LOCAL.md) | Faire tourner le projet sur sa machine |
 | [Remplir le site](16-REMPLIR-LE-SITE.md) | Saisir les textes, les villes, les contacts |
 | [Déploiement Vercel](DEPLOIEMENT-VERCEL.md) | Mettre le site en ligne, gratuitement |
+| [Formulaire de collecte](FORMULAIRE-DE-COLLECTE.md) | Faire remplir les informations par les responsables |
 | [Cahier des charges](01-CAHIER-DES-CHARGES.md) | Ce que le projet doit faire |
 | [Architecture](02-ARCHITECTURE.md) | Pourquoi telle décision technique (les ADR) |
 | [Note au Secrétariat National](07-NOTE-AU-SECRETARIAT-NATIONAL.md) | Ce qu'il faut leur demander |

@@ -245,6 +245,40 @@ verifier(
   (await changerMdp(NOUVEAU, MOT_DE_PASSE)).includes("C'est fait"),
 );
 
+// 17 — le formulaire de collecte : le lien secret garde la porte.
+//
+// La clé est passée par l'environnement, comme sur le serveur. Sans elle, ce
+// point est ignoré plutôt que déclaré en échec : un dépôt fraîchement cloné
+// n'a pas de clé, et ce n'est pas un défaut du produit.
+const CLE = process.env["CLE_COLLECTE"];
+if (CLE === undefined || CLE === "") {
+  console.log("  --   collecte : CLE_COLLECTE n'est pas définie, point ignoré");
+} else {
+  const visiteur = await ctx.browser().newContext();
+  const q = await visiteur.newPage();
+
+  await q.goto(`${B}/collecte`, { waitUntil: "load" });
+  verifier(
+    "sans clé, le formulaire de collecte est fermé",
+    !(await q.locator("body").innerText()).includes("Ce que le site attend"),
+  );
+
+  await q.goto(`${B}/collecte?cle=${encodeURIComponent(CLE)}`, { waitUntil: "load" });
+  const reponse = `Thème de vérification ${String(Date.now())}`;
+  await q.fill("#theme-nom", reponse);
+  await q.fill("#auteur", "Vérification automatique");
+  await q.click("button[type=submit]");
+  await q.waitForSelector(".filet-titre", { timeout: 60000 });
+  verifier("avec la clé, une réponse est enregistrée", true);
+  await visiteur.close();
+
+  await p.goto(`${B}/admin/reponses`, { waitUntil: "load" });
+  verifier(
+    "la réponse apparaît dans l'administration",
+    (await p.locator("body").innerText()).includes(reponse),
+  );
+}
+
 for (const ecran of [
   "/admin",
   "/admin/pages",
@@ -252,6 +286,7 @@ for (const ecran of [
   "/admin/villes",
   "/admin/demandes",
   "/admin/comptes",
+  "/admin/reponses",
 ]) {
   await p.goto(`${B}${ecran}`, { waitUntil: "load" });
   const { violations } = await new AxeBuilder({ page: p })

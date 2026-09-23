@@ -156,12 +156,16 @@ jobs:
         run: pnpm compte:creer
 
       - name: Construire et mettre en ligne
+        env:
+          CLE_COLLECTE: cle-de-verification-continue
         run: |
           pnpm --filter @gbum/site build
           pnpm --filter @gbum/site start &
           until curl -sf http://localhost:3000/fr > /dev/null; do sleep 1; done
 
       - name: Écrire, ne rien publier, publier, voir
+        env:
+          CLE_COLLECTE: cle-de-verification-continue
         run: pnpm verifier:admin
 
   # La seule étape de la mise en ligne que je n'ai pas pu jouer dans mon

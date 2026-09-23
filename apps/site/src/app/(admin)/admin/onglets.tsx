@@ -9,6 +9,7 @@ const ONGLETS = [
   { chemin: "/admin/pages", cle: "pages" },
   { chemin: "/admin/villes", cle: "villes" },
   { chemin: "/admin/demandes", cle: "demandes" },
+  { chemin: "/admin/reponses", cle: "reponses" },
   { chemin: "/admin/comptes", cle: "comptes" },
 ] as const;
 

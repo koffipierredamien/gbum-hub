@@ -162,3 +162,26 @@ export const sectionsEditoriales = pgTable(
   },
   (table) => [unique("section_unique").on(table.page, table.cle, table.langue)],
 );
+
+/**
+ * Les réponses au formulaire de collecte.
+ *
+ * Le Secrétariat National détient des informations que le site attend — le
+ * thème, le canevas, les chiffres, l'histoire du mouvement. Leur demander de
+ * se connecter à un espace d'administration pour les donner, c'est ne jamais
+ * les recevoir. Le formulaire s'ouvre donc par un lien secret, sans compte, et
+ * chaque réponse atterrit ici.
+ *
+ * Une ligne par CHAMP rempli, et non une par envoi : une personne peut
+ * répondre à deux questions aujourd'hui et à trois autres la semaine
+ * prochaine, sans que la seconde réponse écrase la première. On garde tout,
+ * daté et signé ; c'est l'administration qui choisit ce qu'elle retient.
+ */
+export const contributions = pgTable("contributions", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  champ: text("champ").notNull(),
+  valeur: text("valeur").notNull(),
+  auteur: text("auteur").notNull(),
+  contact: text("contact"),
+  creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
+});
