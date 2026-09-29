@@ -13,9 +13,10 @@ Conception du hub du **GBUM** — Groupe Biblique Universitaire au Maroc.
 > Voir [`docs/08-PLAN-SITE-PUBLIC.md`](docs/08-PLAN-SITE-PUBLIC.md) et
 > [`docs/10-PLAN-DES-FONDATIONS.md`](docs/10-PLAN-DES-FONDATIONS.md).
 
-L'application actuelle, [`gbu-connect`](https://github.com/koffipierredamien/gbu-connect),
-reste **en production** sur gbu-maroc.org. Elle n'est pas touchée, et devient la
-**référence métier** : c'est d'elle qu'on lit les règles à transporter.
+L'application actuelle, [`gbu-connect`](https://github.com/nikiemaesa/gbu-connect),
+reste **en production** sur gbu-maroc.org : c'est le **hub privé**. Il est conservé
+et assaini en place, et les deux hubs échangent par un contrat — voir ADR-014
+(accepté) dans [`docs/02-ARCHITECTURE.md`](docs/02-ARCHITECTURE.md).
 
 ## Où en sommes-nous
 

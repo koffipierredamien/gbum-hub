@@ -1007,13 +1007,94 @@ plateforme, même plus pratique. C'est S6.
 
 ---
 
+## 11 quinquies. ✅ ADR-014 — Deux applications, un contrat
+
+> **Accepté le 29 septembre 2026** par Pierre : le principe — hub privé conservé
+> en Python, villes et cellules lui appartenant — puis le mécanisme du contrat
+> (C2 à C6), validé le même jour.
+> Remplace en partie ADR-001 (« une seule base ») et restreint ADR-002 au
+> site public.
+
+### Ce qui a changé depuis ADR-001 et ADR-002
+
+Mesuré le 28 septembre 2026 dans `nikiemaesa/gbu-connect`, qui remplace le
+dépôt `koffipierredamien/gbu-connect`, supprimé :
+
+- `app/` est passé de **22 045 lignes** (export du 5 septembre) à
+  **40 095**, et porte **333 routes**. Plusieurs manques de l'audit sont
+  couverts entre-temps : études publiques, sorties de terrain, conseillers,
+  Conseil Exécutif. Une réécriture poursuivrait une cible qui bouge.
+- Les défauts mesurés — état coupé entre SQLite et 19 fichiers JSON,
+  migrations jouées au démarrage, tests liés à la base de production, aucune
+  intégration continue, sauvegardes sur le disque qu'elles protègent — tiennent
+  à l'absence de structure, **pas au langage**. Réécrits sans cette discipline,
+  ils reviendraient.
+
+**Décision de Pierre (29/09/2026)** : le hub privé s'assainit en place ; un
+domaine n'est réécrit que lorsque le réparer coûte plus cher que le refaire.
+
+### La décision
+
+Deux applications, deux bases, **un contrat** entre elles.
+
+```
+hub privé — Python, SQLite                site public — TypeScript, PostgreSQL
+propriétaire : personnes, structures,     propriétaire : textes du site,
+activités                                 messages des visiteurs
+        │                                          ▲
+        ├── publications v1 ──────────────────────▶│  villes, cellules (nom,
+        │                                          │  effectif), contact du
+        │                                          │  bureau, activités annoncées
+        │◀─────────────────────── demandes v1 ─────┤  « Rejoindre », « Nous écrire »
+```
+
+| # | Règle |
+|---|---|
+| **C1** | **Chaque donnée a un seul propriétaire.** Villes et cellules : le hub privé (décision du 29/09/2026). L'écran « Villes et cellules » du site public devient une copie en lecture. |
+| **C2** | **Le contrat est un fichier** — un schéma JSON versionné (`v1`), présent à l'identique dans les deux dépôts et éprouvé par leurs deux intégrations continues. Un champ absent du contrat ne passe pas. |
+| **C3** | **Rien ne sort du hub privé qui ne soit marqué public**, et la règle « la publication s'arrête à la ville » (`packages/core/src/publication.ts`, ADR-011) s'applique **deux fois** : à l'émission par le hub privé, à la réception par le site. |
+| **C4** | **Chaque échange est signé** (HMAC-SHA256 du corps, clé partagée tenue dans l'environnement, jamais dans un dépôt) et **daté** (refus au-delà de cinq minutes). C'est le principe que le hub privé applique déjà à son robot WhatsApp (`app/wa.py`). |
+| **C5** | **Les adresses des deux hubs sont des variables d'environnement.** Elles ne sont pas décidées (29/09/2026) et ne doivent rien coûter à changer — ADR-012. |
+| **C6** | **Aucune panne de l'un n'arrête l'autre.** Le site garde sa dernière copie des publications. Une demande est d'abord enregistrée par le site, comme aujourd'hui, puis remise au hub privé ; une remise échouée est retentée, et la demande reste visible dans l'administration du site en attendant. |
+
+**Les publications** sont lues par le site au moment où il fabrique ses pages ;
+le hub privé le prévient d'un changement par un appel signé — le même geste
+que « publier » dans l'administration du site aujourd'hui.
+
+**Les demandes** rejoignent l'écran « Demandes » qui existe déjà dans le hub
+privé (`app/public.py`), et le bureau de la ville est prévenu par les canaux
+que le hub privé sait déjà employer (`app/alertes.py` : notification,
+WhatsApp, courriel). C'est ce qui manque au site public : il enregistre le
+message, mais personne n'est averti.
+
+### Ce qui a été écarté
+
+- **Une base partagée.** Deux moteurs, deux hébergeurs — et surtout, le hub
+  privé porte l'annuaire et les finances : une base commune ferait d'une faille
+  du site public une faille de l'annuaire. C'est la menace « défiguration du
+  site public » du cahier des charges (§7.2), étendue aux données.
+- **Le site public qui écrit dans le hub privé.** Même raison : il remet des
+  demandes à une porte qui n'accepte que cela.
+- **Réécrire le hub privé d'abord.** Voir plus haut.
+
+### Conséquences
+
+- ADR-001 reste vrai dans son principe — une seule source de vérité **par
+  donnée** ; « une seule base » est remplacé.
+- ADR-002 ne gouverne plus que le site public.
+- La branche `sauvegarde/hub-lot0` n'est pas reprise telle quelle : sa
+  politique d'accès traite encore le JTPA comme un suivi de personnes
+  approchées, lecture corrigée le 9 septembre (C2.9 à C2.11).
+- **Le côté privé du contrat ne sera en service qu'une fois déployé sur le
+  serveur du hub privé.** Jusque-là, il est écrit et vérifié, pas actif.
+
 ## 12. Registre des décisions
 
 | # | Décision | Statut |
 |---|---|---|
-| **ADR-001** | **Deux surfaces, une seule source de vérité** | ✅ **accepté** (9 sept. 2026) |
+| **ADR-001** | **Deux surfaces, une seule source de vérité** | ✅ **accepté** (9 sept. 2026) — *« une seule base » remplacé par ADR-014* |
 | **ADR-011** | **Posture de visibilité publique : ouverte** | ✅ **accepté** (9 sept. 2026) — *réserve : confirmation du Secrétariat National* |
-| **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) |
+| **ADR-002** | **Pile TypeScript de bout en bout** | ✅ **accepté** (8 sept. 2026) — *restreint au site public par ADR-014* |
 | **ADR-003** | **PostgreSQL unique, transactionnel, migrations versionnées** | ✅ **accepté** (9 sept. 2026) — *socle d'ADR-012* |
 | ADR-004 | Moteur de visio unique (LiveKit + E2EE) | 🟡 proposé — *phase 2.7* |
 | **ADR-005** | **Modèle d'accès : cumulatif vertical, cloisonné latéral, ouverture temporaire datée** | ✅ **accepté** (9 sept. 2026) |
@@ -1024,6 +1105,7 @@ plateforme, même plus pratique. C'est S6.
 | **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
 | **ADR-012** | **Le stockage est une ressource attachée** — six règles, et une répétition de déménagement par lot | ✅ **accepté** (9 sept. 2026) |
 | **ADR-013** | **Les fichiers vivent hors de la base**, derrière une interface à deux mises en œuvre | ✅ **accepté** (9 sept. 2026) |
+| **ADR-014** | **Deux applications, un contrat** — le hub privé conservé en Python, les villes lui appartiennent | ✅ **accepté** (29 sept. 2026) |
 
 > **Un ADR « proposé » n'autorise rien.** Un prototype de la politique
 > d'accès (ADR-005) a été écrit puis supprimé le 9 septembre 2026 : il
