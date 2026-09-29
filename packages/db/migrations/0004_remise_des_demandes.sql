@@ -1,0 +1,1 @@
+ALTER TABLE "demandes" ADD COLUMN "remise_au_hub_le" timestamp with time zone;

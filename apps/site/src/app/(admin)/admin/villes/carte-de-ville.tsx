@@ -4,7 +4,7 @@ import {
   enregistrerVille,
   retirerVille,
 } from "../../../../actions/villes";
-import { CellulesDeVille } from "./cellules-de-ville";
+import { CellulesDeVille, CellulesEnLecture } from "./cellules-de-ville";
 import { T } from "../textes";
 
 /** Les dates viennent de PostgreSQL ; le champ HTML veut « AAAA-MM-JJ ». */
@@ -20,15 +20,21 @@ function pourChamp(date: Date | null): string {
  * tableau qui s'enregistre tout seul — et c'est plus sûr : le bureau d'une
  * ville se met à jour une fois l'an, souvent sur une connexion qui n'est pas
  * bonne, et un formulaire qui a été soumis a été soumis.
+ *
+ * En mode `miroir` (hub privé branché, ADR-014), le nom, le rang et les
+ * cellules appartiennent au hub : ils s'affichent sans se modifier, et les
+ * formulaires qui les changeraient n'existent pas. Seul le contact reste.
  */
 export function CarteDeVille({
   ville,
   rang,
   cellules,
+  miroir,
 }: {
   ville: LigneVille;
   rang: number;
   cellules: readonly LigneCellule[];
+  miroir: boolean;
 }) {
   return (
     <section className="carte-admin" style={{ marginBottom: 18 }}>
@@ -44,6 +50,7 @@ export function CarteDeVille({
               id={`nom-${ville.id}`}
               name="nom"
               defaultValue={ville.nom}
+              readOnly={miroir}
               required
             />
           </div>
@@ -58,6 +65,7 @@ export function CarteDeVille({
               type="number"
               min={0}
               defaultValue={rang}
+              readOnly={miroir}
             />
             <p className="aide-admin">{T.villes.rangIndice}</p>
           </div>
@@ -110,38 +118,48 @@ export function CarteDeVille({
         {T.villes.cellules}
       </p>
 
-      <CellulesDeVille villeId={ville.id} cellules={cellules} />
+      {miroir ? (
+        <CellulesEnLecture cellules={cellules} />
+      ) : (
+        <>
+          <CellulesDeVille villeId={ville.id} cellules={cellules} />
 
-      <form action={ajouterCellule} className="barre-boutons" style={{ marginTop: 14 }}>
-        <input type="hidden" name="villeId" value={ville.id} />
-        <input type="hidden" name="rang" value={cellules.length + 1} />
-        <input
-          className="champ-admin"
-          name="nom"
-          placeholder={T.villes.ajouterCellule}
-          required
-          style={{ maxWidth: 240 }}
-        />
-        <input
-          className="champ-admin"
-          name="nombreDeMembres"
-          type="number"
-          min={0}
-          placeholder={T.villes.membres}
-          aria-label={T.villes.membres}
-          style={{ maxWidth: 110 }}
-        />
-        <button type="submit" className="bouton bouton-second">
-          {T.villes.ajouterCellule}
-        </button>
-      </form>
+          <form
+            action={ajouterCellule}
+            className="barre-boutons"
+            style={{ marginTop: 14 }}
+          >
+            <input type="hidden" name="villeId" value={ville.id} />
+            <input type="hidden" name="rang" value={cellules.length + 1} />
+            <input
+              className="champ-admin"
+              name="nom"
+              placeholder={T.villes.ajouterCellule}
+              required
+              style={{ maxWidth: 240 }}
+            />
+            <input
+              className="champ-admin"
+              name="nombreDeMembres"
+              type="number"
+              min={0}
+              placeholder={T.villes.membres}
+              aria-label={T.villes.membres}
+              style={{ maxWidth: 110 }}
+            />
+            <button type="submit" className="bouton bouton-second">
+              {T.villes.ajouterCellule}
+            </button>
+          </form>
 
-      <form action={retirerVille} style={{ marginTop: 20 }}>
-        <input type="hidden" name="id" value={ville.id} />
-        <button type="submit" className="bouton bouton-danger">
-          {T.villes.supprimerVille}
-        </button>
-      </form>
+          <form action={retirerVille} style={{ marginTop: 20 }}>
+            <input type="hidden" name="id" value={ville.id} />
+            <button type="submit" className="bouton bouton-danger">
+              {T.villes.supprimerVille}
+            </button>
+          </form>
+        </>
+      )}
     </section>
   );
 }

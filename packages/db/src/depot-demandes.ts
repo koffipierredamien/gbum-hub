@@ -1,4 +1,4 @@
-import { asc, count, desc, eq } from "drizzle-orm";
+import { asc, count, desc, eq, isNull } from "drizzle-orm";
 import { ouvrirBase } from "./connexion";
 import { demandes, villes } from "./schema";
 
@@ -18,17 +18,23 @@ export interface NouvelleDemande {
   readonly message: string;
 }
 
-export async function enregistrerDemande(demande: NouvelleDemande): Promise<void> {
+/** Rend l'identifiant de la demande : c'est lui qui voyage jusqu'au hub privé. */
+export async function enregistrerDemande(demande: NouvelleDemande): Promise<string> {
   const { base, fermer } = ouvrirBase();
   try {
-    await base.insert(demandes).values({
-      sujet: demande.sujet,
-      nom: demande.nom,
-      contact: demande.contact,
-      villeId: demande.villeId,
-      villeLibre: demande.villeLibre,
-      message: demande.message,
-    });
+    const [ligne] = await base
+      .insert(demandes)
+      .values({
+        sujet: demande.sujet,
+        nom: demande.nom,
+        contact: demande.contact,
+        villeId: demande.villeId,
+        villeLibre: demande.villeLibre,
+        message: demande.message,
+      })
+      .returning({ id: demandes.id });
+    if (ligne === undefined) throw new Error("la demande n'a pas été enregistrée");
+    return ligne.id;
   } finally {
     await fermer();
   }
@@ -46,6 +52,8 @@ export interface DemandeRecue {
   readonly message: string;
   readonly traitee: boolean;
   readonly creeLe: Date;
+  /** Null tant que le hub privé n'a pas accusé réception (ADR-014, C6). */
+  readonly remiseAuHubLe: Date | null;
 }
 
 /**
@@ -68,6 +76,7 @@ export async function lireDemandes(): Promise<readonly DemandeRecue[]> {
         message: demandes.message,
         traitee: demandes.traitee,
         creeLe: demandes.creeLe,
+        remiseAuHubLe: demandes.remiseAuHubLe,
       })
       .from(demandes)
       .leftJoin(villes, eq(villes.id, demandes.villeId))
@@ -94,6 +103,53 @@ export async function marquerDemande(id: string, traitee: boolean): Promise<void
   const { base, fermer } = ouvrirBase();
   try {
     await base.update(demandes).set({ traitee }).where(eq(demandes.id, id));
+  } finally {
+    await fermer();
+  }
+}
+
+// --- La remise au hub privé (ADR-014) -------------------------------------
+
+/**
+ * Les demandes que le hub privé n'a pas encore reçues, les plus anciennes
+ * d'abord. Borné : une file qui aurait grossi pendant une longue panne se
+ * vide en plusieurs fois, sans faire attendre qui que ce soit.
+ */
+export async function lireDemandesARemettre(
+  limite = 20,
+): Promise<readonly DemandeRecue[]> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    return await base
+      .select({
+        id: demandes.id,
+        sujet: demandes.sujet,
+        nom: demandes.nom,
+        contact: demandes.contact,
+        villeNom: villes.nom,
+        villeLibre: demandes.villeLibre,
+        message: demandes.message,
+        traitee: demandes.traitee,
+        creeLe: demandes.creeLe,
+        remiseAuHubLe: demandes.remiseAuHubLe,
+      })
+      .from(demandes)
+      .leftJoin(villes, eq(villes.id, demandes.villeId))
+      .where(isNull(demandes.remiseAuHubLe))
+      .orderBy(asc(demandes.creeLe))
+      .limit(limite);
+  } finally {
+    await fermer();
+  }
+}
+
+export async function marquerRemise(id: string, quand: Date): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base
+      .update(demandes)
+      .set({ remiseAuHubLe: quand })
+      .where(eq(demandes.id, id));
   } finally {
     await fermer();
   }

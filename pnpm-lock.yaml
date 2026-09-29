@@ -44,6 +44,9 @@ importers:
 
   apps/site:
     dependencies:
+      '@gbum/contrat':
+        specifier: workspace:*
+        version: link:../../packages/contrat
       '@gbum/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -96,6 +99,19 @@ importers:
         version: 4.23.13
 
   outils/eslint-regles: {}
+
+  packages/contrat:
+    dependencies:
+      '@gbum/core':
+        specifier: workspace:*
+        version: link:../core
+      zod:
+        specifier: ^4.6.1
+        version: 4.6.1
+    devDependencies:
+      tsx:
+        specifier: ^4.20.7
+        version: 4.23.13
 
   packages/core: {}
 

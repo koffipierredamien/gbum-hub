@@ -10,6 +10,7 @@
     "types": "tsc --noEmit"
   },
   "dependencies": {
+    "@gbum/contrat": "workspace:*",
     "@gbum/core": "workspace:*",
     "@gbum/db": "workspace:*",
     "@gbum/identite": "workspace:*",

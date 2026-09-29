@@ -156,11 +156,29 @@ export const T = {
     membres: "Membres",
     aucuneVille:
       "Aucune ville enregistrée. Le site public affiche la liste provisoire livrée avec lui, et annonce qu'elle est à compléter.",
+    miroirTitre: "Les villes viennent du hub privé",
+    miroirTexte:
+      "Le hub privé est propriétaire des villes et des cellules (ADR-014) : on les crée, les renomme et les retire là-bas, et elles arrivent ici par « Synchroniser ». Seul le contact du bureau se saisit encore sur cet écran.",
+    synchroniser: "Synchroniser maintenant",
+    synchroOk: "Synchronisé : les villes du hub privé sont en ligne.",
+    synchroEchec: {
+      "non-configure": "Le hub privé n'est pas configuré (HUB_PRIVE_URL, CONTRAT_CLE).",
+      injoignable: "Le hub privé ne répond pas. Le site garde sa dernière copie.",
+      refuse: "Le hub privé a refusé la demande. Vérifiez la clé des deux côtés.",
+      signature:
+        "La réponse n'était pas signée par la bonne clé : elle a été ignorée. Le site garde sa dernière copie.",
+      "hors-contrat":
+        "La réponse ne respectait pas le contrat : elle a été ignorée. Le site garde sa dernière copie.",
+    } as Record<string, string>,
   },
   demandes: {
     titre: "Demandes reçues",
     accroche:
-      "Les messages envoyés par les formulaires du site. Ils ne partent nulle part ailleurs — l'alerte automatique au bureau de la ville reste à brancher.",
+      "Les messages envoyés par les formulaires du site. Quand le hub privé est branché, chacun lui est remis, et ses administrateurs sont prévenus.",
+    remise: "Remise au hub privé",
+    enAttente: "pas encore remise au hub privé",
+    remettre: "Remettre au hub privé maintenant",
+    remiseBilan: "demande(s) remise(s) ; en attente :",
     aucune: "Aucune demande reçue.",
     traiter: "Marquer comme traitée",
     rouvrir: "Rouvrir",

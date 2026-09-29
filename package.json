@@ -22,7 +22,8 @@
     "compte:creer": "pnpm --filter @gbum/administration-cli compte:creer",
     "villes:importer": "pnpm --filter @gbum/administration-cli villes:importer",
     "verifier:admin": "node outils/verifier-administration.mjs",
-    "mise-en-route": "pnpm --filter @gbum/administration-cli mise-en-route"
+    "mise-en-route": "pnpm --filter @gbum/administration-cli mise-en-route",
+    "verifier:contrat": "node outils/verifier-contrat.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

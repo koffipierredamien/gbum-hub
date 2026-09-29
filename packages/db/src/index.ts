@@ -6,3 +6,4 @@ export * from "./depot-demandes";
 export * from "./depot-comptes";
 export * from "./depot-editorial";
 export * from "./depot-contributions";
+export * from "./depot-miroir";

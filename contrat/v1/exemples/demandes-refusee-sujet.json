@@ -1,0 +1,11 @@
+{
+  "version": "1",
+  "id": "8d2f7c1e-4b5a-4c3d-9e8f-0a1b2c3d4e5f",
+  "creeLe": "2026-09-29T08:00:00Z",
+  "sujet": "inconnu",
+  "nom": "Visiteur d'exemple",
+  "contact": "visiteur@exemple.org",
+  "ville": null,
+  "villeLibre": null,
+  "message": "Message d'exemple."
+}

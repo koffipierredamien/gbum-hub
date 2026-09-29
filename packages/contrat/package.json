@@ -1,0 +1,20 @@
+{
+  "name": "@gbum/contrat",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "types": "tsc --build",
+    "generer": "tsx src/generer.ts"
+  },
+  "dependencies": {
+    "@gbum/core": "workspace:*",
+    "zod": "^4.6.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.7"
+  }
+}
