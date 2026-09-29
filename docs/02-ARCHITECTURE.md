@@ -1007,11 +1007,11 @@ plateforme, même plus pratique. C'est S6.
 
 ---
 
-## 11 quinquies. 🟡 ADR-014 — Deux applications, un contrat
+## 11 quinquies. ✅ ADR-014 — Deux applications, un contrat
 
-> **Proposé le 29 septembre 2026.** Le principe est décidé par Pierre le même
-> jour : le hub privé est conservé en Python, et les villes et cellules lui
-> appartiennent. **Le mécanisme du contrat (C2 à C6) attend sa validation.**
+> **Accepté le 29 septembre 2026** par Pierre : le principe — hub privé conservé
+> en Python, villes et cellules lui appartenant — puis le mécanisme du contrat
+> (C2 à C6), validé le même jour.
 > Remplace en partie ADR-001 (« une seule base ») et restreint ADR-002 au
 > site public.
 
@@ -1105,7 +1105,7 @@ message, mais personne n'est averti.
 | **ADR-010** | **Monolithe modulaire, pas microservices** | ✅ **accepté** (7 sept. 2026) |
 | **ADR-012** | **Le stockage est une ressource attachée** — six règles, et une répétition de déménagement par lot | ✅ **accepté** (9 sept. 2026) |
 | **ADR-013** | **Les fichiers vivent hors de la base**, derrière une interface à deux mises en œuvre | ✅ **accepté** (9 sept. 2026) |
-| ADR-014 | **Deux applications, un contrat** — le hub privé conservé en Python, les villes lui appartiennent | 🟡 proposé (29 sept. 2026) — *principe décidé, mécanisme C2 à C6 à valider* |
+| **ADR-014** | **Deux applications, un contrat** — le hub privé conservé en Python, les villes lui appartiennent | ✅ **accepté** (29 sept. 2026) |
 
 > **Un ADR « proposé » n'autorise rien.** Un prototype de la politique
 > d'accès (ADR-005) a été écrit puis supprimé le 9 septembre 2026 : il

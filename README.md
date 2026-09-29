@@ -16,7 +16,7 @@ Conception du hub du **GBUM** — Groupe Biblique Universitaire au Maroc.
 L'application actuelle, [`gbu-connect`](https://github.com/nikiemaesa/gbu-connect),
 reste **en production** sur gbu-maroc.org : c'est le **hub privé**. Il est conservé
 et assaini en place, et les deux hubs échangent par un contrat — voir ADR-014
-(proposé) dans [`docs/02-ARCHITECTURE.md`](docs/02-ARCHITECTURE.md).
+(accepté) dans [`docs/02-ARCHITECTURE.md`](docs/02-ARCHITECTURE.md).
 
 ## Où en sommes-nous
 
