@@ -1,6 +1,7 @@
 import { lireDemandes } from "@gbum/db";
 import { exigerCompte } from "../../../../auth/garde";
-import { basculerDemande } from "../../../../actions/demandes";
+import { basculerDemande, remettreMaintenant } from "../../../../actions/demandes";
+import { hubPrive } from "../../../../contrat/hub";
 import { T } from "../textes";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +12,17 @@ const DATE = new Intl.DateTimeFormat("fr-MA", {
   timeZone: "Africa/Casablanca",
 });
 
+/** « Traitée », « pas encore remise au hub privé » : ce qui reste à faire. */
+function etat(
+  demande: { readonly traitee: boolean; readonly remiseAuHubLe: Date | null },
+  branche: boolean,
+): string {
+  const traitee = demande.traitee ? ` · ${T.demandes.traitee}` : "";
+  const enAttente =
+    branche && demande.remiseAuHubLe === null ? ` · ${T.demandes.enAttente}` : "";
+  return traitee + enAttente;
+}
+
 /**
  * La boîte de réception des formulaires publics.
  *
@@ -19,8 +31,14 @@ const DATE = new Intl.DateTimeFormat("fr-MA", {
  * une demande marquée traitée par erreur doit pouvoir revenir, sans quoi on
  * hésite à cliquer et l'écran cesse de servir.
  */
-export default async function Demandes() {
+export default async function Demandes({
+  searchParams,
+}: {
+  searchParams: Promise<{ remises?: string; attente?: string }>;
+}) {
   await exigerCompte();
+  const branche = hubPrive() !== null;
+  const { remises, attente } = await searchParams;
   const demandes = await lireDemandes().catch((cause: unknown) => {
     console.error("lecture des demandes", { cause });
     return [];
@@ -30,6 +48,19 @@ export default async function Demandes() {
     <main className="corps-admin">
       <h1 className="titre-admin">{T.demandes.titre}</h1>
       <p className="accroche-admin">{T.demandes.accroche}</p>
+
+      {branche ? (
+        <form action={remettreMaintenant} style={{ marginBottom: 26 }}>
+          {remises === undefined ? null : (
+            <p role="status" className="filet-texte">
+              {remises} {T.demandes.remiseBilan} {attente ?? "0"}
+            </p>
+          )}
+          <button type="submit" className="bouton bouton-second">
+            {T.demandes.remettre}
+          </button>
+        </form>
+      ) : null}
 
       {demandes.length === 0 ? (
         <div className="filet">
@@ -47,7 +78,7 @@ export default async function Demandes() {
             {T.demandes.sujets[demande.sujet] ?? demande.sujet}
             {" · "}
             {DATE.format(demande.creeLe)}
-            {demande.traitee ? ` · ${T.demandes.traitee}` : ""}
+            {etat(demande, branche)}
           </p>
           <p style={{ fontSize: "1.125rem", fontWeight: 600, margin: "0 0 4px" }}>
             {demande.nom}

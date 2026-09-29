@@ -70,6 +70,24 @@ terminal, jamais dans un fichier du dépôt, jamais dans un message. Si elle
 fuite, Neon permet de la remplacer en un clic (Reset password) — il faut alors
 la recoller dans Vercel.
 
+## Brancher le hub privé (ADR-014)
+
+Quand le hub privé expose son côté du contrat, ajoutez dans Vercel
+(Settings → Environment Variables), puis **Redeploy** :
+
+| Name | Value |
+|---|---|
+| `HUB_PRIVE_URL` | l'adresse du hub privé, sans « / » final |
+| `CONTRAT_CLE` | la même clé que `CONTRAT_CLE` dans le `gbu.env` du hub privé |
+
+Puis **Administration → Villes et cellules → Synchroniser maintenant**. Les
+villes viennent désormais du hub ; seul le contact du bureau se saisit ici.
+Tant que l'une des deux variables manque, rien ne change : le site fonctionne
+comme avant.
+
+La clé est un secret, comme la chaîne Neon : jamais dans un fichier du dépôt,
+jamais dans un message.
+
 ## Si la construction échoue
 
 Copiez le message d'erreur de Vercel tel quel et envoyez-le-moi. Les deux

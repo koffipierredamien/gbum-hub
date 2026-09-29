@@ -44,6 +44,9 @@ importers:
 
   apps/site:
     dependencies:
+      '@gbum/contrat':
+        specifier: workspace:*
+        version: link:../../packages/contrat
       '@gbum/core':
         specifier: workspace:*
         version: link:../../packages/core

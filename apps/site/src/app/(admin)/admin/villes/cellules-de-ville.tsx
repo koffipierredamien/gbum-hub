@@ -54,3 +54,19 @@ export function CellulesDeVille({
     </>
   );
 }
+
+/** Les cellules telles que le hub privé les publie : on les lit, on ne les touche pas. */
+export function CellulesEnLecture({ cellules }: { cellules: readonly LigneCellule[] }) {
+  return (
+    <ul className="aide-admin">
+      {cellules.map((cellule) => (
+        <li key={cellule.id}>
+          {cellule.nom}
+          {cellule.nombreDeMembres === null
+            ? ""
+            : ` — ${String(cellule.nombreDeMembres)}`}
+        </li>
+      ))}
+    </ul>
+  );
+}

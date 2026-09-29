@@ -168,6 +168,63 @@ jobs:
           CLE_COLLECTE: cle-de-verification-continue
         run: pnpm verifier:admin
 
+  # ADR-014 : les deux hubs se parlent par un contrat. Ce parcours le joue en
+  # entier contre un faux hub privé qui signe comme le vrai — villes qui
+  # descendent, réponse mal signée ignorée, demandes qui remontent, panne qui
+  # ne fait rien perdre. Si le contrat casse, on l'apprend ici, pas en ligne.
+  contrat:
+    runs-on: ubuntu-latest
+    services:
+      base:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: gbum
+          POSTGRES_PASSWORD: gbum
+          POSTGRES_DB: gbum
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U gbum -d gbum"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgres://gbum:gbum@localhost:5433/gbum
+      # Une clé de vérification, et seulement de vérification : la vraie vit
+      # dans l'environnement des deux serveurs, jamais dans un dépôt.
+      CONTRAT_CLE: cle-de-verification-du-contrat
+      HUB_PRIVE_URL: http://localhost:4010
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - name: Monter la base et le compte de vérification
+        env:
+          COMPTE_COURRIEL: sn@exemple.org
+          COMPTE_NOM: Vérification
+          COMPTE_MOT_DE_PASSE: motdepassedetest2026
+          COMPTE_ROLE: technique
+        run: |
+          pnpm base:migrer
+          pnpm compte:creer
+
+      - name: Le faux hub privé
+        run: |
+          node outils/faux-hub-prive.mjs 4010 &
+          until curl -s http://localhost:4010/temoin/demandes > /dev/null; do sleep 1; done
+
+      - name: Construire et mettre en ligne le site, branché au faux hub
+        run: |
+          pnpm --filter @gbum/site build
+          pnpm --filter @gbum/site start &
+          until curl -sf http://localhost:3000/fr > /dev/null; do sleep 1; done
+
+      - name: Les villes descendent, les demandes remontent, rien ne se perd
+        run: pnpm verifier:contrat
+
   # La seule étape de la mise en ligne que je n'ai pas pu jouer dans mon
   # atelier : le réseau y bloque le registre d'images public. Ici, elle se joue
   # à chaque envoi de code — et si l'image cesse un jour de se construire, on

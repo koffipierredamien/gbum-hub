@@ -81,6 +81,7 @@ intégration continue :
 pnpm verifier           # types + linter + mise en forme + tests
 pnpm verifier:acces     # WCAG 2.2 AA sur les 18 pages — bloquant
 pnpm verifier:admin     # le parcours complet de l'administration — bloquant
+pnpm verifier:contrat   # le contrat avec le hub privé, contre un faux hub — bloquant
 ```
 
 Les deux dernières demandent que le site tourne (`pnpm dev` ou

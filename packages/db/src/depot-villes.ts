@@ -107,6 +107,30 @@ export async function modifierVille(
   }
 }
 
+/**
+ * Le seul contact du bureau, sans toucher au nom ni au rang : quand le hub
+ * privé est branché (ADR-014), ce sont les siens, et l'administration du site
+ * n'écrit plus que ce qui lui appartient encore.
+ */
+export async function modifierContactVille(
+  id: string,
+  entree: {
+    bureauCourriel: string | null;
+    bureauMandatDebut: Date | null;
+    bureauMandatFin: Date | null;
+  },
+): Promise<void> {
+  const { base, fermer } = ouvrirBase();
+  try {
+    await base
+      .update(villes)
+      .set({ ...entree, modifieLe: new Date() })
+      .where(eq(villes.id, id));
+  } finally {
+    await fermer();
+  }
+}
+
 /** Les cellules d'une ville partent avec elle : c'est la cascade du schéma. */
 export async function supprimerVille(id: string): Promise<void> {
   const { base, fermer } = ouvrirBase();

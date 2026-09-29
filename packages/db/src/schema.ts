@@ -91,6 +91,12 @@ export const demandes = pgTable("demandes", {
   message: text("message").notNull(),
   traitee: boolean("traitee").notNull().default(false),
   creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
+  /**
+   * L'instant où le hub privé a accusé réception (ADR-014, C6). Vide tant que
+   * la remise n'a pas abouti : la demande reste ici, visible, et repart à la
+   * prochaine occasion. Rien ne se perd parce qu'un serveur était injoignable.
+   */
+  remiseAuHubLe: timestamp("remise_au_hub_le", { withTimezone: true }),
 });
 
 /**

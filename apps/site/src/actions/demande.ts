@@ -1,14 +1,19 @@
 "use server";
 
+import { after } from "next/server";
 import { z } from "zod";
 import { enregistrerDemande } from "@gbum/db";
+import { SUJETS } from "@gbum/contrat";
+import { remettreLesDemandes } from "../contrat/remettre";
 
 /**
  * La frontière (R4) : tout ce qui entre est validé par un schéma, et devient
  * un type sûr. Le cœur ne re-vérifie pas — il sait.
  */
 const Demande = z.object({
-  sujet: z.enum(["rejoindre", "soutenir", "question", "autre", "souvenir"]),
+  // La liste du contrat avec le hub privé : écrite une fois (R5), pour que le
+  // site ne puisse pas accepter un sujet que le hub refuserait.
+  sujet: z.enum(SUJETS),
   nom: z.string().trim().min(1).max(120),
   contact: z.string().trim().min(3).max(200),
   villeId: z.uuid().nullable(),
@@ -55,6 +60,13 @@ export async function envoyerDemande(
       villeId: analyse.data.villeId,
       villeLibre: analyse.data.villeLibre,
       message: analyse.data.message,
+    });
+    // ADR-014, C6 : la demande est enregistrée ICI d'abord, puis remise au hub
+    // privé APRÈS la réponse — le visiteur n'attend jamais un serveur qu'il ne
+    // connaît pas. Une remise qui échoue repartira avec la prochaine demande,
+    // ou depuis l'administration.
+    after(async () => {
+      await remettreLesDemandes();
     });
     return { type: "envoye" };
   } catch (cause) {
