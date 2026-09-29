@@ -21,9 +21,9 @@ function pourChamp(date: Date | null): string {
  * ville se met à jour une fois l'an, souvent sur une connexion qui n'est pas
  * bonne, et un formulaire qui a été soumis a été soumis.
  *
- * En mode `miroir` (hub privé branché, ADR-014), le nom, le rang et les
- * cellules appartiennent au hub : ils s'affichent sans se modifier, et les
- * formulaires qui les changeraient n'existent pas. Seul le contact reste.
+ * En mode `miroir` (hub privé branché, ADR-014), le nom, le rang, le contact
+ * du bureau et les cellules appartiennent au hub : ils s'affichent sans se
+ * modifier, et les boutons qui les changeraient n'existent pas.
  */
 export function CarteDeVille({
   ville,
@@ -79,6 +79,7 @@ export function CarteDeVille({
               name="bureauCourriel"
               type="email"
               defaultValue={ville.bureauCourriel ?? ""}
+              readOnly={miroir}
             />
           </div>
           <div className="grille-admin grille-2-admin">
@@ -92,6 +93,7 @@ export function CarteDeVille({
                 name="bureauMandatDebut"
                 type="date"
                 defaultValue={pourChamp(ville.bureauMandatDebut)}
+                readOnly={miroir}
               />
             </div>
             <div>
@@ -104,14 +106,17 @@ export function CarteDeVille({
                 name="bureauMandatFin"
                 type="date"
                 defaultValue={pourChamp(ville.bureauMandatFin)}
+                readOnly={miroir}
               />
             </div>
           </div>
         </div>
         <p className="aide-admin">{T.villes.mandatIndice}</p>
-        <button type="submit" className="bouton">
-          {T.villes.enregistrer}
-        </button>
+        {!miroir && (
+          <button type="submit" className="bouton">
+            {T.villes.enregistrer}
+          </button>
+        )}
       </form>
 
       <p className="etiquette-admin" style={{ marginTop: 26 }}>
