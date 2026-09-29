@@ -1,0 +1,14 @@
+{
+  "version": "1",
+  "emisLe": "2026-09-29T08:00:00Z",
+  "villes": [
+    {
+      "nom": "Ville d'exemple",
+      "rang": 1,
+      "cellules": [
+        { "nom": "Cellule d'exemple A", "nombreDeMembres": 9 },
+        { "nom": "Cellule d'exemple B", "nombreDeMembres": null }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "cle": "cle-de-demonstration-du-contrat",
+  "horodatage": 1790000000,
+  "corps": "{\"version\":\"1\",\"objet\":\"publications\"}",
+  "signature": "sha256=91490f43ce56f1909098c1b3ec978ced192eb59c05d2b639bac505dceddb5139"
+}

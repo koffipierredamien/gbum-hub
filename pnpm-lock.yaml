@@ -97,6 +97,19 @@ importers:
 
   outils/eslint-regles: {}
 
+  packages/contrat:
+    dependencies:
+      '@gbum/core':
+        specifier: workspace:*
+        version: link:../core
+      zod:
+        specifier: ^4.6.1
+        version: 4.6.1
+    devDependencies:
+      tsx:
+        specifier: ^4.20.7
+        version: 4.23.13
+
   packages/core: {}
 
   packages/db:
