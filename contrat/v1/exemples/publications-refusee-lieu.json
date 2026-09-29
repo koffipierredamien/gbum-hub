@@ -5,6 +5,7 @@
     {
       "nom": "Ville d'exemple",
       "rang": 1,
+      "bureau": null,
       "cellules": [{ "nom": "Cellule d'exemple A", "nombreDeMembres": 9, "lieu": "…" }]
     }
   ]
