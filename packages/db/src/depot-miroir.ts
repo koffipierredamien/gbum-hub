@@ -10,15 +10,21 @@ import { cellules, villes } from "./schema";
  * copie est remplacée d'un bloc, dans une transaction : un visiteur ne voit
  * jamais une moitié d'ancienne liste et une moitié de nouvelle.
  *
- * Ce qui n'appartient qu'au site est gardé : l'identifiant de chaque ville
- * (les demandes reçues y sont rattachées) et le contact de son bureau, que le
- * hub privé ne publie pas dans la version 1. Une ville reconnue par son NOM
- * garde les deux. Une ville que le hub ne publie plus disparaît du site : elle
- * a cessé d'être publique, et ADR-011 veut que ce retrait soit immédiat.
+ * Le contact du bureau vient aussi du hub (décision du 29/09/2026). Seul
+ * l'identifiant de chaque ville appartient au site — les demandes reçues y
+ * sont rattachées : une ville reconnue par son NOM le garde. Une ville que le
+ * hub ne publie plus disparaît du site : elle a cessé d'être publique, et
+ * ADR-011 veut que ce retrait soit immédiat.
  */
 export interface VilleDuHub {
   readonly nom: string;
   readonly rang: number;
+  /** Les dates sont des jours, « AAAA-MM-JJ », comme dans le contrat. */
+  readonly bureau: {
+    readonly courriel: string;
+    readonly mandatDebut: string;
+    readonly mandatFin: string;
+  } | null;
   readonly cellules: readonly {
     readonly nom: string;
     readonly nombreDeMembres: number | null;
@@ -64,8 +70,8 @@ async function retirerLesAutres(
 }
 
 /**
- * Une ville reconnue par son nom garde son identifiant et son contact ; une
- * ville nouvelle est créée. Rend les identifiants dans l'ordre de `publiees`.
+ * Une ville reconnue par son nom garde son identifiant ; une ville nouvelle
+ * est créée. Rend les identifiants dans l'ordre de `publiees`.
  */
 async function garderOuCreer(
   tx: Transaction,
@@ -75,23 +81,36 @@ async function garderOuCreer(
   const existantes = new Map(lignes.map((l) => [l.nom, l.id]));
   const ids: string[] = [];
   for (const ville of publiees) {
+    const valeurs = { rang: ville.rang, ...contactDuBureau(ville.bureau) };
     const id = existantes.get(ville.nom);
     if (id === undefined) {
       const [neuve] = await tx
         .insert(villes)
-        .values({ nom: ville.nom, rang: ville.rang })
+        .values({ nom: ville.nom, ...valeurs })
         .returning({ id: villes.id });
       if (neuve === undefined) throw new Error(`ville non créée : ${ville.nom}`);
       ids.push(neuve.id);
     } else {
       await tx
         .update(villes)
-        .set({ rang: ville.rang, modifieLe: new Date() })
+        .set({ ...valeurs, modifieLe: new Date() })
         .where(eq(villes.id, id));
       ids.push(id);
     }
   }
   return ids;
+}
+
+/**
+ * Un jour « AAAA-MM-JJ » devient minuit UTC ce jour-là : c'est ce que
+ * l'administration du site enregistrait déjà pour les mêmes champs.
+ */
+function contactDuBureau(bureau: VilleDuHub["bureau"]) {
+  return {
+    bureauCourriel: bureau?.courriel ?? null,
+    bureauMandatDebut: bureau === null ? null : new Date(bureau.mandatDebut),
+    bureauMandatFin: bureau === null ? null : new Date(bureau.mandatFin),
+  };
 }
 
 async function remplacerLesCellules(

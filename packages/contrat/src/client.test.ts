@@ -10,7 +10,12 @@ const PUBLICATIONS = {
   version: "1",
   emisLe: "2026-09-29T08:00:00Z",
   villes: [
-    { nom: "Ville d'essai", rang: 1, cellules: [{ nom: "A", nombreDeMembres: 4 }] },
+    {
+      nom: "Ville d'essai",
+      rang: 1,
+      bureau: null,
+      cellules: [{ nom: "A", nombreDeMembres: 4 }],
+    },
   ],
 };
 

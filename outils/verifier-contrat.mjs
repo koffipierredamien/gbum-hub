@@ -125,6 +125,16 @@ verifier(
   "ses cellules aussi",
   page.includes("cellule témoin a") && page.includes("cellule témoin b"),
 );
+verifier(
+  "et le contact de son bureau, donné par le hub",
+  (await ou.locator('a[href="mailto:bureau.temoin@exemple.org"]').count()) === 1,
+);
+await p.goto(`${B}/admin/villes`, { waitUntil: "load" });
+verifier(
+  "l'administration du site ne peut plus le modifier",
+  (await p.locator('input[name="bureauCourriel"]').first().getAttribute("readonly")) !==
+    null && (await p.locator('button:has-text("Enregistrer")').count()) === 0,
+);
 
 // 4 — la porte de revalidation refuse qui n'a pas la clé.
 const corps = JSON.stringify({ version: "1", objet: "publications" });

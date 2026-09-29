@@ -81,7 +81,8 @@ Quand le hub privé expose son côté du contrat, ajoutez dans Vercel
 | `CONTRAT_CLE` | la même clé que `CONTRAT_CLE` dans le `gbu.env` du hub privé |
 
 Puis **Administration → Villes et cellules → Synchroniser maintenant**. Les
-villes viennent désormais du hub ; seul le contact du bureau se saisit ici.
+villes, leurs cellules et le contact de leur bureau viennent désormais du
+hub, où le responsable de chaque ville les tient.
 Tant que l'une des deux variables manque, rien ne change : le site fonctionne
 comme avant.
 
