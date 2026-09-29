@@ -35,6 +35,15 @@ describe("les exemples de référence, rejoués aussi par le hub privé", () => 
     ).toBe(false);
   });
 
+  it("un mandat sans date lisible fait refuser la publication", () => {
+    const publication = lire("exemples/publications-valide.json") as {
+      villes: { bureau: { mandatFin: string } }[];
+    };
+    const [ville] = publication.villes;
+    if (ville !== undefined) ville.bureau.mandatFin = "fin août";
+    expect(Publications.safeParse(publication).success).toBe(false);
+  });
+
   it("une demande conforme est acceptée", () => {
     expect(Demande.safeParse(lire("exemples/demandes-valide.json")).success).toBe(true);
   });
