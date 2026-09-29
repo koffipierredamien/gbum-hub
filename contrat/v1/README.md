@@ -4,11 +4,11 @@ Ce dossier est la forme neutre du contrat décidé par ADR-014
 (`docs/02-ARCHITECTURE.md`). Il est lu par le site public (TypeScript) **et**
 copié tel quel dans le hub privé (Python).
 
-| Fichier                    | Sens             | Ce qu'il porte                                     |
-| -------------------------- | ---------------- | -------------------------------------------------- |
-| `publications.schema.json` | hub privé → site | villes, cellules (nom, effectif)                   |
-| `demandes.schema.json`     | site → hub privé | « Rejoindre », « Nous écrire »                     |
-| `exemples/`                | —                | exemples acceptés et refusés, vecteur de signature |
+| Fichier                    | Sens             | Ce qu'il porte                                      |
+| -------------------------- | ---------------- | --------------------------------------------------- |
+| `publications.schema.json` | hub privé → site | villes, contact du bureau, cellules (nom, effectif) |
+| `demandes.schema.json`     | site → hub privé | « Rejoindre », « Nous écrire »                      |
+| `exemples/`                | —                | exemples acceptés et refusés, vecteur de signature  |
 
 **La source est `packages/contrat`.** Ne modifiez pas ces fichiers à la main :
 changez le schéma zod, puis `pnpm --filter @gbum/contrat generer` et
