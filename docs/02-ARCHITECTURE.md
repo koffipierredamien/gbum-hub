@@ -1050,7 +1050,7 @@ activités                                 messages des visiteurs
 
 | # | Règle |
 |---|---|
-| **C1** | **Chaque donnée a un seul propriétaire.** Villes et cellules : le hub privé (décision du 29/09/2026). L'écran « Villes et cellules » du site public devient une copie en lecture. |
+| **C1** | **Chaque donnée a un seul propriétaire.** Villes, cellules et contact du bureau de chaque ville : le hub privé (décisions du 29/09/2026). L'écran « Villes et cellules » du site public devient une copie en lecture. |
 | **C2** | **Le contrat est un fichier** — un schéma JSON versionné (`v1`), présent à l'identique dans les deux dépôts et éprouvé par leurs deux intégrations continues. Un champ absent du contrat ne passe pas. |
 | **C3** | **Rien ne sort du hub privé qui ne soit marqué public**, et la règle « la publication s'arrête à la ville » (`packages/core/src/publication.ts`, ADR-011) s'applique **deux fois** : à l'émission par le hub privé, à la réception par le site. |
 | **C4** | **Chaque échange est signé** (HMAC-SHA256 du corps, clé partagée tenue dans l'environnement, jamais dans un dépôt) et **daté** (refus au-delà de cinq minutes). C'est le principe que le hub privé applique déjà à son robot WhatsApp (`app/wa.py`). |
