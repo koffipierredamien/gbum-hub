@@ -158,7 +158,7 @@ export const T = {
       "Aucune ville enregistrée. Le site public affiche la liste provisoire livrée avec lui, et annonce qu'elle est à compléter.",
     miroirTitre: "Les villes viennent du hub privé",
     miroirTexte:
-      "Le hub privé est propriétaire des villes et des cellules (ADR-014) : on les crée, les renomme et les retire là-bas, et elles arrivent ici par « Synchroniser ». Seul le contact du bureau se saisit encore sur cet écran.",
+      "Le hub privé est propriétaire des villes et des cellules (ADR-014) : on les crée, les renomme et les retire là-bas, et elles arrivent ici par « Synchroniser ». Le contact du bureau aussi : le responsable de la ville le saisit dans le hub privé.",
     synchroniser: "Synchroniser maintenant",
     synchroOk: "Synchronisé : les villes du hub privé sont en ligne.",
     synchroEchec: {

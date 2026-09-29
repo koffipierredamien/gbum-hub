@@ -26,10 +26,19 @@ const PORT = Number(process.argv[2] ?? 4010);
 const CLE = process.env["CONTRAT_CLE"] ?? "";
 if (CLE === "") throw new Error("CONTRAT_CLE n'est pas définie.");
 
+/** Un jour « AAAA-MM-JJ », à tant de jours d'aujourd'hui : le témoin ne vieillit pas. */
+const jour = (decalage) =>
+  new Date(Date.now() + decalage * 86_400_000).toISOString().slice(0, 10);
+
 const VILLES_TEMOINS = [
   {
     nom: "Ville témoin du contrat",
     rang: 1,
+    bureau: {
+      courriel: "bureau.temoin@exemple.org",
+      mandatDebut: jour(-30),
+      mandatFin: jour(300),
+    },
     cellules: [
       { nom: "Cellule témoin A", nombreDeMembres: 7 },
       { nom: "Cellule témoin B", nombreDeMembres: null },

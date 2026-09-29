@@ -7,7 +7,6 @@ import {
   creerCellule,
   creerVille,
   modifierCellule,
-  modifierContactVille,
   modifierVille,
   supprimerCellule,
   supprimerVille,
@@ -29,8 +28,8 @@ import { synchroniserVilles } from "../contrat/synchroniser";
  *
  * Quand le hub privé est branché (ADR-014, C1), il est le propriétaire des
  * villes et des cellules : les actions qui les créent, les renomment ou les
- * suppriment REFUSENT, au lieu de compter sur un bouton caché. Seul le
- * contact du bureau reste écrit ici — le hub ne le publie pas en version 1.
+ * suppriment REFUSENT, au lieu de compter sur un bouton caché. Le contact du
+ * bureau aussi : le hub le publie avec la ville (décision du 29/09/2026).
  */
 
 /** Le hub est propriétaire : une écriture ici serait effacée au prochain miroir. */
@@ -77,23 +76,19 @@ export async function ajouterVille(donnees: FormData): Promise<void> {
 
 export async function enregistrerVille(donnees: FormData): Promise<void> {
   await exigerCompte();
+  if (miroir()) return;
   const id = donnees.get("id");
   const analyse = Ville.safeParse(Object.fromEntries(donnees));
   if (typeof id !== "string" || !analyse.success) return;
 
-  const contact = {
+  await modifierVille(id, {
+    nom: analyse.data.nom,
+    rang: analyse.data.rang,
     bureauCourriel:
       analyse.data.bureauCourriel === "" ? null : analyse.data.bureauCourriel,
     bureauMandatDebut: dateOuNull(analyse.data.bureauMandatDebut),
     bureauMandatFin: dateOuNull(analyse.data.bureauMandatFin),
-  };
-  if (miroir()) await modifierContactVille(id, contact);
-  else
-    await modifierVille(id, {
-      nom: analyse.data.nom,
-      rang: analyse.data.rang,
-      ...contact,
-    });
+  });
   revalidatePath("/", "layout");
   revalidatePath("/admin/villes");
 }
