@@ -10,7 +10,8 @@
   "scripts": {
     "types": "tsc --build",
     "generer": "drizzle-kit generate",
-    "migrer": "tsx src/migrer.ts"
+    "migrer": "tsx src/migrer.ts",
+    "migrer:production": "tsx src/migrer-en-production.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.44.7",

@@ -70,6 +70,15 @@ terminal, jamais dans un fichier du dépôt, jamais dans un message. Si elle
 fuite, Neon permet de la remplacer en un clic (Reset password) — il faut alors
 la recoller dans Vercel.
 
+## Les migrations suivantes
+
+Après la première mise en route, plus besoin de la chaîne : chaque mise en
+**production** applique d'abord les migrations en attente, avec la
+`DATABASE_URL` que Vercel détient déjà (« migrations appliquées à la base de
+production » dans le journal de construction). Les aperçus ne migrent jamais :
+ils partagent la base de production, et une pull request non fusionnée ne
+doit pas la modifier.
+
 ## Brancher le hub privé (ADR-014)
 
 Quand le hub privé expose son côté du contrat, ajoutez dans Vercel
@@ -94,3 +103,5 @@ jamais dans un message.
 Copiez le message d'erreur de Vercel tel quel et envoyez-le-moi. Les deux
 causes probables sont le **Root Directory** oublié à l'étape 1.3, et une
 chaîne `DATABASE_URL` incomplète (il manque souvent la fin, `?sslmode=require`).
+En production, une base injoignable fait aussi échouer la construction, au
+moment des migrations : Vercel garde alors la version précédente en ligne.
