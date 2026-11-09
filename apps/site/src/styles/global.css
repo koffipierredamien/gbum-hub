@@ -1066,3 +1066,13 @@ select.champ {
   background: currentColor;
   opacity: 0.55;
 }
+
+/* L'adresse de contact, écrite en clair : elle doit pouvoir se couper, sinon
+   trente-cinq caractères d'un seul tenant débordent l'écran d'un téléphone. */
+.adresse-directe {
+  font-family: var(--police-sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 10px 0 18px;
+  overflow-wrap: anywhere;
+}

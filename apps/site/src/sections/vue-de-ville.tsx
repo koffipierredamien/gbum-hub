@@ -26,6 +26,7 @@ export async function VueDeVille({
   nomDeSecours: string;
 }) {
   const t = await getTranslations("ouNousSommes");
+  const c = await getTranslations("commun");
   const nom = ville?.nom ?? nomDeSecours;
   const cellules = ville?.cellules ?? [];
 
@@ -82,8 +83,11 @@ export async function VueDeVille({
               texte={t("mandatEchuTexte")}
               surface="terre"
             />
-            <Link href="/nous-ecrire" className="cta">
-              {t("contactAction", { ville: nom })} <Fleche />
+            <a className="cta" href={`mailto:${c("courrielNational")}`}>
+              {c("ecrireAuSecretariat")} <Fleche />
+            </a>
+            <Link href="/nous-ecrire" className="lien-souligne">
+              <span>{t("contactAction", { ville: nom })}</span>
             </Link>
           </>
         )}

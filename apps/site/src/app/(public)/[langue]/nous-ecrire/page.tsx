@@ -28,6 +28,7 @@ export default async function NousEcrire({
 }) {
   await preparerLangue(params);
   const t = await getTranslations("nousEcrire");
+  const c = await getTranslations("commun");
   const lecture = await lireVillesPubliees(horlogeSysteme.maintenant());
 
   return (
@@ -37,6 +38,19 @@ export default async function NousEcrire({
         display={t("display")}
         accroche={t("accroche")}
       />
+
+      {/* L'adresse en clair, AVANT le formulaire. Tant que les bureaux de
+          ville n'ont pas de contact publié, quelqu'un qui veut joindre le
+          mouvement doit pouvoir le faire sans remplir quoi que ce soit. */}
+      <Bande surface="creme">
+        <p className="etiquette accent">{t("directTitre")}</p>
+        {/* L'adresse hors du bouton : dans un bouton, trente-cinq caractères
+            débordent l'écran d'un téléphone. Mesuré à 393 px le 9/11/2026. */}
+        <p className="adresse-directe">{c("courrielNational")}</p>
+        <a className="cta" href={`mailto:${c("courrielNational")}`}>
+          {c("ecrireAuSecretariat")} <Fleche />
+        </a>
+      </Bande>
 
       <Bande surface="sable">
         <FormulaireDemande
