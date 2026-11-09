@@ -36,6 +36,7 @@ const DUREE_MS = 7000;
 export interface PhotoDuDefile {
   readonly chemin: string;
   readonly description: string;
+  readonly etiquette?: string;
 }
 
 export function DefileImages({ photos = [] }: { photos?: readonly PhotoDuDefile[] }) {
@@ -79,6 +80,10 @@ export function DefileImages({ photos = [] }: { photos?: readonly PhotoDuDefile[
           />
         ))}
       </div>
+
+      {photos[actif]?.etiquette === undefined ? null : (
+        <p className="etiquette-photo">{photos[actif].etiquette}</p>
+      )}
 
       <div className="commandes">
         <div role="group" aria-label={t("choisirVue")} style={{ display: "flex" }}>

@@ -22,12 +22,19 @@ const Photo = z.object({
     // accent ou espace se comporte différemment selon le serveur qui le sert.
     .regex(/^[A-Za-z0-9._-]+$/, "nom de fichier : lettres, chiffres, . _ - seulement"),
   description: z.string().trim().min(3),
+  /**
+   * L'étiquette posée SUR la photo : « Camp d'Ifrane 2026 », « Sidi Othmane ».
+   * Courte, factuelle, jamais un slogan — elle dit où et quand, ce que la
+   * description ne peut pas porter seule pour qui voit l'image.
+   */
+  etiquette: z.string().trim().min(2).max(40).optional(),
   usage: z.literal("accueil"),
 });
 
 export interface PhotoPubliee {
   readonly chemin: string;
   readonly description: string;
+  readonly etiquette?: string;
 }
 
 function lire(): readonly PhotoPubliee[] {
@@ -41,6 +48,7 @@ function lire(): readonly PhotoPubliee[] {
   return analyse.data.map((photo) => ({
     chemin: `/photos/${photo.fichier}`,
     description: photo.description,
+    ...(photo.etiquette === undefined ? {} : { etiquette: photo.etiquette }),
   }));
 }
 

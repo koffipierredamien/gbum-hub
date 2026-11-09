@@ -32,7 +32,7 @@ export async function Ouverture() {
           </div>
         ) : null}
         <div style={{ flexGrow: 1 }} />
-        <div style={{ padding: "0 var(--gouttiere) 62px" }}>
+        <div style={{ padding: "0 var(--gouttiere) 92px" }}>
           <p className="etiquette" style={{ color: "var(--sur-encre)" }}>
             {t("eyebrow")}
           </p>

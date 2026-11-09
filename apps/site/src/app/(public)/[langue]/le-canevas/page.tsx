@@ -5,6 +5,7 @@ import { Bande } from "../../../../composants/bande";
 import { Attente } from "../../../../composants/attente";
 import { SectionTitre } from "../../../../composants/section-titre";
 import { Fleche } from "../../../../composants/fleche";
+import { CANEVAS, nombreDEtudes } from "../../../../donnees/canevas";
 
 export async function generateMetadata() {
   const t = await getTranslations("leCanevas");
@@ -19,7 +20,6 @@ export default async function LeCanevas({
 }) {
   await preparerLangue(params);
   const t = await getTranslations("leCanevas");
-  const c = await getTranslations("commun");
 
   return (
     <>
@@ -30,14 +30,42 @@ export default async function LeCanevas({
       />
 
       <Bande surface="terre">
-        <p className="etiquette accent">{t("anneeEyebrow")}</p>
-        <p className="titre-serif">{t("anneeTitre")}</p>
-        <Attente
-          titre={t("anneeAttenteTitre")}
-          texte={t("anneeAttenteTexte")}
-          lien={{ texte: c("vousAvezCetteInformation"), href: "/nous-ecrire" }}
-          surface="terre"
-        />
+        <p className="etiquette accent">
+          {t("anneeEyebrow")} · {CANEVAS.annee}
+        </p>
+        <h2 className="titre-serif">{CANEVAS.titre}</h2>
+        <p className="etiquette att-terre">{CANEVAS.reference}</p>
+        <p
+          className="petit"
+          style={{ maxWidth: "var(--largeur-texte)", marginTop: 14 }}
+        >
+          {CANEVAS.presentation}
+        </p>
+
+        <p className="etiquette att-terre" style={{ marginTop: 26 }}>
+          {t("etudesCompte", { combien: nombreDEtudes(CANEVAS) })}
+        </p>
+
+        {CANEVAS.parties.map((partie) => (
+          <div key={partie.nom} style={{ marginTop: 18 }}>
+            <p className="sous-titre" style={{ margin: 0 }}>
+              {partie.nom}
+            </p>
+            <ul className="liste-etudes">
+              {partie.etudes.map((etude) => (
+                <li key={etude}>{etude}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <a
+          className="cta"
+          href={CANEVAS.document}
+          style={{ marginTop: 26, display: "inline-flex" }}
+        >
+          {t("telecharger")} <Fleche />
+        </a>
       </Bande>
 
       <Bande surface="creme">

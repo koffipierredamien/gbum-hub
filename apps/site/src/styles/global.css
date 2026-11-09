@@ -1023,3 +1023,46 @@ select.champ {
     display: none;
   }
 }
+
+/* L'étiquette posée sur la photo de l'ouverture : où et quand.
+   Elle se tient au-dessus des commandes du défilé, jamais devant le titre. */
+.etiquette-photo {
+  position: absolute;
+  bottom: 58px;
+  inset-inline-start: var(--gouttiere);
+  z-index: 3;
+  margin: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(42, 33, 27, 0.9);
+  color: var(--creme);
+  font-family: var(--police-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* La liste des études du canevas : lisible, sans puce bavarde. */
+.liste-etudes {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--largeur-texte);
+}
+.liste-etudes li {
+  padding: 5px 0 5px 18px;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.liste-etudes li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 14px;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}

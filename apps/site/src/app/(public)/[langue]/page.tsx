@@ -5,16 +5,14 @@ import { BlocTheme } from "../../../composants/bloc-theme";
 import { DefileVilles } from "../../../composants/defile-villes";
 import { lireVillesPubliees } from "../../../donnees/villes";
 import { horlogeSysteme } from "@gbum/core";
+// Chiffres, VieDuMouvement, Voix, CeQuiVient et TempsFort existent toujours
+// dans « sections/accueil » : ils ne sont pas importés tant qu'ils n'ont rien
+// à montrer. Les réimporter suffit à les remettre.
 import {
   Accroche,
   AppelARejoindre,
-  CeQuiVient,
-  Chiffres,
   Ouverture,
   Pratiques,
-  TempsFort,
-  VieDuMouvement,
-  Voix,
 } from "../../../sections/accueil";
 
 export async function generateMetadata() {
@@ -64,11 +62,16 @@ export default async function Accueil({
         <BlocTheme />
       </Bande>
       <Pratiques />
-      <Chiffres />
-      <VieDuMouvement />
-      <Voix />
-      <CeQuiVient />
-      <TempsFort />
+      {/*
+        Retirées le 9 novembre 2026, pour la mobilisation en ville : les
+        chiffres du mouvement, la vie du mouvement, les témoignages, l'agenda
+        et le prochain temps fort n'ont encore AUCUN contenu. Cinq encadrés
+        « en attente » à la suite donnent d'un mouvement vivant l'image d'un
+        mouvement vide — c'est l'inverse de ce qu'un étudiant invité doit voir.
+
+        Elles reviennent dès que leur contenu arrive : il suffit de remettre
+        leur ligne ici. Les composants ne sont pas supprimés.
+      */}
       <AppelARejoindre />
     </>
   );
