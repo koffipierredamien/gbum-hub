@@ -1,5 +1,10 @@
 # Les villes du GBUM, et leurs cellules.
 #
+# Liste fournie par Pierre le 9 novembre 2026, dans l'ordre où le mouvement
+# veut les citer. Seule Casablanca a ses cellules détaillées ; les autres
+# villes sont publiées sans cellule tant que le mouvement ne les a pas
+# données — un nombre inventé serait pire qu'une absence.
+#
 # Une ville commence en début de ligne. Ses cellules sont indentées, avec leur
 # effectif. Les lignes vides et les lignes commençant par # sont ignorées.
 #
@@ -17,3 +22,22 @@ Casablanca
   Ferdaous        6
   La Gironde      3
   Hay Salam       2
+
+Rabat
+Tanger
+Meknès
+Béni Mellal
+Tétouan
+Agadir
+Al Hoceima
+Kénitra
+Settat
+Errachidia
+Fès
+Marrakech
+Mohammedia
+Oujda
+Ben Slimane
+El Jadida
+Khouribga
+Safi

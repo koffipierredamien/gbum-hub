@@ -69,7 +69,14 @@ export default async function OuNousSommes({
               {(reelles.length > 0
                 ? reelles.map((e) => ({
                     nom: e.ville.nom,
-                    cellules: `${String(e.ville.nombreDeCellules)} ${t("cellulesSuffixe")}`,
+                    // Zéro cellule connue n'est PAS zéro cellule : c'est une
+                    // liste que le mouvement ne nous a pas encore donnée.
+                    // Écrire « 0 cellules » sous Rabat ferait croire à un
+                    // étudiant de Rabat qu'il n'y a personne chez lui.
+                    cellules:
+                      e.ville.nombreDeCellules > 0
+                        ? `${String(e.ville.nombreDeCellules)} ${t("cellulesSuffixe")}`
+                        : t("cellulesInconnu"),
                   }))
                 : provisoires.map((nom) => ({
                     nom,
