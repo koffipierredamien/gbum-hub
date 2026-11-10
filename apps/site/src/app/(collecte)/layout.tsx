@@ -1,19 +1,6 @@
 import type { ReactNode } from "react";
-import { Hanken_Grotesk, Newsreader } from "next/font/google";
+import { sans, serif } from "../../fontes/fontes";
 import "../../styles/admin.css";
-
-const serif = Newsreader({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--police-serif-chargee",
-  display: "swap",
-});
-const sans = Hanken_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--police-sans-chargee",
-  display: "swap",
-});
 
 /**
  * La disposition du formulaire de collecte : une TROISIÈME racine.

@@ -32,6 +32,8 @@
   "carrousel": {
     "choisirVue": "Choisir une image",
     "vueNumero": "Image {numero}",
+    "precedente": "Image précédente",
+    "suivante": "Image suivante",
     "arreter": "Arrêter le défilé des images",
     "reprendre": "Reprendre le défilé des images"
   },
@@ -98,6 +100,8 @@
     "tempsFortTexte": "Une retraite dans le Moyen Atlas, avec les étudiants de tout le pays. Communion, détente, et des vies qui changent.",
     "tempsFortDatesTitre": "Dates et informations pratiques",
     "tempsFortDatesTexte": "À venir.",
+    "galerieEyebrow": "En images",
+    "galerieTitre": "Le mouvement, tel qu'il se vit.",
     "rejoindreTitre": "Il y a peut-être un groupe à côté de vous.",
     "rejoindreTexte": "Choisissez votre ville : nous vous mettons en relation avec le bureau, qui vous indiquera le jour, l'heure et le lieu."
   },

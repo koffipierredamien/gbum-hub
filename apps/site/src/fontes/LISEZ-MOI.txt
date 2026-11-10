@@ -1,0 +1,55 @@
+LES FONTES DU SITE
+==================
+
+Deux fichiers, déposés ici volontairement. Ils ne sont PAS téléchargés
+pendant la construction.
+
+  newsreader-latin.woff2        la serif des titres   (--police-serif-chargee)
+  hanken-grotesk-latin.woff2    la sans du texte      (--police-sans-chargee)
+
+POURQUOI ILS SONT DANS LE DÉPÔT
+-------------------------------
+Avant le 10 novembre 2026, `next/font/google` allait les chercher chez Google
+à CHAQUE construction. Le 10 novembre, Google a renvoyé autre chose que la
+feuille de style attendue, et la construction s'est arrêtée net :
+
+    An error occurred in `next/font`.
+    TypeError: Cannot read properties of null (reading '1')
+
+Le site ne pouvait plus être construit à cause d'un tiers. C'est exactement
+ce que la règle S6 interdit : on ne construit pas sur ce qu'on ne peut pas
+emporter. Les fontes étaient déjà servies par le site ; c'est la
+CONSTRUCTION qui dépendait encore de Google. Elle ne dépend plus de rien.
+
+CE QUE SONT CES FICHIERS
+------------------------
+Des fontes VARIABLES : un seul fichier couvre toutes les graisses. C'est
+pour cela qu'il n'y en a pas un par graisse — `layout.tsx` déclare l'étendue
+(400 à 600 pour la serif, 400 à 700 pour la sans) et le navigateur produit
+chaque graisse à partir du même fichier.
+
+Elles ne contiennent que le sous-ensemble « latin » (U+0000–00FF et
+quelques signes) : de quoi écrire le français et l'anglais, accents compris.
+Une langue qui demanderait d'autres caractères — l'arabe, par exemple —
+demanderait d'autres fichiers.
+
+LICENCE
+-------
+SIL Open Font License 1.1, pour les deux. Le texte est à côté
+(newsreader-OFL.txt, hanken-grotesk-OFL.txt) : la licence exige qu'il
+accompagne les fichiers. La redistribution est autorisée ; la revente des
+fontes seules ne l'est pas.
+
+LES METTRE À JOUR
+-----------------
+Rarement utile — une fonte ne se périme pas. Si besoin :
+
+  1. Ouvrir, dans un navigateur :
+     https://fonts.googleapis.com/css2?family=Newsreader:wght@400..600&display=swap
+     https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&display=swap
+  2. Dans chaque feuille, prendre le bloc commenté « /* latin */ » et
+     télécharger le fichier .woff2 de son « src ».
+  3. Remplacer le fichier ici, en gardant le même nom.
+  4. Reconstruire et REGARDER une page : une fonte qui ne charge pas ne
+     casse rien, elle se remplace silencieusement par celle du système.
+     Personne ne vous préviendra.

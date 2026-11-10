@@ -18,6 +18,70 @@ DESTINATION="${2:?url de la base de destination, qui doit être vide}"
 TRAVAIL="$(mktemp -d)"
 trap 'rm -rf "$TRAVAIL"' EXIT
 
+# --- Le client doit parler la même version que le serveur -------------------
+#
+# pg_dump écrit un fichier POUR LA VERSION QU'IL CONNAÎT. Un pg_dump 17 y met
+# « SET transaction_timeout = 0 » ; PostgreSQL 16 ne connaît pas ce paramètre,
+# et la restauration s'arrête sur cette ligne. La règle est celle de la
+# documentation PostgreSQL : on restaure avec un client de la version du
+# serveur, jamais plus récent.
+#
+# Trouvé le 10 novembre 2026 : l'image des serveurs de GitHub est passée au
+# client 17 pendant que la base de la répétition restait en 16. La répétition
+# échouait depuis le 1er octobre et personne ne le voyait — une vérification
+# rouge qu'on ne regarde plus ne vérifie rien.
+#
+# `outils/sauvegarde.sh` n'a pas ce problème : il tourne DANS le conteneur
+# PostgreSQL, donc avec le client de ce serveur-là, par construction.
+majeure_du_serveur() {
+  psql --quiet --no-align --tuples-only "$1" -c 'show server_version_num' \
+    | awk '{ print int($1 / 10000) }'
+}
+majeure_du_client() {
+  pg_dump --version | awk '{ print $3 }' | cut -d. -f1
+}
+
+SERVEUR_SOURCE="$(majeure_du_serveur "$SOURCE")"
+SERVEUR_DESTINATION="$(majeure_du_serveur "$DESTINATION")"
+if [ "$SERVEUR_SOURCE" != "$SERVEUR_DESTINATION" ]; then
+  echo "Le serveur de départ est en version $SERVEUR_SOURCE et celui d'arrivée en" >&2
+  echo "version $SERVEUR_DESTINATION. Cette répétition compare deux structures :" >&2
+  echo "entre deux versions majeures, elles diffèrent légitimement et la" >&2
+  echo "comparaison ne voudrait plus rien dire. Déménagez d'abord, changez de" >&2
+  echo "version ensuite." >&2
+  exit 2
+fi
+
+CLIENT="$(majeure_du_client)"
+if [ "$CLIENT" != "$SERVEUR_SOURCE" ]; then
+  # Plusieurs versions cohabitent souvent sur une même machine, rangées par
+  # version. On prend celle qui convient avant de se plaindre.
+  for DOSSIER_CLIENT in \
+    "/usr/lib/postgresql/$SERVEUR_SOURCE/bin" \
+    "/opt/homebrew/opt/postgresql@$SERVEUR_SOURCE/bin" \
+    "/usr/local/opt/postgresql@$SERVEUR_SOURCE/bin"; do
+    if [ -x "$DOSSIER_CLIENT/pg_dump" ]; then
+      PATH="$DOSSIER_CLIENT:$PATH"
+      export PATH
+      break
+    fi
+  done
+  CLIENT="$(majeure_du_client)"
+fi
+
+if [ "$CLIENT" != "$SERVEUR_SOURCE" ]; then
+  echo "Les outils PostgreSQL installés sont en version $CLIENT, les bases en" >&2
+  echo "version $SERVEUR_SOURCE. Il faut la même version majeure des deux côtés :" >&2
+  echo "un fichier écrit par un pg_dump d'une autre version ne se restaure pas de" >&2
+  echo "façon fiable, et la sauvegarde serait illisible le jour où l'on en a" >&2
+  echo "besoin. Installez le client $SERVEUR_SOURCE :" >&2
+  echo "  Debian/Ubuntu   sudo apt-get install -y postgresql-client-$SERVEUR_SOURCE" >&2
+  echo "  macOS           brew install postgresql@$SERVEUR_SOURCE" >&2
+  exit 2
+fi
+
+echo "0/5  client et serveurs PostgreSQL en version $SERVEUR_SOURCE"
+
 echo "1/5  sauvegarde de la base actuelle"
 # On exclut le schéma « drizzle » : il contient le registre des migrations
 # déjà appliquées, et ce registre appartient à la base d'ARRIVÉE, qui vient de

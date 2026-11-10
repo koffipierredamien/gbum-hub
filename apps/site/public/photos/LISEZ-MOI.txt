@@ -13,11 +13,33 @@ LES PHOTOGRAPHIES DU SITE
      {
        "fichier": "camp-ifrane-2025.jpg",
        "description": "Des étudiants réunis au camp d'Ifrane, été 2025",
-       "usage": "accueil"
+       "usage": "accueil",
+       "etiquette": "Camp d'Ifrane 2025"
      }
    ]
 
-   « usage » vaut « accueil » : ces images défilent en ouverture du site.
+   « usage » dit OÙ l'image est montrée, et il n'y a que deux valeurs :
+
+     "accueil"  le défilé en ouverture. L'image est RECADRÉE pour remplir la
+                bande : elle perd ses bords. Réservé aux plans serrés.
+     "galerie"  la grille plus bas dans la page. L'image garde ses
+                proportions. C'est là que vont les photos de groupe et les
+                montages, qu'un recadrage décapiterait.
+
+   COMBIEN AU DÉFILÉ ? HUIT AU PLUS.
+   Chaque image du défilé ajoute une pastille sous l'ouverture, et sur un
+   téléphone de 393 px de large la rangée de pastilles touche les boutons à
+   la neuvième. Au-delà de huit, mettez les suivantes en « galerie » : la
+   grille, elle, n'a pas de limite.
+
+   « etiquette » (facultatif) est le petit cartouche posé sur l'image : où et
+   quand, en quelques mots. Jamais un slogan. C'est le texte que l'on voit
+   écrit sur la photo ; pour le changer, il suffit de changer cette ligne-là
+   et de republier. Rien d'autre à toucher.
+
+   « pleineLargeur »: true (galerie seulement) donne à l'image toute la
+   largeur au lieu d'une case — pour la photo de groupe, parce que deux cents
+   visages dans une vignette ne se reconnaissent pas.
 
 3. Avant de déposer : effacez les données cachées de chaque photo (clic droit >
    Propriétés > Détails > Supprimer les propriétés et les informations
@@ -26,7 +48,11 @@ LES PHOTOGRAPHIES DU SITE
 
 4. N'y mettez que des photos dont les personnes ont accepté la publication.
 
+5. Les images sont servies telles quelles. Redimensionnez-les à 1600 px de
+   large au plus, et visez 150 à 300 Ko : une photo d'appareil fait 5 Mo, et
+   sur un téléphone en 4G la page met alors dix secondes à s'ouvrir.
+
 CE DOSSIER N'EST PAS UNE GALERIE DE SOUVENIRS.
-Quatre à six images, choisies, qui montrent ce qu'est le mouvement. Les albums
-d'événements viendront ailleurs, avec leur date et leur légende — c'est une
-autre fonction, et elle n'est pas encore construite.
+Une dizaine d'images, choisies, qui montrent ce qu'est le mouvement. Les
+albums d'événements viendront ailleurs, avec leur date et leur légende — c'est
+une autre fonction, et elle n'est pas encore construite.

@@ -5,28 +5,8 @@ import { LANGUES } from "../../../i18n/routage";
 import { preparerLangue } from "../../../i18n/langue";
 import { EnTete } from "../../../composants/en-tete";
 import { PiedDePage } from "../../../composants/pied-de-page";
-import { Hanken_Grotesk, Newsreader } from "next/font/google";
+import { sans, serif } from "../../../fontes/fontes";
 import "../../../styles/global.css";
-
-/**
- * Les deux fontes sont TÉLÉCHARGÉES À LA CONSTRUCTION et servies par le site
- * lui-même. Un `@import` vers Google aurait fait partir, à chaque visite, une
- * requête vers un tiers : plus lente depuis le Maroc, et qui apprend à ce
- * tiers qui lit nos pages. C'est la règle S6 appliquée aux fontes — on ne
- * construit pas sur ce qu'on ne peut pas emporter.
- */
-const serif = Newsreader({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--police-serif-chargee",
-  display: "swap",
-});
-const sans = Hanken_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--police-sans-chargee",
-  display: "swap",
-});
 
 export function generateStaticParams() {
   return LANGUES.map((langue) => ({ langue }));

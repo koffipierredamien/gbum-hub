@@ -59,6 +59,34 @@ jobs:
       DESTINATION: postgres://gbum:gbum@localhost:5433/gbum_ailleurs
     steps:
       - uses: actions/checkout@v4
+
+      # Les outils PostgreSQL installés sur les serveurs de GitHub suivent LEUR
+      # image, pas la nôtre : Ubuntu 26.04 fournit le client 18, la base
+      # ci-dessus est en 16. Or un pg_dump plus récent écrit un fichier que le
+      # serveur plus ancien refuse — « SET transaction_timeout », inconnu en 16
+      # — et la restauration s'arrête là. C'est ce qui a cassé cette
+      # vérification le 1er octobre 2026, sans que ce soit lisible.
+      #
+      # Plutôt que de courir après la version d'Ubuntu, on emprunte le client à
+      # l'image PostgreSQL elle-même : il est de la bonne version par
+      # construction, et le jour où la base change de version, cette ligne
+      # change avec elle. C'est le même raisonnement que « outils/sauvegarde.sh »,
+      # qui tourne DANS le conteneur pour la même raison.
+      - name: Emprunter le client PostgreSQL à l'image de la base
+        run: |
+          mkdir -p "$HOME/client-postgres"
+          for outil in pg_dump psql; do
+            {
+              echo '#!/bin/sh'
+              echo "exec docker run --rm -i --network host postgres:16-alpine $outil \"\$@\""
+            } > "$HOME/client-postgres/$outil"
+            chmod +x "$HOME/client-postgres/$outil"
+          done
+          echo "$HOME/client-postgres" >> "$GITHUB_PATH"
+          # On le prouve tout de suite : une erreur ici est lisible, la même
+          # erreur trois étapes plus loin ne l'est pas.
+          "$HOME/client-postgres/pg_dump" --version
+
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:

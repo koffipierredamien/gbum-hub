@@ -1,24 +1,11 @@
 import type { ReactNode } from "react";
-import { Hanken_Grotesk, Newsreader } from "next/font/google";
 import { compterDemandesNonTraitees } from "@gbum/db";
 import { compteConnecte } from "../../../auth/session";
 import { seDeconnecter } from "../../../actions/connexion";
 import { Onglets } from "./onglets";
 import { T } from "./textes";
+import { sans, serif } from "../../../fontes/fontes";
 import "../../../styles/admin.css";
-
-const serif = Newsreader({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--police-serif-chargee",
-  display: "swap",
-});
-const sans = Hanken_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--police-sans-chargee",
-  display: "swap",
-});
 
 export const metadata = { title: "Administration · GBU Maroc" };
 

@@ -32,6 +32,8 @@
   "carrousel": {
     "choisirVue": "Choose an image",
     "vueNumero": "Image {numero}",
+    "precedente": "Previous image",
+    "suivante": "Next image",
     "arreter": "Stop the image slideshow",
     "reprendre": "Resume the image slideshow"
   },
@@ -98,6 +100,8 @@
     "tempsFortTexte": "A retreat in the Middle Atlas, with students from across the country. Fellowship, rest, and lives that change.",
     "tempsFortDatesTitre": "Dates and practical details",
     "tempsFortDatesTexte": "To come.",
+    "galerieEyebrow": "In pictures",
+    "galerieTitre": "The movement, as it is lived.",
     "rejoindreTitre": "There may be a group right next to you.",
     "rejoindreTexte": "Choose your city: we put you in touch with its committee, which will tell you the day, the time and the place."
   },
