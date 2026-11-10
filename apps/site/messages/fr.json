@@ -32,6 +32,8 @@
   "carrousel": {
     "choisirVue": "Choisir une image",
     "vueNumero": "Image {numero}",
+    "precedente": "Image précédente",
+    "suivante": "Image suivante",
     "arreter": "Arrêter le défilé des images",
     "reprendre": "Reprendre le défilé des images"
   },

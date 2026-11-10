@@ -26,8 +26,16 @@ LES PHOTOGRAPHIES DU SITE
                 proportions. C'est là que vont les photos de groupe et les
                 montages, qu'un recadrage décapiterait.
 
+   COMBIEN AU DÉFILÉ ? HUIT AU PLUS.
+   Chaque image du défilé ajoute une pastille sous l'ouverture, et sur un
+   téléphone de 393 px de large la rangée de pastilles touche les boutons à
+   la neuvième. Au-delà de huit, mettez les suivantes en « galerie » : la
+   grille, elle, n'a pas de limite.
+
    « etiquette » (facultatif) est le petit cartouche posé sur l'image : où et
-   quand, en quelques mots. Jamais un slogan.
+   quand, en quelques mots. Jamais un slogan. C'est le texte que l'on voit
+   écrit sur la photo ; pour le changer, il suffit de changer cette ligne-là
+   et de republier. Rien d'autre à toucher.
 
    « pleineLargeur »: true (galerie seulement) donne à l'image toute la
    largeur au lieu d'une case — pour la photo de groupe, parce que deux cents

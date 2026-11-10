@@ -663,6 +663,26 @@ textarea.champ {
   background: var(--sur-encre);
   width: 22px;
 }
+/* Les trois boutons de droite : précédente, suivante, pause. L'espace entre
+   eux vient d'ici et non d'une marge, pour qu'aucun des trois ne touche son
+   voisin sur un écran de téléphone — deux cibles tactiles collées se
+   confondent sous le pouce. */
+.boutons-vue {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fleche-vue {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(42, 33, 27, 0.9);
+  border: 1px solid rgba(251, 246, 239, 0.55);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 .pause {
   width: 44px;
   height: 44px;

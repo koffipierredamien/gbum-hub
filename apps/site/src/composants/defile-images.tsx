@@ -47,6 +47,18 @@ export function DefileImages({ photos = [] }: { photos?: readonly PhotoDuDefile[
   const [arrete, setArrete] = useState(false);
   const [survol, setSurvol] = useState(false);
 
+  /**
+   * Changer de vue à la main ARRÊTE le défilé, toujours.
+   *
+   * Sans cela, la minuterie reprendrait la main deux secondes après un clic
+   * sur « suivante » et emporterait la photographie qu'on venait de choisir.
+   * C'est aussi l'un des trois moyens d'arrêt qu'exige WCAG 2.2.2.
+   */
+  function allerA(indice: number) {
+    setActif(((indice % combien) + combien) % combien);
+    setArrete(true);
+  }
+
   useEffect(() => {
     if (arrete || survol || combien < 2) return undefined;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
@@ -95,11 +107,7 @@ export function DefileImages({ photos = [] }: { photos?: readonly PhotoDuDefile[
               aria-label={t("vueNumero", { numero: index + 1 })}
               aria-current={index === actif}
               onClick={() => {
-                // Choisir une vue arrête le défilé : c'est le comportement
-                // attendu d'une pastille, et l'un des trois moyens d'arrêt
-                // exigés par WCAG 2.2.2.
-                setActif(index);
-                setArrete(true);
+                allerA(index);
               }}
             >
               <span />
@@ -109,19 +117,58 @@ export function DefileImages({ photos = [] }: { photos?: readonly PhotoDuDefile[
 
         <div style={{ flexGrow: 1 }} />
 
-        <button
-          type="button"
-          className="pause"
-          aria-pressed={arrete}
-          aria-label={arrete ? t("reprendre") : t("arreter")}
-          onClick={() => {
-            setArrete((etat) => !etat);
-          }}
-        >
-          <Icone lecture={arrete} />
-        </button>
+        <div className="boutons-vue">
+          <button
+            type="button"
+            className="fleche-vue"
+            aria-label={t("precedente")}
+            onClick={() => {
+              allerA(actif - 1);
+            }}
+          >
+            <Chevron vers="gauche" />
+          </button>
+          <button
+            type="button"
+            className="fleche-vue"
+            aria-label={t("suivante")}
+            onClick={() => {
+              allerA(actif + 1);
+            }}
+          >
+            <Chevron vers="droite" />
+          </button>
+
+          <button
+            type="button"
+            className="pause"
+            aria-pressed={arrete}
+            aria-label={arrete ? t("reprendre") : t("arreter")}
+            onClick={() => {
+              setArrete((etat) => !etat);
+            }}
+          >
+            <Icone lecture={arrete} />
+          </button>
+        </div>
       </div>
     </>
+  );
+}
+
+/** Le chevron des deux flèches. Décoratif : le bouton porte déjà son nom. */
+function Chevron({ vers }: { vers: "gauche" | "droite" }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d={vers === "gauche" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}
+        fill="none"
+        stroke="#FBF6EF"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 

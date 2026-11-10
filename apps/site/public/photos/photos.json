@@ -42,10 +42,23 @@
     "etiquette": "Camp d'Ifrane 2025"
   },
   {
+    "fichier": "camp-ifrane-2025-depart.jpg",
+    "description": "Une étudiante attend le train sur un quai de gare, en tee-shirt « Camp d'Ifrane 2025 spécial Bouznika » qu'elle désigne du pouce",
+    "usage": "accueil",
+    "etiquette": "Camp d'Ifrane 2025 · le départ"
+  },
+  {
     "fichier": "camp-ifrane-2025-photo-de-groupe.jpg",
     "description": "La photographie de groupe du camp d'Ifrane spécial Bouznika 2025 : plusieurs centaines d'étudiants rassemblés sur les gradins, sous les drapeaux",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2025 · tous ensemble",
+    "pleineLargeur": true
+  },
+  {
+    "fichier": "camp-ifrane-2026-photo-de-groupe.jpg",
+    "description": "La photographie de groupe du camp d'Ifrane spécial Bouznika 2026 : une vingtaine d'étudiants et de responsables réunis sur l'estrade",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · tous ensemble",
     "pleineLargeur": true
   },
   {
@@ -83,5 +96,11 @@
     "description": "Montage de sport au camp d'Ifrane : un match de football et une partie de basket entre campeurs",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane · le sport"
+  },
+  {
+    "fichier": "camp-ifrane-2026-enseignement.jpg",
+    "description": "Des étudiants assis et attentifs pendant un enseignement, au camp d'Ifrane spécial Bouznika 2026",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · l'enseignement"
   }
 ]
