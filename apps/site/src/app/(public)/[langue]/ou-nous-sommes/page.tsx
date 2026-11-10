@@ -3,12 +3,10 @@ import { horlogeSysteme } from "@gbum/core";
 import { preparerLangue } from "../../../../i18n/langue";
 import { Link } from "../../../../i18n/navigation";
 import { Bande } from "../../../../composants/bande";
-import { Attente } from "../../../../composants/attente";
 import { SectionTitre } from "../../../../composants/section-titre";
 import { DefileVilles } from "../../../../composants/defile-villes";
 import { Fleche } from "../../../../composants/fleche";
 import { lireVillesPubliees } from "../../../../donnees/villes";
-import { VueDeVille } from "../../../../sections/vue-de-ville";
 
 export const revalidate = 300;
 
@@ -37,10 +35,16 @@ export default async function OuNousSommes({
   const t = await getTranslations("ouNousSommes");
   const c = await getTranslations("commun");
 
+  // La liste des dix-neuf villes est dans le dépôt : elle vient du mouvement
+  // lui-même. La base ne sert qu'à la REMPLACER le jour où le hub privé la
+  // tiendra à jour. Une base en panne ne fait donc rien perdre, et surtout
+  // n'a plus à s'excuser sur la page : elle rend la main à une liste vraie.
   const lecture = await lireVillesPubliees(horlogeSysteme.maintenant());
-  const enPanne = !lecture.ok && lecture.erreur.type === "base-injoignable";
   const reelles = lecture.ok ? lecture.valeur : [];
-  const provisoires = c.raw("villes") as readonly string[];
+  const villes =
+    reelles.length > 0
+      ? reelles.map((entree) => entree.ville.nom)
+      : (c.raw("villes") as readonly string[]);
 
   return (
     <>
@@ -50,64 +54,23 @@ export default async function OuNousSommes({
         accroche={t("accroche")}
       />
 
-      <DefileVilles
-        villes={reelles.length > 0 ? reelles.map((e) => e.ville.nom) : provisoires}
-        {...(reelles.length > 0 ? {} : { mention: c("listeVillesMention") })}
-      />
+      <DefileVilles villes={villes} />
 
       <Bande surface="creme">
-        {enPanne ? (
-          <div role="alert">
-            <Attente titre={t("pannneTitre")} texte={t("pannneTexte")} />
-            <Link href="/nous-ecrire" className="cta">
-              {t("contactAction", { ville: "" }).trim()} <Fleche />
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className="grille grille-2">
-              {(reelles.length > 0
-                ? reelles.map((e) => ({
-                    nom: e.ville.nom,
-                    // Zéro cellule connue n'est PAS zéro cellule : c'est une
-                    // liste que le mouvement ne nous a pas encore donnée.
-                    // Écrire « 0 cellules » sous Rabat ferait croire à un
-                    // étudiant de Rabat qu'il n'y a personne chez lui.
-                    cellules:
-                      e.ville.nombreDeCellules > 0
-                        ? `${String(e.ville.nombreDeCellules)} ${t("cellulesSuffixe")}`
-                        : t("cellulesInconnu"),
-                  }))
-                : provisoires.map((nom) => ({
-                    nom,
-                    cellules: t("cellulesInconnu"),
-                  }))
-              ).map((ville) => (
-                <span className="carte" key={ville.nom}>
-                  <span className="sous-titre" style={{ fontSize: "1.125rem" }}>
-                    {ville.nom}
-                  </span>
-                  <span
-                    className={reelles.length > 0 ? "petit second" : "petit vide"}
-                    style={{ display: "block" }}
-                  >
-                    {ville.cellules}
-                  </span>
-                </span>
-              ))}
-            </div>
-            <div style={{ marginTop: 18 }}>
-              <Attente
-                titre={t("listeTitre")}
-                texte={t("listeTexte")}
-                lien={{ texte: c("vousAvezCetteInformation"), href: "/nous-ecrire" }}
-              />
-            </div>
-          </>
-        )}
+        {/* La publication s'arrête AU NOM DE LA VILLE. Ni cellule, ni
+            effectif, ni responsable : ce qui n'est pas publié ne peut pas se
+            retourner contre quelqu'un. Le reste se dit de vive voix, à qui a
+            écrit. */}
+        <div className="grille grille-2">
+          {villes.map((nom) => (
+            <span className="carte" key={nom}>
+              <span className="sous-titre" style={{ fontSize: "1.125rem" }}>
+                {nom}
+              </span>
+            </span>
+          ))}
+        </div>
       </Bande>
-
-      <VueDeVille ville={reelles[0]?.ville} nomDeSecours={provisoires[0] ?? ""} />
 
       <Bande surface="creme">
         <h2 className="titre">{t("aucuneVilleTitre")}</h2>

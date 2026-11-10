@@ -725,19 +725,37 @@ textarea.champ {
   color: inherit;
   white-space: nowrap;
 }
+/* Le logo du mouvement. Il est ROND : pas de fond, pas de coins arrondis à
+   lui inventer — le disque est dans l'image, détouré à son liseré doré. */
 .marque-jeton {
   width: 34px;
   height: 34px;
-  border-radius: 9px;
-  background: var(--ambre);
+  flex-shrink: 0;
+  display: block;
+}
+
+/* L'appartenance à l'IFES : la marque, puis la phrase. */
+.appartenance {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 14px;
+}
+/* La marque de l'IFES est en BLEU NUIT (#242052). Le pied est en encre
+   (#2A211B) : posée dessus telle quelle, elle disparaîtrait — 1,04:1, soit
+   rien. On la pose donc sur une pastille claire, qui est d'ailleurs son
+   usage d'origine. Repeindre le logo d'un tiers serait l'autre solution, et
+   la mauvaise : on ne retouche pas la marque de quelqu'un d'autre. */
+.appartenance-pastille {
+  background: var(--creme);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: inline-flex;
   flex-shrink: 0;
-  font-family: var(--police-serif);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--sur-ambre);
+}
+.appartenance img {
+  width: 64px;
+  height: auto;
+  display: block;
 }
 .nav {
   display: none;
@@ -1147,4 +1165,32 @@ select.champ {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+/* La pagination de la grille de photographies. */
+.galerie-pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+.bouton-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--encre);
+  background: none;
+  color: var(--encre);
+  font-family: var(--police-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.bouton-page:disabled {
+  opacity: 0.35;
+  cursor: default;
 }

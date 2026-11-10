@@ -40,7 +40,6 @@ export default async function Rejoindre({
       ? reelles.map((entree) => entree.ville.nom)
       : (c.raw("villes") as readonly string[]);
   const premiere = noms[0] ?? "";
-  const cellules = reelles[0]?.ville.cellules ?? [];
   const choixDeVille = reelles.map((entree) => ({
     id: entree.id,
     nom: entree.ville.nom,
@@ -68,11 +67,9 @@ export default async function Rejoindre({
             </span>
           ))}
         </div>
-        <Attente titre={t("listeAttenteTitre")} texte={t("listeAttenteTexte")} />
       </Bande>
 
       <Photo hauteur={240}>
-        <Attente titre={t("photoTitre")} texte={t("photoTexte")} surface="photo" />
         <div>
           <p className="etiquette">{t("etape", { numero: 2 })}</p>
           <p className="titre-serif" style={{ margin: 0 }}>
@@ -83,29 +80,6 @@ export default async function Rejoindre({
 
       <Bande surface="sable">
         <p className="corps second">{t("etape2Texte")}</p>
-        <p className="etiquette accent" style={{ marginTop: 22 }}>
-          {t("cellulesDe", { ville: premiere })}
-        </p>
-        {cellules.length > 0 ? (
-          cellules.map((cellule) => (
-            <div className="rang" key={cellule.nom}>
-              <span style={{ flexGrow: 1 }} className="sous-titre">
-                {cellule.nom}
-              </span>
-              <span className="petit second">{cellule.nombreDeMembres}</span>
-            </div>
-          ))
-        ) : (
-          <div className="rang">
-            <span style={{ flexGrow: 1 }} className="sous-titre vide">
-              —
-            </span>
-            <span className="petit vide">{t("membresInconnu")}</span>
-          </div>
-        )}
-        <p className="petit second" style={{ marginTop: 20 }}>
-          {t("cellulesNote")}
-        </p>
       </Bande>
 
       <Bande surface="creme">

@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Attente } from "./attente";
 
 /**
  * Le thème de l'année, sur l'accueil et sur « Le mouvement ».
@@ -11,16 +10,6 @@ import { Attente } from "./attente";
 export async function BlocTheme() {
   const c = await getTranslations("commun");
   const nom = c("themeNom");
-
-  if (nom === "") {
-    return (
-      <Attente
-        titre={c("themeTitre")}
-        texte={c("themeTexte")}
-        lien={{ texte: c("vousAvezCetteInformation"), href: "/nous-ecrire" }}
-      />
-    );
-  }
 
   return (
     <>
