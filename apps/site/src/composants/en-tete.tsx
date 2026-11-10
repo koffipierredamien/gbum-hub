@@ -33,9 +33,17 @@ export function EnTete() {
     <>
       <header className={`en-tete${surPhoto ? " en-tete-sur-photo" : ""}`}>
         <Link href="/" className="marque">
-          <span className="marque-jeton" aria-hidden="true">
-            G
-          </span>
+          {/* Le logo porte déjà « GBUM » et « Groupe Biblique Universitaire
+              Maroc » dans son dessin, et le nom est écrit juste à côté. Il est
+              donc DÉCORATIF : le nommer une seconde fois ferait répéter la
+              marque à un lecteur d'écran. */}
+          <img
+            className="marque-jeton"
+            src="/logo-gbum.png"
+            alt=""
+            width={34}
+            height={34}
+          />
           <span style={{ lineHeight: 1.15 }}>
             <span style={{ display: "block", fontSize: "0.90625rem", fontWeight: 700 }}>
               {t("marque")}

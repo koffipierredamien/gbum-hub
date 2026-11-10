@@ -10,9 +10,17 @@ export function PiedDePage() {
     <footer className="pied">
       <div className="pied-interieur">
         <Link href="/" className="marque">
-          <span className="marque-jeton" aria-hidden="true">
-            G
-          </span>
+          {/* Le logo porte déjà « GBUM » et « Groupe Biblique Universitaire
+              Maroc » dans son dessin, et le nom est écrit juste à côté. Il est
+              donc DÉCORATIF : le nommer une seconde fois ferait répéter la
+              marque à un lecteur d'écran. */}
+          <img
+            className="marque-jeton"
+            src="/logo-gbum.png"
+            alt=""
+            width={34}
+            height={34}
+          />
           <span style={{ fontSize: "0.90625rem", fontWeight: 700 }}>{t("marque")}</span>
         </Link>
 
@@ -22,9 +30,16 @@ export function PiedDePage() {
         >
           {p("devise")}
         </p>
-        <p className="petit second" style={{ margin: 0, maxWidth: 420 }}>
-          {p("appartenance")}
-        </p>
+        <div className="appartenance">
+          {/* Celui-ci N'EST PAS décoratif : il dit une appartenance que rien
+              d'autre ne montre à l'image, et son nom est le sigle lui-même. */}
+          <span className="appartenance-pastille">
+            <img src="/logo-ifes.png" alt={p("ifes")} width={64} height={50} />
+          </span>
+          <p className="petit second" style={{ margin: 0, maxWidth: 420 }}>
+            {p("appartenance")}
+          </p>
+        </div>
 
         <div className="pied-colonnes">
           {PIED.map((colonne) => (
