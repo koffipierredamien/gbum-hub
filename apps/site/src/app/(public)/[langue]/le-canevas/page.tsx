@@ -2,7 +2,6 @@ import { getTranslations } from "next-intl/server";
 import { preparerLangue } from "../../../../i18n/langue";
 import { Link } from "../../../../i18n/navigation";
 import { Bande } from "../../../../composants/bande";
-import { Attente } from "../../../../composants/attente";
 import { SectionTitre } from "../../../../composants/section-titre";
 import { Fleche } from "../../../../composants/fleche";
 import { CANEVAS, nombreDEtudes } from "../../../../donnees/canevas";
@@ -73,19 +72,6 @@ export default async function LeCanevas({
         <p className="petit second" style={{ maxWidth: "var(--largeur-texte)" }}>
           {t("archivesTexte")}
         </p>
-        <div className="grille grille-3" style={{ margin: "20px 0" }}>
-          {[1, 2, 3].map((n) => (
-            <div className="carte" key={n}>
-              <p className="sous-titre vide" style={{ fontSize: "1.125rem" }}>
-                {t("archiveTitreVide")}
-              </p>
-              <p className="petit vide" style={{ margin: 0 }}>
-                {t("archiveSousTitre")}
-              </p>
-            </div>
-          ))}
-        </div>
-        <Attente titre={t("archivesAttenteTitre")} texte={t("archivesAttenteTexte")} />
       </Bande>
 
       <Bande surface="sable">
@@ -96,11 +82,6 @@ export default async function LeCanevas({
         <Link href="/rejoindre" className="cta">
           {t("ensembleAction")} <Fleche />
         </Link>
-        <p style={{ marginTop: 14 }}>
-          <Link href="/la-vie-du-mouvement" className="lien-souligne">
-            <span>{t("ensembleLien")}</span>
-          </Link>
-        </p>
       </Bande>
     </>
   );

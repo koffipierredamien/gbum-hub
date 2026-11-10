@@ -22,10 +22,7 @@ const PAGES = [
   "",
   "/le-mouvement",
   "/ou-nous-sommes",
-  "/la-vie-du-mouvement",
-  "/agenda",
   "/le-canevas",
-  "/soutenir",
   "/nous-ecrire",
   "/rejoindre",
 ];

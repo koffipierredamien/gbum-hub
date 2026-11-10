@@ -3,7 +3,6 @@
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
 import { envoyerDemande, type EtatEnvoi } from "../actions/demande";
-import { Attente } from "./attente";
 import { Fleche } from "./fleche";
 
 export interface ChampTexte {
@@ -50,7 +49,6 @@ export function FormulaireDemande({
         <p className="petit second" style={{ maxWidth: "var(--largeur-texte)" }}>
           {c("envoiReussiTexte")}
         </p>
-        <Attente titre={c("notificationTitre")} texte={c("notificationTexte")} />
       </div>
     );
   }

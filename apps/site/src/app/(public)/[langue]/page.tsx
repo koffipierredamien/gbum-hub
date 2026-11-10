@@ -54,10 +54,7 @@ export default async function Accueil({
     <>
       <Ouverture />
       <Accroche />
-      <DefileVilles
-        villes={villes}
-        {...(reelles.length > 0 ? {} : { mention: c("listeVillesMention") })}
-      />
+      <DefileVilles villes={villes} />
       <Bande surface="sable">
         <BlocTheme />
       </Bande>

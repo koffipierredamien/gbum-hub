@@ -16,7 +16,6 @@ import { Attente } from "./attente";
  */
 export async function Frise() {
   const t = await getTranslations("leMouvement");
-  const c = await getTranslations("commun");
 
   const dates = [
     { annee: "1947", texte: t("frise1947") },
@@ -54,11 +53,7 @@ export async function Frise() {
       ) : (
         <div className="frise-point" key="manquant">
           <span className="frise-puce frise-puce-creuse" aria-hidden="true" />
-          <Attente
-            titre={t("friseManquantTitre")}
-            texte={t("friseManquantTexte")}
-            lien={{ texte: c("vousAvezCetteInformation"), href: "/nous-ecrire" }}
-          />
+          <Attente titre={t("friseManquantTitre")} texte={t("friseManquantTexte")} />
         </div>
       )}
 

@@ -1148,3 +1148,31 @@ select.champ {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
+/* La pagination de la grille de photographies. */
+.galerie-pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+.bouton-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--encre);
+  background: none;
+  color: var(--encre);
+  font-family: var(--police-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.bouton-page:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
