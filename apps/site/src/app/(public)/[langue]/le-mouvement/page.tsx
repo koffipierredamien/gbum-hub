@@ -31,6 +31,13 @@ export default async function LeMouvement({
         accroche={t("accroche")}
       />
 
+      <Bande surface="creme">
+        <p className="etiquette accent">{t("familleEyebrow")}</p>
+        <p className="corps" style={{ maxWidth: "var(--largeur-texte)" }}>
+          {t("familleTexte")}
+        </p>
+      </Bande>
+
       <Bande surface="encre">
         <p className="etiquette accent">{t("deviseEyebrow")}</p>
         <p className="titre-serif" style={{ margin: 0 }}>

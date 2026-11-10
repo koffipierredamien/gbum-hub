@@ -86,6 +86,15 @@ export function EnTete() {
           {t("rejoindre")}
         </Link>
 
+        {/* L'appartenance à l'IFES, en haut à droite. Sur sa pastille claire :
+            l'en-tête de l'accueil est posé sur une photographie voilée, et le
+            bleu nuit de cette marque y disparaîtrait. Masquée sous 700 px —
+            l'en-tête d'un téléphone porte déjà le logo, le nom, les langues et
+            le menu ; le pied de page, lui, la montre partout. */}
+        <span className="ifes-entete" aria-hidden="true">
+          <img src="/logo-ifes.png" alt="" width={44} height={34} />
+        </span>
+
         <button
           type="button"
           className="menu-bouton"

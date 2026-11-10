@@ -6,7 +6,7 @@ import { Bande } from "../../../../composants/bande";
 import { SectionTitre } from "../../../../composants/section-titre";
 import { DefileVilles } from "../../../../composants/defile-villes";
 import { Fleche } from "../../../../composants/fleche";
-import { lireVillesPubliees } from "../../../../donnees/villes";
+import { lireVillesPubliees, villesAAfficher } from "../../../../donnees/villes";
 
 export const revalidate = 300;
 
@@ -36,15 +36,12 @@ export default async function OuNousSommes({
   const c = await getTranslations("commun");
 
   // La liste des dix-neuf villes est dans le dépôt : elle vient du mouvement
-  // lui-même. La base ne sert qu'à la REMPLACER le jour où le hub privé la
-  // tiendra à jour. Une base en panne ne fait donc rien perdre, et surtout
-  // n'a plus à s'excuser sur la page : elle rend la main à une liste vraie.
+  // lui-même, et la base ne peut que la COMPLÉTER, jamais la réduire.
   const lecture = await lireVillesPubliees(horlogeSysteme.maintenant());
-  const reelles = lecture.ok ? lecture.valeur : [];
-  const villes =
-    reelles.length > 0
-      ? reelles.map((entree) => entree.ville.nom)
-      : (c.raw("villes") as readonly string[]);
+  const villes = villesAAfficher(
+    lecture.ok ? lecture.valeur : [],
+    c.raw("villes") as readonly string[],
+  );
 
   return (
     <>

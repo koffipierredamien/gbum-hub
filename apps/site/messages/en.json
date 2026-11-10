@@ -10,7 +10,8 @@
     "leMouvement": "The movement",
     "ouNousSommes": "Where we are",
     "leCanevas": "The study outline",
-    "nousEcrire": "Write to us"
+    "nousEcrire": "Write to us",
+    "accueil": "Home"
   },
   "pied": {
     "devise": "“To know Christ and to make Him known”",
@@ -129,7 +130,9 @@
     "renvoiAction": "See where we are",
     "friseGbumAnnee": "",
     "friseGbumTexte": "",
-    "renvoiLien": "The study material"
+    "renvoiLien": "The study material",
+    "familleEyebrow": "What it is",
+    "familleTexte": "The GBU is a family. It meets on campus every week — and in homes too, around a meal, a prayer, a passage of the Bible. People often arrive alone, far from home; they find brothers and sisters."
   },
   "ouNousSommes": {
     "titre": "Where we are",
@@ -156,7 +159,8 @@
     "ensembleTexte": "It is written to be opened in a cell group, out loud, with people. Find the one nearest you.",
     "ensembleAction": "Find my group",
     "etudesCompte": "{combien} studies, in six parts",
-    "telecharger": "Download the outline (PDF)"
+    "telecharger": "Download the outline (PDF)",
+    "couverture": "Cover of the 2026-2027 study material: silhouettes holding hands before a cross at sunset, beneath the title “The brotherly fellowship of disciples”"
   },
   "nousEcrire": {
     "titre": "Write to us",
