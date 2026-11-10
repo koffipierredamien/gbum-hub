@@ -6,6 +6,12 @@
     "etiquette": "Camp d'Ifrane 2026"
   },
   {
+    "fichier": "camp-ifrane-2025-victoire.jpg",
+    "description": "Des campeurs célèbrent bras levés à la fin d'un match, sur le terrain du camp d'Ifrane spécial Bouznika 2025",
+    "usage": "accueil",
+    "etiquette": "Camp d'Ifrane 2025 · la joie d'un match"
+  },
+  {
     "fichier": "camp-ifrane-2025-chants.jpg",
     "description": "Deux étudiantes chantent pendant la louange, devant l'équipe de musique du camp d'Ifrane spécial Bouznika 2025",
     "usage": "accueil",
@@ -43,6 +49,18 @@
     "pleineLargeur": true
   },
   {
+    "fichier": "camp-ifrane-2026-adoration.jpg",
+    "description": "Deux moments du camp d'Ifrane spécial Bouznika 2026 : une étudiante agenouillée en prière, et une étudiante qui chante au micro, la main levée",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · prière et chant"
+  },
+  {
+    "fichier": "camp-ifrane-2025-ensemble.jpg",
+    "description": "Une vingtaine d'étudiantes du GBUM posent ensemble, doigts levés, au camp d'Ifrane spécial Bouznika 2025",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2025 · entre étudiantes"
+  },
+  {
     "fichier": "camp-ifrane-2026-louange.jpg",
     "description": "Montage de scènes de louange au camp d'Ifrane spécial Bouznika 2026 : des étudiants chantent au micro et dansent",
     "usage": "galerie",
@@ -53,5 +71,17 @@
     "description": "Montage d'un temps de prière au camp d'Ifrane spécial Bouznika 2026 : des étudiants debout, les mains ouvertes",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2026 · prière"
+  },
+  {
+    "fichier": "camp-ifrane-jeux.jpg",
+    "description": "Montage de jeux au camp d'Ifrane : des étudiantes rient pendant un jeu de plein air, d'autres jouent aux cartes assises dans l'herbe",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane · les jeux"
+  },
+  {
+    "fichier": "camp-ifrane-sport.jpg",
+    "description": "Montage de sport au camp d'Ifrane : un match de football et une partie de basket entre campeurs",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane · le sport"
   }
 ]
