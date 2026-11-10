@@ -121,15 +121,36 @@ verifier(
   "la ville du hub apparaît sur « Où nous sommes »",
   page.includes(VILLE.toLowerCase()),
 );
+// Le site public PUBLIE LE NOM DE LA VILLE, ET RIEN DE PLUS. Les cellules et
+// le contact du bureau traversent bien le contrat — on le vérifie juste en
+// dessous, sur l'écran d'administration, qui lit la base — mais ils ne sont
+// plus affichés publiquement : décision du 10 novembre 2026. Ce qui n'est pas
+// publié ne peut pas se retourner contre quelqu'un.
+//
+// Les deux vérifications qui suivent tiennent ensemble : la donnée ARRIVE, et
+// elle NE FUIT PAS. Retirer la seconde reviendrait à ne plus rien garantir le
+// jour où quelqu'un réafficherait une cellule sans y penser.
 verifier(
-  "ses cellules aussi",
-  page.includes("cellule témoin a") && page.includes("cellule témoin b"),
+  "ses cellules ne sont PAS publiées",
+  !page.includes("cellule témoin a") && !page.includes("cellule témoin b"),
+);
+verifier(
+  "le contact de son bureau n'est PAS publié",
+  (await ou.locator('a[href="mailto:bureau.temoin@exemple.org"]').count()) === 0,
+);
+
+await p.goto(`${B}/admin/villes`, { waitUntil: "load" });
+const administration = await texte(p);
+verifier(
+  "ses cellules sont bien arrivées dans le miroir",
+  administration.includes("cellule témoin a") &&
+    administration.includes("cellule témoin b"),
 );
 verifier(
   "et le contact de son bureau, donné par le hub",
-  (await ou.locator('a[href="mailto:bureau.temoin@exemple.org"]').count()) === 1,
+  (await p.locator('input[name="bureauCourriel"]').first().inputValue()) ===
+    "bureau.temoin@exemple.org",
 );
-await p.goto(`${B}/admin/villes`, { waitUntil: "load" });
 verifier(
   "l'administration du site ne peut plus le modifier",
   (await p.locator('input[name="bureauCourriel"]').first().getAttribute("readonly")) !==
