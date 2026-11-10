@@ -31,7 +31,12 @@ export async function Galerie() {
             {...(photo.pleineLargeur === true ? { className: "galerie-large" } : {})}
           >
             <figure>
-              <img src={photo.chemin} alt={photo.description} loading="lazy" decoding="async" />
+              <img
+                src={photo.chemin}
+                alt={photo.description}
+                loading="lazy"
+                decoding="async"
+              />
               {photo.etiquette === undefined ? null : (
                 <figcaption>{photo.etiquette}</figcaption>
               )}

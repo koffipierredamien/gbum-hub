@@ -71,7 +71,9 @@ function lire(): readonly PhotoClassee[] {
     description: photo.description,
     usage: photo.usage,
     ...(photo.etiquette === undefined ? {} : { etiquette: photo.etiquette }),
-    ...(photo.pleineLargeur === undefined ? {} : { pleineLargeur: photo.pleineLargeur }),
+    ...(photo.pleineLargeur === undefined
+      ? {}
+      : { pleineLargeur: photo.pleineLargeur }),
   }));
 }
 

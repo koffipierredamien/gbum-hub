@@ -78,6 +78,17 @@ jobs:
       - name: Préparer une base d'arrivée vide
         run: psql "$SOURCE" -c "create database gbum_ailleurs"
 
+      # L'image des serveurs de GitHub fournit un client PostgreSQL plus récent
+      # que la base ci-dessus : un pg_dump 17 écrit « SET transaction_timeout »,
+      # que PostgreSQL 16 refuse, et la restauration s'arrête là. C'est ce qui a
+      # cassé cette vérification le 1er octobre 2026. On installe donc le client
+      # de la même version que le serveur ; le script le trouve tout seul dans
+      # /usr/lib/postgresql/16/bin, et refuse de continuer s'il ne le trouve pas.
+      - name: Le client PostgreSQL de la version du serveur
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends postgresql-client-16
+
       - name: Déménager, et comparer
         run: ./outils/repetition-demenagement.sh "$SOURCE" "$DESTINATION"
 
