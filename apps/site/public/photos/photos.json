@@ -6,10 +6,22 @@
     "etiquette": "Camp d'Ifrane 2026"
   },
   {
+    "fichier": "camp-ifrane-2025-chants.jpg",
+    "description": "Deux étudiantes chantent pendant la louange, devant l'équipe de musique du camp d'Ifrane spécial Bouznika 2025",
+    "usage": "accueil",
+    "etiquette": "Camp d'Ifrane 2025 · louange"
+  },
+  {
     "fichier": "camp-ifrane-2026-ramassage.jpg",
     "description": "Les campeurs réunis après avoir ramassé les déchets aux abords du site, camp d'Ifrane spécial Bouznika 2026",
     "usage": "accueil",
     "etiquette": "Bouznika · service de la cité"
+  },
+  {
+    "fichier": "camp-ifrane-2025-soiree.jpg",
+    "description": "Des campeurs rient, applaudissent et lèvent les mains pendant une soirée du camp d'Ifrane spécial Bouznika 2025",
+    "usage": "accueil",
+    "etiquette": "Camp d'Ifrane 2025 · soirée"
   },
   {
     "fichier": "rencontre-groupe-2026.jpg",
@@ -22,5 +34,24 @@
     "description": "Des étudiants du GBUM au camp d'Ifrane spécial Bouznika 2025",
     "usage": "accueil",
     "etiquette": "Camp d'Ifrane 2025"
+  },
+  {
+    "fichier": "camp-ifrane-2025-photo-de-groupe.jpg",
+    "description": "La photographie de groupe du camp d'Ifrane spécial Bouznika 2025 : plusieurs centaines d'étudiants rassemblés sur les gradins, sous les drapeaux",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2025 · tous ensemble",
+    "pleineLargeur": true
+  },
+  {
+    "fichier": "camp-ifrane-2026-louange.jpg",
+    "description": "Montage de scènes de louange au camp d'Ifrane spécial Bouznika 2026 : des étudiants chantent au micro et dansent",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · louange"
+  },
+  {
+    "fichier": "camp-ifrane-2026-priere.jpg",
+    "description": "Montage d'un temps de prière au camp d'Ifrane spécial Bouznika 2026 : des étudiants debout, les mains ouvertes",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · prière"
   }
 ]

@@ -4,6 +4,7 @@ import { Bande } from "../../../composants/bande";
 import { BlocTheme } from "../../../composants/bloc-theme";
 import { DefileVilles } from "../../../composants/defile-villes";
 import { lireVillesPubliees } from "../../../donnees/villes";
+import { Galerie } from "../../../sections/galerie";
 import { horlogeSysteme } from "@gbum/core";
 // Chiffres, VieDuMouvement, Voix, CeQuiVient et TempsFort existent toujours
 // dans « sections/accueil » : ils ne sont pas importés tant qu'ils n'ont rien
@@ -28,8 +29,7 @@ export async function generateMetadata() {
  * compte pas — c'est un filet, pas une bande ; l'ouverture non plus — c'est
  * une photographie.
  *
- *   photo · crème · [filet] · sable · crème · TERRE · crème · FORÊT · sable ·
- *   ENCRE · crème · [pied]
+ *   photo · crème · [filet] · sable · crème · sable · crème · [pied]
  */
 export default async function Accueil({
   params,
@@ -62,6 +62,7 @@ export default async function Accueil({
         <BlocTheme />
       </Bande>
       <Pratiques />
+      <Galerie />
       {/*
         Retirées le 9 novembre 2026, pour la mobilisation en ville : les
         chiffres du mouvement, la vie du mouvement, les témoignages, l'agenda
