@@ -122,7 +122,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
+      - name: Le navigateur de vérification
+        run: outils/installer-chromium.sh
 
       - name: Construire le site
         run: pnpm --filter @gbum/site build
@@ -164,7 +165,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
+      - name: Le navigateur de vérification
+        run: outils/installer-chromium.sh
 
       - name: Monter la base
         run: pnpm base:migrer
@@ -227,7 +229,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
+      - name: Le navigateur de vérification
+        run: outils/installer-chromium.sh
 
       - name: Monter la base et le compte de vérification
         env:
