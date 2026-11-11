@@ -6,7 +6,7 @@ import { Bande } from "../../../../composants/bande";
 import { SectionTitre } from "../../../../composants/section-titre";
 import { FormulaireDemande } from "../../../../composants/formulaire-demande";
 import { Fleche } from "../../../../composants/fleche";
-import { lireVillesPubliees } from "../../../../donnees/villes";
+import { choixDeVilles, lireVillesPubliees } from "../../../../donnees/villes";
 
 /**
  * La page lit la liste des villes : elle ne peut donc pas être figée une fois
@@ -28,7 +28,12 @@ export default async function NousEcrire({
 }) {
   await preparerLangue(params);
   const t = await getTranslations("nousEcrire");
+  const c = await getTranslations("commun");
   const lecture = await lireVillesPubliees(horlogeSysteme.maintenant());
+  const villes = choixDeVilles(
+    lecture.ok ? lecture.valeur : [],
+    c.raw("villes") as readonly string[],
+  );
 
   return (
     <>
@@ -42,14 +47,7 @@ export default async function NousEcrire({
         <FormulaireDemande
           sujet="question"
           action={t("envoyer")}
-          villes={
-            lecture.ok
-              ? lecture.valeur.map((entree) => ({
-                  id: entree.id,
-                  nom: entree.ville.nom,
-                }))
-              : []
-          }
+          villes={villes}
           champs={[
             { nom: "nom", etiquette: t("nom"), indice: t("nomIndice") },
             { nom: "contact", etiquette: t("joindre"), indice: t("joindreIndice") },
@@ -69,9 +67,6 @@ export default async function NousEcrire({
         <p className="petit second" style={{ maxWidth: "var(--largeur-texte)" }}>
           {t("devenirTexte")}
         </p>
-        <a className="lien-souligne" href="#">
-          <span>{t("devenirLien")}</span>
-        </a>
       </Bande>
 
       <Bande surface="creme">

@@ -16,15 +16,15 @@ export async function generateMetadata() {
 }
 
 /**
- * La page lit la base, et distingue TROIS cas — c'est tout l'objet de R2 :
+ * Les dix-neuf villes du mouvement, et rien d'autre.
  *
- *   1. des villes sont enregistrées → on les affiche ;
- *   2. la base répond, mais elle est vide (ou pas encore configurée) → on
- *      affiche la liste provisoire et le marqueur « liste à compléter » ;
- *   3. la base est injoignable → on le DIT. On n'affiche pas une liste vide,
- *      qui laisserait croire que le mouvement est absent de la ville du
- *      visiteur. C'est exactement le défaut de l'application actuelle, où une
- *      panne et une absence étaient indiscernables.
+ * La liste vient du DÉPÔT, pas de la base : une base vide ou injoignable ne
+ * peut donc pas faire disparaître une ville, et le visiteur ne lit jamais une
+ * liste trompeuse. Ce que la base contient en plus — une ville ouverte depuis
+ * — s'y ajoute.
+ *
+ * La page ne promet aucun contact : la publication s'arrête au nom de la
+ * ville (ADR-011). Qui veut joindre quelqu'un passe par « Rejoindre ».
  */
 export default async function OuNousSommes({
   params,

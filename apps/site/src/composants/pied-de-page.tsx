@@ -56,12 +56,14 @@ export function PiedDePage() {
           ))}
         </div>
 
+        {/* « Confidentialité » et « Vos données » pointaient vers « # » : trois
+            liens qui ne menaient nulle part, sur un site qu'on envoie à des
+            inconnus. Ils reviendront le jour où les pages existeront. Celui de
+            l'espace membres, lui, mène à l'administration, qui existe. */}
         <div className="pied-bas">
           <span>{p("droits")}</span>
-          <a href="#">{p("confidentialite")}</a>
-          <a href="#">{p("donnees")}</a>
           <span style={{ flexGrow: 1 }} />
-          <a href="#" className="accent" style={{ fontWeight: 700 }}>
+          <a href="/admin" className="accent" style={{ fontWeight: 700 }}>
             {p("espaceMembres")}
           </a>
         </div>

@@ -201,6 +201,15 @@ export const T = {
  * comptent, et une étiquette de bouton modifiée par erreur casserait une page.
  * Ce sont les sections qui attendent du contenu, ou qui changent d'une année
  * sur l'autre.
+ *
+ * ELLE NE CONTIENT QUE DES SECTIONS QUE LE SITE AFFICHE VRAIMENT. Un texte
+ * publié depuis cet écran recouvre la clé du même nom ; si aucune page ne lit
+ * cette clé, le texte est accepté, enregistré, annoncé comme publié — et
+ * n'apparaît nulle part. Le travail de quelqu'un disparaît en silence. Sept
+ * sections étaient dans ce cas après la réduction du site du 9 novembre 2026
+ * (le témoignage et le temps fort de l'accueil, le titre du canevas, et les
+ * pages « Agenda » et « Soutenir », supprimées) : elles ont été retirées
+ * d'ici. Le jour où une section revient sur le site, sa ligne revient ici.
  */
 export interface SectionEditable {
   readonly cle: string;
@@ -237,18 +246,6 @@ export const PAGES_EDITABLES: readonly PageEditable[] = [
     sections: [
       { cle: "display", libelle: "La phrase d'ouverture", long: true },
       { cle: "accroche", libelle: "Le paragraphe sous l'ouverture", long: true },
-      {
-        cle: "voixCitation",
-        libelle: "Le témoignage d'un étudiant",
-        aide: "Deux ou trois phrases, avec l'accord écrit de la personne. C'est la section qui change le plus la page.",
-        long: true,
-      },
-      { cle: "tempsFortNom", libelle: "Le prochain temps fort — son nom" },
-      {
-        cle: "tempsFortTexte",
-        libelle: "Le prochain temps fort — sa description",
-        long: true,
-      },
     ],
   },
   {
@@ -275,43 +272,7 @@ export const PAGES_EDITABLES: readonly PageEditable[] = [
     espace: "leCanevas",
     titre: "Le canevas",
     chemin: "/le-canevas",
-    sections: [
-      { cle: "anneeTitre", libelle: "Le canevas de l'année — son titre" },
-      { cle: "accroche", libelle: "Ce qu'est le canevas", long: true },
-    ],
-  },
-  {
-    espace: "agenda",
-    titre: "L'agenda",
-    chemin: "/agenda",
-    sections: [
-      { cle: "prochainNom", libelle: "Le prochain temps fort — son nom" },
-      {
-        cle: "prochainTexte",
-        libelle: "Le prochain temps fort — sa description",
-        long: true,
-      },
-      {
-        cle: "datesTexte",
-        libelle: "Ses dates et informations pratiques",
-        aide: "Écrivez-les dès qu'elles sont arrêtées : c'est la première chose qu'un étudiant cherche.",
-        long: true,
-      },
-    ],
-  },
-  {
-    espace: "soutenir",
-    titre: "Soutenir",
-    chemin: "/soutenir",
-    sections: [
-      { cle: "accroche", libelle: "Pourquoi soutenir le mouvement", long: true },
-      {
-        cle: "donAttenteTexte",
-        libelle: "Les moyens de don",
-        aide: "Tant qu'ils ne sont pas indiqués, aucun bouton de paiement n'est affiché sur le site : un don que l'on ne sait pas recevoir ne se demande pas.",
-        long: true,
-      },
-    ],
+    sections: [{ cle: "accroche", libelle: "Ce qu'est le canevas", long: true }],
   },
 ];
 
