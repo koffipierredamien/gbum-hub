@@ -45,6 +45,12 @@ const Photo = z.object({
    * vignette, personne n'y reconnaît personne.
    */
   pleineLargeur: z.boolean().optional(),
+  /**
+   * L'image est plus HAUTE que large. Sa case prend alors les proportions
+   * d'un portrait : sans cela, la grille la recadrerait en bande et lui
+   * couperait la tête et les pieds.
+   */
+  portrait: z.boolean().optional(),
 });
 
 export interface PhotoPubliee {
@@ -52,6 +58,7 @@ export interface PhotoPubliee {
   readonly description: string;
   readonly etiquette?: string;
   readonly pleineLargeur?: boolean;
+  readonly portrait?: boolean;
 }
 
 interface PhotoClassee extends PhotoPubliee {
@@ -74,6 +81,7 @@ function lire(): readonly PhotoClassee[] {
     ...(photo.pleineLargeur === undefined
       ? {}
       : { pleineLargeur: photo.pleineLargeur }),
+    ...(photo.portrait === undefined ? {} : { portrait: photo.portrait }),
   }));
 }
 

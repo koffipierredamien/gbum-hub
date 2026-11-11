@@ -102,5 +102,37 @@
     "description": "Des étudiants assis et attentifs pendant un enseignement, au camp d'Ifrane spécial Bouznika 2026",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2026 · l'enseignement"
+  },
+  {
+    "fichier": "camp-ifrane-2026-masterclass.jpg",
+    "description": "Montage de la remise des attestations de la MasterClass au camp d'Ifrane spécial Bouznika 2026 : des étudiants reçoivent leur diplôme et leur trophée des mains d'un responsable",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · la MasterClass"
+  },
+  {
+    "fichier": "camp-ifrane-2026-recueillement.jpg",
+    "description": "Un étudiant prie, les yeux fermés et la main ouverte, au milieu de l'assemblée, au camp d'Ifrane spécial Bouznika 2026",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · recueillement"
+  },
+  {
+    "fichier": "camp-ifrane-2026-intercession.jpg",
+    "description": "Montage d'un temps d'intercession au camp d'Ifrane spécial Bouznika 2026 : des étudiants prient debout, mains ouvertes, et l'un d'eux impose les mains",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · l'intercession"
+  },
+  {
+    "fichier": "camp-ifrane-2026-sourire.jpg",
+    "description": "Portrait en noir et blanc d'une étudiante souriante, au camp d'Ifrane spécial Bouznika 2026",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026",
+    "portrait": true
+  },
+  {
+    "fichier": "camp-ifrane-2026-le-plus-jeune.jpg",
+    "description": "Le plus jeune participant du camp d'Ifrane spécial Bouznika 2026, un petit garçon en gilet traditionnel, le visage levé",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · le plus jeune",
+    "portrait": true
   }
 ]

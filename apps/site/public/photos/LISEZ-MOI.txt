@@ -41,6 +41,10 @@ LES PHOTOGRAPHIES DU SITE
    largeur au lieu d'une case — pour la photo de groupe, parce que deux cents
    visages dans une vignette ne se reconnaissent pas.
 
+   « portrait »: true (galerie seulement) pour une image PLUS HAUTE QUE
+   LARGE. Sans ce mot, la grille la recadre en bande et lui coupe la tête et
+   les pieds.
+
 3. Avant de déposer : effacez les données cachées de chaque photo (clic droit >
    Propriétés > Détails > Supprimer les propriétés et les informations
    personnelles). Une photo de téléphone contient souvent les coordonnées GPS

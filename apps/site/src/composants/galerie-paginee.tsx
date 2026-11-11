@@ -9,6 +9,7 @@ export interface PhotoDeGalerie {
   readonly description: string;
   readonly etiquette?: string;
   readonly pleineLargeur?: boolean;
+  readonly portrait?: boolean;
 }
 
 /** Six par page : deux rangées de trois au bureau, six cases sur un téléphone. */
@@ -39,7 +40,11 @@ export function GaleriePaginee({ photos }: { photos: readonly PhotoDeGalerie[] }
         {visibles.map((photo) => (
           <li
             key={photo.chemin}
-            {...(photo.pleineLargeur === true ? { className: "galerie-large" } : {})}
+            {...(photo.pleineLargeur === true
+              ? { className: "galerie-large" }
+              : photo.portrait === true
+                ? { className: "galerie-portrait" }
+                : {})}
           >
             <figure>
               <img

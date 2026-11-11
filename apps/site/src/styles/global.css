@@ -1123,6 +1123,10 @@ select.champ {
    et un recadrage y coupe des visages. */
 .galerie {
   display: grid;
+  /* Les cases ne s'étirent pas à la hauteur de leur voisine : une image en
+     portrait est plus haute, et la grille se décale — ce qui vaut mieux
+     qu'une image en paysage étirée pour rien. */
+  align-items: start;
   gap: 12px;
   margin: 22px 0 0;
   padding: 0;
@@ -1151,6 +1155,11 @@ select.champ {
 }
 .galerie-large img {
   object-fit: contain;
+}
+/* Une photographie plus haute que large garde ses proportions de portrait :
+   recadrée en 3:2, elle perdrait la tête et les pieds de son sujet. */
+.galerie-portrait img {
+  aspect-ratio: 2 / 3;
 }
 .galerie figcaption {
   position: absolute;
