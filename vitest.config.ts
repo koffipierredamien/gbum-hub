@@ -2,7 +2,10 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    include: ["packages/*/src/**/*.test.ts"],
+    // Le domaine, et les quelques gardes-fous du site qui se vérifient sans
+    // navigateur ni base — par exemple que l'administration ne propose pas
+    // d'écrire un texte que plus aucune page n'affiche.
+    include: ["packages/*/src/**/*.test.ts", "apps/site/src/**/*.test.ts"],
     coverage: {
       // Le domaine est le seul endroit où une couverture chiffrée veut dire
       // quelque chose : ses règles se testent en mémoire, sans base et sans

@@ -2,8 +2,8 @@ import { Bande } from "./bande";
 
 /**
  * L'ouverture d'une page intérieure : l'étiquette, l'UNIQUE Display de la
- * page (D2), et l'accroche. Les huit pages partagent cette forme — c'est ce
- * qui fait qu'on les reconnaît comme un même site.
+ * page (D2), et l'accroche. Toutes les pages intérieures partagent cette
+ * forme — c'est ce qui fait qu'on les reconnaît comme un même site.
  */
 export function SectionTitre({
   eyebrow,

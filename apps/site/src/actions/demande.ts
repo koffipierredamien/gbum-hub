@@ -34,12 +34,18 @@ export async function envoyerDemande(
   _precedent: EtatEnvoi,
   donnees: FormData,
 ): Promise<EtatEnvoi> {
+  // Le menu des villes propose les dix-neuf du mouvement : celles que la base
+  // connaît portent leur identifiant, les autres leur seul nom. On sépare ici,
+  // une fois, plutôt que dans chaque page (R5).
+  const ville = donnees.get("ville");
+  const choisie = typeof ville === "string" ? ville : "";
+
   const brut = {
     sujet: donnees.get("sujet"),
     nom: donnees.get("nom"),
     contact: donnees.get("contact"),
-    villeId: donnees.get("villeId") === "" ? null : donnees.get("villeId"),
-    villeLibre: donnees.get("villeLibre") === "" ? null : donnees.get("villeLibre"),
+    villeId: choisie.startsWith("id:") ? choisie.slice(3) : null,
+    villeLibre: choisie.startsWith("nom:") ? choisie.slice(4) : null,
     message: donnees.get("message"),
     piege: donnees.get("piege") ?? "",
   };

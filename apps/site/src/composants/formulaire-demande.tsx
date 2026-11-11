@@ -32,7 +32,7 @@ export function FormulaireDemande({
 }: {
   sujet: string;
   champs: readonly ChampTexte[];
-  villes?: readonly { id: string; nom: string }[] | undefined;
+  villes?: readonly { id: string | null; nom: string }[] | undefined;
   action: string;
 }) {
   const c = useTranslations("commun");
@@ -74,10 +74,18 @@ export function FormulaireDemande({
           <label className="etiquette-champ" htmlFor="villeId">
             {c("villeChoix")}
           </label>
-          <select className="champ" id="villeId" name="villeId" defaultValue="">
+          {/* Une seule liste, et les dix-neuf villes dedans. La valeur dit
+              d'où vient le choix : « id: » quand la base connaît la ville —
+              la demande arrive alors rattachée à son bureau — et « nom: »
+              sinon, pour que l'administration la lise quand même. Une liste
+              bâtie sur la seule base n'offrirait que Casablanca. */}
+          <select className="champ" id="villeId" name="ville" defaultValue="">
             <option value="">—</option>
             {villes.map((ville) => (
-              <option key={ville.id} value={ville.id}>
+              <option
+                key={ville.nom}
+                value={ville.id === null ? `nom:${ville.nom}` : `id:${ville.id}`}
+              >
                 {ville.nom}
               </option>
             ))}

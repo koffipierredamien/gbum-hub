@@ -125,15 +125,52 @@ export function villesAAfficher(
   deLaBase: readonly VilleAvecId[],
   duMouvement: readonly string[],
 ): readonly string[] {
+  return choixDeVilles(deLaBase, duMouvement).map((choix) => choix.nom);
+}
+
+/**
+ * La ville telle qu'un formulaire la propose : son nom, et son identifiant
+ * SEULEMENT si la base la connaît.
+ *
+ * Les dix-neuf villes viennent du mouvement ; la base, elle, n'en contient
+ * que quelques-unes. Un menu déroulant bâti sur la seule base n'offrirait
+ * donc que celles-là — un étudiant de Rabat ne trouverait pas sa ville, et
+ * s'en irait. Il les propose donc TOUTES : celles que la base connaît
+ * voyagent par leur identifiant, et arrivent au hub privé rattachées à leur
+ * bureau ; les autres voyagent par leur nom, et l'administration les lit tout
+ * de même. Le jour où le hub tiendra les dix-neuf, tous les choix porteront
+ * un identifiant sans qu'une ligne change ici.
+ */
+export interface ChoixDeVille {
+  readonly id: string | null;
+  readonly nom: string;
+}
+
+export function choixDeVilles(
+  deLaBase: readonly VilleAvecId[],
+  duMouvement: readonly string[],
+): readonly ChoixDeVille[] {
   const pliee = (nom: string) =>
     nom
       .normalize("NFD")
       .replace(/\p{Diacritic}/gu, "")
       .trim()
       .toLowerCase();
-  const connues = new Set(duMouvement.map(pliee));
+
+  const parNom = new Map(deLaBase.map((entree) => [pliee(entree.ville.nom), entree]));
+  const duMouvementPliees = new Set(duMouvement.map(pliee));
+
+  // La liste du mouvement d'abord, dans SON ordre : une base incomplète ne
+  // doit jamais pouvoir réduire ce qui a déjà été donné.
+  const connues = duMouvement.map((nom) => {
+    const entree = parNom.get(pliee(nom));
+    return { id: entree === undefined ? null : entree.id, nom };
+  });
+
+  // Puis ce que la base apporte en plus — une ville ouverte depuis.
   const enPlus = deLaBase
-    .map((entree) => entree.ville.nom)
-    .filter((nom) => !connues.has(pliee(nom)));
-  return [...duMouvement, ...enPlus];
+    .filter((entree) => !duMouvementPliees.has(pliee(entree.ville.nom)))
+    .map((entree) => ({ id: entree.id, nom: entree.ville.nom }));
+
+  return [...connues, ...enPlus];
 }

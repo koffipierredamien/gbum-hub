@@ -6,9 +6,6 @@ import { DefileVilles } from "../../../composants/defile-villes";
 import { lireVillesPubliees, villesAAfficher } from "../../../donnees/villes";
 import { Galerie } from "../../../sections/galerie";
 import { horlogeSysteme } from "@gbum/core";
-// Chiffres, VieDuMouvement, Voix, CeQuiVient et TempsFort existent toujours
-// dans « sections/accueil » : ils ne sont pas importés tant qu'ils n'ont rien
-// à montrer. Les réimporter suffit à les remettre.
 import {
   Accroche,
   AppelARejoindre,
@@ -57,14 +54,13 @@ export default async function Accueil({
       <Pratiques />
       <Galerie />
       {/*
-        Retirées le 9 novembre 2026, pour la mobilisation en ville : les
-        chiffres du mouvement, la vie du mouvement, les témoignages, l'agenda
-        et le prochain temps fort n'ont encore AUCUN contenu. Cinq encadrés
-        « en attente » à la suite donnent d'un mouvement vivant l'image d'un
-        mouvement vide — c'est l'inverse de ce qu'un étudiant invité doit voir.
-
-        Elles reviennent dès que leur contenu arrive : il suffit de remettre
-        leur ligne ici. Les composants ne sont pas supprimés.
+        Cinq sections ont été retirées le 9 novembre 2026, pour la mobilisation
+        en ville : les chiffres du mouvement, la vie du mouvement, les
+        témoignages, l'agenda et le prochain temps fort n'avaient AUCUN
+        contenu. Cinq encadrés « en attente » à la suite donnent d'un mouvement
+        vivant l'image d'un mouvement vide — c'est l'inverse de ce qu'un
+        étudiant invité doit voir. Leur mise en page est dans l'historique du
+        dépôt, le jour où le contenu arrivera.
       */}
       <AppelARejoindre />
     </>

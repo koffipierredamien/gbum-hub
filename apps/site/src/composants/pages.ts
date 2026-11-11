@@ -2,16 +2,15 @@
  * L'ordre des pages, décidé le 9 septembre 2026 — RÉDUIT le 9 novembre 2026
  * pour la mobilisation en ville.
  *
- * Il suit le parcours du visiteur : qui nous sommes, où nous trouver, ce
- * qu'on y étudie, comment nous joindre. Quatre entrées, et rien de plus.
+ * Il suit le parcours du visiteur : l'accueil, qui nous sommes, où nous
+ * trouver, ce qu'on y étudie, comment nous joindre. Cinq entrées, et rien de
+ * plus.
  *
- * Trois pages sont sorties du menu — « La vie du mouvement », « Agenda » et
- * « Soutenir ». Elles existent toujours et fonctionnent ; elles n'ont
- * simplement **rien à montrer** tant que le mouvement n'a pas fourni leurs
- * contenus. Un étudiant qu'on invite à découvrir le GBUM et qui ouvre trois
- * pages vides repart avec l'impression d'un mouvement vide. Elles reviendront
- * au menu le jour où elles auront quelque chose à dire : il suffit de
- * remettre leur ligne ici.
+ * Trois pages ont été retirées du site — « La vie du mouvement », « Agenda »
+ * et « Soutenir ». Elles n'avaient rien à montrer, et un étudiant qu'on
+ * invite à découvrir le GBUM et qui ouvre trois pages vides repart avec
+ * l'impression d'un mouvement vide. Elles reviendront le jour où elles auront
+ * quelque chose à dire : leur mise en page est dans l'historique du dépôt.
  *
  * « Rejoindre le GBUM » n'est PAS une entrée de menu : c'est l'action, et
  * l'unique bouton ambre.

@@ -4,11 +4,11 @@ import { preparerLangue } from "../../../../i18n/langue";
 import { Link } from "../../../../i18n/navigation";
 import { Bande } from "../../../../composants/bande";
 import { Attente } from "../../../../composants/attente";
-import { Photo } from "../../../../composants/photo";
+import { SectionTitre } from "../../../../composants/section-titre";
 import { RangNumerote } from "../../../../composants/rang-numerote";
 import { FormulaireDemande } from "../../../../composants/formulaire-demande";
 import { Fleche } from "../../../../composants/fleche";
-import { lireVillesPubliees } from "../../../../donnees/villes";
+import { choixDeVilles, lireVillesPubliees } from "../../../../donnees/villes";
 
 export const revalidate = 300;
 
@@ -18,11 +18,18 @@ export async function generateMetadata() {
 }
 
 /**
- * Le parcours d'accueil, en trois étapes et sans compte.
+ * Le parcours d'accueil : un formulaire, et rien d'autre à faire.
  *
- * Le cas « aucun groupe dans ta ville » est traité avec le MÊME soin que le
- * cas nominal, sur sa propre bande : c'est là qu'on perd quelqu'un, ou qu'on
- * le rattrape.
+ * IL N'Y A PLUS D'ÉTAPES. La page annonçait « Étape 1 sur 3 », puis affichait
+ * une grille de villes qui n'était pas cliquable, puis une bande qui disait
+ * « Le GBU est présent à … » en nommant la PREMIÈRE ville de la liste —
+ * jamais celle du visiteur, puisque rien n'avait été choisi. Une cérémonie en
+ * trois temps qui ne demandait rien et confirmait un choix qui n'existait
+ * pas. Le choix de la ville est devenu ce qu'il est : une ligne du
+ * formulaire.
+ *
+ * Le cas « aucun groupe dans ta ville » garde sa bande entière : c'est là
+ * qu'on perd quelqu'un, ou qu'on le rattrape.
  */
 export default async function Rejoindre({
   params,
@@ -34,59 +41,23 @@ export default async function Rejoindre({
   const c = await getTranslations("commun");
 
   const lecture = await lireVillesPubliees(horlogeSysteme.maintenant());
-  const reelles = lecture.ok ? lecture.valeur : [];
-  const noms =
-    reelles.length > 0
-      ? reelles.map((entree) => entree.ville.nom)
-      : (c.raw("villes") as readonly string[]);
-  const premiere = noms[0] ?? "";
-  const choixDeVille = reelles.map((entree) => ({
-    id: entree.id,
-    nom: entree.ville.nom,
-  }));
+  const villes = choixDeVilles(
+    lecture.ok ? lecture.valeur : [],
+    c.raw("villes") as readonly string[],
+  );
 
   return (
     <>
-      <Bande surface="creme">
-        <div className="jauge" aria-hidden="true">
-          {Array.from({ length: 3 }, (_, index) => (
-            <span key={index} data-ecoule={index < 1} />
-          ))}
-        </div>
-        <p className="etiquette accent">{t("etape", { numero: 1 })}</p>
-        <h1 className="display">{t("display")}</h1>
-        <p className="corps second" style={{ marginTop: 18 }}>
-          {t("accroche")}
-        </p>
-        <div className="grille grille-2" style={{ margin: "22px 0" }}>
-          {noms.map((nom) => (
-            <span className="carte" key={nom}>
-              <span className="sous-titre" style={{ fontSize: "1.125rem" }}>
-                {nom}
-              </span>
-            </span>
-          ))}
-        </div>
-      </Bande>
-
-      <Photo hauteur={240}>
-        <div>
-          <p className="etiquette">{t("etape", { numero: 2 })}</p>
-          <p className="titre-serif" style={{ margin: 0 }}>
-            {t("etape2Titre", { ville: premiere })}
-          </p>
-        </div>
-      </Photo>
+      <SectionTitre
+        eyebrow={t("eyebrow")}
+        display={t("display")}
+        accroche={t("accroche")}
+      />
 
       <Bande surface="sable">
-        <p className="corps second">{t("etape2Texte")}</p>
-      </Bande>
-
-      <Bande surface="creme">
-        <p className="etiquette accent">{t("etape", { numero: 3 })}</p>
-        <h2 className="titre">{t("etape3Titre")}</h2>
+        <h2 className="titre">{t("formulaireTitre")}</h2>
         <p className="petit second" style={{ marginBottom: 22 }}>
-          {t("etape3Texte")}
+          {t("formulaireTexte")}
         </p>
         <div style={{ marginBottom: 20 }}>
           <Attente titre={t("viePriveeTitre")} texte={t("viePriveeTexte")} />
@@ -94,11 +65,10 @@ export default async function Rejoindre({
         <FormulaireDemande
           sujet="rejoindre"
           action={t("envoyer")}
-          villes={choixDeVille}
+          villes={villes}
           champs={[
             { nom: "nom", etiquette: t("prenom"), indice: t("prenomIndice") },
             { nom: "contact", etiquette: t("joindre"), indice: t("joindreIndice") },
-            { nom: "villeLibre", etiquette: t("campus"), indice: t("campusIndice") },
             { nom: "message", etiquette: t("mot"), indice: t("motIndice"), zone: true },
           ]}
         />
