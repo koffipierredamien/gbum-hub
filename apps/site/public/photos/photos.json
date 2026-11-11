@@ -66,8 +66,8 @@
     "etiquette": "Camp d'Ifrane 2025 · le départ"
   },
   {
-    "fichier": "gbum-petits-groupes.jpg",
-    "description": "Montage de quatre petits groupes d'étude biblique assis en cercle, Bible ouverte, pendant une rencontre du GBUM",
+    "fichier": "gbum-etude-biblique.jpg",
+    "description": "Un petit groupe d'étudiants assis en cercle pendant une étude biblique : une étudiante lit à voix haute, carnet ouvert, les autres écoutent, Bible sur les genoux",
     "usage": "accueil",
     "etiquette": "L'étude en petits groupes"
   },
@@ -96,6 +96,13 @@
     "description": "Une vingtaine d'étudiantes du GBUM posent ensemble, doigts levés, au camp d'Ifrane spécial Bouznika 2025",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2025 · entre étudiantes"
+  },
+  {
+    "fichier": "gbum-petits-groupes.jpg",
+    "description": "Montage de quatre petits groupes d'étude biblique assis en cercle, Bible ouverte, pendant une rencontre du GBUM",
+    "usage": "galerie",
+    "etiquette": "Les petits groupes",
+    "pleineLargeur": true
   },
   {
     "fichier": "camp-ifrane-2026-louange.jpg",
@@ -134,6 +141,12 @@
     "etiquette": "Camp d'Ifrane 2026 · la MasterClass"
   },
   {
+    "fichier": "camp-ifrane-2026-equipe.jpg",
+    "description": "Une quinzaine d'étudiants et de responsables posent sur l'estrade à la fin du camp d'Ifrane spécial Bouznika 2026 ; deux d'entre eux tiennent un trophée et une attestation",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · l'équipe"
+  },
+  {
     "fichier": "camp-ifrane-2026-recueillement.jpg",
     "description": "Un étudiant prie, les yeux fermés et la main ouverte, au milieu de l'assemblée, au camp d'Ifrane spécial Bouznika 2026",
     "usage": "galerie",
@@ -154,7 +167,7 @@
   },
   {
     "fichier": "camp-ifrane-2026-le-plus-jeune.jpg",
-    "description": "Le plus jeune participant du camp d'Ifrane spécial Bouznika 2026, un petit garçon en gilet traditionnel, le visage levé",
+    "description": "Le plus jeune participant du camp d'Ifrane spécial Bouznika 2026, un petit garçon debout, un hochet de bois à la main, une main d'adulte tendue vers lui",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2026 · le plus jeune",
     "portrait": true
