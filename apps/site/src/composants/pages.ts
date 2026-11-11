@@ -17,6 +17,7 @@
  * l'unique bouton ambre.
  */
 export const MENU = [
+  { chemin: "/", cle: "accueil" },
   { chemin: "/le-mouvement", cle: "leMouvement" },
   { chemin: "/ou-nous-sommes", cle: "ouNousSommes" },
   { chemin: "/le-canevas", cle: "leCanevas" },
@@ -33,6 +34,7 @@ export const PIED = [
   {
     cle: "decouvrir",
     liens: [
+      { chemin: "/", cle: "accueil" },
       { chemin: "/le-mouvement", cle: "leMouvement" },
       { chemin: "/ou-nous-sommes", cle: "ouNousSommes" },
       { chemin: "/le-canevas", cle: "leCanevas" },

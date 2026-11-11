@@ -29,21 +29,35 @@ export default async function LeCanevas({
       />
 
       <Bande surface="terre">
-        <p className="etiquette accent">
-          {t("anneeEyebrow")} · {CANEVAS.annee}
-        </p>
-        <h2 className="titre-serif">{CANEVAS.titre}</h2>
-        <p className="etiquette att-terre">{CANEVAS.reference}</p>
-        <p
-          className="petit"
-          style={{ maxWidth: "var(--largeur-texte)", marginTop: 14 }}
-        >
-          {CANEVAS.presentation}
-        </p>
-
-        <p className="etiquette att-terre" style={{ marginTop: 26 }}>
-          {t("etudesCompte", { combien: nombreDEtudes(CANEVAS) })}
-        </p>
+        {/* La couverture du livret, à côté de ce qu'elle annonce. C'est la
+            première page du PDF : l'image et le document ne peuvent donc pas
+            se contredire, et le jour où le canevas change, les deux changent
+            ensemble. */}
+        <div className="canevas-tete">
+          <img
+            className="canevas-couverture"
+            src="/documents/canevas-2026-2027-couverture.jpg"
+            alt={t("couverture")}
+            width={900}
+            height={1273}
+          />
+          <div>
+            <p className="etiquette accent">
+              {t("anneeEyebrow")} · {CANEVAS.annee}
+            </p>
+            <h2 className="titre-serif">{CANEVAS.titre}</h2>
+            <p className="etiquette att-terre">{CANEVAS.reference}</p>
+            <p
+              className="petit"
+              style={{ maxWidth: "var(--largeur-texte)", marginTop: 14 }}
+            >
+              {CANEVAS.presentation}
+            </p>
+            <p className="etiquette att-terre" style={{ marginTop: 26 }}>
+              {t("etudesCompte", { combien: nombreDEtudes(CANEVAS) })}
+            </p>
+          </div>
+        </div>
 
         {CANEVAS.parties.map((partie) => (
           <div key={partie.nom} style={{ marginTop: 18 }}>

@@ -107,3 +107,33 @@ export async function lireVillesPubliees(
 function bornerMandat(valeur: Date | null): Instant {
   return valeur === null ? JAMAIS : instant(valeur.getTime());
 }
+
+/**
+ * Les villes à afficher : CELLES DU MOUVEMENT, puis celles de la base.
+ *
+ * La base ne contenait qu'une ville le 10 novembre 2026, et le site n'a
+ * montré qu'elle : dix-neuf villes réelles effacées par une base à moitié
+ * remplie. Une base incomplète ne doit pas pouvoir SOUSTRAIRE ce que le
+ * mouvement a déjà donné.
+ *
+ * On part donc de la liste du dépôt — l'ordre dans lequel le mouvement veut
+ * se citer — et on ajoute ce que la base apporte en plus. Le jour où le hub
+ * privé tiendra les dix-neuf à jour, les deux listes coïncideront et cette
+ * fonction ne fera plus rien.
+ */
+export function villesAAfficher(
+  deLaBase: readonly VilleAvecId[],
+  duMouvement: readonly string[],
+): readonly string[] {
+  const pliee = (nom: string) =>
+    nom
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .trim()
+      .toLowerCase();
+  const connues = new Set(duMouvement.map(pliee));
+  const enPlus = deLaBase
+    .map((entree) => entree.ville.nom)
+    .filter((nom) => !connues.has(pliee(nom)));
+  return [...duMouvement, ...enPlus];
+}

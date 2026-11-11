@@ -10,7 +10,8 @@
     "leMouvement": "Le mouvement",
     "ouNousSommes": "Où nous sommes",
     "leCanevas": "Le canevas",
-    "nousEcrire": "Nous écrire"
+    "nousEcrire": "Nous écrire",
+    "accueil": "Accueil"
   },
   "pied": {
     "devise": "« Connaître Christ et Le faire connaître »",
@@ -129,7 +130,9 @@
     "renvoiAction": "Voir où nous sommes",
     "friseGbumAnnee": "",
     "friseGbumTexte": "",
-    "renvoiLien": "Le canevas d'études"
+    "renvoiLien": "Le canevas d'études",
+    "familleEyebrow": "Ce que c'est",
+    "familleTexte": "Le GBU est une famille. Elle se retrouve sur les campus, chaque semaine — et dans les maisons, autour d'un repas, d'une prière, d'un passage de la Bible. On y arrive souvent seul, loin de chez soi ; on y trouve des frères et des sœurs."
   },
   "ouNousSommes": {
     "titre": "Où nous sommes",
@@ -156,7 +159,8 @@
     "ensembleTexte": "Il est écrit pour être ouvert en cellule, à voix haute, avec des gens. Trouvez celle qui est la plus proche de vous.",
     "ensembleAction": "Trouver mon groupe",
     "etudesCompte": "{combien} études, en six parties",
-    "telecharger": "Télécharger le canevas (PDF)"
+    "telecharger": "Télécharger le canevas (PDF)",
+    "couverture": "Couverture du canevas d'études 2026-2027 : des silhouettes se tenant par la main devant une croix, au coucher du soleil, sous le titre « La communion fraternelle des disciples »"
   },
   "nousEcrire": {
     "titre": "Nous écrire",

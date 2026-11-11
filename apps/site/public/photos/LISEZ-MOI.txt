@@ -26,11 +26,13 @@ LES PHOTOGRAPHIES DU SITE
                 proportions. C'est là que vont les photos de groupe et les
                 montages, qu'un recadrage décapiterait.
 
-   COMBIEN AU DÉFILÉ ? HUIT AU PLUS.
-   Chaque image du défilé ajoute une pastille sous l'ouverture, et sur un
-   téléphone de 393 px de large la rangée de pastilles touche les boutons à
-   la neuvième. Au-delà de huit, mettez les suivantes en « galerie » : la
-   grille, elle, n'a pas de limite.
+   COMBIEN AU DÉFILÉ ? UNE DOUZAINE, PAS PLUS.
+   Sur un écran large, chaque image du défilé ajoute une pastille sous
+   l'ouverture ; sur un téléphone, les pastilles cèdent la place à un
+   compteur — « 7 / 12 » — qui ne grandit pas. La limite n'est donc plus la
+   place, mais la patience : personne ne regarde quinze images d'affilée, et
+   chacune est chargée par le visiteur. Au-delà, mettez les suivantes en
+   « galerie » : la grille est paginée, elle n'a pas de limite.
 
    « etiquette » (facultatif) est le petit cartouche posé sur l'image : où et
    quand, en quelques mots. Jamais un slogan. C'est le texte que l'on voit
@@ -40,6 +42,10 @@ LES PHOTOGRAPHIES DU SITE
    « pleineLargeur »: true (galerie seulement) donne à l'image toute la
    largeur au lieu d'une case — pour la photo de groupe, parce que deux cents
    visages dans une vignette ne se reconnaissent pas.
+
+   « portrait »: true (galerie seulement) pour une image PLUS HAUTE QUE
+   LARGE. Sans ce mot, la grille la recadre en bande et lui coupe la tête et
+   les pieds.
 
 3. Avant de déposer : effacez les données cachées de chaque photo (clic droit >
    Propriétés > Détails > Supprimer les propriétés et les informations

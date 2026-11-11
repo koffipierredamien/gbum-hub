@@ -3,7 +3,7 @@ import { preparerLangue } from "../../../i18n/langue";
 import { Bande } from "../../../composants/bande";
 import { BlocTheme } from "../../../composants/bloc-theme";
 import { DefileVilles } from "../../../composants/defile-villes";
-import { lireVillesPubliees } from "../../../donnees/villes";
+import { lireVillesPubliees, villesAAfficher } from "../../../donnees/villes";
 import { Galerie } from "../../../sections/galerie";
 import { horlogeSysteme } from "@gbum/core";
 // Chiffres, VieDuMouvement, Voix, CeQuiVient et TempsFort existent toujours
@@ -39,16 +39,12 @@ export default async function Accueil({
   await preparerLangue(params);
   const c = await getTranslations("commun");
 
-  // Les villes réelles dès qu'il y en a une en base ; la liste provisoire,
-  // marquée « liste exacte à confirmer », seulement tant que la base est vide.
-  // L'accueil et « Où nous sommes » doivent dire la même chose : montrer une
-  // ville où le mouvement n'est peut-être pas présent, c'est inventer.
+  // La liste du mouvement, complétée par ce que la base apporte en plus.
   const lecture = await lireVillesPubliees(horlogeSysteme.maintenant());
-  const reelles = lecture.ok ? lecture.valeur : [];
-  const villes =
-    reelles.length > 0
-      ? reelles.map((entree) => entree.ville.nom)
-      : (c.raw("villes") as readonly string[]);
+  const villes = villesAAfficher(
+    lecture.ok ? lecture.valeur : [],
+    c.raw("villes") as readonly string[],
+  );
 
   return (
     <>

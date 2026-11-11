@@ -12,6 +12,12 @@
     "etiquette": "Camp d'Ifrane 2025 · la joie d'un match"
   },
   {
+    "fichier": "activite-ouverture-groupe.jpg",
+    "description": "La photographie de groupe de l'activité d'ouverture du GBUM : une cinquantaine d'étudiants réunis, souriants, devant l'écran de la salle",
+    "usage": "accueil",
+    "etiquette": "L'activité d'ouverture"
+  },
+  {
     "fichier": "camp-ifrane-2025-chants.jpg",
     "description": "Deux étudiantes chantent pendant la louange, devant l'équipe de musique du camp d'Ifrane spécial Bouznika 2025",
     "usage": "accueil",
@@ -22,6 +28,12 @@
     "description": "Les campeurs réunis après avoir ramassé les déchets aux abords du site, camp d'Ifrane spécial Bouznika 2026",
     "usage": "accueil",
     "etiquette": "Bouznika · service de la cité"
+  },
+  {
+    "fichier": "camp-ifrane-2025-couscous.jpg",
+    "description": "Un grand plat de couscous aux légumes partagé à table, au camp d'Ifrane spécial Bouznika 2025",
+    "usage": "accueil",
+    "etiquette": "Camp d'Ifrane 2025 · le repas partagé"
   },
   {
     "fichier": "camp-ifrane-2025-soiree.jpg",
@@ -36,6 +48,12 @@
     "etiquette": "Rencontre de rentrée"
   },
   {
+    "fichier": "activite-ouverture-equipe.jpg",
+    "description": "Neuf étudiants du GBUM posent ensemble à l'activité d'ouverture, badges d'accueil au cou",
+    "usage": "accueil",
+    "etiquette": "L'activité d'ouverture · l'accueil"
+  },
+  {
     "fichier": "camp-ifrane-2025-bouznika.jpg",
     "description": "Des étudiants du GBUM au camp d'Ifrane spécial Bouznika 2025",
     "usage": "accueil",
@@ -46,6 +64,12 @@
     "description": "Une étudiante attend le train sur un quai de gare, en tee-shirt « Camp d'Ifrane 2025 spécial Bouznika » qu'elle désigne du pouce",
     "usage": "accueil",
     "etiquette": "Camp d'Ifrane 2025 · le départ"
+  },
+  {
+    "fichier": "gbum-etude-biblique.jpg",
+    "description": "Un petit groupe d'étudiants assis en cercle pendant une étude biblique : une étudiante lit à voix haute, carnet ouvert, les autres écoutent, Bible sur les genoux",
+    "usage": "accueil",
+    "etiquette": "L'étude en petits groupes"
   },
   {
     "fichier": "camp-ifrane-2025-photo-de-groupe.jpg",
@@ -72,6 +96,13 @@
     "description": "Une vingtaine d'étudiantes du GBUM posent ensemble, doigts levés, au camp d'Ifrane spécial Bouznika 2025",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2025 · entre étudiantes"
+  },
+  {
+    "fichier": "gbum-petits-groupes.jpg",
+    "description": "Montage de quatre petits groupes d'étude biblique assis en cercle, Bible ouverte, pendant une rencontre du GBUM",
+    "usage": "galerie",
+    "etiquette": "Les petits groupes",
+    "pleineLargeur": true
   },
   {
     "fichier": "camp-ifrane-2026-louange.jpg",
@@ -102,5 +133,43 @@
     "description": "Des étudiants assis et attentifs pendant un enseignement, au camp d'Ifrane spécial Bouznika 2026",
     "usage": "galerie",
     "etiquette": "Camp d'Ifrane 2026 · l'enseignement"
+  },
+  {
+    "fichier": "camp-ifrane-2026-masterclass.jpg",
+    "description": "Montage de la remise des attestations de la MasterClass au camp d'Ifrane spécial Bouznika 2026 : des étudiants reçoivent leur diplôme et leur trophée des mains d'un responsable",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · la MasterClass"
+  },
+  {
+    "fichier": "camp-ifrane-2026-equipe.jpg",
+    "description": "Une quinzaine d'étudiants et de responsables posent sur l'estrade à la fin du camp d'Ifrane spécial Bouznika 2026 ; deux d'entre eux tiennent un trophée et une attestation",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · l'équipe"
+  },
+  {
+    "fichier": "camp-ifrane-2026-recueillement.jpg",
+    "description": "Un étudiant prie, les yeux fermés et la main ouverte, au milieu de l'assemblée, au camp d'Ifrane spécial Bouznika 2026",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · recueillement"
+  },
+  {
+    "fichier": "camp-ifrane-2026-intercession.jpg",
+    "description": "Montage d'un temps d'intercession au camp d'Ifrane spécial Bouznika 2026 : des étudiants prient debout, mains ouvertes, et l'un d'eux impose les mains",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · l'intercession"
+  },
+  {
+    "fichier": "camp-ifrane-2026-sourire.jpg",
+    "description": "Portrait en noir et blanc d'une étudiante souriante, au camp d'Ifrane spécial Bouznika 2026",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026",
+    "portrait": true
+  },
+  {
+    "fichier": "camp-ifrane-2026-le-plus-jeune.jpg",
+    "description": "Le plus jeune participant du camp d'Ifrane spécial Bouznika 2026, un petit garçon debout, un hochet de bois à la main, une main d'adulte tendue vers lui",
+    "usage": "galerie",
+    "etiquette": "Camp d'Ifrane 2026 · le plus jeune",
+    "portrait": true
   }
 ]

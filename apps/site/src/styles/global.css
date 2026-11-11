@@ -1123,6 +1123,10 @@ select.champ {
    et un recadrage y coupe des visages. */
 .galerie {
   display: grid;
+  /* Les cases ne s'étirent pas à la hauteur de leur voisine : une image en
+     portrait est plus haute, et la grille se décale — ce qui vaut mieux
+     qu'une image en paysage étirée pour rien. */
+  align-items: start;
   gap: 12px;
   margin: 22px 0 0;
   padding: 0;
@@ -1151,6 +1155,11 @@ select.champ {
 }
 .galerie-large img {
   object-fit: contain;
+}
+/* Une photographie plus haute que large garde ses proportions de portrait :
+   recadrée en 3:2, elle perdrait la tête et les pieds de son sujet. */
+.galerie-portrait img {
+  aspect-ratio: 2 / 3;
 }
 .galerie figcaption {
   position: absolute;
@@ -1193,4 +1202,81 @@ select.champ {
 .bouton-page:disabled {
   opacity: 0.35;
   cursor: default;
+}
+
+/* La couverture du canevas, à côté de ce qu'elle annonce. Sur un téléphone
+   elle passe au-dessus du texte : c'est une image de titre, pas une vignette,
+   et elle garde ses proportions de livret. */
+.canevas-tete {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.canevas-couverture {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+@media (min-width: 760px) {
+  .canevas-tete {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 34px;
+  }
+  .canevas-couverture {
+    width: 240px;
+    flex-shrink: 0;
+  }
+}
+
+/* La marque de l'IFES dans l'en-tête, sur sa pastille claire. */
+.ifes-entete {
+  display: none;
+}
+@media (min-width: 700px) {
+  .ifes-entete {
+    display: inline-flex;
+    align-items: center;
+    margin-inline-start: 12px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: var(--creme);
+    flex-shrink: 0;
+  }
+  .ifes-entete img {
+    display: block;
+    width: 44px;
+    height: auto;
+  }
+}
+
+/* Le compteur du défilé remplace les pastilles sur un écran étroit : douze
+   pastilles ne tiennent pas dans 393 px à côté des trois boutons. Le choix se
+   fait à la largeur, et non au nombre de photographies — une règle qui ne
+   dépend que de la place disponible ne se trompe jamais. */
+.compteur-vue {
+  margin: 0 0 0 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(42, 33, 27, 0.9);
+  color: var(--creme);
+  font-family: var(--police-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.pastilles {
+  display: none !important;
+}
+@media (min-width: 760px) {
+  .compteur-vue {
+    display: none;
+  }
+  .pastilles {
+    display: flex !important;
+  }
 }
