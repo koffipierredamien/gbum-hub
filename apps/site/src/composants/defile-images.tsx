@@ -98,7 +98,20 @@ export function DefileImages({ photos = [] }: { photos?: readonly PhotoDuDefile[
       )}
 
       <div className="commandes">
-        <div role="group" aria-label={t("choisirVue")} style={{ display: "flex" }}>
+        {/* Au-delà de huit vues, la rangée de pastilles touche les boutons sur
+            un téléphone de 393 px : douze pastilles en demandent 336 à elles
+            seules. On les remplace alors par un compteur, qui tient en trois
+            caractères quel que soit le nombre de photographies. Les flèches
+            assurent la navigation, et le bouton pause le critère WCAG 2.2.2. */}
+        <p className="compteur-vue">
+          {actif + 1} / {combien}
+        </p>
+        <div
+          role="group"
+          aria-label={t("choisirVue")}
+          className="pastilles"
+          style={{ display: "flex" }}
+        >
           {Array.from({ length: combien }, (_, index) => (
             <button
               key={photos[index]?.chemin ?? DEGRADES[index]}

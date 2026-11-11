@@ -1252,3 +1252,31 @@ select.champ {
     height: auto;
   }
 }
+
+/* Le compteur du défilé remplace les pastilles sur un écran étroit : douze
+   pastilles ne tiennent pas dans 393 px à côté des trois boutons. Le choix se
+   fait à la largeur, et non au nombre de photographies — une règle qui ne
+   dépend que de la place disponible ne se trompe jamais. */
+.compteur-vue {
+  margin: 0 0 0 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(42, 33, 27, 0.9);
+  color: var(--creme);
+  font-family: var(--police-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.pastilles {
+  display: none !important;
+}
+@media (min-width: 760px) {
+  .compteur-vue {
+    display: none;
+  }
+  .pastilles {
+    display: flex !important;
+  }
+}

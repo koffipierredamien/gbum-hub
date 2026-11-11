@@ -12,6 +12,12 @@
     "etiquette": "Camp d'Ifrane 2025 · la joie d'un match"
   },
   {
+    "fichier": "activite-ouverture-groupe.jpg",
+    "description": "La photographie de groupe de l'activité d'ouverture du GBUM : une cinquantaine d'étudiants réunis, souriants, devant l'écran de la salle",
+    "usage": "accueil",
+    "etiquette": "L'activité d'ouverture"
+  },
+  {
     "fichier": "camp-ifrane-2025-chants.jpg",
     "description": "Deux étudiantes chantent pendant la louange, devant l'équipe de musique du camp d'Ifrane spécial Bouznika 2025",
     "usage": "accueil",
@@ -22,6 +28,12 @@
     "description": "Les campeurs réunis après avoir ramassé les déchets aux abords du site, camp d'Ifrane spécial Bouznika 2026",
     "usage": "accueil",
     "etiquette": "Bouznika · service de la cité"
+  },
+  {
+    "fichier": "camp-ifrane-2025-couscous.jpg",
+    "description": "Un grand plat de couscous aux légumes partagé à table, au camp d'Ifrane spécial Bouznika 2025",
+    "usage": "accueil",
+    "etiquette": "Camp d'Ifrane 2025 · le repas partagé"
   },
   {
     "fichier": "camp-ifrane-2025-soiree.jpg",
@@ -36,6 +48,12 @@
     "etiquette": "Rencontre de rentrée"
   },
   {
+    "fichier": "activite-ouverture-equipe.jpg",
+    "description": "Neuf étudiants du GBUM posent ensemble à l'activité d'ouverture, badges d'accueil au cou",
+    "usage": "accueil",
+    "etiquette": "L'activité d'ouverture · l'accueil"
+  },
+  {
     "fichier": "camp-ifrane-2025-bouznika.jpg",
     "description": "Des étudiants du GBUM au camp d'Ifrane spécial Bouznika 2025",
     "usage": "accueil",
@@ -46,6 +64,12 @@
     "description": "Une étudiante attend le train sur un quai de gare, en tee-shirt « Camp d'Ifrane 2025 spécial Bouznika » qu'elle désigne du pouce",
     "usage": "accueil",
     "etiquette": "Camp d'Ifrane 2025 · le départ"
+  },
+  {
+    "fichier": "gbum-petits-groupes.jpg",
+    "description": "Montage de quatre petits groupes d'étude biblique assis en cercle, Bible ouverte, pendant une rencontre du GBUM",
+    "usage": "accueil",
+    "etiquette": "L'étude en petits groupes"
   },
   {
     "fichier": "camp-ifrane-2025-photo-de-groupe.jpg",
